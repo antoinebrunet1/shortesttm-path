@@ -1,4 +1,4 @@
-package com.example.shortesttm_path.apis;
+package com.example.shortesttm_path.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
