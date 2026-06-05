@@ -29,10 +29,10 @@ public class ShortestPathUtil {
 
     private void addLineToEdges(List<List<String>> edges, String line_file_name) throws IOException {
         Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
-        List<String> lines = Files.readAllLines(filePath);
+        List<String> stations = Files.readAllLines(filePath);
 
-        for (int i = 0; i < lines.size() - 1; i++) {
-            addTwoStationsInBothDirections(edges, lines.get(i), lines.get(i + 1));
+        for (int i = 0; i < stations.size() - 1; i++) {
+            addTwoStationsInBothDirections(edges, stations.get(i), stations.get(i + 1));
         }
     }
 
