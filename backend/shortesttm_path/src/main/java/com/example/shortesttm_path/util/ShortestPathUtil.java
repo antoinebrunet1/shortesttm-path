@@ -16,6 +16,7 @@ public class ShortestPathUtil {
     );
     private static final List<List<Integer>> GRAPH;
     private static final Map<String, Integer> STATIONS_NAMES_TO_INTS;
+    private static final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
 
     static {
         try {
@@ -104,6 +105,16 @@ public class ShortestPathUtil {
                 }
             }
         }
+    }
+
+    private static Map<Integer, String> getIntsToStationsNames() {
+        Map<Integer, String> intsToStationsNames = new LinkedHashMap<>();
+
+        for (String station : STATIONS_NAMES_TO_INTS.keySet()) {
+            intsToStationsNames.put(STATIONS_NAMES_TO_INTS.get(station), station);
+        }
+
+        return intsToStationsNames;
     }
 
     private static Map<String, Integer> getStationsNamesToInts() throws IOException {
