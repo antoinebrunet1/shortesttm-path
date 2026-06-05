@@ -11,7 +11,7 @@ public class ShortesttmPathApplication {
 
 	public static void main(String[] args) throws IOException {
 //		SpringApplication.run(ShortesttmPathApplication.class, args);
-		new ShortestPathUtil().printShortestPath("Papineau", "Mont-Royal");
+		ShortestPathUtil.printShortestPath("Papineau", "Mont-Royal");
 	}
 
 }

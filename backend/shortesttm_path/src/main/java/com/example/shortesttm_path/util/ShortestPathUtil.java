@@ -33,7 +33,7 @@ public class ShortestPathUtil {
     private static final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
     private static final int NUMBER_OF_VERTICES = 68;
 
-    public void printShortestPath(String startStation, String destinationStation) {
+    public static void printShortestPath(String startStation, String destinationStation) {
         int S = STATIONS_NAMES_TO_INTS.get(startStation);
         int D = STATIONS_NAMES_TO_INTS.get(destinationStation);
         // par[] array stores the parent of nodes
