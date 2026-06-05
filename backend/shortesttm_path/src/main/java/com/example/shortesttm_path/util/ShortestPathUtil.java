@@ -65,7 +65,7 @@ public class ShortestPathUtil {
 
         // Printing path from source to destination
         for (int i = path.size() - 1; i >= 0; i--)
-            System.out.print(path.get(i) + " ");
+            System.out.print(INTS_TO_STATIONS_NAMES.get(path.get(i)) + " ");
     }
 
     // Modified bfs to store the parent of nodes along with
