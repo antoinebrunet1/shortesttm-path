@@ -14,9 +14,15 @@ public class ShortestPathUtil {
             "orange_line_stations.txt",
             "yellow_line_stations.txt"
     );
-    private static final List<List<String>> GRAPH;
+    private static final List<List<Integer>> GRAPH;
+    private static final Map<String, Integer> STATIONS_NAMES_TO_INTS;
 
     static {
+        try {
+            STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {
             GRAPH = getGraph();
         } catch (IOException e) {
@@ -26,12 +32,42 @@ public class ShortestPathUtil {
 
     private static final int NUMBER_OF_VERTICES = 68;
 
+    private static Map<String, Integer> getStationsNamesToInts() throws IOException {
+        Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
+        Set<String> uniqueStationsNames = getUniqueStationsNames();
+        int i = 0;
+
+        for (String stationName : uniqueStationsNames) {
+            stationNamesToInts.put(stationName, i);
+            i++;
+        }
+
+        return stationNamesToInts;
+    }
+
+    private static Set<String> getUniqueStationsNames() throws IOException {
+        Set<String> uniqueStationsNames = new LinkedHashSet<>();
+
+        for (String line_file_name : LINES_FILES_NAMES) {
+            addLineToUniqueStationsNames(uniqueStationsNames, line_file_name);
+        }
+
+        return uniqueStationsNames;
+    }
+
+    private static void addLineToUniqueStationsNames(Set<String> uniqueStationsNames, String line_file_name) throws IOException {
+        Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
+        List<String> stations = Files.readAllLines(filePath);
+
+        uniqueStationsNames.addAll(stations);
+    }
+
     public void printShortestPath(String startStation, String destinationStation) {
 
     }
 
-    private static List<List<String>> getGraph() throws IOException {
-        List<List<String>> graph = new ArrayList<>();
+    private static List<List<Integer>> getGraph() throws IOException {
+        List<List<Integer>> graph = new ArrayList<>();
 
         for (String line_file_name : LINES_FILES_NAMES) {
             addLineToGraph(graph, line_file_name);
@@ -40,21 +76,21 @@ public class ShortestPathUtil {
         return graph;
     }
 
-    private static void addLineToGraph(List<List<String>> graph, String line_file_name) throws IOException {
+    private static void addLineToGraph(List<List<Integer>> graph, String line_file_name) throws IOException {
         Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
         List<String> stations = Files.readAllLines(filePath);
 
         for (int i = 0; i < stations.size() - 1; i++) {
-            addTwoStationsInBothDirections(graph, stations.get(i), stations.get(i + 1));
+            addTwoStationsInBothDirections(graph, STATIONS_NAMES_TO_INTS.get(stations.get(i)), STATIONS_NAMES_TO_INTS.get(stations.get(i + 1)));
         }
     }
 
-    private static void addTwoStationsInBothDirections(List<List<String>> graph, String station1, String station2) {
-        List<String> edgeInFirstDirection = Arrays.asList(
+    private static void addTwoStationsInBothDirections(List<List<Integer>> graph, Integer station1, Integer station2) {
+        List<Integer> edgeInFirstDirection = Arrays.asList(
                 station1,
                 station2
         );
-        List<String> edgeInSecondDirection = Arrays.asList(
+        List<Integer> edgeInSecondDirection = Arrays.asList(
                 station2,
                 station1
         );
