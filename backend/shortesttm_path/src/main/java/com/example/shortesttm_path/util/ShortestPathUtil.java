@@ -16,7 +16,6 @@ public class ShortestPathUtil {
     );
     private static final List<List<Integer>> GRAPH;
     private static final Map<String, Integer> STATIONS_NAMES_TO_INTS;
-    private static final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
 
     static {
         try {
@@ -31,6 +30,7 @@ public class ShortestPathUtil {
         }
     }
 
+    private static final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
     private static final int NUMBER_OF_VERTICES = 68;
 
     public void printShortestPath(String startStation, String destinationStation) {
