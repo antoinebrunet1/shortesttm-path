@@ -14,6 +14,7 @@ public class ShortestPathUtil {
             "orange_line_stations.txt",
             "yellow_line_stations.txt"
     );
+    private static final int NUMBER_OF_VERTICES = 68;
     private static final List<List<Integer>> GRAPH;
     private static final Map<String, Integer> STATIONS_NAMES_TO_INTS;
 
@@ -31,7 +32,6 @@ public class ShortestPathUtil {
     }
 
     private static final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
-    private static final int NUMBER_OF_VERTICES = 68;
 
     public static void printShortestPath(String startStation, String destinationStation) {
         int S = STATIONS_NAMES_TO_INTS.get(startStation);
@@ -154,7 +154,18 @@ public class ShortestPathUtil {
             addLineToGraph(graph, line_file_name);
         }
 
-        return graph;
+        List<List<Integer>> graphAsAdjencyList = new ArrayList<>(NUMBER_OF_VERTICES);
+
+        for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
+            graphAsAdjencyList.add(new ArrayList<>());
+        }
+
+        for (List<Integer> edge : graph) {
+            graphAsAdjencyList.get(edge.get(0)).add(edge.get(1));
+            graphAsAdjencyList.get(edge.get(1)).add(edge.get(0));
+        }
+
+        return graphAsAdjencyList;
     }
 
     private static void addLineToGraph(List<List<Integer>> graph, String line_file_name) throws IOException {
