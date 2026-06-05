@@ -18,7 +18,7 @@ public class ShortestPathUtil {
 
     static {
         try {
-            GRAPH = getEdges();
+            GRAPH = getGraph();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -30,26 +30,26 @@ public class ShortestPathUtil {
 
     }
 
-    private static List<List<String>> getEdges() throws IOException {
-        List<List<String>> edges = new ArrayList<>();
+    private static List<List<String>> getGraph() throws IOException {
+        List<List<String>> graph = new ArrayList<>();
 
         for (String line_file_name : LINES_FILES_NAMES) {
-            addLineToEdges(edges, line_file_name);
+            addLineToGraph(graph, line_file_name);
         }
 
-        return edges;
+        return graph;
     }
 
-    private static void addLineToEdges(List<List<String>> edges, String line_file_name) throws IOException {
+    private static void addLineToGraph(List<List<String>> graph, String line_file_name) throws IOException {
         Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
         List<String> stations = Files.readAllLines(filePath);
 
         for (int i = 0; i < stations.size() - 1; i++) {
-            addTwoStationsInBothDirections(edges, stations.get(i), stations.get(i + 1));
+            addTwoStationsInBothDirections(graph, stations.get(i), stations.get(i + 1));
         }
     }
 
-    private static void addTwoStationsInBothDirections(List<List<String>> edges, String station1, String station2) {
+    private static void addTwoStationsInBothDirections(List<List<String>> graph, String station1, String station2) {
         List<String> edgeInFirstDirection = Arrays.asList(
                 station1,
                 station2
@@ -59,7 +59,7 @@ public class ShortestPathUtil {
                 station1
         );
 
-        edges.add(edgeInFirstDirection);
-        edges.add(edgeInSecondDirection);
+        graph.add(edgeInFirstDirection);
+        graph.add(edgeInSecondDirection);
     }
 }
