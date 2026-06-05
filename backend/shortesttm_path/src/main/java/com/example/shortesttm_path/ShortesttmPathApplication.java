@@ -1,7 +1,6 @@
 package com.example.shortesttm_path;
 
 import com.example.shortesttm_path.util.ShortestPathUtil;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
@@ -12,7 +11,7 @@ public class ShortesttmPathApplication {
 
 	public static void main(String[] args) throws IOException {
 //		SpringApplication.run(ShortesttmPathApplication.class, args);
-		List<List<String>> graph = new ShortestPathUtil().getEdgesOfGraphOfAllStations();
+		List<List<String>> graph = new ShortestPathUtil().getEdges();
 		int i = 0;
 	}
 

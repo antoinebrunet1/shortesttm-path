@@ -17,26 +17,26 @@ public class ShortestPathUtil {
             "yellow_line_stations.txt"
     );
 
-    public List<List<String>> getEdgesOfGraphOfAllStations() throws IOException {
-        List<List<String>> edgesOfGraphOfAllStations = new ArrayList<>();
+    public List<List<String>> getEdges() throws IOException {
+        List<List<String>> edges = new ArrayList<>();
 
         for (String line_file_name : LINES_FILES_NAMES) {
-            addLineToEdgesOfGraphOfAllStations(edgesOfGraphOfAllStations, line_file_name);
+            addLineToEdges(edges, line_file_name);
         }
 
-        return edgesOfGraphOfAllStations;
+        return edges;
     }
 
-    private void addLineToEdgesOfGraphOfAllStations(List<List<String>> edgesOfGraphOfAllStations, String line_file_name) throws IOException {
+    private void addLineToEdges(List<List<String>> edges, String line_file_name) throws IOException {
         Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
         List<String> lines = Files.readAllLines(filePath);
 
         for (int i = 0; i < lines.size() - 1; i++) {
-            addTwoStationsInBothDirections(edgesOfGraphOfAllStations, lines.get(i), lines.get(i + 1));
+            addTwoStationsInBothDirections(edges, lines.get(i), lines.get(i + 1));
         }
     }
 
-    private void addTwoStationsInBothDirections(List<List<String>> edgesOfGraphOfAllStations, String station1, String station2) {
+    private void addTwoStationsInBothDirections(List<List<String>> edges, String station1, String station2) {
         List<String> edgeInFirstDirection = Arrays.asList(
                 station1,
                 station2
@@ -46,7 +46,7 @@ public class ShortestPathUtil {
                 station1
         );
 
-        edgesOfGraphOfAllStations.add(edgeInFirstDirection);
-        edgesOfGraphOfAllStations.add(edgeInSecondDirection);
+        edges.add(edgeInFirstDirection);
+        edges.add(edgeInSecondDirection);
     }
 }
