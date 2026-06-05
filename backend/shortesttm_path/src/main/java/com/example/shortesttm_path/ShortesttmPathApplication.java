@@ -11,8 +11,6 @@ public class ShortesttmPathApplication {
 
 	public static void main(String[] args) throws IOException {
 //		SpringApplication.run(ShortesttmPathApplication.class, args);
-		List<List<String>> graph = new ShortestPathUtil().getEdges();
-		int i = 0;
 	}
 
 }

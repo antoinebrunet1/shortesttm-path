@@ -1,8 +1,6 @@
 package com.example.shortesttm_path.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,8 +14,23 @@ public class ShortestPathUtil {
             "orange_line_stations.txt",
             "yellow_line_stations.txt"
     );
+    private static final List<List<String>> GRAPH;
 
-    public List<List<String>> getEdges() throws IOException {
+    static {
+        try {
+            GRAPH = getEdges();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final int NUMBER_OF_VERTICES = 68;
+
+    public void printShortestPath(String startStation, String destinationStation) {
+
+    }
+
+    private static List<List<String>> getEdges() throws IOException {
         List<List<String>> edges = new ArrayList<>();
 
         for (String line_file_name : LINES_FILES_NAMES) {
@@ -27,7 +40,7 @@ public class ShortestPathUtil {
         return edges;
     }
 
-    private void addLineToEdges(List<List<String>> edges, String line_file_name) throws IOException {
+    private static void addLineToEdges(List<List<String>> edges, String line_file_name) throws IOException {
         Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
         List<String> stations = Files.readAllLines(filePath);
 
@@ -36,7 +49,7 @@ public class ShortestPathUtil {
         }
     }
 
-    private void addTwoStationsInBothDirections(List<List<String>> edges, String station1, String station2) {
+    private static void addTwoStationsInBothDirections(List<List<String>> edges, String station1, String station2) {
         List<String> edgeInFirstDirection = Arrays.asList(
                 station1,
                 station2
