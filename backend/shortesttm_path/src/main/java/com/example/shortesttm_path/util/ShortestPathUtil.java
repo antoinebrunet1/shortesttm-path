@@ -1,5 +1,7 @@
 package com.example.shortesttm_path.util;
 
+import com.example.shortesttm_path.data.ShortestPathBean;
+
 import java.util.*;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,8 +34,14 @@ public class ShortestPathUtil {
     }
 
     private static final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
+    private static final List<String> ALL_STATIONS_TO_SWITCH_LINES = Arrays.asList(
+            "Berri-UQAM",
+            "Lionel-Groulx",
+            "Snowdon",
+            "Jean-Talon"
+    );
 
-    public static void printShortestPath(String startStation, String destinationStation) {
+    public static ShortestPathBean printShortestPath(String startStation, String destinationStation) {
         int S = STATIONS_NAMES_TO_INTS.get(startStation);
         int D = STATIONS_NAMES_TO_INTS.get(destinationStation);
         // par[] array stores the parent of nodes
@@ -48,11 +56,12 @@ public class ShortestPathUtil {
         // and their parent nodes
         bfs(GRAPH, S, par, dist);
 
-        if (dist.get(D) == Integer.MAX_VALUE) {
-            System.out.println(
-                    "Source and Destination are not connected");
-            return;
-        }
+        // TODO : Remove this if
+//        if (dist.get(D) == Integer.MAX_VALUE) {
+//            System.out.println(
+//                    "Source and Destination are not connected");
+//            return;
+//        }
 
         // List path stores the shortest path
         List<Integer> path = new ArrayList<>();
@@ -63,9 +72,22 @@ public class ShortestPathUtil {
             currentNode = par.get(currentNode);
         }
 
-        // Printing path from source to destination
-        for (int i = path.size() - 1; i >= 0; i--)
-            System.out.print(INTS_TO_STATIONS_NAMES.get(path.get(i)) + " ");
+        ShortestPathBean shortestPath = new ShortestPathBean();
+        shortestPath.setStartingStation(startStation);
+        shortestPath.setDestinationStation(destinationStation);
+        List<String> stationsToSwitchLines = new ArrayList<>();
+
+        for (int i = path.size() - 1; i >= 0; i--) {
+            String stationName = INTS_TO_STATIONS_NAMES.get(path.get(i));
+            if (ALL_STATIONS_TO_SWITCH_LINES.contains(stationName) &&
+                    !stationName.equals(startStation) && !stationName.equals(destinationStation)) {
+                stationsToSwitchLines.add(stationName);
+            }
+        }
+
+        shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
+
+        return shortestPath;
     }
 
     // Modified bfs to store the parent of nodes along with
