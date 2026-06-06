@@ -89,9 +89,47 @@ public class ShortestPathUtil {
             }
         }
 
+        List<String> allStationsInPath = new ArrayList<>(2 + stationsToSwitchLines.size());
+        allStationsInPath.add(startStation);
+        allStationsInPath.addAll(stationsToSwitchLines);
+        allStationsInPath.add(destinationStation);
+
+        List<String> stationsToExclude = new ArrayList<>();
+
+        for (int i = 1; i < allStationsInPath.size() - 1; i++) {
+            String stationBefore = allStationsInPath.get(i - 1);
+            String currentStation = allStationsInPath.get(i);
+            String stationAfter = allStationsInPath.get(i + 1);
+
+            if (!Collections.disjoint(getLines(stationBefore), getLines(currentStation)) &&
+                    !Collections.disjoint(getLines(currentStation), getLines(stationAfter))) {
+                stationsToExclude.add(currentStation);
+            }
+        }
+
+        stationsToSwitchLines.removeAll(stationsToExclude);
+
         shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
 
         return shortestPath;
+    }
+
+    private static List<String> getLines(String station) {
+        List<String> lines = new ArrayList<>();
+
+        if (BLUE_LINE_STATIONS.contains(station))
+            lines.add("BLUE");
+
+        if (GREEN_LINE_STATIONS.contains(station))
+            lines.add("GREEN");
+
+        if (ORANGE_LINE_STATIONS.contains(station))
+            lines.add("ORANGE");
+
+        if (YELLOW_LINE_STATIONS.contains(station))
+            lines.add("YELLOW");
+
+        return lines;
     }
 
     // Modified bfs to store the parent of nodes along with
