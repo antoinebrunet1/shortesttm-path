@@ -40,6 +40,10 @@ public class ShortestPathUtil {
             "Snowdon",
             "Jean-Talon"
     );
+    private static List<String> BLUE_LINE_STATIONS;
+    private static List<String> GREEN_LINE_STATIONS;
+    private static List<String> ORANGE_LINE_STATIONS;
+    private static List<String> YELLOW_LINE_STATIONS;
 
     public static ShortestPathBean printShortestPath(String startStation, String destinationStation) {
         int S = STATIONS_NAMES_TO_INTS.get(startStation);
@@ -165,6 +169,20 @@ public class ShortestPathUtil {
     private static void addLineToUniqueStationsNames(Set<String> uniqueStationsNames, String line_file_name) throws IOException {
         Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
         List<String> stations = Files.readAllLines(filePath);
+
+        switch (line_file_name) {
+            case "blue_line_stations.txt":
+                BLUE_LINE_STATIONS = new ArrayList<>(stations);
+                break;
+            case "green_line_stations.txt":
+                GREEN_LINE_STATIONS = new ArrayList<>(stations);
+                break;
+            case "orange_line_stations.txt":
+                ORANGE_LINE_STATIONS = new ArrayList<>(stations);
+                break;
+            default:
+                YELLOW_LINE_STATIONS = new ArrayList<>(stations);
+        }
 
         uniqueStationsNames.addAll(stations);
     }
