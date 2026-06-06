@@ -1,6 +1,7 @@
 package com.example.shortesttm_path.controller;
 
 import com.example.shortesttm_path.data.ShortestPathBean;
+import com.example.shortesttm_path.util.ShortestPathUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,8 @@ public class ShortestPathController {
     @GetMapping()
     public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
                                                             @RequestParam String destinationStation) {
-        ShortestPathBean path = new ShortestPathBean();
-        path.setStartingStation(startingStation);
-        path.setDestinationStation(destinationStation);
-        path.setStationsToSwitchLines(new ArrayList<>()); // TODO : Use the real list.
-
         HttpHeaders headers = new HttpHeaders();
 
-        return new ResponseEntity<>(path, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(ShortestPathUtil.printShortestPath(startingStation, destinationStation), headers, HttpStatus.CREATED);
     }
 }
