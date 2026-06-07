@@ -47,12 +47,12 @@ public class ShortestPathUtil {
     private static List<String> YELLOW_LINE_STATIONS;
 
     // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
-    public static ShortestPathBean getShortestPath(String startStation, String destinationStation) {
-        if (areStationsOnTheSameLine(startStation, destinationStation)) {
+    public static ShortestPathBean getShortestPath(String startingStation, String destinationStation) {
+        if (areStationsOnTheSameLine(startingStation, destinationStation)) {
             throw new StationsOnSameLineException();
         }
 
-        int S = STATIONS_NAMES_TO_INTS.get(startStation);
+        int S = STATIONS_NAMES_TO_INTS.get(startingStation);
         int D = STATIONS_NAMES_TO_INTS.get(destinationStation);
         // par[] array stores the parent of nodes
         List<Integer> par
@@ -76,7 +76,7 @@ public class ShortestPathUtil {
         }
 
         ShortestPathBean shortestPath = new ShortestPathBean();
-        shortestPath.setStartingStation(startStation);
+        shortestPath.setStartingStation(startingStation);
         shortestPath.setDestinationStation(destinationStation);
         List<String> stationsToSwitchLines = new ArrayList<>();
         List<String> allStations = new ArrayList<>();
@@ -85,7 +85,7 @@ public class ShortestPathUtil {
             String stationName = INTS_TO_STATIONS_NAMES.get(path.get(i));
             allStations.add(stationName);
             if (ALL_STATIONS_TO_SWITCH_LINES.contains(stationName) &&
-                    !stationName.equals(startStation) && !stationName.equals(destinationStation)) {
+                    !stationName.equals(startingStation) && !stationName.equals(destinationStation)) {
                 stationsToSwitchLines.add(stationName);
             }
         }
@@ -99,8 +99,8 @@ public class ShortestPathUtil {
         return shortestPath;
     }
 
-    private static boolean areStationsOnTheSameLine(String startStation, String destinationStation) {
-        return !Collections.disjoint(getLines(startStation), getLines(destinationStation));
+    private static boolean areStationsOnTheSameLine(String startingStation, String destinationStation) {
+        return !Collections.disjoint(getLines(startingStation), getLines(destinationStation));
     }
 
     private static List<String> getStationsToExclude(List<String> stationsToSwitchLines, List<String> allStations) {
