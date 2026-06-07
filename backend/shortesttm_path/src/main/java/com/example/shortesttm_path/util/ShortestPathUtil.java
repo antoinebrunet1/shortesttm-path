@@ -61,13 +61,6 @@ public class ShortestPathUtil {
         // and their parent nodes
         bfs(GRAPH, S, par, dist);
 
-        // TODO : Remove this if
-//        if (dist.get(D) == Integer.MAX_VALUE) {
-//            System.out.println(
-//                    "Source and Destination are not connected");
-//            return;
-//        }
-
         // List path stores the shortest path
         List<Integer> path = new ArrayList<>();
         int currentNode = D;
