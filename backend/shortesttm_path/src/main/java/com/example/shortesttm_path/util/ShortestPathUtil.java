@@ -85,6 +85,16 @@ public class ShortestPathUtil {
             }
         }
 
+        List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
+
+        stationsToSwitchLines.removeAll(stationsToExclude);
+
+        shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
+
+        return shortestPath;
+    }
+
+    private static List<String> getStationsToExclude(List<String> stationsToSwitchLines, List<String> allStations) {
         List<String> stationsToExclude = new ArrayList<>();
 
         for (String station : stationsToSwitchLines) {
@@ -93,16 +103,12 @@ public class ShortestPathUtil {
             String stationAfter = allStations.get(indexOfStationInAllStations + 1);
 
             if (getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst()) &&
-                getLines(station).contains(getLines(stationBefore).getFirst())) {
+                    getLines(station).contains(getLines(stationBefore).getFirst())) {
                 stationsToExclude.add(station);
             }
         }
 
-        stationsToSwitchLines.removeAll(stationsToExclude);
-
-        shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
-
-        return shortestPath;
+        return stationsToExclude;
     }
 
     private static List<String> getLines(String station) {
