@@ -80,30 +80,27 @@ public class ShortestPathUtil {
         shortestPath.setStartingStation(startStation);
         shortestPath.setDestinationStation(destinationStation);
         List<String> stationsToSwitchLines = new ArrayList<>();
+        List<String> allStations = new ArrayList<>();
 
         for (int i = path.size() - 1; i >= 0; i--) {
             String stationName = INTS_TO_STATIONS_NAMES.get(path.get(i));
+            allStations.add(stationName);
             if (ALL_STATIONS_TO_SWITCH_LINES.contains(stationName) &&
                     !stationName.equals(startStation) && !stationName.equals(destinationStation)) {
                 stationsToSwitchLines.add(stationName);
             }
         }
 
-        List<String> allStationsInPath = new ArrayList<>(2 + stationsToSwitchLines.size());
-        allStationsInPath.add(startStation);
-        allStationsInPath.addAll(stationsToSwitchLines);
-        allStationsInPath.add(destinationStation);
-
         List<String> stationsToExclude = new ArrayList<>();
 
-        for (int i = 1; i < allStationsInPath.size() - 1; i++) {
-            String stationBefore = allStationsInPath.get(i - 1);
-            String currentStation = allStationsInPath.get(i);
-            String stationAfter = allStationsInPath.get(i + 1);
+        for (String station : stationsToSwitchLines) {
+            int indexOfStationInAllStations = allStations.indexOf(station);
+            String stationBefore = allStations.get(indexOfStationInAllStations - 1);
+            String stationAfter = allStations.get(indexOfStationInAllStations + 1);
 
-            if (!Collections.disjoint(getLines(stationBefore), getLines(currentStation)) &&
-                    !Collections.disjoint(getLines(currentStation), getLines(stationAfter))) {
-                stationsToExclude.add(currentStation);
+            if (getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst()) &&
+                getLines(station).contains(getLines(stationBefore).getFirst())) {
+                stationsToExclude.add(station);
             }
         }
 
