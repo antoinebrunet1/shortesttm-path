@@ -45,6 +45,10 @@ public class ShortestPathUtil {
     private static List<String> ORANGE_LINE_STATIONS;
     private static List<String> YELLOW_LINE_STATIONS;
 
+    public static boolean areStationsOnTheSameLine(String startStation, String destinationStation) {
+        return !Collections.disjoint(getLines(startStation), getLines(destinationStation));
+    }
+
     // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
     public static ShortestPathBean getShortestPath(String startStation, String destinationStation) {
         int S = STATIONS_NAMES_TO_INTS.get(startStation);
