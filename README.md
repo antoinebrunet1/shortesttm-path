@@ -19,9 +19,16 @@
 1. Fork the repository.
 2. Run the Spring Boot backend API by running the `main` method in
 
-```
-backend/shortesttm_path/src/main/java/com/example/shortesttm_path/ShortesttmPathApplication.java
-```
+    ```
+    backend/shortesttm_path/src/main/java/com/example/shortesttm_path/ShortesttmPathApplication.java
+    ```
+3. Call the backend API using this URL:
+
+    ```
+    http://localhost:8080/shortest_path?startingStation=startingStation&destinationStation=destinationStation
+    ```
+   
+    with values for the two stations.
 
 ##  💡 Algorithm overview 💡
 
