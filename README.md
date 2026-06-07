@@ -13,3 +13,12 @@
 </div>
 
 <hr>
+
+## 💻 Local setup 💻
+
+1. Fork the repository.
+2. Run the Spring Boot backend API by running the `main` method in
+
+```
+backend/shortesttm_path/src/main/java/com/example/shortesttm_path/ShortesttmPathApplication.java
+```
