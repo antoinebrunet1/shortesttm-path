@@ -8,6 +8,6 @@
 
 <div align="center">
 
-![GitHub License](https://img.shields.io/github/license/antoinebrunet1/shortesttm-path) ![GitHub last commit](https://img.shields.io/github/last-commit/antoinebrunet1/shortesttm-path) [![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#)
+![GitHub License](https://img.shields.io/github/license/antoinebrunet1/shortesttm-path) ![GitHub last commit](https://img.shields.io/github/last-commit/antoinebrunet1/shortesttm-path) [![Java](https://img.shields.io/badge/Java-%23ED8B00.svg?logo=openjdk&logoColor=white)](#) [![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?logo=intellij-idea&logoColor=white)](#)
 
 </div>
