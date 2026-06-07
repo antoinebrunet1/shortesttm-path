@@ -225,7 +225,7 @@ public class ShortestPathUtil {
     }
 
     private static List<List<Integer>> getGraph() throws IOException {
-        List<List<Integer>> graph = new ArrayList<>();
+        List<List<Integer>> graph = new ArrayList<>(NUMBER_OF_VERTICES);
 
         for (String line_file_name : LINES_FILES_NAMES) {
             addLineToGraph(graph, line_file_name);
