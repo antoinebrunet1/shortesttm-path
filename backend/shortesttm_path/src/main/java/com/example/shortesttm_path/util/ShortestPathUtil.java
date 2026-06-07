@@ -133,7 +133,7 @@ public class ShortestPathUtil {
     // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
     // Modified bfs to store the parent of nodes along with
     // the distance from the source node
-    static void bfs(List<List<Integer> > graph, int S,
+    private static void bfs(List<List<Integer> > graph, int S,
                     List<Integer> par, List<Integer> dist)
     {
         // Queue to store the nodes in the order they are
