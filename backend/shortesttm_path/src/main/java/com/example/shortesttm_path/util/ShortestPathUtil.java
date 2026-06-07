@@ -1,6 +1,7 @@
 package com.example.shortesttm_path.util;
 
 import com.example.shortesttm_path.data.ShortestPathBean;
+import com.example.shortesttm_path.exception.StationsOnSameLineException;
 
 import java.util.*;
 import java.io.IOException;
@@ -45,12 +46,12 @@ public class ShortestPathUtil {
     private static List<String> ORANGE_LINE_STATIONS;
     private static List<String> YELLOW_LINE_STATIONS;
 
-    public static boolean areStationsOnTheSameLine(String startStation, String destinationStation) {
-        return !Collections.disjoint(getLines(startStation), getLines(destinationStation));
-    }
-
     // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
     public static ShortestPathBean getShortestPath(String startStation, String destinationStation) {
+        if (areStationsOnTheSameLine(startStation, destinationStation)) {
+            throw new StationsOnSameLineException();
+        }
+
         int S = STATIONS_NAMES_TO_INTS.get(startStation);
         int D = STATIONS_NAMES_TO_INTS.get(destinationStation);
         // par[] array stores the parent of nodes
@@ -96,6 +97,10 @@ public class ShortestPathUtil {
         shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
 
         return shortestPath;
+    }
+
+    private static boolean areStationsOnTheSameLine(String startStation, String destinationStation) {
+        return !Collections.disjoint(getLines(startStation), getLines(destinationStation));
     }
 
     private static List<String> getStationsToExclude(List<String> stationsToSwitchLines, List<String> allStations) {
