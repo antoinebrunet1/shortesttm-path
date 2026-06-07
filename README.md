@@ -5,3 +5,5 @@
 <p align="center">
   <b>App to find the shortest path between two STM metro stations</b>
 </p>
+
+![GitHub License](https://img.shields.io/github/license/antoinebrunet1/shortesttm-path)
