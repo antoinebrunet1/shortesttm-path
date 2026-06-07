@@ -15,11 +15,6 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/shortest_path")
 public class ShortestPathController {
-    @GetMapping("/greet")
-    public String greetTheUser() {
-        return "Hello User";
-    }
-
     @GetMapping()
     public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
                                                             @RequestParam String destinationStation) {
