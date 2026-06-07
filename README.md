@@ -8,6 +8,6 @@
 
 <div align="center">
 
-![GitHub License](https://img.shields.io/github/license/antoinebrunet1/shortesttm-path)
+![GitHub License](https://img.shields.io/github/license/antoinebrunet1/shortesttm-path) ![GitHub last commit](https://img.shields.io/github/last-commit/antoinebrunet1/shortesttm-path)
 
 </div>
