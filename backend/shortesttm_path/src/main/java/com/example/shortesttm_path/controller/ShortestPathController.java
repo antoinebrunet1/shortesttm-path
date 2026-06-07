@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-
 @RestController
 @RequestMapping("/shortest_path")
 public class ShortestPathController {
@@ -19,7 +17,7 @@ public class ShortestPathController {
     public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
                                                             @RequestParam String destinationStation) {
         HttpHeaders headers = new HttpHeaders();
-        ShortestPathBean path = ShortestPathUtil.printShortestPath(startingStation, destinationStation);
+        ShortestPathBean path = ShortestPathUtil.getShortestPath(startingStation, destinationStation);
 
         return new ResponseEntity<>(path, headers, HttpStatus.CREATED);
     }

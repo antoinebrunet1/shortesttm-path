@@ -46,7 +46,7 @@ public class ShortestPathUtil {
     private static List<String> YELLOW_LINE_STATIONS;
 
     // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
-    public static ShortestPathBean printShortestPath(String startStation, String destinationStation) {
+    public static ShortestPathBean getShortestPath(String startStation, String destinationStation) {
         int S = STATIONS_NAMES_TO_INTS.get(startStation);
         int D = STATIONS_NAMES_TO_INTS.get(destinationStation);
         // par[] array stores the parent of nodes
