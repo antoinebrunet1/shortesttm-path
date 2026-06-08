@@ -28,7 +28,11 @@
     http://localhost:8080/shortest_path?startingStation=startingStation&destinationStation=destinationStation
     ```
    
-    with values for the two stations.
+    with values for the two stations. The stations names can be found in the `.txt` files under this folder:
+
+   ```
+   backend/shortesttm_path/src/main/resources/static
+   ```
 
 ##  💡 Algorithm overview 💡
 
