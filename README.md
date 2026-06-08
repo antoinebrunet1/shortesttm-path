@@ -33,6 +33,8 @@
    ```
    backend/shortesttm_path/src/main/resources/static
    ```
+   
+   The two stations should not be on the same line.
 
 ##  💡 Algorithm overview 💡
 
