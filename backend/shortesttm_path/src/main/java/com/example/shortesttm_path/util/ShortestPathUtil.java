@@ -9,6 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Util class to calculate the shortest metro path (the one with the least stations) between two STM metro stations.
+ */
 public class ShortestPathUtil {
     private static final String LINES_FILES_PARENT_FOLDER_PATH = "backend/shortesttm_path/src/main/resources/static/";
     private static final List<String> LINES_FILES_NAMES = Arrays.asList(
@@ -46,7 +49,21 @@ public class ShortestPathUtil {
     private static List<String> ORANGE_LINE_STATIONS;
     private static List<String> YELLOW_LINE_STATIONS;
 
-    // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
+    /**
+     * The default constructor.
+     */
+    public ShortestPathUtil() {
+    }
+
+    /**
+     * Returns the shortest metro path (the one with the least stations) between two STM metro stations. A
+     * StationsOnSameLineException exception is thrown if the two stations are on the same line. This includes the same
+     * station given twice and neighbor stations.
+     * Source: <a href="https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/">https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/</a>
+     * @param startingStation The starting station.
+     * @param destinationStation The destination station.
+     * @return The shortest metro path (the one with the least stations) between two STM metro stations.
+     */
     public static ShortestPathBean getShortestPath(String startingStation, String destinationStation) {
         if (areStationsOnTheSameLine(startingStation, destinationStation)) {
             throw new StationsOnSameLineException();
