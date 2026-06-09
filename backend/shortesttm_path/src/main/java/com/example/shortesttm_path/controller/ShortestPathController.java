@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * The controller related with providing the shortest metro path (the one with the fewer stations) between two STM
+ * The controller related with providing the shortest metro path (the one with the least stations) between two STM
  * metro stations.
  */
 @RestController
@@ -33,10 +33,10 @@ public class ShortestPathController {
     }
 
     /**
-     * Returns the shortest metro path (the one with the fewer stations) between two STM metro stations.
+     * Returns the shortest metro path (the one with the least stations) between two STM metro stations.
      * @param startingStation The starting station.
      * @param destinationStation The destination station.
-     * @return The shortest metro path (the one with the fewer stations) between two STM metro stations.
+     * @return The shortest metro path (the one with the least stations) between two STM metro stations.
      */
     @GetMapping()
     public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
