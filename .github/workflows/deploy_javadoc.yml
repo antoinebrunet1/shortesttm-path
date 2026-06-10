@@ -25,7 +25,7 @@ jobs:
           cd backend/shortesttm_path
           mvn clean javadoc:javadoc
           cd target/reports
-          git clone git@github.com:antoinebrunet1/shortesttm-path.git
+          git init
           git checkout -b gh-pages
           git add -A
           git commit -m "Deployed Javadoc"
