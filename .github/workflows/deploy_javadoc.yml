@@ -27,6 +27,8 @@ jobs:
           cd target/reports
           git init
           git checkout -b gh-pages
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           git add -A
           git commit -m "Deployed Javadoc"
           git push origin gh-pages
