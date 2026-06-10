@@ -15,7 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Generate Javadoc
-        run: mvn clean javadoc:javadoc
+        run: |
+          cd backend/shortesttm_path
+          mvn clean javadoc:javadoc
       - name: Deploy Javadoc
         uses: peaceiris/actions-gh-pages@v4
         with:
