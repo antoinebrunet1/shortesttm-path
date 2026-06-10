@@ -17,19 +17,14 @@ jobs:
         with:
           java-version: '24'
           distribution: 'temurin'
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Deploy Javadoc
         run: |
-          cd backend/shortesttm_path
-          mvn clean javadoc:javadoc
-          cd target/reports
-          git init
+          git clone https://github.com/antoinebrunet1/shortesttm-path.git
           git checkout -b gh-pages
+          mvn clean javadoc:javadoc
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add -A
-          git commit -m "Deployed Javadoc"
+          git commit -m "Generated Javadoc"
           git remote add origin https://github.com/antoinebrunet1/shortesttm-path.git
           git push origin gh-pages
