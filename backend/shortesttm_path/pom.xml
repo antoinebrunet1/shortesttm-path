@@ -71,6 +71,7 @@
 					<sourceFileIncludes>
 						<include>**/${className}.java</include>
 					</sourceFileIncludes>
+					<failOnWarnings>true</failOnWarnings>
 				</configuration>
 			</plugin>
 		</plugins>
