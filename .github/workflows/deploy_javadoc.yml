@@ -20,7 +20,7 @@ jobs:
       - name: Deploy Javadoc
         run: |
           git clone https://github.com/antoinebrunet1/shortesttm-path.git
-          cd shortesttm-path
+          cd shortesttm-path/backend/shortesttm_path
           git checkout -b gh-pages
           mvn clean javadoc:javadoc
           git config --global user.name "github-actions"
