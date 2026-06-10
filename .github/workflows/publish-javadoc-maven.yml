@@ -25,5 +25,5 @@ jobs:
           java-version: 23
           target-folder: javadoc # url will be https://<username>.github.io/<repo>/javadoc, This can be left as nothing to generate javadocs in the root folder.
           project: maven # or gradle
-          working-directory: backend/shortesttm_path
-          # subdirectories: moduleA moduleB #for subdirectories support, needs to be run with custom command
+          subdirectories: backend/shortesttm_path #for subdirectories support, needs to be run with custom command
+          custom-command: javadoc -d javadoc -sourcepath src/main/java -subpackages .
