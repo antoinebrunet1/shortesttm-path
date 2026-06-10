@@ -13,6 +13,10 @@ jobs:
     name: Deploy Javadoc
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '23'
+          distribution: 'temurin'
       - name: Checkout code
         uses: actions/checkout@v2
 
