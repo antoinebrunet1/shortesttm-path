@@ -1,0 +1,28 @@
+name: Deploy Javadoc
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy-javadoc:
+    name: Deploy Javadoc
+    runs-on: maven
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy Javadoc
+        run: |
+          cd backend/shortesttm_path
+          mvn clean javadoc:javadoc
+          cd target/reports
+          git clone git@github.com:antoinebrunet1/shortesttm-path.git
+          git checkout -b gh-pages
+          git add -A
+          git commit -m "Deployed Javadoc"
+          git push origin gh-pages
