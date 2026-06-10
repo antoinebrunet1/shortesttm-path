@@ -51,3 +51,9 @@ This algorithm is using integers. I just map the stations names to integers to f
 For the HTTP response, I only want to send, for the path, the starting station, the destination station and stations used to switch lines between the first and last stations.
 
 To get the stations used to switch lines between the first and last stations, I take the stations that have at least two lines and that are used to actually switches lines. That can be detected by making sure that the previous and next stations are not on the same line.
+
+## ✨ Code quality guarantied ✨
+
+The main branch of this repository contains a GitHub Actions CI/CD pipeline to indicate if the code meets the below quality checks or not.
+
+1. The Javadoc documentation is valid.
