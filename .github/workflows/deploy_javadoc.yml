@@ -31,5 +31,5 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add -A
           git commit -m "Deployed Javadoc"
-          git remote add origin https://github.com/antoinebrunet1/shortesttm-path
+          git remote add origin https://github.com/antoinebrunet1/shortesttm-path.git
           git push origin gh-pages
