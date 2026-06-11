@@ -24,8 +24,7 @@ public class ShortestPathUtilTest {
 
     @Test
     public void getShortestPathSameLineShouldThrowStationsOnSameLineException() {
-        assertThrows(StationsOnSameLineException.class, () -> {
-            ShortestPathUtil.getShortestPath("McGill", "Viau");
-        });
+        assertThrows(StationsOnSameLineException.class, () ->
+            ShortestPathUtil.getShortestPath("McGill", "Viau"));
     }
 }
