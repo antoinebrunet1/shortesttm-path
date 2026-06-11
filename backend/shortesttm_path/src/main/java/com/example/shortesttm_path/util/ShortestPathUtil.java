@@ -2,18 +2,17 @@ package com.example.shortesttm_path.util;
 
 import com.example.shortesttm_path.data.ShortestPathBean;
 import com.example.shortesttm_path.exception.StationsOnSameLineException;
+import org.springframework.core.io.ClassPathResource;
 
 import java.util.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Util class to calculate the shortest metro path (the one with the least stations) between two STM metro stations.
  */
 public class ShortestPathUtil {
-    private static final String LINES_FILES_PARENT_FOLDER_PATH = "backend/shortesttm_path/src/main/resources/static/";
     private static final List<String> LINES_FILES_NAMES = Arrays.asList(
             "blue_line_stations.txt",
             "green_line_stations.txt",
@@ -229,7 +228,7 @@ public class ShortestPathUtil {
     }
 
     private static void addLineToUniqueStationsNames(Set<String> uniqueStationsNames, String line_file_name) throws IOException {
-        Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
+        Path filePath = new ClassPathResource("static/" + line_file_name).getFilePath();
         List<String> stations = Files.readAllLines(filePath);
 
         switch (line_file_name) {
@@ -271,7 +270,7 @@ public class ShortestPathUtil {
     }
 
     private static void addLineToGraph(List<List<Integer>> graph, String line_file_name) throws IOException {
-        Path filePath = Paths.get(LINES_FILES_PARENT_FOLDER_PATH + line_file_name);
+        Path filePath = new ClassPathResource("static/" + line_file_name).getFilePath();
         List<String> stations = Files.readAllLines(filePath);
 
         for (int i = 0; i < stations.size() - 1; i++) {
