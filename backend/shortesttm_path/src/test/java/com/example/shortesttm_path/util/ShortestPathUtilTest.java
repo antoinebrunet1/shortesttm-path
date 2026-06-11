@@ -14,12 +14,13 @@ public class ShortestPathUtilTest {
     public void getShortestPathHappyPath() {
         String inputStartingStation = "Laurier";
         String inputDestinationStation = "Charlevoix";
-        List<String> expectedStationsToSwitchLines = List.of("Berri-UQAM");
         ShortestPathBean actualPath = ShortestPathUtil.getShortestPath(inputStartingStation, inputDestinationStation);
+        ShortestPathBean expectedPath = new ShortestPathBean(
+                inputStartingStation,
+                inputDestinationStation,
+                List.of("Berri-UQAM"));
 
-        assertEquals(inputStartingStation, actualPath.getStartingStation());
-        assertEquals(inputDestinationStation, actualPath.getDestinationStation());
-        assertEquals(expectedStationsToSwitchLines, actualPath.getStationsToSwitchLines());
+        assertEquals(expectedPath, actualPath);
     }
 
     @Test
