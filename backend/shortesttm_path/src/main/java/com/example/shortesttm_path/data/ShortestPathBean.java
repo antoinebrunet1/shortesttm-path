@@ -1,5 +1,6 @@
 package com.example.shortesttm_path.data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Objects;
  * Represents the shortest metro path (the one with the least stations) between two STM metro stations.
  */
 @Data
+@AllArgsConstructor
 public class ShortestPathBean {
     /**
      * The default constructor.
