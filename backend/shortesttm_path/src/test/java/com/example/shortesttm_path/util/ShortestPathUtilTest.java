@@ -12,9 +12,7 @@ public class ShortestPathUtilTest {
         String inputStartingStation = "Laurier";
         String inputDestinationStation = "Charlevoix";
         List<String> expectedStationsToSwitchLines = List.of("Berri-UQAM");
-        ShortestPathBean actualPath = ShortestPathUtil.getShortestPath(
-                inputStartingStation,
-                inputDestinationStation);
+        ShortestPathBean actualPath = ShortestPathUtil.getShortestPath(inputStartingStation, inputDestinationStation);
 
         Assertions.assertEquals(inputStartingStation, actualPath.getStartingStation());
         Assertions.assertEquals(inputDestinationStation, actualPath.getDestinationStation());
