@@ -1,6 +1,7 @@
 package com.example.shortesttm_path.util;
 
 import com.example.shortesttm_path.data.ShortestPathBean;
+import com.example.shortesttm_path.exception.StationsOnSameLineException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,5 +18,12 @@ public class ShortestPathUtilTest {
         Assertions.assertEquals(inputStartingStation, actualPath.getStartingStation());
         Assertions.assertEquals(inputDestinationStation, actualPath.getDestinationStation());
         Assertions.assertEquals(expectedStationsToSwitchLines, actualPath.getStationsToSwitchLines());
+    }
+
+    @Test
+    public void getShortestPathSameLineShouldThrowStationsOnSameLineException() {
+        Assertions.assertThrows(StationsOnSameLineException.class, () -> {
+            ShortestPathUtil.getShortestPath("McGill", "Viau");
+        });
     }
 }
