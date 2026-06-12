@@ -80,3 +80,11 @@ and add the name of the class at the end with no spaces before.
 ### 🧪 Unit tests 🧪
 
 In IntelliJ, the unit tests can be run as a whole or individually by clicking a green triangle.
+
+### 🎯 Unit tests coverage 🎯
+
+To check if the coverage is at least 80% (calculated by class and by line), run the command
+
+```
+mvn clean verify -DskipTests
+```
