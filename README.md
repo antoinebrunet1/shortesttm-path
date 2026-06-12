@@ -61,6 +61,12 @@ The main branch of this repository contains a GitHub Actions CI/CD pipeline to i
 
 ## ✅ Check code quality locally ✅
 
+To check Javadoc and unit tests coverage, run the command
+
+```
+mvn clean verify -DskipTests
+```
+
 ### 📚 Javadoc 📚
 
 To check if the documentation is valid and generate it if it is, run the command
