@@ -19,4 +19,6 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Coverage
-        run: mvn clean verify -DskipTests
+        run: |
+          cd backend/shortesttm_path
+          mvn clean verify -DskipTests
