@@ -20,20 +20,6 @@ The latest valid (no warnings and errors during the generation) Javadoc is avail
 
 Using GitHub actions, in `.github/workflows/deploy_javadoc.yml`, on each push on the `main` branch and on each pull request to the `main` branch, I generate the Javadoc and push the folder with the Javadoc to the `gh-pages` branch as the root folder. The Javadoc is deployed using GitHub Actions from the root folder of the `gh-pages` branch.
 
-To check if the documentation is valid and generate it if it is, run the command
-
-```
-mvn clean javadoc:javadoc
-```
-
-If you want to run the command for only a particular class, run the command
-
-```
-mvn clean javadoc:javadoc -DclassName=
-```
-
-and add the name of the class at the end with no spaces before.
-
 ## 💻 Local setup 💻
 
 1. Fork the repository.
@@ -72,3 +58,21 @@ The main branch of this repository contains a GitHub Actions CI/CD pipeline to i
 
 1. The Javadoc documentation is valid.
 2. The unit tests coverage is at least 80%. It is by class and by lines.
+
+## ✅ Check code quality locally ✅
+
+### 📚 Javadoc 📚
+
+To check if the documentation is valid and generate it if it is, run the command
+
+```
+mvn clean javadoc:javadoc
+```
+
+If you want to run the command for only a particular class, run the command
+
+```
+mvn clean javadoc:javadoc -DclassName=
+```
+
+and add the name of the class at the end with no spaces before.
