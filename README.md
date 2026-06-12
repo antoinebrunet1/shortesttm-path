@@ -100,5 +100,5 @@ In IntelliJ, the unit tests can be run as a whole or individually by clicking a 
 To check if the coverage is at least 80% (calculated by class and by line), run the command
 
 ```
-mvn clean verify -DskipTests
+mvn clean jacoco:check
 ```
