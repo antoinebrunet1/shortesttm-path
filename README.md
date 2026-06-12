@@ -76,3 +76,7 @@ mvn clean javadoc:javadoc -DclassName=
 ```
 
 and add the name of the class at the end with no spaces before.
+
+### 🧪 Unit tests 🧪
+
+In IntelliJ, the unit tests can be run as a whole or individually by clicking a green triangle.
