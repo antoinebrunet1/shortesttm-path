@@ -1,4 +1,4 @@
-package com.example.shortesttm_path;
+package com.example.shortesttmpath;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

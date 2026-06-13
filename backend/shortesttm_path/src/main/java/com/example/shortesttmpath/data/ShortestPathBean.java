@@ -1,4 +1,4 @@
-package com.example.shortesttm_path.data;
+package com.example.shortesttmpath.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

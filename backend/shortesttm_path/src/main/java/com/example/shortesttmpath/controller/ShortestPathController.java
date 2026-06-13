@@ -1,8 +1,8 @@
-package com.example.shortesttm_path.controller;
+package com.example.shortesttmpath.controller;
 
-import com.example.shortesttm_path.data.ShortestPathBean;
-import com.example.shortesttm_path.exception.StationsOnSameLineException;
-import com.example.shortesttm_path.util.ShortestPathUtil;
+import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.exception.StationsOnSameLineException;
+import com.example.shortesttmpath.util.ShortestPathUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

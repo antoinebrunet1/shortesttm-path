@@ -1,7 +1,7 @@
-package com.example.shortesttm_path.util;
+package com.example.shortesttmpath.util;
 
-import com.example.shortesttm_path.data.ShortestPathBean;
-import com.example.shortesttm_path.exception.StationsOnSameLineException;
+import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

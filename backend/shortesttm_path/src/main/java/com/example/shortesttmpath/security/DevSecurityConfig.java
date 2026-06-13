@@ -1,4 +1,4 @@
-package com.example.shortesttm_path.security;
+package com.example.shortesttmpath.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

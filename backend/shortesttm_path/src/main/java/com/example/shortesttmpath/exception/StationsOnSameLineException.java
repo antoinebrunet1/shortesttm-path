@@ -1,4 +1,4 @@
-package com.example.shortesttm_path.exception;
+package com.example.shortesttmpath.exception;
 
 /**
  * Is thrown when the two stations are on the same line. This includes the same station given twice and neighbor
