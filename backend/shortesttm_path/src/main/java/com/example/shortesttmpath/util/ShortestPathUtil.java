@@ -2,11 +2,20 @@ package com.example.shortesttmpath.util;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
-import org.springframework.core.io.ClassPathResource;
-import java.util.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * Util class to calculate the shortest metro path (the one with the least stations) between two
@@ -66,15 +75,15 @@ public class ShortestPathUtil {
    * @param startingStation    The starting station.
    * @param destinationStation The destination station.
    * @return The shortest metro path (the one with the least stations) between two STM metro
-   * stations.
+   *     stations.
    */
   public static ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
     if (areStationsOnTheSameLine(startingStation, destinationStation)) {
       throw new StationsOnSameLineException();
     }
-    int S = STATIONS_NAMES_TO_INTS.get(startingStation);
-    int D = STATIONS_NAMES_TO_INTS.get(destinationStation);
+    int start = STATIONS_NAMES_TO_INTS.get(startingStation);
+    int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
     // par[] array stores the parent of nodes
     List<Integer> par
         = new ArrayList<>(Collections.nCopies(NUMBER_OF_VERTICES, -1));
@@ -83,11 +92,11 @@ public class ShortestPathUtil {
         Collections.nCopies(NUMBER_OF_VERTICES, Integer.MAX_VALUE));
     // Function call to find the distance of all nodes
     // and their parent nodes
-    bfs(GRAPH, S, par, dist);
+    bfs(GRAPH, start, par, dist);
     // List path stores the shortest path
     List<Integer> path = new ArrayList<>();
-    int currentNode = D;
-    path.add(D);
+    int currentNode = destination;
+    path.add(destination);
     while (par.get(currentNode) != -1) {
       path.add(par.get(currentNode));
       currentNode = par.get(currentNode);
@@ -100,8 +109,8 @@ public class ShortestPathUtil {
     for (int i = path.size() - 1; i >= 0; i--) {
       String stationName = INTS_TO_STATIONS_NAMES.get(path.get(i));
       allStations.add(stationName);
-      if (ALL_STATIONS_TO_SWITCH_LINES.contains(stationName) &&
-          !stationName.equals(startingStation) && !stationName.equals(destinationStation)) {
+      if (ALL_STATIONS_TO_SWITCH_LINES.contains(stationName)
+          && !stationName.equals(startingStation) && !stationName.equals(destinationStation)) {
         stationsToSwitchLines.add(stationName);
       }
     }
@@ -123,8 +132,8 @@ public class ShortestPathUtil {
       int indexOfStationInAllStations = allStations.indexOf(station);
       String stationBefore = allStations.get(indexOfStationInAllStations - 1);
       String stationAfter = allStations.get(indexOfStationInAllStations + 1);
-      if (getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst()) &&
-          getLines(station).contains(getLines(stationBefore).getFirst())) {
+      if (getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst())
+          && getLines(station).contains(getLines(stationBefore).getFirst())) {
         stationsToExclude.add(station);
       }
     }
@@ -151,15 +160,15 @@ public class ShortestPathUtil {
   // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
   // Modified bfs to store the parent of nodes along with
   // the distance from the source node
-  private static void bfs(List<List<Integer>> graph, int S,
+  private static void bfs(List<List<Integer>> graph, int start,
                           List<Integer> par, List<Integer> dist) {
     // Queue to store the nodes in the order they are
     // visited
     Queue<Integer> q = new LinkedList<>();
     // Mark the distance of the source node as 0
-    dist.set(S, 0);
+    dist.set(start, 0);
     // Push the source node to the queue
-    q.add(S);
+    q.add(start);
     // Iterate until the queue is not empty
     while (!q.isEmpty()) {
       // Pop the node at the front of the queue
@@ -206,17 +215,17 @@ public class ShortestPathUtil {
 
   private static Set<String> getUniqueStationsNames() throws IOException {
     Set<String> uniqueStationsNames = new LinkedHashSet<>();
-    for (String line_file_name : LINES_FILES_NAMES) {
-      addLineToUniqueStationsNames(uniqueStationsNames, line_file_name);
+    for (String lineFileName : LINES_FILES_NAMES) {
+      addLineToUniqueStationsNames(uniqueStationsNames, lineFileName);
     }
     return uniqueStationsNames;
   }
 
   private static void addLineToUniqueStationsNames(Set<String> uniqueStationsNames,
-                                                   String line_file_name) throws IOException {
-    Path filePath = new ClassPathResource("static/" + line_file_name).getFilePath();
+                                                   String lineFileName) throws IOException {
+    Path filePath = new ClassPathResource("static/" + lineFileName).getFilePath();
     List<String> stations = Files.readAllLines(filePath);
-    switch (line_file_name) {
+    switch (lineFileName) {
       case "blue_line_stations.txt":
         BLUE_LINE_STATIONS = new ArrayList<>(stations);
         break;
@@ -234,8 +243,8 @@ public class ShortestPathUtil {
 
   private static List<List<Integer>> getGraph() throws IOException {
     List<List<Integer>> graph = new ArrayList<>(NUMBER_OF_VERTICES);
-    for (String line_file_name : LINES_FILES_NAMES) {
-      addLineToGraph(graph, line_file_name);
+    for (String lineFileName : LINES_FILES_NAMES) {
+      addLineToGraph(graph, lineFileName);
     }
     List<List<Integer>> graphAsAdjencyList = new ArrayList<>(NUMBER_OF_VERTICES);
     for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
@@ -248,9 +257,9 @@ public class ShortestPathUtil {
     return graphAsAdjencyList;
   }
 
-  private static void addLineToGraph(List<List<Integer>> graph, String line_file_name)
+  private static void addLineToGraph(List<List<Integer>> graph, String lineFileName)
       throws IOException {
-    Path filePath = new ClassPathResource("static/" + line_file_name).getFilePath();
+    Path filePath = new ClassPathResource("static/" + lineFileName).getFilePath();
     List<String> stations = Files.readAllLines(filePath);
     for (int i = 0; i < stations.size() - 1; i++) {
       addTwoStationsInBothDirections(graph, STATIONS_NAMES_TO_INTS.get(stations.get(i)),
