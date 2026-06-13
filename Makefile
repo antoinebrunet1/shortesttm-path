@@ -1,3 +1,6 @@
+javadoc:
+	cd backend/shortesttm_path && mvn clean javadoc:javadoc -Dcheckstyle.skip=true
+
 checkstyle:
 	cd backend/shortesttm_path && mvn clean package -DskipTests -Dmaven.javadoc.skip=true
 

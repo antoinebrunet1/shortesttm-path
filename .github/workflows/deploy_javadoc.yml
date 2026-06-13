@@ -19,9 +19,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Generate Javadoc
-        run: |
-          cd backend/shortesttm_path
-          mvn clean javadoc:javadoc -Dcheckstyle.skip=true
+        run: make javadoc
       - name: Deploy Javadoc
         uses: peaceiris/actions-gh-pages@v4
         with:
