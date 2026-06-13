@@ -6,7 +6,11 @@ import com.example.shortesttmpath.util.ShortestPathUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * The controller related with providing the shortest metro path (the one with the least
@@ -43,7 +47,7 @@ public class ShortestPathController {
    * @param startingStation    The starting station.
    * @param destinationStation The destination station.
    * @return The shortest metro path (the one with the least stations) between two STM metro
-   * stations.
+   *     stations.
    */
   @GetMapping()
   public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
