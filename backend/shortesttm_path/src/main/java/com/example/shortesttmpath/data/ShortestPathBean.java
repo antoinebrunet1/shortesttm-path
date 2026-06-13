@@ -1,9 +1,9 @@
 package com.example.shortesttmpath.data;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import java.util.List;
 import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 /**
  * Represents the shortest metro path (the one with the least stations) between two STM metro
@@ -27,8 +27,8 @@ public class ShortestPathBean {
     if (!(o instanceof ShortestPathBean that)) {
       return false;
     }
-    return Objects.equals(startingStation, that.startingStation) &&
-        Objects.equals(destinationStation, that.destinationStation) &&
-        Objects.equals(stationsToSwitchLines, that.stationsToSwitchLines);
+    return Objects.equals(startingStation, that.startingStation)
+        && Objects.equals(destinationStation, that.destinationStation)
+        && Objects.equals(stationsToSwitchLines, that.stationsToSwitchLines);
   }
 }
