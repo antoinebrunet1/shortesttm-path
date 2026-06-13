@@ -8,18 +8,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class ShortesttmPathApplication {
-	/**
-	 * The default constructor.
-	 */
-	public ShortesttmPathApplication() {
-	}
+  /**
+   * The default constructor.
+   */
+  public ShortesttmPathApplication() {
+  }
 
-	/**
-	 * The main method of the Spring Boot application.
-	 * @param args The arguments.
-	 */
-	public static void main(String[] args) {
-		SpringApplication.run(ShortesttmPathApplication.class, args);
-	}
-
+  /**
+   * The main method of the Spring Boot application.
+   *
+   * @param args The arguments.
+   */
+  public static void main(String[] args) {
+    SpringApplication.run(ShortesttmPathApplication.class, args);
+  }
 }

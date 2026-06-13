@@ -13,21 +13,22 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @Profile("dev")
 public class DevSecurityConfig {
-    /**
-     * The default constructor.
-     */
-    public DevSecurityConfig() {
-    }
+  /**
+   * The default constructor.
+   */
+  public DevSecurityConfig() {
+  }
 
-    /**
-     * Disables Spring Security in dev.
-     * @param http The HttpSecurity.
-     * @return The SecurityFilterChain.
-     */
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) {
-        http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-                .csrf(AbstractHttpConfigurer::disable);
-        return http.build();
-    }
+  /**
+   * Disables Spring Security in dev.
+   *
+   * @param http The HttpSecurity.
+   * @return The SecurityFilterChain.
+   */
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) {
+    http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+        .csrf(AbstractHttpConfigurer::disable);
+    return http.build();
+  }
 }
