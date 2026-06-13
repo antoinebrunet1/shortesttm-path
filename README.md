@@ -62,7 +62,7 @@ The main branch of this repository contains a GitHub Actions CI/CD pipeline to i
 
 ## ✅ Check code quality locally ✅
 
-To check Javadoc and unit tests coverage, run the command
+To check Javadoc, style and unit tests coverage, run the command
 
 ```
 mvn clean verify -DskipTests
@@ -91,6 +91,14 @@ backend/shortesttm_path/target/reports/apidocs
 ```
 
 You can view it by opening `index.html`.
+
+### 📐 Style 📐
+
+To check style, run the command
+
+```
+clean package -DskipTests -Dmaven.javadoc.skip=true
+```
 
 ### 🧪 Unit tests 🧪
 
