@@ -19,9 +19,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Coverage
-        run: |
-          cd backend/shortesttm_path
-          mvn clean package -DskipTests -Dmaven.javadoc.skip=true
+        run: make checkstyle
 
   cov:
     name: Coverage
