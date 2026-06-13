@@ -76,6 +76,12 @@ To check if the documentation is valid and generate it if it is, run the command
 mvn clean javadoc:javadoc -Dcheckstyle.skip=true
 ```
 
+or
+
+```
+make javadoc
+```
+
 If you want to run the command for only a particular class, run the command
 
 ```
@@ -100,6 +106,12 @@ To check style, run the command
 clean package -DskipTests -Dmaven.javadoc.skip=true
 ```
 
+or
+
+```
+make checkstyle
+```
+
 ### 🧪 Unit tests 🧪
 
 In IntelliJ, the unit tests can be run as a whole or individually by clicking a green triangle.
@@ -110,4 +122,10 @@ To check if the coverage is at least 80% (calculated by class and by line), run 
 
 ```
 mvn clean verify -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true
+```
+
+or
+
+```
+make cov
 ```
