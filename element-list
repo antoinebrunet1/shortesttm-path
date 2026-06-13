@@ -1,6 +1,6 @@
-com.example.shortesttm_path
-com.example.shortesttm_path.controller
-com.example.shortesttm_path.data
-com.example.shortesttm_path.exception
-com.example.shortesttm_path.security
-com.example.shortesttm_path.util
+com.example.shortesttmpath
+com.example.shortesttmpath.controller
+com.example.shortesttmpath.data
+com.example.shortesttmpath.exception
+com.example.shortesttmpath.security
+com.example.shortesttmpath.util
