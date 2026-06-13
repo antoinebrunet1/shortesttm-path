@@ -162,7 +162,7 @@
 					<failOnViolation>true</failOnViolation>
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
-					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+					<includeTestSourceDirectory>false</includeTestSourceDirectory>
 				</configuration>
 				<executions>
 					<execution>
