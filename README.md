@@ -72,13 +72,13 @@ mvn clean verify -DskipTests
 To check if the documentation is valid and generate it if it is, run the command
 
 ```
-mvn clean javadoc:javadoc
+mvn clean javadoc:javadoc -Dcheckstyle.skip=true
 ```
 
 If you want to run the command for only a particular class, run the command
 
 ```
-mvn clean javadoc:javadoc -DclassName=
+mvn clean javadoc:javadoc -Dcheckstyle.skip=true -DclassName=
 ```
 
 and add the name of the class at the end with no spaces before.

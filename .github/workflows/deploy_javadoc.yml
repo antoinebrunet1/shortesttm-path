@@ -21,7 +21,7 @@ jobs:
       - name: Generate Javadoc
         run: |
           cd backend/shortesttm_path
-          mvn clean javadoc:javadoc
+          mvn clean javadoc:javadoc -Dcheckstyle.skip=true
       - name: Deploy Javadoc
         uses: peaceiris/actions-gh-pages@v4
         with:
