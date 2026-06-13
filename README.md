@@ -57,7 +57,8 @@ To get the stations used to switch lines between the first and last stations, I 
 The main branch of this repository contains a GitHub Actions CI/CD pipeline to indicate if the code meets the below quality checks or not.
 
 1. The Javadoc documentation is valid.
-2. The unit tests coverage is at least 80%. It is by class and by line.
+2. The style of the non-test Java classes follows `backend/shortesttm_path/google_checks.xml`.
+3. The unit tests coverage is at least 80%. It is by class and by line.
 
 ## ✅ Check code quality locally ✅
 
