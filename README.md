@@ -56,16 +56,20 @@ To get the stations used to switch lines between the first and last stations, I 
 
 ```mermaid
 graph TD;
-    id1(["Validate
+    id1(["Validate:
+    
     📚 Javadoc (javadoc goal)
 📐 Checkstyle (checkstyle goal)"])-->id2([Compile])
     id2([Compile])-->id3([Test])
-    id3(["Test
+    id3(["Test:
+    
 🎯 Jacoco (report goal)
 🧪 Unit tests"])-->id4([Package])
-    id4(["Package
+    id4(["Package:
+    
 📐 Checkstyle"])-->id5([Verify])
-    id5(["Verify
+    id5(["Verify:
+    
 🎯 Jacoco"])-->id6([Install])
     id6([Install])-->id7([Deploy])
 ```
