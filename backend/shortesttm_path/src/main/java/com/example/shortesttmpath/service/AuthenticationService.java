@@ -12,7 +12,8 @@ import org.springframework.security.core.authority.AuthorityUtils;
  */
 public class AuthenticationService {
   private static final String AUTH_TOKEN_HEADER_NAME = "X-API-KEY";
-  private static final String AUTH_TOKEN = Dotenv.load().get("API_KEY");
+  private static final String AUTH_TOKEN = Dotenv.configure()
+      .directory("backend/shortesttm_path").load().get("API_KEY");
 
   /**
    * Default constructor.
