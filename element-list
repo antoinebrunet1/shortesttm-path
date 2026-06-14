@@ -1,5 +1,9 @@
 com.example.shortesttmpath
+com.example.shortesttmpath.authenticationtoken
+com.example.shortesttmpath.config
 com.example.shortesttmpath.controller
 com.example.shortesttmpath.data
 com.example.shortesttmpath.exception
+com.example.shortesttmpath.filter
+com.example.shortesttmpath.service
 com.example.shortesttmpath.util
