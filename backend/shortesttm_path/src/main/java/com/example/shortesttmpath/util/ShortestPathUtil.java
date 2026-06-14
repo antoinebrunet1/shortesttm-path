@@ -2,9 +2,9 @@ package com.example.shortesttmpath.util;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -223,9 +223,9 @@ public class ShortestPathUtil {
 
   private static void addLineToUniqueStationsNames(Set<String> uniqueStationsNames,
                                                    String lineFileName) throws IOException {
-    Path filePath = new ClassPathResource("static/" + lineFileName).getFilePath();
-    List<String> stations = Files.readAllLines(filePath);
-    switch (lineFileName) {
+    ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
+    List<String> stations = new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
+        switch (lineFileName) {
       case "blue_line_stations.txt":
         BLUE_LINE_STATIONS = new ArrayList<>(stations);
         break;
@@ -259,8 +259,8 @@ public class ShortestPathUtil {
 
   private static void addLineToGraph(List<List<Integer>> graph, String lineFileName)
       throws IOException {
-    Path filePath = new ClassPathResource("static/" + lineFileName).getFilePath();
-    List<String> stations = Files.readAllLines(filePath);
+    ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
+    List<String> stations = new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
     for (int i = 0; i < stations.size() - 1; i++) {
       addTwoStationsInBothDirections(graph, STATIONS_NAMES_TO_INTS.get(stations.get(i)),
           STATIONS_NAMES_TO_INTS.get(stations.get(i + 1)));
