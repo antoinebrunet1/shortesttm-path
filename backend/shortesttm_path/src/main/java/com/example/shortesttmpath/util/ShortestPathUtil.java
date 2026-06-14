@@ -75,7 +75,7 @@ public class ShortestPathUtil {
    * @param startingStation    The starting station.
    * @param destinationStation The destination station.
    * @return The shortest metro path (the one with the least stations) between two STM metro
-   *     stations.
+   * stations.
    */
   public static ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
@@ -224,8 +224,9 @@ public class ShortestPathUtil {
   private static void addLineToUniqueStationsNames(Set<String> uniqueStationsNames,
                                                    String lineFileName) throws IOException {
     ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
-    List<String> stations = new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
-        switch (lineFileName) {
+    List<String> stations =
+        new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
+    switch (lineFileName) {
       case "blue_line_stations.txt":
         BLUE_LINE_STATIONS = new ArrayList<>(stations);
         break;
@@ -260,7 +261,8 @@ public class ShortestPathUtil {
   private static void addLineToGraph(List<List<Integer>> graph, String lineFileName)
       throws IOException {
     ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
-    List<String> stations = new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
+    List<String> stations =
+        new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
     for (int i = 0; i < stations.size() - 1; i++) {
       addTwoStationsInBothDirections(graph, STATIONS_NAMES_TO_INTS.get(stations.get(i)),
           STATIONS_NAMES_TO_INTS.get(stations.get(i + 1)));
