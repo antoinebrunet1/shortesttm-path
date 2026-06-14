@@ -59,7 +59,7 @@ graph TD;
     id1(["Validate:
     
     📚 Javadoc (javadoc goal)
-📐 Checkstyle (checkstyle goal)"])-->id2([Compile])
+📐 Checkstyle (check goal)"])-->id2([Compile])
     id2([Compile])-->id3([Test])
     id3(["Test:
     
