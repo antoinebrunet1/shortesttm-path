@@ -40,7 +40,7 @@ Using GitHub Actions, in `.github/workflows/deploy_javadoc.yml`, on each push on
    backend/shortesttm_path/src/main/resources/static
    ```
    
-   The two stations should not be on the same line.
+   The two stations should not be on the same line. Set up an environment variable called `API_KEY` with the value of your choice. Use this API key in the headers with `X-API-KEY` as the key and the value of the `API_KEY` environment variable as the value.
 
 ##  💡 Algorithm overview 💡
 
