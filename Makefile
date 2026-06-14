@@ -7,4 +7,4 @@ checkstyle:
 	$(cd_cmd) && mvn clean package -DskipTests -Dmaven.javadoc.skip=true
 
 cov:
-	$(cd_cmd) && mvn clean verify -DskipTests -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true
+	$(cd_cmd) && mvn clean verify -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true
