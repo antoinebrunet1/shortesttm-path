@@ -2,7 +2,6 @@ package com.example.shortesttmpath.filter;
 
 import com.example.shortesttmpath.service.AuthenticationService;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
