@@ -52,7 +52,7 @@ For the HTTP response, I only want to send, for the path, the starting station, 
 
 To get the stations used to switch lines between the first and last stations, I take the stations that have at least two lines and that are used to actually switches lines. That can be detected by making sure that the previous and next stations are not on the same line.
 
-## The Maven plugins through the Maven lifecycle
+## 🔄 The Maven plugins through the Maven lifecycle 🔄
 
 ```mermaid
 graph TD;
