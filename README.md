@@ -70,7 +70,7 @@ graph TD;
 📐 Checkstyle"])-->id5([Verify])
     id5(["Verify:
     
-🎯 Jacoco"])-->id6([Install])
+🎯 Jacoco (check goal)"])-->id6([Install])
     id6([Install])-->id7([Deploy])
 ```
 
