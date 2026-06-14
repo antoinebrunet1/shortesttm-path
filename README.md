@@ -117,9 +117,9 @@ backend/shortesttm_path/target/reports/apidocs
 
 You can view it by opening `index.html`.
 
-### 📐 Style 📐
+### 📐 Style and cyclomatic complexity 📐
 
-To check style, run the command
+To check style and cyclomatic complexity, run the command
 
 ```
 clean package -DskipTests -Dmaven.javadoc.skip=true
