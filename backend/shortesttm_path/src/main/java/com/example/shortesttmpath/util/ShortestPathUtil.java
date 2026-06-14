@@ -75,7 +75,7 @@ public class ShortestPathUtil {
    * @param startingStation    The starting station.
    * @param destinationStation The destination station.
    * @return The shortest metro path (the one with the least stations) between two STM metro
-   *     stations.
+   * stations.
    */
   public static ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {

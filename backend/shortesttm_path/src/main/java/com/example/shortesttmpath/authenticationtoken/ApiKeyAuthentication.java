@@ -13,7 +13,7 @@ public class ApiKeyAuthentication extends AbstractAuthenticationToken {
   /**
    * The constructor.
    *
-   * @param apiKey The API key.
+   * @param apiKey      The API key.
    * @param authorities The authorities.
    */
   public ApiKeyAuthentication(String apiKey, Collection<? extends GrantedAuthority> authorities) {

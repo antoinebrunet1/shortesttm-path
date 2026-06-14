@@ -11,7 +11,6 @@ import org.springframework.security.core.authority.AuthorityUtils;
  * The authentication service.
  */
 public class AuthenticationService {
-
   private static final String AUTH_TOKEN_HEADER_NAME = "X-API-KEY";
   private static final String AUTH_TOKEN = Dotenv.load().get("API_KEY");
 
@@ -26,7 +25,6 @@ public class AuthenticationService {
     if (apiKey == null || !apiKey.equals(AUTH_TOKEN)) {
       throw new BadCredentialsException("Invalid API Key");
     }
-
     return new ApiKeyAuthentication(apiKey, AuthorityUtils.NO_AUTHORITIES);
   }
 }

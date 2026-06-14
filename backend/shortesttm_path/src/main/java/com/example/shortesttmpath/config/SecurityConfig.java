@@ -33,7 +33,7 @@ public class SecurityConfig {
         .sessionManagement(
             httpSecuritySessionManagementConfigurer ->
                 httpSecuritySessionManagementConfigurer.sessionCreationPolicy(
-                SessionCreationPolicy.STATELESS))
+                    SessionCreationPolicy.STATELESS))
         .addFilterBefore(new AuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
