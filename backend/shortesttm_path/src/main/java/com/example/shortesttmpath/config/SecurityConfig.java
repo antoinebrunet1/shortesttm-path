@@ -18,6 +18,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
   /**
+   * Default constructor.
+   */
+  public SecurityConfig() {
+  }
+
+  /**
    * Requires an API key to make requests.
    *
    * @param http The HttpSecurity.

@@ -15,6 +15,12 @@ public class AuthenticationService {
   private static final String AUTH_TOKEN = Dotenv.load().get("API_KEY");
 
   /**
+   * Default constructor.
+   */
+  public AuthenticationService() {
+  }
+
+  /**
    * Returns the ApiKeyAuthentication.
    *
    * @param request The request.

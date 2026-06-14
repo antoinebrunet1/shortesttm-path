@@ -8,6 +8,9 @@ import org.springframework.security.core.GrantedAuthority;
  * The ApiKeyAuthentication.
  */
 public class ApiKeyAuthentication extends AbstractAuthenticationToken {
+  /**
+   * The API key.
+   */
   private final String apiKey;
 
   /**
