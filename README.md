@@ -156,3 +156,7 @@ make cov
 ## 🌐 Hosting 🌐
 
 The backend API is hosted using Render. UptimeRobot is used to keep it alive.
+
+## 🛡️ DDoS attacks prevention 🛡️
+
+API key based authentication is set up for the backend API to prevent DDoS attacks.
