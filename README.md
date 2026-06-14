@@ -152,3 +152,7 @@ or
 ```
 make cov
 ```
+
+## 🌐 Hosting 🌐
+
+The backend API is hosted using Render. UptimeRobot is used to keep it alive.
