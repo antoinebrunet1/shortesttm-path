@@ -81,7 +81,7 @@ The main branch of this repository contains a GitHub Actions CI/CD pipeline to i
 
 ## ✅ Check code quality locally ✅
 
-To check Javadoc, style and unit tests coverage, run the command
+To check Javadoc, style, complexity and unit tests coverage, run the command
 
 ```
 mvn clean verify -DskipTests
