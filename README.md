@@ -52,6 +52,24 @@ For the HTTP response, I only want to send, for the path, the starting station, 
 
 To get the stations used to switch lines between the first and last stations, I take the stations that have at least two lines and that are used to actually switches lines. That can be detected by making sure that the previous and next stations are not on the same line.
 
+## The Maven plugins through the Maven lifecycle
+
+```mermaid
+graph TD;
+    id1(["Validate
+    Javadoc (javadoc goal)
+    Checkstyle (checkstyle goal)"])-->id2([Compile])
+    id2([Compile])-->id3([Test])
+    id3(["Test
+    Jacoco (report goal)
+    Unit tests"])-->id4([Package])
+    id4(["Package
+    Checkstyle"])-->id5([Verify])
+    id5(["Verify
+    Jacoco"])-->id6([Install])
+    id6([Install])-->id7([Deploy])
+```
+
 ## ✨ Code quality guarantied ✨
 
 The main branch of this repository contains a GitHub Actions CI/CD pipeline to indicate if the code meets the below quality checks or not.
