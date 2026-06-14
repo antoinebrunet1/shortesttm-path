@@ -13,7 +13,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 public class AuthenticationService {
   private static final String AUTH_TOKEN_HEADER_NAME = "X-API-KEY";
   private static final String AUTH_TOKEN = Dotenv.configure()
-      .directory("backend/shortesttm_path/etc/secrets").load().get("API_KEY");
+      .directory("etc/secrets").load().get("API_KEY");
 
   /**
    * Default constructor.
