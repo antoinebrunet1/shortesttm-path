@@ -8,7 +8,8 @@ import org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoCon
 /**
  * The main class of the Spring Boot application.
  */
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class,
+    UserDetailsServiceAutoConfiguration.class})
 public class ShortesttmPathApplication {
   /**
    * The default constructor.
