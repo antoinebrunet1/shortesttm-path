@@ -11,19 +11,30 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * The security configuration. An API key is required for making requests.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+  /**
+   * Requires an API key to make requests.
+   *
+   * @param http The HttpSecurity.
+   * @return The SecurityFilterChain.
+   */
   @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  public SecurityFilterChain filterChain(HttpSecurity http) {
     http.csrf(AbstractHttpConfigurer::disable)
-        .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry.requestMatchers("/**").authenticated())
+        .authorizeHttpRequests(
+            authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
+                .requestMatchers("/**").authenticated())
         .httpBasic(Customizer.withDefaults())
-        .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer.sessionCreationPolicy(
-            SessionCreationPolicy.STATELESS))
+        .sessionManagement(
+            httpSecuritySessionManagementConfigurer ->
+                httpSecuritySessionManagementConfigurer.sessionCreationPolicy(
+                SessionCreationPolicy.STATELESS))
         .addFilterBefore(new AuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     return http.build();
   }
-
 }
