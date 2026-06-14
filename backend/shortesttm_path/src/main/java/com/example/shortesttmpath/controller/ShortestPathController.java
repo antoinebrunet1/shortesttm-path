@@ -54,6 +54,6 @@ public class ShortestPathController {
                                                           @RequestParam String destinationStation) {
     HttpHeaders headers = new HttpHeaders();
     ShortestPathBean path = ShortestPathUtil.getShortestPath(startingStation, destinationStation);
-    return new ResponseEntity<>(path, headers, HttpStatus.CREATED);
+    return new ResponseEntity<>(path, headers, HttpStatus.OK);
   }
 }
