@@ -138,8 +138,13 @@
 								<rule>
 									<element>CLASS</element>
 									<excludes>
+                                        <exclude>*ApiKeyAuthentication</exclude>
+                                        <exclude>*SecurityConfig</exclude>
 										<exclude>*ShortestPathController</exclude>
 										<exclude>*ShortestPathBean</exclude>
+                                        <exclude>*StationsOnSameLineException</exclude>
+                                        <exclude>*AuthenticationFilter</exclude>
+                                        <exclude>*AuthenticationService</exclude>
 										<exclude>*ShortesttmPathApplication</exclude>
 									</excludes>
 									<limits>
