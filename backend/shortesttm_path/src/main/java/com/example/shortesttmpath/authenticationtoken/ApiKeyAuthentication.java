@@ -4,9 +4,18 @@ import java.util.Collection;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * The ApiKeyAuthentication.
+ */
 public class ApiKeyAuthentication extends AbstractAuthenticationToken {
   private final String apiKey;
 
+  /**
+   * The constructor.
+   *
+   * @param apiKey The API key.
+   * @param authorities The authorities.
+   */
   public ApiKeyAuthentication(String apiKey, Collection<? extends GrantedAuthority> authorities) {
     super(authorities);
     this.apiKey = apiKey;
