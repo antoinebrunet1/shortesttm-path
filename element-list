@@ -2,5 +2,4 @@ com.example.shortesttmpath
 com.example.shortesttmpath.controller
 com.example.shortesttmpath.data
 com.example.shortesttmpath.exception
-com.example.shortesttmpath.security
 com.example.shortesttmpath.util
