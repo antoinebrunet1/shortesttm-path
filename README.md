@@ -54,25 +54,9 @@ To get the stations used to switch lines between the first and last stations, I 
 
 ## 🔄 The Maven plugins through the Maven lifecycle 🔄
 
-```mermaid
-graph TD;
-    id1(["Validate:
-    
-    📚 Javadoc (javadoc goal)
-📐 Checkstyle (check goal)"])-->id2([Compile])
-    id2([Compile])-->id3([Test])
-    id3(["Test:
-    
-🎯 Jacoco (report goal)
-🧪 Unit tests"])-->id4([Package])
-    id4(["Package:
-    
-📐 Checkstyle"])-->id5([Verify])
-    id5(["Verify:
-    
-🎯 Jacoco (check goal)"])-->id6([Install])
-    id6([Install])-->id7([Deploy])
-```
+<div align="center">
+    <img src="images/readme/maven_plugins_through_maven_lifecycle.svg" alt="The Maven plugins through the Maven lifecycle" width="300px"/>
+</div>
 
 ## ✨ Code quality guarantied ✨
 
