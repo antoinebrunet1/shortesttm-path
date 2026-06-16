@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +18,12 @@ import org.springframework.web.filter.GenericFilterBean;
  * The authentication filter.
  */
 public class AuthenticationFilter extends GenericFilterBean {
+  private static final List<String> WHITELIST = List.of(
+      "/v3/api-docs",
+      "/swagger-ui",
+      "/swagger-ui.html"
+  );
+
   /**
    * Default constructor.
    */
@@ -27,6 +34,14 @@ public class AuthenticationFilter extends GenericFilterBean {
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
       throws IOException {
     try {
+      String path = ((HttpServletRequest) request).getRequestURI();
+
+      if (WHITELIST.stream().anyMatch(path::startsWith)) {
+        filterChain.doFilter(request, response);
+
+        return;
+      }
+
       Authentication authentication =
           AuthenticationService.getAuthentication((HttpServletRequest) request);
       SecurityContextHolder.getContext().setAuthentication(authentication);
