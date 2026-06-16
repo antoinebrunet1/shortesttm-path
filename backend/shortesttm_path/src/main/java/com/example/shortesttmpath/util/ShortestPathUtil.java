@@ -79,10 +79,12 @@ public class ShortestPathUtil {
       throw new InvalidLineException();
     }
 
-    return switch (line) {
-      case "Blue" -> BLUE_LINE_STATIONS;
-      case "Green" -> GREEN_LINE_STATIONS;
-      case "Orange" -> ORANGE_LINE_STATIONS;
+    Line enumLine = Line.valueOf(line);
+
+    return switch (enumLine) {
+      case Line.BLUE -> BLUE_LINE_STATIONS;
+      case Line.GREEN -> GREEN_LINE_STATIONS;
+      case Line.ORANGE -> ORANGE_LINE_STATIONS;
       default -> YELLOW_LINE_STATIONS;
     };
   }
