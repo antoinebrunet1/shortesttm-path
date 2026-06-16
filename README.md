@@ -150,3 +150,5 @@ The backend API is hosted using Render. UptimeRobot is used to keep it alive.
 ## 🛡️ DDoS attacks prevention 🛡️
 
 API key based authentication is set up for the backend API to prevent DDoS attacks.
+
+DDoS stands for "distributed denial-of-service". According to Cloudflare, this attack "disrupts the operations of a server, service, or network by flooding it with unwanted Internet traffic" ([Source](https://antoinebrunet1.github.io/shortesttm-path/)).
