@@ -43,7 +43,7 @@ public class LinesController {
    * @return All the stations for the metro line.
    */
   @GetMapping("/stations/{line}")
-  public ResponseEntity<List<String>> getAllStation(@PathVariable String line) {
+  public ResponseEntity<List<String>> getAllStations(@PathVariable String line) {
     HttpHeaders headers = new HttpHeaders();
     List<String> allStations = ShortestPathUtil.getAllStations(line);
 
