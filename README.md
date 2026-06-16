@@ -158,3 +158,7 @@ DDoS stands for "distributed denial-of-service". According to Cloudflare, this a
 ### Safety guarantied for all the dependencies
 
 This project uses Dependabot to automatically open PRs for security issues and also for general library version updates.
+
+### `main` branch protection
+
+The `main` branch is protected by a ruleset called "No deletions and force push for main".
