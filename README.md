@@ -143,10 +143,6 @@ or
 make cov
 ```
 
-## 🌐 Hosting 🌐
-
-The backend API is hosted using Render. UptimeRobot is used to keep it alive.
-
 ## 🛡️ Security 🛡️
 
 ### DDoS attacks prevention
@@ -162,3 +158,7 @@ This project uses Dependabot to automatically open PRs for security issues and a
 ### `main` branch protection
 
 The `main` branch is protected by a ruleset called "No deletions and force push for main".
+
+## 🌐 Hosting 🌐
+
+The backend API is hosted using Render. UptimeRobot is used to keep it alive.
