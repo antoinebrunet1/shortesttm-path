@@ -38,6 +38,12 @@ public class LinesController {
     return new ResponseEntity<>(allLines, headers, HttpStatus.OK);
   }
 
+  /**
+   * Returns a 400 bad request with an error message if the InvalidLineException exception was
+   * thrown meaning that the provided metro line is invalid.
+   *
+   * @return A 400 bad request with an error message.
+   */
   @ExceptionHandler(InvalidLineException.class)
   public ResponseEntity<String> handle() {
     return ResponseEntity.badRequest().body("Provided line is invalid");
