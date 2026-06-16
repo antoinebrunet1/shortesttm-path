@@ -64,6 +64,21 @@ public class ShortestPathUtil {
   }
 
   /**
+   * Returns all the stations for a metro line.
+   *
+   * @param line The metro line.
+   * @return All the stations for the metro line.
+   */
+  public static List<String> getAllStations(String line) {
+    return switch (line) {
+      case "Blue" -> BLUE_LINE_STATIONS;
+      case "Green" -> GREEN_LINE_STATIONS;
+      case "Orange" -> ORANGE_LINE_STATIONS;
+      default -> YELLOW_LINE_STATIONS;
+    };
+  }
+
+  /**
    * Returns the shortest metro path (the one with the least stations) between two STM metro
    * stations. A
    * StationsOnSameLineException exception is thrown if the two stations are on the same line.
