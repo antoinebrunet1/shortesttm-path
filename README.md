@@ -14,13 +14,15 @@
 
 <hr>
 
-## 📚 Javadoc documentation 📚
+## 📚 Documentation 📚
+
+### Javadoc
 
 The latest valid (no warnings and errors during the generation) Javadoc is available at [https://antoinebrunet1.github.io/shortesttm-path/](https://antoinebrunet1.github.io/shortesttm-path/).
 
 Using GitHub Actions, in `.github/workflows/deploy_javadoc.yml`, on each push on the `main` branch and on each pull request to the `main` branch, I generate the Javadoc and push the folder with the Javadoc to the `gh-pages` branch as the root folder. The Javadoc is deployed using GitHub Actions from the root folder of the `gh-pages` branch.
 
-## 📚 Swagger Documentation 📚
+### Swagger
 
 The Spring Boot backend API is documented using Swagger. The documentation can be access at the path `/swagger-ui/index.html`.
 
