@@ -36,6 +36,12 @@ public class LinesController {
     return new ResponseEntity<>(allLines, headers, HttpStatus.OK);
   }
 
+  /**
+   * Returns all the stations for a metro line.
+   *
+   * @param line The metro line.
+   * @return All the stations for the metro line.
+   */
   @GetMapping("/stations/{line}")
   public ResponseEntity<List<String>> getAllStation(@PathVariable String line) {
     HttpHeaders headers = new HttpHeaders();
