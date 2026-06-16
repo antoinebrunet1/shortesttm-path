@@ -1,6 +1,8 @@
 package com.example.shortesttmpath.util;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.enums.Line;
+import com.example.shortesttmpath.exception.InvalidLineException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -70,6 +72,13 @@ public class ShortestPathUtil {
    * @return All the stations for the metro line.
    */
   public static List<String> getAllStations(String line) {
+    List<Line> values = Arrays.stream(Line.values()).toList();
+    List<String> stringValues = values.stream().map(Enum::toString).toList();
+
+    if (!stringValues.contains(line)) {
+      throw new InvalidLineException();
+    }
+
     return switch (line) {
       case "Blue" -> BLUE_LINE_STATIONS;
       case "Green" -> GREEN_LINE_STATIONS;
