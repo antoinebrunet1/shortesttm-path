@@ -1,6 +1,7 @@
 package com.example.shortesttmpath.util;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.exception.InvalidLineException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import org.junit.jupiter.api.Test;
 
@@ -28,4 +29,9 @@ public class ShortestPathUtilTest {
         assertThrows(StationsOnSameLineException.class, () ->
             ShortestPathUtil.getShortestPath("McGill", "Viau"));
     }
+
+  @Test
+  public void getAllStationsWithInvalidLinenShouldThrowInvalidLineException() {
+    assertThrows(InvalidLineException.class, () -> ShortestPathUtil.getAllStations("PINK"));
+  }
 }
