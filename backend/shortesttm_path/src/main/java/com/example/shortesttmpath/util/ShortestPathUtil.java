@@ -20,8 +20,8 @@ import java.util.Set;
 import org.springframework.core.io.ClassPathResource;
 
 /**
- * Util class to calculate the shortest metro path (the one with the least stations) between two
- * STM metro stations.
+ * Util class to calculate the shortest metro path (the one with the least stations) between two STM
+ * metro stations.
  */
 public class ShortestPathUtil {
   private static final List<String> LINES_FILES_NAMES = Arrays.asList(
@@ -91,11 +91,8 @@ public class ShortestPathUtil {
 
   /**
    * Returns the shortest metro path (the one with the least stations) between two STM metro
-   * stations. A
-   * StationsOnSameLineException exception is thrown if the two stations are on the same line.
-   * This includes the same
-   * station given twice and neighbor stations.
-   * Source:
+   * stations. A StationsOnSameLineException exception is thrown if the two stations are on the
+   * same line. This includes the same station given twice and neighbor stations. Source:
    * <a href="https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/">https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/</a>
    *
    * @param startingStation    The starting station.

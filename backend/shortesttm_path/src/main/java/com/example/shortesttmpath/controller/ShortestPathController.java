@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The controller related with providing the shortest metro path (the one with the least
- * stations) between two STM
- * metro stations.
+ * The controller related with providing the shortest metro path (the one with the least stations)
+ * between two STM metro stations.
  */
 @RestController
 @RequestMapping("/shortest_path")
@@ -28,10 +27,8 @@ public class ShortestPathController {
 
   /**
    * Returns a 400 bad request with an error message if the StationsOnSameLineException exception
-   * was thrown meaning
-   * that the two provided stations were on the same line. This includes the same station given
-   * twice and neighbor
-   * stations.
+   * was thrown meaning that the two provided stations were on the same line. This includes the same
+   * station given twice and neighbor stations.
    *
    * @return A 400 bad request with an error message.
    */
