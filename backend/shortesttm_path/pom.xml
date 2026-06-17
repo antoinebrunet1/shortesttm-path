@@ -146,6 +146,7 @@
                                         <exclude>*AuthenticationFilter</exclude>
                                         <exclude>*AuthenticationService</exclude>
 										<exclude>*ShortesttmPathApplication</exclude>
+                                        <exclude>*LinesController</exclude>
 									</excludes>
 									<limits>
 										<limit>
