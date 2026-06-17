@@ -1,7 +1,6 @@
 package com.example.shortesttmpath.controller;
 
 import com.example.shortesttmpath.exception.InvalidLineException;
-import com.example.shortesttmpath.util.LinesUtil;
 import com.example.shortesttmpath.util.ShortestPathUtil;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +32,12 @@ public class LinesController {
   @GetMapping()
   public ResponseEntity<List<String>> getAllLines() {
     HttpHeaders headers = new HttpHeaders();
-    List<String> allLines = LinesUtil.getAllLines();
+    List<String> allLines = List.of(
+        "Blue",
+        "Green",
+        "Orange",
+        "Yellow"
+    );
 
     return new ResponseEntity<>(allLines, headers, HttpStatus.OK);
   }
