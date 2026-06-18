@@ -12,12 +12,12 @@ import { environment } from '../../environments/environment';
   styleUrl: './starting-line-station.css',
 })
 export class StartingLineStation {
-  allLines: string[] = [];
+  allLines$: any;
 
   constructor(http: HttpClient) {
     const path = 'http://localhost:8080/lines';
 
     const headers = new HttpHeaders().set('X-API-KEY', environment.apiKey);
-    http.get<string[]>(path, { headers }).subscribe((lines) => (this.allLines = lines));
+    this.allLines$ = http.get<string[]>(path, { headers });
   }
 }
