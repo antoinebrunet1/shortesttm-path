@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-starting-line',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './starting-line.css',
 })
 export class StartingLine {
-
+  @Input() allLines: any;
+  @Output() line = new EventEmitter();
 }
