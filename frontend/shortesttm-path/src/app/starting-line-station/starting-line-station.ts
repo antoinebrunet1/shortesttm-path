@@ -10,10 +10,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './starting-line-station.css',
 })
 export class StartingLineStation {
-  allLines: Observable<any>;
+  allLines: Observable<string[]>;
 
   constructor(http: HttpClient) {
     const path = 'http://localhost:8080/lines';
-    this.allLines = http.get<any>(path);
+    this.allLines = http.get<string[]>(path);
   }
 }

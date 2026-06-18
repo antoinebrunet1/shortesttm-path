@@ -8,6 +8,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StartingLine {
-  @Input() allLines: any;
+  @Input() allLines: string[] = [];
   @Output() line = new EventEmitter();
 }
