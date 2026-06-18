@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
 import { StartingLine } from '../starting-line/starting-line';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AsyncPipe } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-starting-line-station',
-  imports: [StartingLine],
+  imports: [StartingLine, AsyncPipe],
   templateUrl: './starting-line-station.html',
   styleUrl: './starting-line-station.css',
 })
 export class StartingLineStation {
-  allLines: Observable<string[]>;
+  allLines: string[] = [];
 
   constructor(http: HttpClient) {
     const path = 'http://localhost:8080/lines';
-    this.allLines = http.get<string[]>(path);
+
+    const headers = new HttpHeaders().set('X-API-KEY', environment.apiKey);
+    http.get<string[]>(path, { headers }).subscribe((lines) => (this.allLines = lines));
   }
 }
