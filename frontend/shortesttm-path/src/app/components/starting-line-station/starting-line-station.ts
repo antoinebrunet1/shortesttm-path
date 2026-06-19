@@ -3,7 +3,7 @@ import { StartingLine } from '../starting-line/starting-line';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AsyncPipe } from '@angular/common';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-starting-line-station',
