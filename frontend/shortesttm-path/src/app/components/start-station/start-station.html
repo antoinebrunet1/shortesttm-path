@@ -1,3 +1,8 @@
-@for (station of allStations; track station) {
-  <p>{{ station }}</p>
-}
+<mat-form-field>
+  <mat-label>Starting station</mat-label>
+  <mat-select>
+    @for (station of allStations; track station) {
+      <mat-option [value]="station">{{ station }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
