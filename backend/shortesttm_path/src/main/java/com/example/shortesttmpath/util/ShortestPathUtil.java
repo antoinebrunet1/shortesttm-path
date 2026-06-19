@@ -65,6 +65,10 @@ public class ShortestPathUtil {
   public ShortestPathUtil() {
   }
 
+  public static List<String> getAllStationsInAlphabeticalOrder() {
+    return STATIONS_NAMES_TO_INTS.keySet().stream().sorted().toList();
+  }
+
   /**
    * Returns all the stations for a metro line.
    *
