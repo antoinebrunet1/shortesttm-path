@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Instructions } from '../instructions/instructions';
 import { StartingLineStation } from '../starting-line-station/starting-line-station';
+import { LinesService } from '../../services/lines-service/lines-service';
 
 @Component({
   selector: 'app-main',
@@ -8,4 +9,6 @@ import { StartingLineStation } from '../starting-line-station/starting-line-stat
   templateUrl: './main.html',
   styleUrl: './main.css',
 })
-export class Main {}
+export class Main {
+  constructor(private linesServices: LinesService) {}
+}
