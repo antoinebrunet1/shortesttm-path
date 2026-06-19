@@ -10,5 +10,11 @@ import { LinesService } from '../../services/lines-service/lines-service';
   styleUrl: './main.css',
 })
 export class Main {
+  allLines$: any;
+
   constructor(private linesServices: LinesService) {}
+
+  ngOnInit() {
+    this.allLines$ = this.linesServices.getAllLines();
+  }
 }
