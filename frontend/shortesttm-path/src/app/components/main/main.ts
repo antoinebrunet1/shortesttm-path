@@ -3,6 +3,7 @@ import { Instructions } from '../instructions/instructions';
 import { StartingLineStation } from '../starting-line-station/starting-line-station';
 import { LinesService } from '../../services/lines-service/lines-service';
 import { AsyncPipe } from '@angular/common';
+import { StationsService } from '../../services/stations-service/stations-service';
 
 @Component({
   selector: 'app-main',
@@ -13,9 +14,9 @@ import { AsyncPipe } from '@angular/common';
 export class Main {
   allLines$: any;
 
-  constructor(private linesServices: LinesService) {}
+  constructor(private stationsService: StationsService) {}
 
   ngOnInit() {
-    this.allLines$ = this.linesServices.getAllLines();
+    this.allLines$ = this.stationsService.getAllStations();
   }
 }
