@@ -13,10 +13,18 @@ import { StartStation } from '../start-station/start-station';
 })
 export class Main {
   allLines$: any;
+  startingStation: string;
 
-  constructor(private stationsService: StationsService) {}
+  constructor(private stationsService: StationsService) {
+    this.startingStation = '';
+  }
 
   ngOnInit() {
     this.allLines$ = this.stationsService.getAllStations();
+  }
+
+  handleStartingStationFromChild(data: string) {
+    this.startingStation = data;
+    console.log('Data received in parent:', this.startingStation);
   }
 }
