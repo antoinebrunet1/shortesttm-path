@@ -14,9 +14,11 @@ import { StartStation } from '../start-station/start-station';
 export class Main {
   allLines$: any;
   startingStation: string;
+  destinationStation: string;
 
   constructor(private stationsService: StationsService) {
     this.startingStation = '';
+    this.destinationStation = '';
   }
 
   ngOnInit() {
@@ -25,6 +27,11 @@ export class Main {
 
   handleStartingStationFromChild(data: string) {
     this.startingStation = data;
-    console.log('Data received in parent:', this.startingStation);
+    console.log('sData received in parent:', this.startingStation);
+  }
+
+  handleDestinationStationFromChild(data: string) {
+    this.destinationStation = data;
+    console.log('dData received in parent:', this.destinationStation);
   }
 }
