@@ -7,6 +7,7 @@ import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
@@ -66,7 +68,12 @@ public class ShortestPathUtil {
   }
 
   public static List<String> getAllStationsInAlphabeticalOrder() {
-    return STATIONS_NAMES_TO_INTS.keySet().stream().sorted().toList();
+    List<String> allStationsInAlphabeticalOrder =
+        new ArrayList<>(STATIONS_NAMES_TO_INTS.keySet().stream().toList());
+    Collator collator = Collator.getInstance(Locale.FRENCH);
+    allStationsInAlphabeticalOrder.sort(collator);
+
+    return allStationsInAlphabeticalOrder;
   }
 
   /**
