@@ -14,4 +14,4 @@
 
 <button matButton="filled" (click)="updateShortestPath()">Basic</button>
 
-<app-shortest-path [shortestPath]="shortestPath$"></app-shortest-path>
+<app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
