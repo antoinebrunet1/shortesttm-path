@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Instructions } from '../instructions/instructions';
 import { LinesService } from '../../services/lines-service/lines-service';
 import { AsyncPipe } from '@angular/common';
@@ -7,6 +7,8 @@ import { StartStation } from '../start-station/start-station';
 import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
 import { ShortestPath } from '../shortest-path/shortest-path';
 import { MatButtonModule } from '@angular/material/button';
+import { catchError, EMPTY } from 'rxjs';
+import { EMPTY_OBSERVER } from 'rxjs/internal/Subscriber';
 
 @Component({
   selector: 'app-main',
@@ -19,10 +21,12 @@ export class Main {
   startingStation: string;
   destinationStation: string;
   shortestPath$: any;
+  errorMessage: string | null = null;
 
   constructor(
     private stationsService: StationsService,
     private shortestPathService: ShortestPathService,
+    private ref: ChangeDetectorRef,
   ) {
     this.startingStation = '';
     this.destinationStation = '';
@@ -43,9 +47,27 @@ export class Main {
   }
 
   updateShortestPath() {
-    this.shortestPath$ = this.shortestPathService.getShortestPath(
-      this.startingStation,
-      this.destinationStation,
-    );
+    this.shortestPath$ = this.shortestPathService
+      .getShortestPath(this.startingStation, this.destinationStation)
+      .pipe(
+        catchError((err) => {
+          console.log(err.status);
+          console.log(err.error);
+          console.log(err.status === 400);
+          console.log(err.error === 'Provided stations are on the same line');
+          if (err.status === 400 && err.error === 'Provided stations are on the same line') {
+            this.errorMessage = 'Provided stations are on the same line';
+          } else {
+            this.errorMessage = null;
+          }
+
+          this.ref.detectChanges();
+
+          return EMPTY;
+        }),
+      );
+
+    this.errorMessage = null;
+    this.ref.detectChanges();
   }
 }
