@@ -11,6 +11,7 @@ export class StationsService {
   getAllStations(): any {
     const path = 'http://localhost:8080/stations/alphabetical-order';
     const headers = new HttpHeaders().set('X-API-KEY', environment.apiKey);
+
     return this.http.get<string[]>(path, { headers });
   }
 }

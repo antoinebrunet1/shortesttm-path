@@ -15,6 +15,7 @@ export class ShortestPathService {
   ): Observable<ShortestPathInterface> {
     const path = 'http://localhost:8080/shortest_path';
     const headers = new HttpHeaders().set('X-API-KEY', environment.apiKey);
+
     return this.http.get<ShortestPathInterface>(path, {
       headers,
       params: {
