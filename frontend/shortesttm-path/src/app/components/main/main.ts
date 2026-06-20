@@ -4,6 +4,7 @@ import { LinesService } from '../../services/lines-service/lines-service';
 import { AsyncPipe } from '@angular/common';
 import { StationsService } from '../../services/stations-service/stations-service';
 import { StartStation } from '../start-station/start-station';
+import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
 
 @Component({
   selector: 'app-main',
@@ -15,8 +16,12 @@ export class Main {
   allLines$: any;
   startingStation: string;
   destinationStation: string;
+  shortestPath$: any;
 
-  constructor(private stationsService: StationsService) {
+  constructor(
+    private stationsService: StationsService,
+    private shortestPathService: ShortestPathService,
+  ) {
     this.startingStation = '';
     this.destinationStation = '';
   }
@@ -33,5 +38,12 @@ export class Main {
   handleDestinationStationFromChild(data: string) {
     this.destinationStation = data;
     console.log('dData received in parent:', this.destinationStation);
+  }
+
+  updateShortestPath() {
+    this.shortestPath$ = this.shortestPathService.getShortestPath(
+      this.startingStation,
+      this.destinationStation,
+    );
   }
 }
