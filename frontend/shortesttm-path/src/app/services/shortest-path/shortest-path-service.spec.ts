@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShortestPath } from './shortest-path';
+import { ShortestPathService } from './shortest-path-service';
 
-describe('ShortestPath', () => {
-  let service: ShortestPath;
+describe('ShortestPathService', () => {
+  let service: ShortestPathService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ShortestPath);
+    service = TestBed.inject(ShortestPathService);
   });
 
   it('should be created', () => {
