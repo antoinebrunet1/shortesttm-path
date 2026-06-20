@@ -38,12 +38,10 @@ export class Main {
 
   handleStartingStationFromChild(data: string) {
     this.startingStation = data;
-    console.log('sData received in parent:', this.startingStation);
   }
 
   handleDestinationStationFromChild(data: string) {
     this.destinationStation = data;
-    console.log('dData received in parent:', this.destinationStation);
   }
 
   updateShortestPath() {
@@ -51,10 +49,6 @@ export class Main {
       .getShortestPath(this.startingStation, this.destinationStation)
       .pipe(
         catchError((err) => {
-          console.log(err.status);
-          console.log(err.error);
-          console.log(err.status === 400);
-          console.log(err.error === 'Provided stations are on the same line');
           if (err.status === 400 && err.error === 'Provided stations are on the same line') {
             this.errorMessage = 'Provided stations are on the same line';
           } else {
