@@ -6,10 +6,11 @@ import { StationsService } from '../../services/stations-service/stations-servic
 import { StartStation } from '../start-station/start-station';
 import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
 import { ShortestPath } from '../shortest-path/shortest-path';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-main',
-  imports: [Instructions, AsyncPipe, StartStation, ShortestPath],
+  imports: [Instructions, AsyncPipe, StartStation, ShortestPath, MatButtonModule],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })

@@ -12,4 +12,6 @@
   (startingStation)="handleDestinationStationFromChild($event)"
 ></app-start-station>
 
+<button matButton="filled" (click)="updateShortestPath()">Basic</button>
+
 <app-shortest-path [shortestPath]="shortestPath$"></app-shortest-path>
