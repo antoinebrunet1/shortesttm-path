@@ -11,7 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './start-station.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StartStation {
+export class Station {
   @Input() allStations: any;
   @Output() startingStation = new EventEmitter<string>();
 
