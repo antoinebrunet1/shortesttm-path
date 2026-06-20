@@ -11,3 +11,5 @@
   [allStations]="allLines$ | async"
   (startingStation)="handleDestinationStationFromChild($event)"
 ></app-start-station>
+
+<app-shortest-path [shortestPath]="shortestPath$"></app-shortest-path>

@@ -5,10 +5,11 @@ import { AsyncPipe } from '@angular/common';
 import { StationsService } from '../../services/stations-service/stations-service';
 import { StartStation } from '../start-station/start-station';
 import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
+import { ShortestPath } from '../shortest-path/shortest-path';
 
 @Component({
   selector: 'app-main',
-  imports: [Instructions, AsyncPipe, StartStation],
+  imports: [Instructions, AsyncPipe, StartStation, ShortestPath],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })
