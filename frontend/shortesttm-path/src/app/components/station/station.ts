@@ -7,8 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 @Component({
   selector: 'app-start-station',
   imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
-  templateUrl: './start-station.html',
-  styleUrl: './start-station.css',
+  templateUrl: './station.html',
+  styleUrl: './station.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Station {
