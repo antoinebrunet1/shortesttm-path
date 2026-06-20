@@ -222,3 +222,4 @@ $RECYCLE.BIN/
 .env
 frontend/shortesttm-path/src/environments/environment.ts
 frontend/shortesttm-path/src/environments/environment.development.ts
+frontend/shortesttm-path/src/environments/environment.prod.ts
