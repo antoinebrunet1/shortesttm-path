@@ -32,7 +32,7 @@ export class Main {
   }
 
   ngOnInit() {
-    this.allLines$ = this.stationsService.getAllStations();
+    this.allLines$ = this.stationsService.getAllStationsInAlphabeticalOrder();
   }
 
   handleStartingStationFromChild(data: string) {

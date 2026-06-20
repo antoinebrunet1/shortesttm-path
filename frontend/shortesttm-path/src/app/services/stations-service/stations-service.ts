@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 export class StationsService {
   private http = inject(HttpClient);
 
-  getAllStations(): any {
+  getAllStationsInAlphabeticalOrder(): any {
     const path = 'http://localhost:8080/stations/alphabetical-order';
     const headers = new HttpHeaders().set('X-API-KEY', environment.apiKey);
 
