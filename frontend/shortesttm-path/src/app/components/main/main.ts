@@ -16,7 +16,7 @@ export class Main {
   allLines$: any;
   startingStation: string;
   destinationStation: string;
-  shortestPath$: any;
+  shortestPath$: ShortestPath | null;
 
   constructor(
     private stationsService: StationsService,
@@ -24,6 +24,7 @@ export class Main {
   ) {
     this.startingStation = '';
     this.destinationStation = '';
+    this.shortestPath$ = null;
   }
 
   ngOnInit() {
@@ -41,9 +42,8 @@ export class Main {
   }
 
   updateShortestPath() {
-    this.shortestPath$ = this.shortestPathService.getShortestPath(
-      this.startingStation,
-      this.destinationStation,
-    );
+    this.shortestPathService
+      .getShortestPath(this.startingStation, this.destinationStation)
+      .subscribe((value) => (this.shortestPath$ = value));
   }
 }
