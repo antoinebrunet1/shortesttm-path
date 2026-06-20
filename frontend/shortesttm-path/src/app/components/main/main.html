@@ -4,12 +4,12 @@
 
 <app-start-station
   [allStations]="allLines$ | async"
-  (startingStation)="handleStartingStationFromChild($event)"
+  (station)="handleStartingStationFromChild($event)"
 ></app-start-station>
 
 <app-start-station
   [allStations]="allLines$ | async"
-  (startingStation)="handleDestinationStationFromChild($event)"
+  (station)="handleDestinationStationFromChild($event)"
 ></app-start-station>
 
 <button matButton="filled" (click)="updateShortestPath()">Basic</button>
