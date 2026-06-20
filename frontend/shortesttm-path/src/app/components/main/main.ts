@@ -16,7 +16,7 @@ export class Main {
   allLines$: any;
   startingStation: string;
   destinationStation: string;
-  shortestPath$: ShortestPath | null;
+  shortestPath$: ShortestPathInterface | null;
 
   constructor(
     private stationsService: StationsService,

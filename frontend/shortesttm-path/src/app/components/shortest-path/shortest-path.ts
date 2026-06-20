@@ -8,5 +8,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShortestPath {
-  @Input() shortestPath: ShortestPath | null = null;
+  @Input() shortestPath: ShortestPathInterface | null = null;
 }

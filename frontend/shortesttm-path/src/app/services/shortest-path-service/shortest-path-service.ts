@@ -9,10 +9,13 @@ import { Observable } from 'rxjs';
 export class ShortestPathService {
   private http = inject(HttpClient);
 
-  getShortestPath(startingStation: string, destinationStation: string): Observable<ShortestPath> {
+  getShortestPath(
+    startingStation: string,
+    destinationStation: string,
+  ): Observable<ShortestPathInterface> {
     const path = 'http://localhost:8080/shortest_path';
     const headers = new HttpHeaders().set('X-API-KEY', environment.apiKey);
-    return this.http.get<ShortestPath>(path, {
+    return this.http.get<ShortestPathInterface>(path, {
       headers,
       params: {
         startingStation: startingStation,
