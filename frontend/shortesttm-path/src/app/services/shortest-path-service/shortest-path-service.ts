@@ -8,9 +8,15 @@ import { environment } from '../../../environments/environment';
 export class ShortestPathService {
   private http = inject(HttpClient);
 
-  getShortestPath(): any {
+  getShortestPath(startingStation: string, destinationStation: string): any {
     const path = 'http://localhost:8080/shortest_path';
     const headers = new HttpHeaders().set('X-API-KEY', environment.apiKey);
-    return this.http.get<ShortestPath>(path, { headers });
+    return this.http.get<ShortestPath>(path, {
+      headers,
+      params: {
+        startingStation: startingStation,
+        destinationStation: destinationStation,
+      },
+    });
   }
 }
