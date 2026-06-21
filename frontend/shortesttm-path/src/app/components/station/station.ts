@@ -14,12 +14,4 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 export class Station {
   @Input() allStations: any;
   @Output() station = new EventEmitter<string>();
-
-  change(event: any) {
-    if (!event.source.selected) {
-      return;
-    }
-
-    this.station.emit(event.source.value);
-  }
 }
