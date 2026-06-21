@@ -12,6 +12,6 @@ import { MatSelectModule } from '@angular/material/select';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Station {
-  @Input() allStations: any;
+  @Input() allStations: string[] | null = [];
   @Output() station = new EventEmitter<string>();
 }

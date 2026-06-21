@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { catchError, EMPTY } from 'rxjs';
+import { catchError, EMPTY, Observable } from 'rxjs';
 import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
 import { StationsService } from '../../services/stations-service/stations-service';
 import { Instructions } from '../instructions/instructions';
@@ -15,10 +15,10 @@ import { Station } from '../station/station';
   styleUrl: './main.css',
 })
 export class Main {
-  allLines$: any;
+  allLines$: Observable<string[]>;
   startingStation: string;
   destinationStation: string;
-  shortestPath$: any;
+  shortestPath$: Observable<ShortestPathInterface> = EMPTY;
   errorMessage: string | null = null;
 
   constructor(
@@ -28,9 +28,6 @@ export class Main {
   ) {
     this.startingStation = '';
     this.destinationStation = '';
-  }
-
-  ngOnInit() {
     this.allLines$ = this.stationsService.getAllStationsInAlphabeticalOrder();
   }
 
