@@ -1,21 +1,23 @@
-<h1>ShortestTM Path</h1>
+<div id="main-div">
+  <h1>ShortestTM Path</h1>
 
-<app-instructions></app-instructions>
+  <app-instructions></app-instructions>
 
-<app-station
-  [allStations]="allLines$ | async"
-  (station)="handleStartingStationFromChild($event)"
-></app-station>
+  <app-station
+    [allStations]="allLines$ | async"
+    (station)="handleStartingStationFromChild($event)"
+  ></app-station>
 
-<app-station
-  [allStations]="allLines$ | async"
-  (station)="handleDestinationStationFromChild($event)"
-></app-station>
+  <app-station
+    [allStations]="allLines$ | async"
+    (station)="handleDestinationStationFromChild($event)"
+  ></app-station>
 
-<button matButton="filled" (click)="updateShortestPath()">Calculate</button>
+  <button matButton="filled" (click)="updateShortestPath()">Calculate</button>
 
-@if (errorMessage) {
-  <p>Provided stations are on the same line</p>
-}
+  @if (errorMessage) {
+    <p>Provided stations are on the same line</p>
+  }
 
-<app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
+  <app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
+</div>
