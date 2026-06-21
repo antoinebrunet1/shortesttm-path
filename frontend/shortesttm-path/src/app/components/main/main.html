@@ -2,15 +2,15 @@
 
 <app-instructions></app-instructions>
 
-<app-start-station
+<app-station
   [allStations]="allLines$ | async"
   (station)="handleStartingStationFromChild($event)"
-></app-start-station>
+></app-station>
 
-<app-start-station
+<app-station
   [allStations]="allLines$ | async"
   (station)="handleDestinationStationFromChild($event)"
-></app-start-station>
+></app-station>
 
 <button matButton="filled" (click)="updateShortestPath()">Basic</button>
 

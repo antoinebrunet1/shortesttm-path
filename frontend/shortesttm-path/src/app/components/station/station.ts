@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 @Component({
-  selector: 'app-start-station',
+  selector: 'app-station',
   imports: [MatFormFieldModule, MatSelectModule, MatInputModule, FormsModule],
   templateUrl: './station.html',
   styleUrl: './station.css',
