@@ -1,13 +1,12 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { Instructions } from '../instructions/instructions';
 import { AsyncPipe } from '@angular/common';
-import { StationsService } from '../../services/stations-service/stations-service';
-import { Station } from '../station/station';
-import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
-import { ShortestPath } from '../shortest-path/shortest-path';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { catchError, EMPTY } from 'rxjs';
-import { EMPTY_OBSERVER } from 'rxjs/internal/Subscriber';
+import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
+import { StationsService } from '../../services/stations-service/stations-service';
+import { Instructions } from '../instructions/instructions';
+import { ShortestPath } from '../shortest-path/shortest-path';
+import { Station } from '../station/station';
 
 @Component({
   selector: 'app-main',

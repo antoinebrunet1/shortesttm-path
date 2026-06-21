@@ -8,9 +8,8 @@ describe('ShortestPath', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShortestPath]
-    })
-    .compileComponents();
+      imports: [ShortestPath],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ShortestPath);
     component = fixture.componentInstance;
