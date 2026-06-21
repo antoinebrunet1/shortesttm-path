@@ -23,8 +23,9 @@ fdescribe('ShortestPathService', () => {
   });
 
   it('should return a valid shortest path', () => {
-    const startingStation = 'Laurier';
-    const destinationStation = 'Charlevoix';
+    const startingStation = 'Acadie';
+    const destinationStation = 'Angrignon';
+    const stationsToSwitchLines = ['Snowdon', 'Lionel-Groulx'];
 
     service.getShortestPath(startingStation, destinationStation).subscribe((result) => {
       // Checks that the result object is not null.
@@ -40,8 +41,9 @@ fdescribe('ShortestPathService', () => {
       expect(result.destinationStation).toEqual(destinationStation);
 
       // Checks that the stations to switch lines are valid.
-      expect(result.stationsToSwitchLines.length).toEqual(1);
-      expect(result.stationsToSwitchLines[0]).toEqual('Berri-UQAM');
+      expect(result.stationsToSwitchLines.length).toEqual(2);
+      expect(result.stationsToSwitchLines[0]).toEqual(stationsToSwitchLines[0]);
+      expect(result.stationsToSwitchLines[1]).toEqual(stationsToSwitchLines[1]);
     });
 
     const path = `${environment.baseUrl}/shortest_path?startingStation=${startingStation}&destinationStation=${destinationStation}`;
@@ -51,7 +53,7 @@ fdescribe('ShortestPathService', () => {
     req.flush({
       startingStation: startingStation,
       destinationStation: destinationStation,
-      stationsToSwitchLines: ['Berri-UQAM'],
+      stationsToSwitchLines: stationsToSwitchLines,
     });
   });
 });
