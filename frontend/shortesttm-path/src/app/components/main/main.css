@@ -12,3 +12,8 @@
 app-instructions {
   max-width: 600px;
 }
+
+img {
+  margin-top: 20px;
+  width: 35px;
+}
