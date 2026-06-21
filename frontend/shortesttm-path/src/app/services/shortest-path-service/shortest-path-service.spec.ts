@@ -30,8 +30,6 @@ fdescribe('ShortestPathService', () => {
       // Checks that the result object is not null.
       expect(result).toBeTruthy();
 
-      console.log(result);
-
       // Checks that the values of the result object are not null.
       expect(result.startingStation).toBeTruthy();
       expect(result.destinationStation).toBeTruthy();
