@@ -5,11 +5,13 @@
 
   <div id="stations-div">
     <app-station
+      [description]="'Starting station'"
       [allStations]="allLines$ | async"
       (station)="handleStartingStationFromChild($event)"
     ></app-station>
 
     <app-station
+      [description]="'Destination station'"
       [allStations]="allLines$ | async"
       (station)="handleDestinationStationFromChild($event)"
     ></app-station>

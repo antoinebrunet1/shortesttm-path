@@ -13,5 +13,6 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class Station {
   @Input() allStations: string[] | null = [];
+  @Input() description: string = '';
   @Output() station = new EventEmitter<string>();
 }

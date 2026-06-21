@@ -1,5 +1,5 @@
 <mat-form-field>
-  <mat-label>Starting station</mat-label>
+  <mat-label>{{ description }}</mat-label>
   <mat-select (selectionChange)="station.emit($event.value)">
     @for (station of allStations; track station) {
       <mat-option [value]="station">{{ station }}</mat-option>
