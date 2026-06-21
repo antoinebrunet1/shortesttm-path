@@ -3,15 +3,17 @@
 
   <app-instructions></app-instructions>
 
-  <app-station
-    [allStations]="allLines$ | async"
-    (station)="handleStartingStationFromChild($event)"
-  ></app-station>
+  <div id="stations-div">
+    <app-station
+      [allStations]="allLines$ | async"
+      (station)="handleStartingStationFromChild($event)"
+    ></app-station>
 
-  <app-station
-    [allStations]="allLines$ | async"
-    (station)="handleDestinationStationFromChild($event)"
-  ></app-station>
+    <app-station
+      [allStations]="allLines$ | async"
+      (station)="handleDestinationStationFromChild($event)"
+    ></app-station>
+  </div>
 
   <button matButton="filled" (click)="updateShortestPath()">Calculate</button>
 
