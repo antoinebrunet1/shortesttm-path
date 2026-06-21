@@ -27,8 +27,8 @@ export class Main {
     private shortestPathService: ShortestPathService,
     private ref: ChangeDetectorRef,
   ) {
-    this.startingStation = '';
-    this.destinationStation = '';
+    this.startingStation = 'Acadie';
+    this.destinationStation = 'Acadie';
     this.allLines$ = this.stationsService.getAllStationsInAlphabeticalOrder();
   }
 
