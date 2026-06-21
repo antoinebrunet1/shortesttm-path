@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/stations")
 public class StationsController {
   /**
+   * The default constructor.
+   */
+  public StationsController() {
+  }
+
+  /**
    * Returns all the stations in alphabetical order.
    *
    * @return All the stations in alphabetical order.
