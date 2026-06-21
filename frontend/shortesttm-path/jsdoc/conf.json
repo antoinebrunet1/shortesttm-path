@@ -1,0 +1,8 @@
+{
+  "source": {
+    "include": ["src/app/interfaces"],
+    "includePattern": "src\\\\app\\\\.*\\\\.*\\.ts",
+    "excludePattern": ".*\\.spec\\.ts"
+  },
+  "plugins": ["plugins/typescript"]
+}
