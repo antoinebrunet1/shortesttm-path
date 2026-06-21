@@ -23,37 +23,37 @@ fdescribe('ShortestPathService', () => {
   });
 
   it('should return a valid shortest path', () => {
-    const startingStation = 'Acadie';
-    const destinationStation = 'Angrignon';
-    const stationsToSwitchLines = ['Snowdon', 'Lionel-Groulx'];
+    const expected = {
+      startingStation: 'Acadie',
+      destinationStation: 'Angrignon',
+      stationsToSwitchLines: ['Snowdon', 'Lionel-Groulx'],
+    };
 
-    service.getShortestPath(startingStation, destinationStation).subscribe((result) => {
-      // Checks that the result object is not null.
-      expect(result).toBeTruthy();
+    service
+      .getShortestPath(expected.startingStation, expected.destinationStation)
+      .subscribe((result) => {
+        // Checks that the result object is not null.
+        expect(result).toBeTruthy();
 
-      // Checks that the values of the result object are not null.
-      expect(result.startingStation).toBeTruthy();
-      expect(result.destinationStation).toBeTruthy();
-      expect(result.stationsToSwitchLines).toBeTruthy();
+        // Checks that the values of the result object are not null.
+        expect(result.startingStation).toBeTruthy();
+        expect(result.destinationStation).toBeTruthy();
+        expect(result.stationsToSwitchLines).toBeTruthy();
 
-      // Checks that the values of the starting and destination stations are correct.
-      expect(result.startingStation).toEqual(startingStation);
-      expect(result.destinationStation).toEqual(destinationStation);
+        // Checks that the values of the starting and destination stations are correct.
+        expect(result.startingStation).toEqual(expected.startingStation);
+        expect(result.destinationStation).toEqual(expected.destinationStation);
 
-      // Checks that the stations to switch lines are valid.
-      expect(result.stationsToSwitchLines.length).toEqual(2);
-      expect(result.stationsToSwitchLines[0]).toEqual(stationsToSwitchLines[0]);
-      expect(result.stationsToSwitchLines[1]).toEqual(stationsToSwitchLines[1]);
-    });
+        // Checks that the stations to switch lines are valid.
+        expect(result.stationsToSwitchLines.length).toEqual(2);
+        expect(result.stationsToSwitchLines[0]).toEqual(expected.stationsToSwitchLines[0]);
+        expect(result.stationsToSwitchLines[1]).toEqual(expected.stationsToSwitchLines[1]);
+      });
 
-    const path = `${environment.baseUrl}/shortest_path?startingStation=${startingStation}&destinationStation=${destinationStation}`;
+    const path = `${environment.baseUrl}/shortest_path?startingStation=${expected.startingStation}&destinationStation=${expected.destinationStation}`;
     const req = httpMock.expectOne(path);
 
     expect(req.request.method).toBe('GET');
-    req.flush({
-      startingStation: startingStation,
-      destinationStation: destinationStation,
-      stationsToSwitchLines: stationsToSwitchLines,
-    });
+    req.flush(expected);
   });
 });
