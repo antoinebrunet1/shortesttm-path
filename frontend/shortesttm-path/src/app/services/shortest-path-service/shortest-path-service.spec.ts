@@ -3,19 +3,57 @@ import { TestBed } from '@angular/core/testing';
 import { ShortestPathService } from './shortest-path-service';
 
 import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { environment } from '../../../environments/environment';
 
 fdescribe('ShortestPathService', () => {
   let service: ShortestPathService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     service = TestBed.inject(ShortestPathService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should return a valid shortest path', () => {
+    const startingStation = 'Laurier';
+    const destinationStation = 'Charlevoix';
+
+    service.getShortestPath(startingStation, destinationStation).subscribe((result) => {
+      // Checks that the result object is not null.
+      expect(result).toBeTruthy();
+
+      console.log(result);
+
+      // Checks that the values of the result object are not null.
+      expect(result.startingStation).toBeTruthy();
+      expect(result.destinationStation).toBeTruthy();
+      expect(result.stationsToSwitchLines).toBeTruthy();
+
+      // Checks that the values of the starting and destination stations are correct.
+      expect(result.startingStation).toEqual(startingStation);
+      expect(result.destinationStation).toEqual(destinationStation);
+
+      // Checks that the stations to switch lines are valid.
+      expect(result.stationsToSwitchLines.length).toEqual(1);
+      expect(result.stationsToSwitchLines[0]).toEqual('Berri-UQAM');
+    });
+
+    const path = `${environment.baseUrl}/shortest_path?startingStation=${startingStation}&destinationStation=${destinationStation}`;
+    const req = httpMock.expectOne(path);
+
+    expect(req.request.method).toBe('GET');
+    req.flush({
+      startingStation: 'Laurier',
+      destinationStation: 'Charlevoix',
+      stationsToSwitchLines: ['Berri-UQAM'],
+    });
   });
 });
