@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatError } from '@angular/material/form-field';
 import { catchError, EMPTY, Observable } from 'rxjs';
 import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
 import { StationsService } from '../../services/stations-service/stations-service';
@@ -10,7 +11,7 @@ import { Station } from '../station/station';
 
 @Component({
   selector: 'app-main',
-  imports: [Instructions, AsyncPipe, Station, ShortestPath, MatButtonModule],
+  imports: [Instructions, AsyncPipe, Station, ShortestPath, MatButtonModule, MatError],
   templateUrl: './main.html',
   styleUrl: './main.css',
 })

@@ -20,7 +20,7 @@
   <button matButton="filled" (click)="updateShortestPath()">Calculate</button>
 
   @if (errorMessage) {
-    <p>Provided stations are on the same line</p>
+    <mat-error>Provided stations are on the same line</mat-error>
   }
 
   <app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
