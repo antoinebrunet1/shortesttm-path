@@ -32,15 +32,15 @@ export class Main {
     this.allLines$ = this.stationsService.getAllStationsInAlphabeticalOrder();
   }
 
-  private handleStartingStationFromChild(data: string) {
+  handleStartingStationFromChild(data: string) {
     this.startingStation = data;
   }
 
-  private handleDestinationStationFromChild(data: string) {
+  handleDestinationStationFromChild(data: string) {
     this.destinationStation = data;
   }
 
-  private updateShortestPath() {
+  updateShortestPath() {
     this.shortestPath$ = this.shortestPathService
       .getShortestPath(this.startingStation, this.destinationStation)
       .pipe(
