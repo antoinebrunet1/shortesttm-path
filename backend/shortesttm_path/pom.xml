@@ -147,6 +147,7 @@
                                         <exclude>*AuthenticationService</exclude>
 										<exclude>*ShortesttmPathApplication</exclude>
                                         <exclude>*LinesController</exclude>
+                                        <exclude>*StationsController</exclude>
 									</excludes>
 									<limits>
 										<limit>
