@@ -67,6 +67,11 @@ public class ShortestPathUtil {
   public ShortestPathUtil() {
   }
 
+  /**
+   * Returns all the stations in alphabetical order.
+   *
+   * @return All the stations in alphabetical order.
+   */
   public static List<String> getAllStationsInAlphabeticalOrder() {
     List<String> allStationsInAlphabeticalOrder =
         new ArrayList<>(STATIONS_NAMES_TO_INTS.keySet().stream().toList());
