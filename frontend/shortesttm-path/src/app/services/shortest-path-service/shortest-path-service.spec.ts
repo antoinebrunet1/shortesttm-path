@@ -51,8 +51,8 @@ fdescribe('ShortestPathService', () => {
 
     expect(req.request.method).toBe('GET');
     req.flush({
-      startingStation: 'Laurier',
-      destinationStation: 'Charlevoix',
+      startingStation: startingStation,
+      destinationStation: destinationStation,
       stationsToSwitchLines: ['Berri-UQAM'],
     });
   });
