@@ -50,6 +50,21 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
    
    The two stations should not be on the same line. Set up an environment variable called `API_KEY` with the value of your choice. Use this API key in the headers with `X-API-KEY` as the key and the value of the `API_KEY` environment variable as the value.
 
+### Frontend
+
+1. Fork the repository.
+2. From the `frontend/shortesttm-path` folder, start the Angular application by running the command
+
+    ```
+   ng serve
+   ```
+
+3. To see the application, go to
+
+    ```
+   http://localhost:4200/
+   ```
+
 ##  💡 Algorithm overview 💡
 
 I get the shortest path as a list of stations using an algorithm called "Shortest path in an unweighted graph" I found at https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/.
