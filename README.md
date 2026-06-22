@@ -163,6 +163,23 @@ or
 make cov-backend
 ```
 
+### Frontend
+
+#### 🎯 Unit tests coverage 🎯
+
+To check if the coverage is at least 80% (calculated by line), run the command (in a UNIX terminal like on macOS, Linux or in Git Bash (which also works on Windows))
+
+```
+cd frontend/shortesttm-path && npx ng test --watch=false --browsers=ChromeHeadless --code-coverage \
+	| grep "Lines        :" | cut -d ':' -f 2 | cut -d '%' -f 1 | cut -d ' ' -f 2 | awk '{ if ($$1 < 80) exit 1 }'
+```
+
+or
+
+```
+make cov-frontend
+```
+
 ## 🛡️ Security 🛡️
 
 ### DDoS attacks prevention
