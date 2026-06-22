@@ -101,7 +101,7 @@ To check Javadoc, style, complexity and unit tests coverage, run the command
 mvn clean verify -DskipTests
 ```
 
-### 📚 Javadoc 📚
+#### 📚 Javadoc 📚
 
 To check if the documentation is valid and generate it if it is, run the command
 
@@ -131,7 +131,7 @@ backend/shortesttm_path/target/reports/apidocs
 
 You can view it by opening `index.html`.
 
-### 📐 Style and cyclomatic complexity 📐
+#### 📐 Style and cyclomatic complexity 📐
 
 To check style and cyclomatic complexity, run the command
 
@@ -145,11 +145,11 @@ or
 make checkstyle-backend
 ```
 
-### 🧪 Unit tests 🧪
+#### 🧪 Unit tests 🧪
 
 In IntelliJ, the unit tests can be run as a whole or individually by clicking a green triangle.
 
-### 🎯 Unit tests coverage 🎯
+#### 🎯 Unit tests coverage 🎯
 
 To check if the coverage is at least 80% (calculated by class and by line), run the command
 
