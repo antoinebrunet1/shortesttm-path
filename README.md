@@ -28,6 +28,8 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
 
 ## 💻 Local setup 💻
 
+### Backend
+
 1. Fork the repository.
 2. Run the Spring Boot backend API by running the `main` method in
 
