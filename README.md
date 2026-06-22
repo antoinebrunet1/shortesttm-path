@@ -93,6 +93,8 @@ The main branch of this repository contains a GitHub Actions CI/CD pipeline to i
 
 ## ✅ Check code quality locally ✅
 
+### Backend
+
 To check Javadoc, style, complexity and unit tests coverage, run the command
 
 ```
