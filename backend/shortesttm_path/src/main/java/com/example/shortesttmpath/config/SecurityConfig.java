@@ -40,13 +40,11 @@ public class SecurityConfig {
                     "/swagger-ui/**",
                     "/swagger-ui.html"
                 ).permitAll()
-                .anyRequest().authenticated())
-        .httpBasic(Customizer.withDefaults())
+                .anyRequest().permitAll())
         .sessionManagement(
             httpSecuritySessionManagementConfigurer ->
                 httpSecuritySessionManagementConfigurer.sessionCreationPolicy(
-                    SessionCreationPolicy.STATELESS))
-        .addFilterBefore(new AuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                    SessionCreationPolicy.STATELESS));
     return http.build();
   }
 }
