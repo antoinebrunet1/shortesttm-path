@@ -45,11 +45,10 @@ export class Main {
       .getShortestPath(this.startingStation, this.destinationStation)
       .pipe(
         catchError((err) => {
-          if (err.status === 400 && err.error === 'Provided stations are on the same line') {
-            this.errorMessage = 'Provided stations are on the same line';
-          } else {
-            this.errorMessage = null;
-          }
+          this.errorMessage =
+            err.status === 400 && err.error === 'Provided stations are on the same line'
+              ? 'Provided stations are on the same line'
+              : null;
 
           this.ref.detectChanges();
 
