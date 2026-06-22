@@ -140,7 +140,7 @@ mvn clean verify -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true
 or
 
 ```
-make cov
+make cov-backend
 ```
 
 ## 🛡️ Security 🛡️

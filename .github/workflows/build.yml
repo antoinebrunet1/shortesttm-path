@@ -31,4 +31,4 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Coverage
-        run: make cov
+        run: make cov-backend

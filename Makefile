@@ -6,7 +6,7 @@ javadoc:
 checkstyle-backend:
 	$(cd_cmd) && mvn clean package -DskipTests -Dmaven.javadoc.skip=true
 
-cov:
+cov-backend:
 	$(cd_cmd) && mvn clean verify -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true
 
 cov-frontend:
