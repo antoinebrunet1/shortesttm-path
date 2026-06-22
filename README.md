@@ -65,7 +65,7 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
    http://localhost:4200/
    ```
 
-##  💡 Algorithm overview 💡
+##  💡 Backend algorithm overview 💡
 
 I get the shortest path as a list of stations using an algorithm called "Shortest path in an unweighted graph" I found at https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/.
 
