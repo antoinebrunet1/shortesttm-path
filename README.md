@@ -48,7 +48,7 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
    backend/shortesttm_path/src/main/resources/static
    ```
    
-   The two stations should not be on the same line. Set up an environment variable called `API_KEY` with the value of your choice. Use this API key in the headers with `X-API-KEY` as the key and the value of the `API_KEY` environment variable as the value.
+   The two stations should not be on the same line.
 
 ### Frontend
 
