@@ -13,6 +13,12 @@
       },
       "get_shortest_path_two_transfers_happy_path": {
 
+      },
+      "get_shortest_path_same_line": {
+
+      },
+      "get_shortest_path_invalid_starting_station": {
+
       }
     }
   },
@@ -33,6 +39,9 @@
 
       },
       "get_all_lines_yellow_line_happy_path": {
+
+      },
+      "get_all_stations_invalid_line": {
 
       }
     }
