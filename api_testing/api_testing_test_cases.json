@@ -1,11 +1,20 @@
 {
   "stations-controller": {
+    "/stations/alphabetical-order": [
 
+    ]
   },
   "shortest-path-controller": {
+    "/shortest_path": [
 
+    ]
   },
   "lines-controller": {
+    "/lines": [
 
+    ],
+    "/lines/stations/{line}": [
+
+    ]
   }
 }
