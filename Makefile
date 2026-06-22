@@ -8,3 +8,7 @@ checkstyle:
 
 cov:
 	$(cd_cmd) && mvn clean verify -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true
+
+cov-frontend:
+	cd frontend/shortesttm-path && ng test --watch=false --browsers=ChromeHeadless --code-coverage \
+	| grep "Lines        :" | cut -d ':' -f 2 | cut -d '%' -f 1 | cut -d ' ' -f 2 | awk '{ if ($$1 < 80) exit 1 }'
