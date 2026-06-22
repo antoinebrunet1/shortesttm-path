@@ -1,20 +1,40 @@
 {
   "stations-controller": {
-    "/stations/alphabetical-order": [
+    "/stations/alphabetical-order": {
+      "get_all_station_alpha_order_happy_path": {
 
-    ]
+      }
+    }
   },
   "shortest-path-controller": {
-    "/shortest_path": [
+    "/shortest_path": {
+      "get_shortest_path_one_transfer_happy_path": {
 
-    ]
+      },
+      "get_shortest_path_two_transfers_happy_path": {
+
+      }
+    }
   },
   "lines-controller": {
-    "/lines": [
+    "/lines": {
+      "get_all_lines_happy_path": {
 
-    ],
-    "/lines/stations/{line}": [
+      }
+    },
+    "/lines/stations/{line}": {
+      "get_all_lines_blue_line_happy_path": {
 
-    ]
+      },
+      "get_all_lines_green_line_happy_path": {
+
+      },
+      "get_all_lines_orange_line_happy_path": {
+
+      },
+      "get_all_lines_yellow_line_happy_path": {
+
+      }
+    }
   }
 }
