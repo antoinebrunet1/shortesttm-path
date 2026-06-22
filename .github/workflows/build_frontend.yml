@@ -17,5 +17,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: 24
+      - name: Install dependencies
+        run: npm ci
+        working-directory: frontend/shortesttm-path
       - name: Coverage
         run: make cov-frontend
