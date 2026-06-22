@@ -122,7 +122,7 @@ clean package -DskipTests -Dmaven.javadoc.skip=true
 or
 
 ```
-make checkstyle
+make checkstyle-backend
 ```
 
 ### 🧪 Unit tests 🧪

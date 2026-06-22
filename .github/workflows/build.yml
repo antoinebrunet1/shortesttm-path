@@ -19,7 +19,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Checkstyle and complexity
-        run: make checkstyle
+        run: make checkstyle-backend
 
   cov:
     name: Coverage
