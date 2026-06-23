@@ -212,6 +212,28 @@ or
 make cov-frontend
 ```
 
+### 🧪 API testing 🧪
+
+You can run the API tests using the command
+
+```
+cd api_testing/shortesttm_path_api_testing && mvn clean test
+```
+
+or
+
+```
+make api-tests
+```
+
+If you are using IntelliJ, you can run the API tests by clicking the green triangle next to the class name in
+
+```
+api_testing/shortesttm_path_api_testing/src/test/java/controllers/Tests.java
+```
+
+You can also run single tests by clicking the green triangle next to them.
+
 ## 🛡️ Security 🛡️
 
 ### Safety guarantied for all the dependencies
