@@ -14,6 +14,12 @@
 
 <hr>
 
+## 🛠️ Main technologies 🛠️
+
+- **Frontend:** Angular
+- **Backend:** Spring Boot in Java
+- **API testing:** REST Assured
+
 ## 📚 Documentation 📚
 
 ### Javadoc
