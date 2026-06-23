@@ -65,4 +65,21 @@ public class Tests {
     getShortestPathHappyPath("Acadie", "Angrignon",
         "getShortestPathTwoTransfersHappyPath");
   }
+
+  @Test
+  public void getShortestPathSameLine() {
+    Response response = RestAssured.
+        given().
+        queryParam("startingStation", "Radisson").
+        queryParam("destinationStation", "Atwater")
+        .get(SHORTEST_PATH_CONTROLLER_PATH);
+    int statusCode = response.getStatusCode();
+
+    Assert.assertEquals(statusCode, 400);
+
+    String bodyAsString = response.getBody().asString();
+    String expectedBodyAsString = "Provided stations are on the same line";
+
+    Assert.assertEquals(bodyAsString, expectedBodyAsString);
+  }
 }
