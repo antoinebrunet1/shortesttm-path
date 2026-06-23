@@ -56,31 +56,13 @@ public class Tests {
 
   @Test
   public void getShortestPathOneTransferHappyPath() throws IOException {
-    String startingStation = "Laurier";
-    String destinationStation = "Charlevoix";
-    Response response = RestAssured.
-        given().
-        queryParam("startingStation", startingStation).
-        queryParam("destinationStation", destinationStation)
-        .get(SHORTEST_PATH_CONTROLLER_PATH);
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 200);
-    validateBody(response, "getShortestPathOneTransferHappyPath");
+    getShortestPathHappyPath("Laurier", "Charlevoix",
+        "getShortestPathOneTransferHappyPath");
   }
 
   @Test
   public void getShortestPathTwoTransfersHappyPath() throws IOException {
-    String startingStation = "Acadie";
-    String destinationStation = "Angrignon";
-    Response response = RestAssured.
-        given().
-        queryParam("startingStation", startingStation).
-        queryParam("destinationStation", destinationStation)
-        .get(SHORTEST_PATH_CONTROLLER_PATH);
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 200);
-    validateBody(response, "getShortestPathTwoTransfersHappyPath");
+    getShortestPathHappyPath("Acadie", "Angrignon",
+        "getShortestPathTwoTransfersHappyPath");
   }
 }
