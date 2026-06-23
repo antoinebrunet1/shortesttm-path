@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://example.com/employee.schema.json",
+  "title": "Custom API testing test cases schema",
+  "type": "object",
+  "properties": {
+    "controllers": {
+      "description": "The controllers of the API",
+      "type": "array",
+      "items": {
+        "description": "List of the controllers of the API",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Name of the controller in Swagger",
+            "type": "string"
+          },
+          "endpoints": {
+            "description": "The endpoints of the controller",
+            "type": "array",
+            "items": {
+              "description": "List of the endpoints of the controller",
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "The name of the endpoint in Swagger",
+                  "type": "string"
+                },
+                "test_cases": {
+                  "description": "The test cases of the endpoint",
+                  "type": "array",
+                  "items": {
+                    "description": "List of the test cases of the endpoint",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "description": "The name of the test case",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
