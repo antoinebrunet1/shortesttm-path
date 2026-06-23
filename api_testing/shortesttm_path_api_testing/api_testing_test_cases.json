@@ -35,15 +35,17 @@
           }
         },
         "/lines/stations/{line}": {
-          "get_all_stations_blue_line_happy_path": {
-          },
-          "get_all_stations_green_line_happy_path": {
-          },
-          "get_all_stations_orange_line_happy_path": {
-          },
-          "get_all_stations_yellow_line_happy_path": {
-          },
-          "get_all_stations_invalid_line": {
+          "test_cases": {
+            "get_all_stations_blue_line_happy_path": {
+            },
+            "get_all_stations_green_line_happy_path": {
+            },
+            "get_all_stations_orange_line_happy_path": {
+            },
+            "get_all_stations_yellow_line_happy_path": {
+            },
+            "get_all_stations_invalid_line": {
+            }
           }
         }
       }
