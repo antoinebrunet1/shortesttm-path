@@ -15,6 +15,7 @@ import org.testng.annotations.Test;
 public class Tests {
   private final String STATIONS_CONTROLLER_PATH = "/stations";
   private final String SHORTEST_PATH_CONTROLLER_PATH = "/shortest_path";
+  private final String LINES_CONTROLLER_PATH = "/lines";
 
   @BeforeClass
   public void setup() {
@@ -82,5 +83,14 @@ public class Tests {
     String expectedBodyAsString = "Provided stations are on the same line";
 
     Assert.assertEquals(bodyAsString, expectedBodyAsString);
+  }
+
+  @Test
+  public void getAllLinesHappyPath() throws IOException {
+    Response response = RestAssured.get(LINES_CONTROLLER_PATH);
+    int statusCode = response.getStatusCode();
+
+    Assert.assertEquals(statusCode, 200);
+    validateBody(response, "getAllLinesHappyPath");
   }
 }
