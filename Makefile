@@ -13,3 +13,6 @@ cov-frontend:
 
 api-tests:
 	cd api_testing/shortesttm_path_api_testing && mvn clean test
+
+run-backend:
+	cd backend/shortesttm_path && ./mvnw spring-boot:run
