@@ -18,7 +18,7 @@ run-backend:
 	cd backend/shortesttm_path && ./mvnw spring-boot:run
 
 run-backend-nohup-background:
-	cd backend/shortesttm_path && chmod +x mvnw && nohup ./mvnw spring-boot:run &
+	cd backend/shortesttm_path && chmod +x mvnw && nohup ./mvnw spring-boot:run > backend.log 2>&1 &
 
 wait-for-api:
 	bash wait_for_api.sh
