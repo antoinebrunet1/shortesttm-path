@@ -1,0 +1,7 @@
+{
+  "startingStation": "Laurier",
+  "destinationStation": "Charlevoix",
+  "stationsToSwitchLines": [
+    "Berri-UQAM"
+  ]
+}
