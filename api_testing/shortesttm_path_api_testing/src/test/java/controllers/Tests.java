@@ -50,12 +50,12 @@ public class Tests {
         .get(SHORTEST_PATH_CONTROLLER_PATH);
   }
 
-  private void getAllStationsLineHappyPath(String line) throws IOException {
+  private void getAllStationsLineHappyPath(String line, String testCaseName) throws IOException {
     Response response = RestAssured.get(LINES_CONTROLLER_PATH + "/stations/" + line);
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 200);
-    validateBody(response, "getAllStationsBlueLineHappyPath");
+    validateBody(response, testCaseName);
   }
 
   @Test
@@ -104,11 +104,11 @@ public class Tests {
 
   @Test
   public void getAllStationsBlueLineHappyPath() throws IOException {
-    getAllStationsLineHappyPath("BLUE");
+    getAllStationsLineHappyPath("BLUE", "getAllStationsBlueLineHappyPath");
   }
 
   @Test
   public void getAllStationsGreenLineHappyPath() throws IOException {
-    getAllStationsLineHappyPath("GREEN");
+    getAllStationsLineHappyPath("GREEN", "getAllStationsGreenLineHappyPath");
   }
 }
