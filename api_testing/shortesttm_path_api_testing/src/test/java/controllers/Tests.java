@@ -93,4 +93,13 @@ public class Tests {
     Assert.assertEquals(statusCode, 200);
     validateBody(response, "getAllLinesHappyPath");
   }
+
+  @Test
+  public void getAllStationsBlueLineHappyPath() throws IOException {
+    Response response = RestAssured.get(LINES_CONTROLLER_PATH + "/stations/BLUE");
+    int statusCode = response.getStatusCode();
+
+    Assert.assertEquals(statusCode, 200);
+    validateBody(response, "getAllStationsBlueLineHappyPath");
+  }
 }
