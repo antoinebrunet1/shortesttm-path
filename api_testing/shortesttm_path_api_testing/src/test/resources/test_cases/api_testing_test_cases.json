@@ -7,7 +7,7 @@
           "name": "/stations/alphabetical-order",
           "test_cases": [
             {
-              "name": "GetAllStationsAlphaOrderHappyPath"
+              "name": "getAllStationsAlphaOrderHappyPath"
             }
           ]
         }
@@ -20,16 +20,16 @@
           "name": "/shortest_path",
           "test_cases": [
             {
-              "name": "GetShortestPathOneTransferHappyPath"
+              "name": "getShortestPathOneTransferHappyPath"
             },
             {
-              "name": "GetShortestPathTwoTransfersHappyPath"
+              "name": "getShortestPathTwoTransfersHappyPath"
             },
             {
-              "name": "GetShortestPathSameLine"
+              "name": "getShortestPathSameLine"
             },
             {
-              "name": "GetShortestPathInvalidStartingStation"
+              "name": "getShortestPathInvalidStartingStation"
             }
           ]
         }
@@ -42,7 +42,7 @@
           "name": "/lines",
           "test_cases": [
             {
-              "name": "GetAllLinesHappyPath"
+              "name": "getAllLinesHappyPath"
             }
           ]
         },
@@ -50,19 +50,19 @@
           "name": "/lines/stations/{line}",
           "test_cases": [
             {
-              "name": "GetAllStationsBlueLineHappyPath"
+              "name": "getAllStationsBlueLineHappyPath"
             },
             {
-              "name": "GetAllStationsGreenLineHappyPath"
+              "name": "getAllStationsGreenLineHappyPath"
             },
             {
-              "name": "GetAllStationsOrangeLineHappyPath"
+              "name": "getAllStationsOrangeLineHappyPath"
             },
             {
-              "name": "GetAllStationsYellowLineHappyPath"
+              "name": "getAllStationsYellowLineHappyPath"
             },
             {
-              "name": "GetAllStationsInvalidLine"
+              "name": "getAllStationsInvalidLine"
             }
           ]
         }
