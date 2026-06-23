@@ -37,14 +37,18 @@
                         "description": "The name of the test case",
                         "type": "string"
                       }
-                    }
+                    },
+                    "required": ["name"]
                   }
                 }
-              }
+              },
+              "required": ["name", "test_cases"]
             }
           }
-        }
+        },
+        "required": ["name", "endpoints"]
       }
     }
-  }
+  },
+  "required": ["controllers"]
 }
