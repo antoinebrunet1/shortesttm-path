@@ -1,3 +1,5 @@
+run_backend_cmd = cd backend/shortesttm_path && ./mvnw spring-boot:run
+
 javadoc:
 	cd backend/shortesttm_path && mvn clean javadoc:javadoc -Dcheckstyle.skip=true
 
@@ -15,4 +17,10 @@ api-tests:
 	cd api_testing/shortesttm_path_api_testing && mvn clean test
 
 run-backend:
-	cd backend/shortesttm_path && ./mvnw spring-boot:run
+	$(run_backend_cmd)
+
+run-backend-nohup-background:
+	nohup $(run_backend_cmd) &
+
+wait-for-api:
+	bash wait_for_api.sh
