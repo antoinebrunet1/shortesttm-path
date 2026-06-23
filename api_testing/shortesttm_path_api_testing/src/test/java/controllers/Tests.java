@@ -21,6 +21,17 @@ public class Tests {
     RestAssured.baseURI = "http://localhost:8080";
   }
 
+  private void validateBody(Response response, String testCaseName) throws IOException {
+    String bodyAsString = response.getBody().asString();
+    String expectedBodyAsString = Files.readString(Path.of(
+            "src/test/resources/expected_bodies/" + testCaseName + ".json"),
+        StandardCharsets.UTF_8);
+    JsonElement body = JsonParser.parseString(bodyAsString);
+    JsonElement expectedBody = JsonParser.parseString(expectedBodyAsString);
+
+    Assert.assertEquals(body, expectedBody);
+  }
+
   @Test
   public void getAllStationsAlphaOrderHappyPath() throws IOException {
     String endpoint = STATIONS_CONTROLLER_PATH + "/alphabetical-order";
@@ -44,16 +55,5 @@ public class Tests {
 
     Assert.assertEquals(statusCode, 200);
     validateBody(response, "getShortestPathOneTransferHappyPath");
-  }
-
-  private void validateBody(Response response, String testCaseName) throws IOException {
-    String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = Files.readString(Path.of(
-            "src/test/resources/expected_bodies/" + testCaseName + ".json"),
-        StandardCharsets.UTF_8);
-    JsonElement body = JsonParser.parseString(bodyAsString);
-    JsonElement expectedBody = JsonParser.parseString(expectedBodyAsString);
-
-    Assert.assertEquals(body, expectedBody);
   }
 }
