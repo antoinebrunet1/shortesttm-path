@@ -10,3 +10,6 @@ cov-backend:
 cov-frontend:
 	cd frontend/shortesttm-path && npx ng test --watch=false --browsers=ChromeHeadless --code-coverage \
 	| grep "Lines        :" | cut -d ':' -f 2 | cut -d '%' -f 1 | cut -d ' ' -f 2 | awk '{ if ($$1 < 80) exit 1 }'
+
+api-tests:
+	cd api_testing/shortesttm_path_api_testing && mvn clean test
