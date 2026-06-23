@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in {1..29} ; do
+for i in {1..59} ; do
     if [ "$(curl -s http://localhost:8080/actuator/health)" ]; then
         echo "API is up"
         exit 0
