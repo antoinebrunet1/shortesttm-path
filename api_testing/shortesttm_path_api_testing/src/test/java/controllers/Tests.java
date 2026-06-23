@@ -34,11 +34,7 @@ public class Tests {
 
   private void getShortestPathHappyPath(String startingStation, String destinationStation,
                                         String testCaseName) throws IOException {
-    Response response = RestAssured.
-        given().
-        queryParam("startingStation", startingStation).
-        queryParam("destinationStation", destinationStation)
-        .get(SHORTEST_PATH_CONTROLLER_PATH);
+    Response response = getResponseForShortestPath(startingStation, destinationStation);
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 200);
@@ -76,11 +72,8 @@ public class Tests {
 
   @Test
   public void getShortestPathSameLine() {
-    Response response = RestAssured.
-        given().
-        queryParam("startingStation", "Radisson").
-        queryParam("destinationStation", "Atwater")
-        .get(SHORTEST_PATH_CONTROLLER_PATH);
+    Response response = getResponseForShortestPath("Radissonn",
+        "Atwater");
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 400);
