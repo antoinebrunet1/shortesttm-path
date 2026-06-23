@@ -87,7 +87,7 @@ To get the stations used to switch lines between the first and last stations, I 
     <img src="images/readme/maven_plugins_through_maven_lifecycle.svg" alt="The Maven plugins through the Maven lifecycle" width="300px"/>
 </div>
 
-## API testing
+## 🧪 API testing 🧪
 
 The test cases are in
 
