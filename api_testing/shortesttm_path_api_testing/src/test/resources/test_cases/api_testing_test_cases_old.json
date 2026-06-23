@@ -1,0 +1,54 @@
+{
+  "controllers": {
+    "stations-controller": {
+      "endpoints": {
+        "/stations/alphabetical-order": {
+          "test_cases": {
+            "get_all_station_alpha_order_happy_path": {
+            }
+          }
+        }
+      }
+    },
+    "shortest-path-controller": {
+      "endpoints": {
+        "/shortest_path": {
+          "test_cases": {
+            "get_shortest_path_one_transfer_happy_path": {
+            },
+            "get_shortest_path_two_transfers_happy_path": {
+            },
+            "get_shortest_path_same_line": {
+            },
+            "get_shortest_path_invalid_starting_station": {
+            }
+          }
+        }
+      }
+    },
+    "lines-controller": {
+      "endpoints": {
+        "/lines": {
+          "test_cases": {
+            "get_all_lines_happy_path": {
+            }
+          }
+        },
+        "/lines/stations/{line}": {
+          "test_cases": {
+            "get_all_stations_blue_line_happy_path": {
+            },
+            "get_all_stations_green_line_happy_path": {
+            },
+            "get_all_stations_orange_line_happy_path": {
+            },
+            "get_all_stations_yellow_line_happy_path": {
+            },
+            "get_all_stations_invalid_line": {
+            }
+          }
+        }
+      }
+    }
+  }
+}
