@@ -9,14 +9,16 @@
       }
     },
     "shortest-path-controller": {
-      "/shortest_path": {
-        "get_shortest_path_one_transfer_happy_path": {
-        },
-        "get_shortest_path_two_transfers_happy_path": {
-        },
-        "get_shortest_path_same_line": {
-        },
-        "get_shortest_path_invalid_starting_station": {
+      "endpoints": {
+        "/shortest_path": {
+          "get_shortest_path_one_transfer_happy_path": {
+          },
+          "get_shortest_path_two_transfers_happy_path": {
+          },
+          "get_shortest_path_same_line": {
+          },
+          "get_shortest_path_invalid_starting_station": {
+          }
         }
       }
     },
