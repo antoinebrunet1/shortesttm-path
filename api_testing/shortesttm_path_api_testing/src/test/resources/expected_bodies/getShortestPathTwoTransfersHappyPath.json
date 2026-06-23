@@ -1,0 +1,8 @@
+{
+  "startingStation": "Acadie",
+  "destinationStation": "Angrignon",
+  "stationsToSwitchLines": [
+    "Snowdon",
+    "Lionel-Groulx"
+  ]
+}

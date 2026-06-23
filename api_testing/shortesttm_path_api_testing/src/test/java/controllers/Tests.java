@@ -55,4 +55,19 @@ public class Tests {
     Assert.assertEquals(statusCode, 200);
     validateBody(response, "getShortestPathOneTransferHappyPath");
   }
+
+  @Test
+  public void getShortestPathTwoTransfersHappyPath() throws IOException {
+    String startingStation = "Acadie";
+    String destinationStation = "Angrignon";
+    Response response = RestAssured.
+        given().
+        queryParam("startingStation", startingStation).
+        queryParam("destinationStation", destinationStation)
+        .get(SHORTEST_PATH_CONTROLLER_PATH);
+    int statusCode = response.getStatusCode();
+
+    Assert.assertEquals(statusCode, 200);
+    validateBody(response, "getShortestPathTwoTransfersHappyPath");
+  }
 }
