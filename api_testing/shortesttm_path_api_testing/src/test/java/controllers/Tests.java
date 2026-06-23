@@ -116,4 +116,9 @@ public class Tests {
   public void getAllStationsOrangeLineHappyPath() throws IOException {
     getAllStationsLineHappyPath("ORANGE", "getAllStationsOrangeLineHappyPath");
   }
+
+  @Test
+  public void getAllStationsYellowLineHappyPath() throws IOException {
+    getAllStationsLineHappyPath("YELLOW", "getAllStationsYellowLineHappyPath");
+  }
 }
