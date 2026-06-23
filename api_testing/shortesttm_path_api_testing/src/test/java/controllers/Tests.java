@@ -21,7 +21,7 @@ public class Tests {
     RestAssured.baseURI = "http://localhost:8080";
   }
 
-  @org.testng.annotations.Test
+  @Test
   public void getAllStationsAlphaOrderHappyPath() throws IOException {
     String endpoint = STATIONS_CONTROLLER_PATH + "/alphabetical-order";
     Response response = RestAssured.get(endpoint);
