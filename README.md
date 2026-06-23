@@ -87,6 +87,31 @@ To get the stations used to switch lines between the first and last stations, I 
     <img src="images/readme/maven_plugins_through_maven_lifecycle.svg" alt="The Maven plugins through the Maven lifecycle" width="300px"/>
 </div>
 
+## API testing
+
+The test cases are in
+
+```
+api_testing/shortesttm_path_api_testing/src/test/resources/test_cases/api_testing_test_cases.json
+```
+
+There is a JSON schema called `custom_api_testing_test_cases_schema.json` for that file in the same folder.
+
+For each test case, the name remains exactly the same in:
+
+1. The test cases JSON file
+2. The names of the JSON files in:
+    
+    ```
+   api_testing/shortesttm_path_api_testing/src/test/resources/expected_bodies
+    ```
+   
+3. The names of the test methods in:
+
+    ```
+   api_testing/shortesttm_path_api_testing/src/test/java/controllers/Tests.java
+    ```
+
 ## ✨ Code quality guarantied ✨
 
 The main branch of this repository contains a GitHub Actions CI/CD pipeline to indicate if the code meets the below quality checks or not.
