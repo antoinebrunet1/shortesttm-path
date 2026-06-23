@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 
-public class Test {
+public class Tests {
   private final String STATIONS_CONTROLLER_PATH = "/stations";
 
   @BeforeClass
