@@ -45,6 +45,14 @@ public class Tests {
     validateBody(response, testCaseName);
   }
 
+  private Response getResponseForShortestPath(String startingStation, String destinationStation) {
+    return RestAssured.
+        given().
+        queryParam("startingStation", startingStation).
+        queryParam("destinationStation", destinationStation)
+        .get(SHORTEST_PATH_CONTROLLER_PATH);
+  }
+
   @Test
   public void getAllStationsAlphaOrderHappyPath() throws IOException {
     Response response = RestAssured.get(STATIONS_CONTROLLER_PATH + "/alphabetical-order");
