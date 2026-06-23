@@ -81,7 +81,7 @@ public class Tests {
 
   @Test
   public void getShortestPathSameLine() {
-    Response response = getResponseForShortestPath("Radissonn",
+    Response response = getResponseForShortestPath("Radisson",
         "Atwater");
     int statusCode = response.getStatusCode();
 
