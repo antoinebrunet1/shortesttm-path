@@ -34,8 +34,7 @@ public class Tests {
 
   @Test
   public void getAllStationsAlphaOrderHappyPath() throws IOException {
-    String endpoint = STATIONS_CONTROLLER_PATH + "/alphabetical-order";
-    Response response = RestAssured.get(endpoint);
+    Response response = RestAssured.get(STATIONS_CONTROLLER_PATH + "/alphabetical-order");
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 200);
