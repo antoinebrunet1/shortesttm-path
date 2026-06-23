@@ -31,7 +31,7 @@ public class Tests {
 
     String bodyAsString = response.getBody().asString();
     String expectedBodyAsString = Files.readString(Path.of(
-        "src/test/resources/all_stations_alpha_order.json"), StandardCharsets.UTF_8);
+        "src/test/resources/expected_bodies/getAllStationsAlphaOrderHappyPath.json"), StandardCharsets.UTF_8);
     JsonElement body = JsonParser.parseString(bodyAsString);
     JsonElement expectedBody = JsonParser.parseString(expectedBodyAsString);
 
