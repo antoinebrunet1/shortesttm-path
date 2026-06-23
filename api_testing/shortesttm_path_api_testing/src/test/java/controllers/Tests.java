@@ -124,7 +124,7 @@ public class Tests {
 
   @Test
   public void getAllStationsInvalidLine() {
-    Response response = RestAssured.get(LINES_CONTROLLER_PATH + "/stations/" + "PINK");
+    Response response = RestAssured.get(LINES_CONTROLLER_PATH + "/stations/PINK");
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 400);
