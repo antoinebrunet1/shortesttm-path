@@ -28,14 +28,7 @@ public class Tests {
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 200);
-
-    String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = Files.readString(Path.of(
-        "src/test/resources/expected_bodies/getAllStationsAlphaOrderHappyPath.json"), StandardCharsets.UTF_8);
-    JsonElement body = JsonParser.parseString(bodyAsString);
-    JsonElement expectedBody = JsonParser.parseString(expectedBodyAsString);
-
-    Assert.assertEquals(body, expectedBody);
+    validateBody(response, "getAllStationsAlphaOrderHappyPath");
   }
 
   @Test
@@ -50,15 +43,7 @@ public class Tests {
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 200);
-
-    String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = Files.readString(Path.of(
-        "src/test/resources/expected_bodies/getShortestPathOneTransferHappyPath.json"),
-        StandardCharsets.UTF_8);
-    JsonElement body = JsonParser.parseString(bodyAsString);
-    JsonElement expectedBody = JsonParser.parseString(expectedBodyAsString);
-
-    Assert.assertEquals(body, expectedBody);
+    validateBody(response, "getShortestPathOneTransferHappyPath");
   }
 
   private void validateBody(Response response, String testCaseName) throws IOException {
