@@ -29,7 +29,9 @@
     "lines-controller": {
       "endpoints": {
         "/lines": {
-          "get_all_lines_happy_path": {
+          "test_cases": {
+            "get_all_lines_happy_path": {
+            }
           }
         },
         "/lines/stations/{line}": {
