@@ -1,8 +1,10 @@
 {
   "controllers": {
     "stations-controller": {
-      "/stations/alphabetical-order": {
-        "get_all_station_alpha_order_happy_path": {
+      "endpoints": {
+        "/stations/alphabetical-order": {
+          "get_all_station_alpha_order_happy_path": {
+          }
         }
       }
     },
