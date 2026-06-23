@@ -10,9 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
-public class StationsControllerTests {
+public class Test {
   private final String STATIONS_CONTROLLER_PATH = "/stations";
 
   @BeforeClass
@@ -20,7 +19,7 @@ public class StationsControllerTests {
     RestAssured.baseURI = "http://localhost:8080";
   }
 
-  @Test
+  @org.testng.annotations.Test
   public void getAllStationAlphaOrderHappyPath() throws IOException {
     String endpoint = STATIONS_CONTROLLER_PATH + "/alphabetical-order";
     Response response = RestAssured.get(endpoint);
