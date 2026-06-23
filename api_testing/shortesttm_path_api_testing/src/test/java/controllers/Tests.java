@@ -60,4 +60,15 @@ public class Tests {
 
     Assert.assertEquals(body, expectedBody);
   }
+
+  private void validateBody(Response response, String testCaseName) throws IOException {
+    String bodyAsString = response.getBody().asString();
+    String expectedBodyAsString = Files.readString(Path.of(
+            "src/test/resources/expected_bodies/" + testCaseName + ".json"),
+        StandardCharsets.UTF_8);
+    JsonElement body = JsonParser.parseString(bodyAsString);
+    JsonElement expectedBody = JsonParser.parseString(expectedBodyAsString);
+
+    Assert.assertEquals(body, expectedBody);
+  }
 }
