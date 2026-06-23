@@ -121,6 +121,7 @@ The main branch of this repository contains a GitHub Actions CI/CD pipeline to i
 3. Cyclomatic complexity is not over 7 for the backend.
 4. The unit tests coverage is at least 80% for the backend. It is by class and by line.
 5. The unit tests coverage is at least 80% for the frontend. It is by line.
+6. The API tests pass.
 
 ## ✅ Check code quality locally ✅
 
