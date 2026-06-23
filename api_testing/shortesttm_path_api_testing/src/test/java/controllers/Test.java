@@ -20,7 +20,7 @@ public class Test {
   }
 
   @org.testng.annotations.Test
-  public void getAllStationAlphaOrderHappyPath() throws IOException {
+  public void getAllStationsAlphaOrderHappyPath() throws IOException {
     String endpoint = STATIONS_CONTROLLER_PATH + "/alphabetical-order";
     Response response = RestAssured.get(endpoint);
     int statusCode = response.getStatusCode();

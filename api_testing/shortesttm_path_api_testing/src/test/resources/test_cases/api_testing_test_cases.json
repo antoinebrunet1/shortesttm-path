@@ -7,7 +7,7 @@
           "name": "/stations/alphabetical-order",
           "test_cases": [
             {
-              "name": "get_all_station_alpha_order_happy_path"
+              "name": "get_all_stations_alpha_order_happy_path"
             }
           ]
         }
