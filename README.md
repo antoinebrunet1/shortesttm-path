@@ -218,10 +218,10 @@ make cov-frontend
 
 ### 🧪 API testing 🧪
 
-You can run the API tests using the command
+You can run the API tests using this command from the `api_testing/shortesttm_path_api_testing` folder:
 
 ```
-cd api_testing/shortesttm_path_api_testing && mvn clean test
+mvn clean test
 ```
 
 or
@@ -240,10 +240,10 @@ You can also run single tests by clicking the green triangle next to them.
 
 ### 🧪 End-to-end testing 🧪
 
-You can run the end-to-end tests using the command
+You can run the end-to-end tests using this command from the `e2e_testing` folder:
 
 ```
-cd e2e_testing && npx cypress run --browser chrome
+npx cypress run --browser chrome
 ```
 
 or
