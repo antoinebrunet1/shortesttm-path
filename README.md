@@ -69,6 +69,10 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
     ```
    http://localhost:4200/
    ```
+   
+### End-to-end testing
+
+There is a folder called `e2e_testing` at the root of this project. For the local setup, I suggest having a look to this YouTube tutorial: https://youtu.be/u8vMu7viCm8?si=WsX5De56Bry3kdfh.
 
 ##  💡 Backend algorithm overview 💡
 
