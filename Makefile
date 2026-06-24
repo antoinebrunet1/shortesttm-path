@@ -22,3 +22,12 @@ run-backend-nohup-background:
 
 wait-for-api:
 	bash wait_for_api.sh
+
+run-frontend-nohup-background:
+	cd frontend/shortesttm-path && nohup ng serve > frontend.log 2>&1 &
+
+wait-for-frontend:
+	bash wait_for_frontend.sh
+
+run-e2e-tests:
+	cd frontend/shortesttm-path && npx cypress run --browser chrome
