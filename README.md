@@ -36,13 +36,12 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
 
 ### Backend
 
-1. Fork the repository.
-2. Run the Spring Boot backend API by running the `main` method in
+1. Run the Spring Boot backend API by running the `main` method in
 
     ```
     backend/shortesttm_path/src/main/java/com/example/shortesttm_path/ShortesttmPathApplication.java
     ```
-3. Call the backend API using this URL:
+2. Call the backend API using this URL:
 
     ```
     http://localhost:8080/shortest_path?startingStation=startingStation&destinationStation=destinationStation
@@ -58,14 +57,13 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
 
 ### Frontend
 
-1. Fork the repository.
-2. From the `frontend/shortesttm-path` folder, start the Angular application by running the command
+1. From the `frontend/shortesttm-path` folder, start the Angular application by running the command
 
     ```
    ng serve
    ```
 
-3. To see the application, go to
+2. To see the application, go to
 
     ```
    http://localhost:4200/
