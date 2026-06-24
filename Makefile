@@ -30,4 +30,4 @@ wait-for-frontend:
 	bash wait_for_frontend.sh
 
 run-e2e-tests:
-	cd e2e_testing/cypress && npx cypress run --browser chrome
+	cd e2e_testing && npx cypress run --browser chrome
