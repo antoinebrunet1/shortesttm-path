@@ -238,6 +238,20 @@ api_testing/shortesttm_path_api_testing/src/test/java/controllers/Tests.java
 
 You can also run single tests by clicking the green triangle next to them.
 
+### 🧪 End-to-end testing 🧪
+
+You can run the end-to-end tests using the command
+
+```
+cd e2e_testing && npx cypress run --browser chrome
+```
+
+or
+
+```
+make run-e2e-tests
+```
+
 ## 🛡️ Security 🛡️
 
 ### Safety guarantied for all the dependencies
