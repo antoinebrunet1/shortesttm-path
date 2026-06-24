@@ -45,3 +45,30 @@ Cypress.Commands.add("clickFromHtmlTag", (htmlTag) => {
 Cypress.Commands.add("nthPHasText", (index, text) => {
   cy.get("p").eq(index).should("have.text", text);
 });
+
+Cypress.Commands.add(
+  "happyPathTest",
+  (startingStation, transfers, destinationStation) => {
+    cy.visit("http://localhost:4200/");
+    cy.clickMatSelect(0);
+    cy.clickElementThatContains(startingStation);
+    cy.clickMatSelect(1);
+    cy.clickElementThatContains(destinationStation);
+    cy.clickFromHtmlTag("button");
+    cy.nthPHasText(1, ` Start at ${startingStation} station. `);
+
+    const indexOfPOfDestinationStation = 1 + transfers.length + 1;
+
+    for (let index = 2; index < 2 + transfers.length; index++) {
+      cy.nthPHasText(
+        index,
+        ` Go to ${transfers[index - 2]} station. You will switch lines at that station. `,
+      );
+    }
+
+    cy.nthPHasText(
+      indexOfPOfDestinationStation,
+      ` Go to ${destinationStation} station. `,
+    );
+  },
+);
