@@ -49,7 +49,6 @@ Cypress.Commands.add("nthPHasText", (index, text) => {
 Cypress.Commands.add(
   "happyPathTest",
   (startingStation, transfers, destinationStation) => {
-    cy.visit("http://localhost:4200/");
     cy.clickMatSelect(0);
     cy.clickElementThatContains(startingStation);
     cy.clickMatSelect(1);
