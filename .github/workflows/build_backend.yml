@@ -43,7 +43,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Run backend with nohup and in background
-        run: make run-backend-nohup-background
+        run: cd backend/shortesttm_path && chmod +x mvnw && ./mvnw spring-boot:run > backend.log 2>&1
       - name: Wait for API
         run: make wait-for-api
       - name: API tests
