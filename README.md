@@ -264,4 +264,4 @@ The `main` branch is protected by a ruleset called "No deletions and force push 
 
 ## 🌐 Hosting 🌐
 
-The backend API is hosted using Render. UptimeRobot is used to keep it alive.
+The frontend and the backend API are hosted using Render. UptimeRobot is used to keep the backend API alive.
