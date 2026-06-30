@@ -377,17 +377,6 @@ public class ShortestPathUtil {
     return graph;
   }
 
-  private static void addLineToGraph(List<List<Integer>> graph, String lineFileName)
-      throws IOException {
-    ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
-    List<String> stations =
-        new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
-    for (int i = 0; i < stations.size() - 1; i++) {
-      addTwoStationsInBothDirections(graph, STATIONS_NAMES_TO_INTS.get(stations.get(i)),
-          STATIONS_NAMES_TO_INTS.get(stations.get(i + 1)));
-    }
-  }
-
   private static void addTwoStationsInBothDirections(List<List<Integer>> graph, Integer station1,
                                                      Integer station2) {
     List<Integer> edgeInFirstDirection = Arrays.asList(
