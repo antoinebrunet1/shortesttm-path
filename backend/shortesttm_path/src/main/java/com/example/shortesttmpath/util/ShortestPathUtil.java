@@ -23,8 +23,7 @@ import java.util.Set;
 import org.springframework.core.io.ClassPathResource;
 
 /**
- * Util class to calculate the shortest metro path (the one with the least stations) between two STM
- * metro stations.
+ * Util class to calculate the shortest metro path between two STM metro stations.
  */
 public class ShortestPathUtil {
   private static final List<String> LINES_FILES_NAMES = Arrays.asList(
