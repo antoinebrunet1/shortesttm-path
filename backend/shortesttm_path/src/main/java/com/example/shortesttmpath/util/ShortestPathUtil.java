@@ -158,17 +158,31 @@ public class ShortestPathUtil {
       throw new StationsOnSameLineException();
     }
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
-    int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
-    dijkstra(GRAPH, start);
     ShortestPathBean shortestPath = new ShortestPathBean();
     shortestPath.setStartingStation(startingStation);
     shortestPath.setDestinationStation(destinationStation);
-    List<String> stationsToSwitchLines = new ArrayList<>();
-    List<String> allStations = new ArrayList<>();
+    List<String> allStations =
+        dijkstra(GRAPH, start).stream().map(INTS_TO_STATIONS_NAMES::get).toList();
+    List<String> stationsToSwitchLines =
+        getStationsToSwitchLines(allStations, startingStation, destinationStation);
     List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
     stationsToSwitchLines.removeAll(stationsToExclude);
     shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
     return shortestPath;
+  }
+
+  private static List<String> getStationsToSwitchLines(List<String> allStations, String startingStation,
+                                                String destinationStation) {
+    List<String> stationsToSwitchLines = new ArrayList<>();
+
+    for (String station : allStations) {
+      if (ALL_STATIONS_TO_SWITCH_LINES.contains(station)
+          && !station.equals(startingStation) && !station.equals(destinationStation)) {
+        stationsToSwitchLines.add(station);
+      }
+    }
+
+    return stationsToSwitchLines;
   }
 
   // Source: https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-greedy-algo-7/
