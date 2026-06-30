@@ -12,7 +12,7 @@ describe("Home page tests", () => {
   });
 
   it("oneTansfer", () => {
-    cy.happyPathTest("Laurier", ["Berri-UQAM"], "Charlevoix");
+    cy.happyPathTest("Laurier", ["Lionel-Groulx"], "Charlevoix");
   });
 
   it("twoTansfers", () => {
