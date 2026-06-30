@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import org.springframework.core.io.ClassPathResource;
@@ -156,40 +157,62 @@ public class ShortestPathUtil {
     }
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
     int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
-    // par[] array stores the parent of nodes
-    List<Integer> par
-        = new ArrayList<>(Collections.nCopies(NUMBER_OF_VERTICES, -1));
-    // dist[] array stores the distance of nodes from S
-    List<Integer> dist = new ArrayList<>(
-        Collections.nCopies(NUMBER_OF_VERTICES, Integer.MAX_VALUE));
-    // Function call to find the distance of all nodes
-    // and their parent nodes
-    bfs(GRAPH, start, par, dist);
-    // List path stores the shortest path
-    List<Integer> path = new ArrayList<>();
-    int currentNode = destination;
-    path.add(destination);
-    while (par.get(currentNode) != -1) {
-      path.add(par.get(currentNode));
-      currentNode = par.get(currentNode);
-    }
+    dijkstra(GRAPH, start);
     ShortestPathBean shortestPath = new ShortestPathBean();
     shortestPath.setStartingStation(startingStation);
     shortestPath.setDestinationStation(destinationStation);
     List<String> stationsToSwitchLines = new ArrayList<>();
     List<String> allStations = new ArrayList<>();
-    for (int i = path.size() - 1; i >= 0; i--) {
-      String stationName = INTS_TO_STATIONS_NAMES.get(path.get(i));
-      allStations.add(stationName);
-      if (ALL_STATIONS_TO_SWITCH_LINES.contains(stationName)
-          && !stationName.equals(startingStation) && !stationName.equals(destinationStation)) {
-        stationsToSwitchLines.add(stationName);
-      }
-    }
     List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
     stationsToSwitchLines.removeAll(stationsToExclude);
     shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
     return shortestPath;
+  }
+
+  // Source: https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-greedy-algo-7/
+  private static ArrayList<Integer> dijkstra(List<List<int[]>> adj, int src) {
+    int V = adj.size();
+
+    // Min-heap (priority queue) storing pairs of (distance, node)
+    PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+
+    // Distance array: stores shortest distance from source
+    int[] dist = new int[V];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+
+    // Distance from source to itself is 0
+    dist[src] = 0;
+    pq.offer(new int[]{0, src});
+
+    // Process the queue until all reachable vertices are finalized
+    while (!pq.isEmpty()) {
+      int[] top = pq.poll();
+      int d = top[0];
+      int u = top[1];
+
+      // If this distance is not the latest shortest one, skip it
+      if (d > dist[u])
+        continue;
+
+      // Explore all adjacent vertices
+      for (int[] p : adj.get(u)) {
+        int v = p[0];
+        int w = p[1];
+
+        // If we found a shorter path to v through u, update it
+        if (dist[u] + w < dist[v]) {
+          dist[v] = dist[u] + w;
+          pq.offer(new int[]{dist[v], v});
+        }
+      }
+    }
+
+    ArrayList<Integer> result = new ArrayList<>();
+    for (int d : dist)
+      result.add(d);
+
+    // Return the final shortest distances from the source
+    return result;
   }
 
   private static boolean areStationsOnTheSameLine(String startingStation,
