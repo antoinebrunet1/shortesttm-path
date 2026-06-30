@@ -149,15 +149,13 @@ public class ShortestPathUtil {
   }
 
   /**
-   * Returns the shortest metro path (the one with the least stations) between two STM metro
-   * stations. A StationsOnSameLineException exception is thrown if the two stations are on the
-   * same line. This includes the same station given twice and neighbor stations. Source:
-   * <a href="https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/">https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/</a>
+   * Returns the shortest metro path between two STM metro stations. A StationsOnSameLineException
+   * exception is thrown if the two stations are on the same line. This includes the same station
+   * given twice and neighbor stations.
    *
    * @param startingStation    The starting station.
    * @param destinationStation The destination station.
-   * @return The shortest metro path (the one with the least stations) between two STM metro
-   *     stations.
+   * @return The shortest metro path between two STM metro stations.
    */
   public static ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
