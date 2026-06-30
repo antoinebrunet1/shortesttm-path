@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -43,12 +44,12 @@ public class ShortestPathUtil {
 
   static {
     try {
-      MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
+      STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
     try {
-      STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
+      MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -118,7 +119,7 @@ public class ShortestPathUtil {
   private static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
       throws IOException {
     Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();
-    ClassPathResource resource = new ClassPathResource("static/distances");
+    ClassPathResource resource = new ClassPathResource("static/distances.txt");
     List<String> distancesLines =
         new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
 
@@ -132,13 +133,21 @@ public class ShortestPathUtil {
   private static void addDistance(String distanceLine,
                                   Map<Integer, Map<Integer, Integer>> distancesMap) {
     int station1 = STATIONS_NAMES_TO_INTS.get(distanceLine.split(" to ")[0]);
-    int station2 = STATIONS_NAMES_TO_INTS.get(distanceLine.split(" to ")[0].split("\\s:\\s")[0]);
-    int distance = Integer.parseInt(distanceLine.split(" to ")[0].split("\\s:\\s")[1]);
+    int station2 = STATIONS_NAMES_TO_INTS.get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
+    int distance = Integer.parseInt(distanceLine.split(" to ")[1].split("\\s:\\s")[1]);
 
+    addDistance(station1, station2, distance, distancesMap);
+    addDistance(station2, station1, distance, distancesMap);
+  }
+
+  private static void addDistance(int station1, int station2, int distance,
+                                  Map<Integer, Map<Integer, Integer>> distancesMap) {
     if (distancesMap.containsKey(station1)) {
       distancesMap.get(station1).put(station2, distance);
     } else {
-      distancesMap.put(station1, Map.of(station2, distance));
+      Map<Integer, Integer> station1Map = new LinkedHashMap<>();
+      station1Map.put(station2, distance);
+      distancesMap.put(station1, station1Map);
     }
   }
 
