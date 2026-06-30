@@ -376,18 +376,4 @@ public class ShortestPathUtil {
 
     return graph;
   }
-
-  private static void addTwoStationsInBothDirections(List<List<Integer>> graph, Integer station1,
-                                                     Integer station2) {
-    List<Integer> edgeInFirstDirection = Arrays.asList(
-        station1,
-        station2
-    );
-    List<Integer> edgeInSecondDirection = Arrays.asList(
-        station2,
-        station1
-    );
-    graph.add(edgeInFirstDirection);
-    graph.add(edgeInSecondDirection);
-  }
 }
