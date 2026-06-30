@@ -36,7 +36,8 @@ public class ShortestPathUtil {
   private static final int NUMBER_OF_VERTICES = 68;
   private static final List<List<int[]>> GRAPH;
   private static final Map<String, Integer> STATIONS_NAMES_TO_INTS;
-  private static final Map<Integer, Map<Integer, Integer>> MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M;
+  private static final Map<Integer, Map<Integer, Integer>>
+      MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M;
 
   static {
     try {
@@ -178,8 +179,9 @@ public class ShortestPathUtil {
     return shortestPath;
   }
 
-  private static List<String> getStationsToSwitchLines(List<String> allStations, String startingStation,
-                                                String destinationStation) {
+  private static List<String> getStationsToSwitchLines(List<String> allStations,
+                                                       String startingStation,
+                                                       String destinationStation) {
     List<String> stationsToSwitchLines = new ArrayList<>();
 
     for (String station : allStations) {
@@ -194,7 +196,7 @@ public class ShortestPathUtil {
 
   /**
    * Dijkstra's algorithm to find the shortest path
-   * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>
+   * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>.
    *
    * @param start The starting station as an int.
    * @param target The destination station as an int.
@@ -240,7 +242,9 @@ public class ShortestPathUtil {
       int node = curr[1];
 
       // Skip outdated queue entries
-      if (d > dist[node]) continue;
+      if (d > dist[node]) {
+        continue;
+      }
 
       // Explore all neighbors of current node
       for (int[] edge : GRAPH.get(node)) {
