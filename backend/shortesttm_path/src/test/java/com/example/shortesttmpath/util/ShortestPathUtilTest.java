@@ -19,7 +19,7 @@ public class ShortestPathUtilTest {
         ShortestPathBean expectedPath = new ShortestPathBean(
                 inputStartingStation,
                 inputDestinationStation,
-                List.of("Berri-UQAM"));
+                List.of("Lionel-Groulx"));
 
         assertEquals(expectedPath, actualPath);
     }
