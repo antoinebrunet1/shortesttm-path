@@ -229,43 +229,6 @@ public class ShortestPathUtil {
     return lines;
   }
 
-  // Source: https://www.geeksforgeeks.org/dsa/shortest-path-unweighted-graph/
-  // Modified bfs to store the parent of nodes along with
-  // the distance from the source node
-  private static void bfs(List<List<Integer>> graph, int start,
-                          List<Integer> par, List<Integer> dist) {
-    // Queue to store the nodes in the order they are
-    // visited
-    Queue<Integer> q = new LinkedList<>();
-    // Mark the distance of the source node as 0
-    dist.set(start, 0);
-    // Push the source node to the queue
-    q.add(start);
-    // Iterate until the queue is not empty
-    while (!q.isEmpty()) {
-      // Pop the node at the front of the queue
-      int node = q.poll();
-      // Explore all the neighbors of the current node
-      for (int neighbor : graph.get(node)) {
-        // Check if the neighboring node is not
-        // visited
-        if (dist.get(neighbor)
-            == Integer.MAX_VALUE) {
-          // Mark the current node as the parent
-          // of the neighboring node
-          par.set(neighbor, node);
-          // Mark the distance of the neighboring
-          // node as the distance of the current
-          // node + 1
-          dist.set(neighbor, dist.get(node) + 1);
-          // Insert the neighboring node to the
-          // queue
-          q.add(neighbor);
-        }
-      }
-    }
-  }
-
   private static Map<Integer, String> getIntsToStationsNames() {
     Map<Integer, String> intsToStationsNames = new LinkedHashMap<>();
     for (String station : STATIONS_NAMES_TO_INTS.keySet()) {
