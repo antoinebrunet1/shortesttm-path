@@ -11,6 +11,7 @@ import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -20,6 +21,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.core.io.ClassPathResource;
 
 /**
@@ -34,7 +36,7 @@ public class ShortestPathUtil {
       "yellow_line_stations.txt"
   );
   private static final int NUMBER_OF_VERTICES = 68;
-  private static final List<List<Integer>> GRAPH;
+  private static final List<List<int[]>> GRAPH;
   private static final Map<String, Integer> STATIONS_NAMES_TO_INTS;
   private static final Map<Integer, Map<Integer, Integer>> MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M;
 
@@ -300,20 +302,23 @@ public class ShortestPathUtil {
     uniqueStationsNames.addAll(stations);
   }
 
-  private static List<List<Integer>> getGraph() throws IOException {
-    List<List<Integer>> graph = new ArrayList<>(NUMBER_OF_VERTICES);
-    for (String lineFileName : LINES_FILES_NAMES) {
-      addLineToGraph(graph, lineFileName);
+  private static List<List<int[]>> getGraph() throws IOException {
+    List<List<int[]>> graph = new ArrayList<>(NUMBER_OF_VERTICES);
+    Set<Integer> sortedStations1 =
+        new HashSet<>(MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M.keySet());
+
+    for (int station1 : sortedStations1) {
+      Map<Integer, Integer> station1Map = MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M.get(station1);
+      List<int[]> stations2 = new ArrayList<>();
+
+      for (int station2 : station1Map.keySet()) {
+        stations2.add(new int[] {station2, station1Map.get(station2)});
+      }
+
+      graph.add(stations2);
     }
-    List<List<Integer>> graphAsAdjencyList = new ArrayList<>(NUMBER_OF_VERTICES);
-    for (int i = 0; i < NUMBER_OF_VERTICES; i++) {
-      graphAsAdjencyList.add(new ArrayList<>());
-    }
-    for (List<Integer> edge : graph) {
-      graphAsAdjencyList.get(edge.get(0)).add(edge.get(1));
-      graphAsAdjencyList.get(edge.get(1)).add(edge.get(0));
-    }
-    return graphAsAdjencyList;
+
+    return graph;
   }
 
   private static void addLineToGraph(List<List<Integer>> graph, String lineFileName)
