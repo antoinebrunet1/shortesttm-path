@@ -11,6 +11,7 @@ import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -158,11 +159,12 @@ public class ShortestPathUtil {
       throw new StationsOnSameLineException();
     }
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
+    int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
     ShortestPathBean shortestPath = new ShortestPathBean();
     shortestPath.setStartingStation(startingStation);
     shortestPath.setDestinationStation(destinationStation);
     List<String> allStations =
-        dijkstra(GRAPH, start).stream().map(INTS_TO_STATIONS_NAMES::get).toList();
+        dijkstra(start, destination).stream().map(INTS_TO_STATIONS_NAMES::get).toList();
     List<String> stationsToSwitchLines =
         getStationsToSwitchLines(allStations, startingStation, destinationStation);
     List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
@@ -185,50 +187,85 @@ public class ShortestPathUtil {
     return stationsToSwitchLines;
   }
 
-  // Source: https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-greedy-algo-7/
-  private static ArrayList<Integer> dijkstra(List<List<int[]>> adj, int src) {
-    int V = adj.size();
+  // Source: https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466
+  // Dijkstra's algorithm to find the shortest path
+  public static List<Integer> dijkstra(
+      int start,
+      int target) {
 
-    // Min-heap (priority queue) storing pairs of (distance, node)
-    PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+    // Number of nodes in the graph
+    int n = NUMBER_OF_VERTICES;
 
-    // Distance array: stores shortest distance from source
-    int[] dist = new int[V];
+    // Stores shortest known distance from start node
+    int[] dist = new int[n];
+
+    // Stores previous node for path reconstruction
+    int[] parent = new int[n];
+
+    // Initialize all distances to infinity
     Arrays.fill(dist, Integer.MAX_VALUE);
 
-    // Distance from source to itself is 0
-    dist[src] = 0;
-    pq.offer(new int[]{0, src});
+    // Initialize parents as undefined
+    Arrays.fill(parent, -1);
 
-    // Process the queue until all reachable vertices are finalized
+    // Distance to start node is 0
+    dist[start] = 0;
+
+    // Min-heap priority queue:
+    // each element = {distance, node}
+    PriorityQueue<int[]> pq =
+        new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+
+    // Start with the source node
+    pq.offer(new int[]{0, start});
+
+    // Process nodes until queue is empty
     while (!pq.isEmpty()) {
-      int[] top = pq.poll();
-      int d = top[0];
-      int u = top[1];
 
-      // If this distance is not the latest shortest one, skip it
-      if (d > dist[u])
-        continue;
+      // Get node with smallest distance
+      int[] curr = pq.poll();
 
-      // Explore all adjacent vertices
-      for (int[] p : adj.get(u)) {
-        int v = p[0];
-        int w = p[1];
+      int d = curr[0];
+      int node = curr[1];
 
-        // If we found a shorter path to v through u, update it
-        if (dist[u] + w < dist[v]) {
-          dist[v] = dist[u] + w;
-          pq.offer(new int[]{dist[v], v});
+      // Skip outdated queue entries
+      if (d > dist[node]) continue;
+
+      // Explore all neighbors of current node
+      for (int[] edge : GRAPH.get(node)) {
+
+        int neighbor = edge[0];
+
+        // Calculate new possible distance
+        int newDist = dist[node] + edge[1];
+
+        // If a shorter path is found
+        if (newDist < dist[neighbor]) {
+
+          // Update shortest distance
+          dist[neighbor] = newDist;
+
+          // Remember best previous node
+          parent[neighbor] = node;
+
+          // Add updated distance to priority queue
+          pq.offer(new int[]{newDist, neighbor});
         }
       }
     }
 
-    ArrayList<Integer> result = new ArrayList<>();
-    for (int d : dist)
-      result.add(d);
+    // Reconstruct shortest path
+    List<Integer> path = new ArrayList<>();
 
-    // Return the final shortest distances from the source
-    return result;
+    // Backtrack from target using parent array
+    for (int at = target; at != -1; at = parent[at]) {
+      path.add(at);
+    }
+
+    // Reverse because path was built backwards
+    Collections.reverse(path);
+
+    return path;
   }
 
   private static boolean areStationsOnTheSameLine(String startingStation,
