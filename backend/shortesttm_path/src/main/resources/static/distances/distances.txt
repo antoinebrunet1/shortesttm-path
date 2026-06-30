@@ -1,0 +1,69 @@
+Angrignon to Monk	:	844
+Monk to Jolicoeur	:	1_063
+Jolicoeur to Verdun	:	761
+Verdun to De l'Église	:	564
+De l'Église to LaSalle	:	812
+LaSalle to Charlevoix	:	707
+Charlevoix to Lionel-Groulx	:	1_077
+Lionel-Groulx to Atwater	:	1_388
+Atwater to Guy–Concordia	:	682
+Guy–Concordia to Peel	:	593
+Peel to McGill	:	297
+McGill to Place-des-Arts	:	346
+Place-des-Arts to Saint-Laurent	:	354
+Saint-Laurent to Berri–UQAM	:	337
+Berri–UQAM to Beaudry	:	379
+Beaudry to Papineau	:	495
+Papineau to Frontenac	:	1_158
+Frontenac to Préfontaine	:	1_004
+Préfontaine to Joliette	:	383
+Joliette to Pie-IX	:	767
+Pie-IX to Viau	:	622
+Viau to Assomption	:	896
+Assomption to Cadillac	:	782
+Cadillac to Langelier	:	519
+Langelier to Radisson	:	622
+Radisson to Honoré-Beaugrand	:	717
+Côte-Vertu to Du Collège	:	777
+Du Collège to De La Savane	:	1_282
+De La Savane to Namur	:	787
+Namur to Plamondon	:	988
+Plamondon to Côte-Sainte-Catherine	:	451
+Côte-Sainte-Catherine to Snowdon	:	693
+Snowdon to Villa-Maria	:	884
+Villa-Maria to Vendôme	:	1_407
+Vendôme to Place-Saint-Henri	:	1_451
+Place-Saint-Henri to Lionel-Groulx	:	580
+Lionel-Groulx to Georges-Vanier	:	759
+Georges-Vanier to Lucien-L'Allier	:	531
+Lucien-L'Allier to Bonaventure	:	382
+Bonaventure to Square-Victoria–OACI	:	393
+Square-Victoria–OACI to Place-d'Armes	:	357
+Place-d'Armes to Champ-de-Mars	:	371
+Champ-de-Mars to Berri–UQAM	:	721
+Berri–UQAM to Sherbrooke	:	579
+Sherbrooke to Mont-Royal	:	932
+Mont-Royal to Laurier	:	500
+Laurier to Rosemont	:	746
+Rosemont to Beaubien	:	541
+Beaubien to Jean-Talon	:	712
+Jean-Talon to Jarry	:	977
+Jarry to Crémazie	:	826
+Crémazie to Sauvé	:	1_28
+Sauvé to Henri-Bourassa	:	772
+Henri-Bourassa to Cartier	:	1_102
+Cartier to De la Concorde	:	2_074
+De la Concorde to Montmorency	:	848
+Berri–UQAM to Jean-Drapeau	:	2_362
+Jean-Drapeau to Longueuil–Université-de-Sherbrooke	:	1_572
+Snowdon to Côte-des-Neiges	:	960
+Côte-des-Neiges to Université-de-Montréal	:	765
+Université-de-Montréal to Édouard-Montpetit	:	668
+Édouard-Montpetit to Outremont	:	1_091
+Outremont to Acadie	:	729
+Acadie to Parc	:	728
+Parc to De Castelnau	:	491
+De Castelnau to Jean-Talon	:	472
+Jean-Talon to Fabre	:	840
+Fabre to D'Iberville	:	645
+D'Iberville to Saint-Michel	:	608
