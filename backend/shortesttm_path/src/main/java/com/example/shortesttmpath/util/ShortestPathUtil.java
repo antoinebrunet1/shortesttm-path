@@ -35,8 +35,14 @@ public class ShortestPathUtil {
   private static final int NUMBER_OF_VERTICES = 68;
   private static final List<List<Integer>> GRAPH;
   private static final Map<String, Integer> STATIONS_NAMES_TO_INTS;
+  private static final Map<Integer, Map<Integer, Integer>> MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M;
 
   static {
+    try {
+      MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
     try {
       STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
     } catch (IOException e) {
@@ -103,6 +109,33 @@ public class ShortestPathUtil {
       case Line.ORANGE -> ORANGE_LINE_STATIONS;
       default -> YELLOW_LINE_STATIONS;
     };
+  }
+
+  private static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
+      throws IOException {
+    Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();
+    ClassPathResource resource = new ClassPathResource("static/distances");
+    List<String> distancesLines =
+        new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
+
+    for (String distanceLine : distancesLines) {
+      addDistance(distanceLine, distancesMap);
+    }
+
+    return distancesMap;
+  }
+
+  private static void addDistance(String distanceLine,
+                                  Map<Integer, Map<Integer, Integer>> distancesMap) {
+    int station1 = STATIONS_NAMES_TO_INTS.get(distanceLine.split(" to ")[0]);
+    int station2 = STATIONS_NAMES_TO_INTS.get(distanceLine.split(" to ")[0].split("\\s:\\s")[0]);
+    int distance = Integer.parseInt(distanceLine.split(" to ")[0].split("\\s:\\s")[1]);
+
+    if (distancesMap.containsKey(station1)) {
+      distancesMap.get(station1).put(station2, distance);
+    } else {
+      distancesMap.put(station1, Map.of(station2, distance));
+    }
   }
 
   /**
