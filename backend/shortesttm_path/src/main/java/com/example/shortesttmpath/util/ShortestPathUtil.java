@@ -202,7 +202,7 @@ public class ShortestPathUtil {
    * @param target The destination station as an int.
    * @return The stations of the path as ints.
    */
-  public static List<Integer> dijkstra(
+  private static List<Integer> dijkstra(
       int start,
       int target) {
 
