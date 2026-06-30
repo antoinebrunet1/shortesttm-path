@@ -192,8 +192,14 @@ public class ShortestPathUtil {
     return stationsToSwitchLines;
   }
 
-  // Source: https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466
-  // Dijkstra's algorithm to find the shortest path
+  /**
+   * Dijkstra's algorithm to find the shortest path
+   * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>
+   *
+   * @param start The starting station as an int.
+   * @param target The destination station as an int.
+   * @return The stations of the path as ints.
+   */
   public static List<Integer> dijkstra(
       int start,
       int target) {
