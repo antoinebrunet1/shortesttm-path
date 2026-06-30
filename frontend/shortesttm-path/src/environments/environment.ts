@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'https://shortesttm-path.onrender.com',
+  baseUrl: 'https://shortesttm-path-n22p.onrender.com',
 };
