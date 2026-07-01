@@ -197,7 +197,9 @@ public class ShortestPathUtil {
         getStationsToSwitchLines(allStations, startingStation, destinationStation);
     List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
     stationsToSwitchLines.removeAll(stationsToExclude);
-    shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
+    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = getStationsToSwitchLinesObjects(
+        stationsToSwitchLines, allStations);
+    shortestPath.setStationsToSwitchLines(stationsToSwitchLinesObjects);
     return shortestPath;
   }
 
