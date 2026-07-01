@@ -148,6 +148,7 @@
 										<exclude>*ShortesttmPathApplication</exclude>
                                         <exclude>*LinesController</exclude>
                                         <exclude>*StationsController</exclude>
+                                        <exclude>*NonEndingStationInPathBean</exclude>
 									</excludes>
 									<limits>
 										<limit>
