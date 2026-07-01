@@ -20,6 +20,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.springframework.core.io.ClassPathResource;
 
 /**
@@ -92,6 +93,43 @@ public class ShortestPathUtil {
     allStationsInAlphabeticalOrder.sort(collator);
 
     return allStationsInAlphabeticalOrder;
+  }
+
+  private static String getDirectionOfStartingStation(List<String> allStations) {
+    String station1 = allStations.getFirst();
+    String station2 = allStations.get(1);
+    List<String> station1Lines = getLines(station1);
+    List<String> station2Lines = getLines(station2);
+    String lineOfDirection = getLineOfDirection(station1Lines, station2Lines);
+    List<String> directionsOfLineOfDirection =
+        LINES_TO_DIRECTIONS.get(Line.valueOf(lineOfDirection));
+    List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
+    int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
+    int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
+    List<String> directions = LINES_TO_DIRECTIONS.get(Line.valueOf(lineOfDirection));
+
+    return indexOfStation1OnLine < indexOfStation2OnLine ? directions.getLast() :
+        directions.getFirst();
+  }
+
+  private static String getLineOfDirection(List<String> station1Lines, List<String> station2Lines) {
+    return station1Lines.stream()
+        .distinct()
+        .filter(station2Lines::contains)
+        .collect(Collectors.toSet()).iterator().next();
+  }
+
+  private static List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
+    switch (Line.valueOf(lineOfDirection)) {
+      case Line.BLUE:
+        return BLUE_LINE_STATIONS;
+      case Line.GREEN:
+        return GREEN_LINE_STATIONS;
+      case Line.ORANGE:
+        return ORANGE_LINE_STATIONS;
+      default:
+        return YELLOW_LINE_STATIONS;
+    }
   }
 
   private static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
