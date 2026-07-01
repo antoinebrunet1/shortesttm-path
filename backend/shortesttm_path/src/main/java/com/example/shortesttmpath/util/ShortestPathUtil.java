@@ -221,7 +221,7 @@ public class ShortestPathUtil {
   private static List<String> getStationsToSwitchLines(List<String> allStations,
                                                        String startingStation,
                                                        String destinationStation) {
-    List<String> stationsToSwitchLines = new ArrayList<>();
+    List<String> stationsToSwitchLines = new LinkedList<>();
 
     for (String station : allStations) {
       if (ALL_STATIONS_TO_SWITCH_LINES.contains(station)
