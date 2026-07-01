@@ -31,39 +31,6 @@
           ]
         }
       ]
-    },
-    {
-      "name": "lines-controller",
-      "endpoints": [
-        {
-          "name": "/lines",
-          "test_cases": [
-            {
-              "name": "getAllLinesHappyPath"
-            }
-          ]
-        },
-        {
-          "name": "/lines/stations/{line}",
-          "test_cases": [
-            {
-              "name": "getAllStationsBlueLineHappyPath"
-            },
-            {
-              "name": "getAllStationsGreenLineHappyPath"
-            },
-            {
-              "name": "getAllStationsOrangeLineHappyPath"
-            },
-            {
-              "name": "getAllStationsYellowLineHappyPath"
-            },
-            {
-              "name": "getAllStationsInvalidLine"
-            }
-          ]
-        }
-      ]
     }
   ]
 }

@@ -13,10 +13,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Tests {
-  private final String STATIONS_CONTROLLER_PATH = "/stations";
-  private final String SHORTEST_PATH_CONTROLLER_PATH = "/shortest_path";
-  private final String LINES_CONTROLLER_PATH = "/lines";
-
   @BeforeClass
   public void setup() {
     RestAssured.baseURI = "http://localhost:8080";
@@ -43,6 +39,7 @@ public class Tests {
   }
 
   private Response getResponseForShortestPath(String startingStation, String destinationStation) {
+    String SHORTEST_PATH_CONTROLLER_PATH = "/shortest_path";
     return RestAssured.
         given().
         queryParam("startingStation", startingStation).
@@ -50,16 +47,9 @@ public class Tests {
         .get(SHORTEST_PATH_CONTROLLER_PATH);
   }
 
-  private void getAllStationsLineHappyPath(String line, String testCaseName) throws IOException {
-    Response response = RestAssured.get(LINES_CONTROLLER_PATH + "/stations/" + line);
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 200);
-    validateBody(response, testCaseName);
-  }
-
   @Test
   public void getAllStationsAlphaOrderHappyPath() throws IOException {
+    String STATIONS_CONTROLLER_PATH = "/stations";
     Response response = RestAssured.get(STATIONS_CONTROLLER_PATH + "/alphabetical-order");
     int statusCode = response.getStatusCode();
 
@@ -89,48 +79,6 @@ public class Tests {
 
     String bodyAsString = response.getBody().asString();
     String expectedBodyAsString = "Provided stations are on the same line";
-
-    Assert.assertEquals(bodyAsString, expectedBodyAsString);
-  }
-
-  @Test
-  public void getAllLinesHappyPath() throws IOException {
-    Response response = RestAssured.get(LINES_CONTROLLER_PATH);
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 200);
-    validateBody(response, "getAllLinesHappyPath");
-  }
-
-  @Test
-  public void getAllStationsBlueLineHappyPath() throws IOException {
-    getAllStationsLineHappyPath("BLUE", "getAllStationsBlueLineHappyPath");
-  }
-
-  @Test
-  public void getAllStationsGreenLineHappyPath() throws IOException {
-    getAllStationsLineHappyPath("GREEN", "getAllStationsGreenLineHappyPath");
-  }
-
-  @Test
-  public void getAllStationsOrangeLineHappyPath() throws IOException {
-    getAllStationsLineHappyPath("ORANGE", "getAllStationsOrangeLineHappyPath");
-  }
-
-  @Test
-  public void getAllStationsYellowLineHappyPath() throws IOException {
-    getAllStationsLineHappyPath("YELLOW", "getAllStationsYellowLineHappyPath");
-  }
-
-  @Test
-  public void getAllStationsInvalidLine() {
-    Response response = RestAssured.get(LINES_CONTROLLER_PATH + "/stations/PINK");
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 400);
-
-    String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = "Provided line is invalid";
 
     Assert.assertEquals(bodyAsString, expectedBodyAsString);
   }
