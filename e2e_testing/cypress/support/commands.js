@@ -49,6 +49,8 @@ Cypress.Commands.add("nthPHasText", (index, text) => {
 Cypress.Commands.add(
   "happyPathTest",
   (startingStation, transfers, destinationStation) => {
+    cy.contains("Acadie").should("be.visible");
+
     if (startingStation.name !== "Acadie") {
       cy.clickMatSelect(0);
       cy.clickElementThatContains(startingStation.name);
