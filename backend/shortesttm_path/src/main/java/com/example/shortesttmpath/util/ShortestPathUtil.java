@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.InvalidLineException;
@@ -186,17 +187,29 @@ public class ShortestPathUtil {
     }
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
     int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
-    ShortestPathBean shortestPath = new ShortestPathBean();
-    shortestPath.setStartingStation(startingStation);
-    shortestPath.setDestinationStation(destinationStation);
     List<String> allStations =
         dijkstra(start, destination).stream().map(INTS_TO_STATIONS_NAMES::get).toList();
+    ShortestPathBean shortestPath = new ShortestPathBean();
+    shortestPath.setStartingStation(getStartingStationObject(startingStation, allStations));
+    shortestPath.setDestinationStation(destinationStation);
     List<String> stationsToSwitchLines =
         getStationsToSwitchLines(allStations, startingStation, destinationStation);
     List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
     stationsToSwitchLines.removeAll(stationsToExclude);
     shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
     return shortestPath;
+  }
+
+  private static NonEndingStationInPathBean getStartingStationObject(String startingStation,
+                                                                     List<String allStations>) {
+    String direction = getDirectionOfStartingStation(allStations);
+    NonEndingStationInPathBean startingStationObject = new NonEndingStationInPathBean(
+        startingStation,
+        getLines(direction).getFirst(),
+        direction
+    );
+
+    return startingStationObject;
   }
 
   private static List<String> getStationsToSwitchLines(List<String> allStations,
