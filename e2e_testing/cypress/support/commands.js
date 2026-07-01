@@ -49,14 +49,17 @@ Cypress.Commands.add("nthPHasText", (index, text) => {
 Cypress.Commands.add(
   "happyPathTest",
   (startingStation, transfers, destinationStation) => {
-    cy.clickMatSelect(0);
-    cy.clickElementThatContains(startingStation.name);
+    if (startingStation.name !== "Acadie") {
+      cy.clickMatSelect(0);
+      cy.clickElementThatContains(startingStation.name);
+    }
+
     cy.clickMatSelect(1);
     cy.clickElementThatContains(destinationStation);
     cy.clickFromHtmlTag("button");
     cy.nthPHasText(
       1,
-      ` Start at ${startingStation} on the ${startingStation.line} line and go in the ${startingStation.direction} direction. `,
+      ` Start at ${startingStation.name} and go in the ${startingStation.direction} direction on the ${startingStation.line} line. `,
     );
 
     const indexOfPOfDestinationStation = 1 + transfers.length + 1;

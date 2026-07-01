@@ -12,12 +12,12 @@ describe("Home page tests", () => {
   });
 
   it("oneTansfer", () => {
-    startingStation = {
+    const startingStation = {
       name: "Laurier",
       line: "orange",
       direction: "Côte-Vertu",
     };
-    transfers = [
+    const transfers = [
       {
         name: "Lionel-Groulx",
         line: "green",
@@ -28,12 +28,12 @@ describe("Home page tests", () => {
   });
 
   it("twoTansfers", () => {
-    startingStation = {
+    const startingStation = {
       name: "Acadie",
       line: "blue",
       direction: "Snowdon",
     };
-    transfers = [
+    const transfers = [
       {
         name: "Snowdon",
         line: "orange",
