@@ -117,16 +117,12 @@ public class ShortestPathUtil {
   }
 
   private static List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
-    switch (Line.valueOf(lineOfDirection)) {
-      case Line.BLUE:
-        return BLUE_LINE_STATIONS;
-      case Line.GREEN:
-        return GREEN_LINE_STATIONS;
-      case Line.ORANGE:
-        return ORANGE_LINE_STATIONS;
-      default:
-        return YELLOW_LINE_STATIONS;
-    }
+    return switch (Line.valueOf(lineOfDirection)) {
+      case Line.BLUE -> BLUE_LINE_STATIONS;
+      case Line.GREEN -> GREEN_LINE_STATIONS;
+      case Line.ORANGE -> ORANGE_LINE_STATIONS;
+      default -> YELLOW_LINE_STATIONS;
+    };
   }
 
   private static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
