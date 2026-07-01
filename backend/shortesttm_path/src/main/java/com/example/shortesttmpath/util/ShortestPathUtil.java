@@ -16,6 +16,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -198,6 +199,19 @@ public class ShortestPathUtil {
     stationsToSwitchLines.removeAll(stationsToExclude);
     shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
     return shortestPath;
+  }
+
+  private static List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
+      List<String> stationsToSwitchLines, List<String> allStations) {
+    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = new LinkedList<>();
+
+    for (String station : stationsToSwitchLines) {
+      NonEndingStationInPathBean stationObject = getStationObject(station, allStations);
+
+      stationsToSwitchLinesObjects.add(stationObject);
+    }
+
+    return stationsToSwitchLinesObjects;
   }
 
   private static NonEndingStationInPathBean getStationObject(String station,
