@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  <b>App to find the shortest path between two STM metro stations</b>
+  <b>Full stack web app to find the shortest STM metro path between two stations</b>
 </p>
 
 <p align="center">
