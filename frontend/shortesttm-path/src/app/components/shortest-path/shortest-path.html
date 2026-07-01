@@ -1,6 +1,8 @@
 @if (shortestPath) {
   <p>
-    Start at <strong>{{ shortestPath.startingStation.name }}</strong> station.
+    Start at <strong>{{ shortestPath.startingStation.name }}</strong> on the
+    <strong>{{ shortestPath.startingStation.line | lowercase }} line</strong>
+    and go in the <strong>{{ shortestPath.startingStation.direction }} direction</strong>.
   </p>
   @for (station of shortestPath.stationsToSwitchLines; track station) {
     <p>
