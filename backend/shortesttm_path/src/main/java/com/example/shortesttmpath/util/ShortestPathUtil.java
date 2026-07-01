@@ -68,10 +68,10 @@ public class ShortestPathUtil {
   private static List<String> ORANGE_LINE_STATIONS;
   private static List<String> YELLOW_LINE_STATIONS;
   private static final Map<Line, List<String>> LINES_TO_DIRECTIONS = Map.of(
-      Line.BLUE, List.of("Snowdon", "Saint-Michel"),
-      Line.GREEN, List.of("Angrignon", "Honoré-Beaugrand"),
-      Line.ORANGE, List.of("Côte-Vertu", "Montmorency"),
-      Line.YELLOW, List.of("Berri-UQAM", "Longueuil–Université-de-Sherbrooke")
+      Line.BLUE, List.of(BLUE_LINE_STATIONS.getFirst(), BLUE_LINE_STATIONS.getLast()),
+      Line.GREEN, List.of(GREEN_LINE_STATIONS.getFirst(), GREEN_LINE_STATIONS.getLast()),
+      Line.ORANGE, List.of(ORANGE_LINE_STATIONS.getFirst(), ORANGE_LINE_STATIONS.getLast()),
+      Line.YELLOW, List.of(YELLOW_LINE_STATIONS.getFirst(), YELLOW_LINE_STATIONS.getLast())
   );
 
   /**
