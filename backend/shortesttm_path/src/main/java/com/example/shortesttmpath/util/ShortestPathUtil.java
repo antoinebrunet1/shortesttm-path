@@ -211,6 +211,15 @@ public class ShortestPathUtil {
     );
   }
 
+  private static NonEndingStationInPathBean getStationObject(String station,
+                                                             List<String> allStations) {
+    String nextStation = allStations.get(allStations.indexOf(station) + 1);
+    String direction = getDirectionOfStation(station, nextStation);
+    String line = getLines(direction).getFirst();
+
+    return new NonEndingStationInPathBean(station, line, direction);
+  }
+
   private static List<String> getStationsToSwitchLines(List<String> allStations,
                                                        String startingStation,
                                                        String destinationStation) {
