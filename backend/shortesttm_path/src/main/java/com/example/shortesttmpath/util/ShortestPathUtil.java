@@ -190,7 +190,7 @@ public class ShortestPathUtil {
     List<String> allStations =
         dijkstra(start, destination).stream().map(INTS_TO_STATIONS_NAMES::get).toList();
     ShortestPathBean shortestPath = new ShortestPathBean();
-    shortestPath.setStartingStation(getStartingStationObject(startingStation, allStations));
+    shortestPath.setStartingStation(getStationObject(startingStation, allStations));
     shortestPath.setDestinationStation(destinationStation);
     List<String> stationsToSwitchLines =
         getStationsToSwitchLines(allStations, startingStation, destinationStation);
@@ -198,17 +198,6 @@ public class ShortestPathUtil {
     stationsToSwitchLines.removeAll(stationsToExclude);
     shortestPath.setStationsToSwitchLines(stationsToSwitchLines);
     return shortestPath;
-  }
-
-  private static NonEndingStationInPathBean getStartingStationObject(String startingStation,
-                                                                     List<String> allStations) {
-    String direction = getDirectionOfStartingStation(allStations);
-
-    return new NonEndingStationInPathBean(
-        startingStation,
-        getLines(direction).getFirst(),
-        getDirectionOfStartingStation(allStations)
-    );
   }
 
   private static NonEndingStationInPathBean getStationObject(String station,
