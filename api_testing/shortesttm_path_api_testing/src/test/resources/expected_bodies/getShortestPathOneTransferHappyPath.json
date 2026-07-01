@@ -1,7 +1,15 @@
 {
-  "startingStation": "Laurier",
+  "startingStation": {
+    "name": "Laurier",
+    "line": "ORANGE",
+    "direction": "Côte-Vertu"
+  },
   "destinationStation": "Charlevoix",
   "stationsToSwitchLines": [
-    "Lionel-Groulx"
+    {
+      "name": "Lionel-Groulx",
+      "line": "GREEN",
+      "direction": "Angrignon"
+    }
   ]
 }
