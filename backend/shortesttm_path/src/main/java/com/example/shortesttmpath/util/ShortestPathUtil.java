@@ -201,7 +201,7 @@ public class ShortestPathUtil {
   }
 
   private static NonEndingStationInPathBean getStartingStationObject(String startingStation,
-                                                                     List<String allStations>) {
+                                                                     List<String> allStations) {
     String direction = getDirectionOfStartingStation(allStations);
     NonEndingStationInPathBean startingStationObject = new NonEndingStationInPathBean(
         startingStation,
