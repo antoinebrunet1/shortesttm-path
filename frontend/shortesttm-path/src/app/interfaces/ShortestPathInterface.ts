@@ -1,5 +1,5 @@
 interface ShortestPathInterface {
-  startingStation: string;
+  startingStation: NonEndingStationInPathInterface;
   destinationStation: string;
-  stationsToSwitchLines: string[];
+  stationsToSwitchLines: NonEndingStationInPathInterface[];
 }
