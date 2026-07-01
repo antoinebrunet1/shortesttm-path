@@ -15,6 +15,11 @@ app-instructions {
   max-width: 600px;
 }
 
+mat-error,
+app-shortest-path {
+  margin-top: 20px;
+}
+
 img {
   margin-top: 20px;
   width: 35px;
