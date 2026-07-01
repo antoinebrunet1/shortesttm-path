@@ -12,7 +12,19 @@ describe("Home page tests", () => {
   });
 
   it("oneTansfer", () => {
-    cy.happyPathTest("Laurier", ["Lionel-Groulx"], "Charlevoix");
+    startingStation = {
+      name: "Laurier",
+      line: "orange",
+      direction: "Côte-Vertu",
+    };
+    transfers = [
+      {
+        name: "Lionel-Groulx",
+        line: "green",
+        direction: "Angrignon",
+      },
+    ];
+    cy.happyPathTest(startingStation, transfers, "Charlevoix");
   });
 
   it("twoTansfers", () => {

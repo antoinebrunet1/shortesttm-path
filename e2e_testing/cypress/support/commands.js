@@ -50,24 +50,27 @@ Cypress.Commands.add(
   "happyPathTest",
   (startingStation, transfers, destinationStation) => {
     cy.clickMatSelect(0);
-    cy.clickElementThatContains(startingStation);
+    cy.clickElementThatContains(startingStation.name);
     cy.clickMatSelect(1);
     cy.clickElementThatContains(destinationStation);
     cy.clickFromHtmlTag("button");
-    cy.nthPHasText(1, ` Start at ${startingStation} station. `);
+    cy.nthPHasText(
+      1,
+      ` Start at ${startingStation} on the ${startingStation.line} line and go in the ${startingStation.direction} direction. `,
+    );
 
     const indexOfPOfDestinationStation = 1 + transfers.length + 1;
 
     for (let index = 2; index < 2 + transfers.length; index++) {
       cy.nthPHasText(
         index,
-        ` Go to ${transfers[index - 2]} station. You will switch lines at that station. `,
+        ` At ${transfers[index - 2].name}, switch to the ${transfers[index - 2].line} line and go in the ${transfers[index - 2].direction} direction. `,
       );
     }
 
     cy.nthPHasText(
       indexOfPOfDestinationStation,
-      ` Go to ${destinationStation} station. `,
+      ` Stop at ${destinationStation}. `,
     );
   },
 );
