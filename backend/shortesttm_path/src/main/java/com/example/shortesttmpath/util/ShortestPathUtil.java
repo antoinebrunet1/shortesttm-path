@@ -203,13 +203,12 @@ public class ShortestPathUtil {
   private static NonEndingStationInPathBean getStartingStationObject(String startingStation,
                                                                      List<String> allStations) {
     String direction = getDirectionOfStartingStation(allStations);
-    NonEndingStationInPathBean startingStationObject = new NonEndingStationInPathBean(
+
+    return new NonEndingStationInPathBean(
         startingStation,
         getLines(direction).getFirst(),
-        direction
+        getDirectionOfStartingStation(allStations)
     );
-
-    return startingStationObject;
   }
 
   private static List<String> getStationsToSwitchLines(List<String> allStations,
