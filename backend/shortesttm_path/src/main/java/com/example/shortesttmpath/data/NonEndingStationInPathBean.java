@@ -25,7 +25,7 @@ public class NonEndingStationInPathBean {
     if (!(o instanceof NonEndingStationInPathBean that)) {
       return false;
     }
-    return Objects.equals(name, that.name) && Objects.equals(line, that.line) &&
-        Objects.equals(direction, that.direction);
+    return Objects.equals(name, that.name) && Objects.equals(line, that.line)
+        && Objects.equals(direction, that.direction);
   }
 }

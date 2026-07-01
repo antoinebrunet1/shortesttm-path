@@ -1,6 +1,8 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.InvalidLineException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import org.junit.jupiter.api.Test;
@@ -17,9 +19,17 @@ public class ShortestPathUtilTest {
         String inputDestinationStation = "Charlevoix";
         ShortestPathBean actualPath = ShortestPathUtil.getShortestPath(inputStartingStation, inputDestinationStation);
         ShortestPathBean expectedPath = new ShortestPathBean(
-                inputStartingStation,
+                new NonEndingStationInPathBean(
+                    inputStartingStation,
+                    "ORANGE",
+                    "Côte-Vertu"
+                ),
                 inputDestinationStation,
-                List.of("Lionel-Groulx"));
+            List.of(new NonEndingStationInPathBean(
+                "Lionel-Groulx",
+                "GREEN",
+                "Angrignon"
+            )));
 
         assertEquals(expectedPath, actualPath);
     }
