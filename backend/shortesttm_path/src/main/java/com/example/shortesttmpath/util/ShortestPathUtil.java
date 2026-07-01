@@ -94,30 +94,6 @@ public class ShortestPathUtil {
     return allStationsInAlphabeticalOrder;
   }
 
-  /**
-   * Returns all the stations for a metro line.
-   *
-   * @param line The metro line.
-   * @return All the stations for the metro line.
-   */
-  public static List<String> getAllStations(String line) {
-    List<Line> values = Arrays.stream(Line.values()).toList();
-    List<String> stringValues = values.stream().map(Enum::toString).toList();
-
-    if (!stringValues.contains(line)) {
-      throw new InvalidLineException();
-    }
-
-    Line enumLine = Line.valueOf(line);
-
-    return switch (enumLine) {
-      case Line.BLUE -> BLUE_LINE_STATIONS;
-      case Line.GREEN -> GREEN_LINE_STATIONS;
-      case Line.ORANGE -> ORANGE_LINE_STATIONS;
-      default -> YELLOW_LINE_STATIONS;
-    };
-  }
-
   private static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
       throws IOException {
     Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();

@@ -29,9 +29,4 @@ public class ShortestPathUtilTest {
         assertThrows(StationsOnSameLineException.class, () ->
             ShortestPathUtil.getShortestPath("McGill", "Viau"));
     }
-
-  @Test
-  public void getAllStationsWithInvalidLinenShouldThrowInvalidLineException() {
-    assertThrows(InvalidLineException.class, () -> ShortestPathUtil.getAllStations("PINK"));
-  }
 }
