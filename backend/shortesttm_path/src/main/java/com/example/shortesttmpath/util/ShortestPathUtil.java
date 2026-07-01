@@ -106,8 +106,6 @@ public class ShortestPathUtil {
     List<String> station1Lines = getLines(station1);
     List<String> station2Lines = getLines(station2);
     String lineOfDirection = getLineOfDirection(station1Lines, station2Lines);
-    List<String> directionsOfLineOfDirection =
-        LINES_TO_DIRECTIONS.get(Line.valueOf(lineOfDirection));
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
     int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
     int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
