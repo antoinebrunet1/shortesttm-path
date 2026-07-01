@@ -3,7 +3,6 @@ package com.example.shortesttmpath.util;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
-import com.example.shortesttmpath.exception.InvalidLineException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
