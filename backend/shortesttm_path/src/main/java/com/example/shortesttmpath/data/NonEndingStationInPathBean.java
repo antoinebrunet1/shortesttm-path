@@ -4,12 +4,21 @@ import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Represents any station in a shortest path that is not the destination station.
+ */
 @Data
 @AllArgsConstructor
 public class NonEndingStationInPathBean {
   String name;
   String line;
   String direction;
+
+  /**
+   * The default constructor.
+   */
+  public NonEndingStationInPathBean() {
+  }
 
   @Override
   public boolean equals(Object o) {
