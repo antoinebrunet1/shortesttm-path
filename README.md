@@ -80,7 +80,7 @@ There is a folder called `e2e_testing` at the root of this project. For the loca
 
 ##  💡 Backend algorithm overview 💡
 
-I get the shortest path as a list of stations using an algorithm called for weighted directed graphs I found at https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466.
+I get the shortest path as a list of stations using an algorithm for directed weighted graphs I found at https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466.
 
 This algorithm is using integers. I just map the stations names to integers to find the path and after that I map the integers back to stations names.
 
