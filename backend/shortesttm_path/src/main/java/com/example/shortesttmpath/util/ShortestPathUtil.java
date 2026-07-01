@@ -198,7 +198,7 @@ public class ShortestPathUtil {
 
   private static List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
       List<String> stationsToSwitchLines, List<String> allStations) {
-    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = new LinkedList<>();
+    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = new ArrayList<>();
 
     for (String station : stationsToSwitchLines) {
       NonEndingStationInPathBean stationObject = getStationObject(station, allStations);
