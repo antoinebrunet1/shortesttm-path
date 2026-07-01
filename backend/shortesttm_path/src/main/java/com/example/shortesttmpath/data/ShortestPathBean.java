@@ -18,9 +18,9 @@ public class ShortestPathBean {
   public ShortestPathBean() {
   }
 
-  NonEndingStationInPath startingStation;
+  NonEndingStationInPathBean startingStation;
   String destinationStation;
-  List<NonEndingStationInPath> stationsToSwitchLines;
+  List<NonEndingStationInPathBean> stationsToSwitchLines;
 
   @Override
   public boolean equals(Object o) {
