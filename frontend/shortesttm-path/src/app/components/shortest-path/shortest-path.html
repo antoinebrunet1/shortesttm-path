@@ -1,10 +1,10 @@
 @if (shortestPath) {
   <p>
-    Start at <strong>{{ shortestPath.startingStation }}</strong> station.
+    Start at <strong>{{ shortestPath.startingStation.name }}</strong> station.
   </p>
   @for (station of shortestPath.stationsToSwitchLines; track station) {
     <p>
-      Go to <strong>{{ station }}</strong> station. You will switch lines at that station.
+      Go to <strong>{{ station.name }}</strong> station. You will switch lines at that station.
     </p>
   }
   <p>
