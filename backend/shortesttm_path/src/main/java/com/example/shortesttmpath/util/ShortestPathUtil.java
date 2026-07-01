@@ -97,13 +97,6 @@ public class ShortestPathUtil {
     return allStationsInAlphabeticalOrder;
   }
 
-  private static String getDirectionOfStartingStation(List<String> allStations) {
-    String station1 = allStations.getFirst();
-    String station2 = allStations.get(1);
-
-    return getDirectionOfStation(station1, station2);
-  }
-
   private static String getDirectionOfStation(String station1, String station2) {
     List<String> station1Lines = getLines(station1);
     List<String> station2Lines = getLines(station2);
