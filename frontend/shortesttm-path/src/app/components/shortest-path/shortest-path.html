@@ -6,7 +6,9 @@
   </p>
   @for (station of shortestPath.stationsToSwitchLines; track station) {
     <p>
-      Go to <strong>{{ station.name }}</strong> station. You will switch lines at that station.
+      At <strong>{{ station.name }}</strong
+      >, switch to the <strong>{{ station.line | lowercase }} line</strong> and go in the
+      <strong>{{ station.direction }} direction</strong>.
     </p>
   }
   <p>
