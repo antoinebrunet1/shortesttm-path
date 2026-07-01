@@ -28,6 +28,23 @@ describe("Home page tests", () => {
   });
 
   it("twoTansfers", () => {
-    cy.happyPathTest("Outremont", ["Snowdon", "Lionel-Groulx"], "Angrignon");
+    startingStation = {
+      name: "Acadie",
+      line: "blue",
+      direction: "Snowdon",
+    };
+    transfers = [
+      {
+        name: "Snowdon",
+        line: "orange",
+        direction: "Montmorency",
+      },
+      {
+        name: "Lionel-Groulx",
+        line: "green",
+        direction: "Angrignon",
+      },
+    ];
+    cy.happyPathTest(startingStation, transfers, "Angrignon");
   });
 });
