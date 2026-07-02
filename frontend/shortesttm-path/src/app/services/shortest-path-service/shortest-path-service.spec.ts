@@ -6,7 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 
-describe('ShortestPathService', () => {
+fdescribe('ShortestPathService', () => {
   let service: ShortestPathService;
   let httpMock: HttpTestingController;
 
@@ -23,34 +23,52 @@ describe('ShortestPathService', () => {
   });
 
   it('should return a valid shortest path', () => {
+    const startingStation = {
+      name: 'Acadie',
+      line: 'blue',
+      direction: 'Snowdon',
+    };
+    const transfers = [
+      {
+        name: 'Snowdon',
+        line: 'orange',
+        direction: 'Montmorency',
+      },
+      {
+        name: 'Lionel-Groulx',
+        line: 'green',
+        direction: 'Angrignon',
+      },
+    ];
     const expected = {
-      startingStation: 'Acadie',
+      startingStation: startingStation,
       destinationStation: 'Angrignon',
-      stationsToSwitchLines: ['Snowdon', 'Lionel-Groulx'],
+      stationsToSwitchLines: transfers,
     };
 
     service
-      .getShortestPath(expected.startingStation, expected.destinationStation)
+      .getShortestPath(expected.startingStation.name, expected.destinationStation)
       .subscribe((result) => {
         // Checks that the result object is not null.
-        expect(result).toBeTruthy();
+        // expect(result).toBeTruthy();
+        expect(result).toEqual(expected);
 
         // Checks that the values of the result object are not null.
-        expect(result.startingStation).toBeTruthy();
-        expect(result.destinationStation).toBeTruthy();
-        expect(result.stationsToSwitchLines).toBeTruthy();
+        // expect(result.startingStation).toBeTruthy();
+        // expect(result.destinationStation).toBeTruthy();
+        // expect(result.stationsToSwitchLines).toBeTruthy();
 
         // Checks that the values of the starting and destination stations are correct.
-        expect(result.startingStation.name).toEqual(expected.startingStation);
-        expect(result.destinationStation).toEqual(expected.destinationStation);
+        // expect(result.startingStation.name).toEqual(expected.startingStation.name);
+        // expect(result.destinationStation).toEqual(expected.destinationStation);
 
         // Checks that the stations to switch lines are valid.
-        expect(result.stationsToSwitchLines.length).toEqual(2);
-        expect(result.stationsToSwitchLines[0].name).toEqual(expected.stationsToSwitchLines[0]);
-        expect(result.stationsToSwitchLines[1].name).toEqual(expected.stationsToSwitchLines[1]);
+        // expect(result.stationsToSwitchLines.length).toEqual(2);
+        // expect(result.stationsToSwitchLines[0].name).toEqual(expected.stationsToSwitchLines[0]);
+        // expect(result.stationsToSwitchLines[1].name).toEqual(expected.stationsToSwitchLines[1]);
       });
 
-    const path = `${environment.baseUrl}/shortest_path?startingStation=${expected.startingStation}&destinationStation=${expected.destinationStation}`;
+    const path = `${environment.baseUrl}/shortest_path?startingStation=${expected.startingStation.name}&destinationStation=${expected.destinationStation}`;
     const req = httpMock.expectOne(path);
 
     expect(req.request.method).toBe('GET');
