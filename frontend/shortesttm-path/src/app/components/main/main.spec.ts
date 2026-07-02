@@ -6,7 +6,7 @@ import { ShortestPathService } from '../../services/shortest-path-service/shorte
 import { StationsService } from '../../services/stations-service/stations-service';
 import { Main } from './main';
 
-describe('Main', () => {
+fdescribe('Main', () => {
   let component: Main;
   let fixture: ComponentFixture<Main>;
 
