@@ -41,13 +41,13 @@ fdescribe('ShortestPathService', () => {
         expect(result.stationsToSwitchLines).toBeTruthy();
 
         // Checks that the values of the starting and destination stations are correct.
-        expect(result.startingStation).toEqual(expected.startingStation);
+        expect(result.startingStation.name).toEqual(expected.startingStation);
         expect(result.destinationStation).toEqual(expected.destinationStation);
 
         // Checks that the stations to switch lines are valid.
         expect(result.stationsToSwitchLines.length).toEqual(2);
-        expect(result.stationsToSwitchLines[0]).toEqual(expected.stationsToSwitchLines[0]);
-        expect(result.stationsToSwitchLines[1]).toEqual(expected.stationsToSwitchLines[1]);
+        expect(result.stationsToSwitchLines[0].name).toEqual(expected.stationsToSwitchLines[0]);
+        expect(result.stationsToSwitchLines[1].name).toEqual(expected.stationsToSwitchLines[1]);
       });
 
     const path = `${environment.baseUrl}/shortest_path?startingStation=${expected.startingStation}&destinationStation=${expected.destinationStation}`;
