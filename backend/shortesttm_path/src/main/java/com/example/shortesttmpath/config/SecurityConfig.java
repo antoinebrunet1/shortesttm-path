@@ -36,7 +36,6 @@ public class SecurityConfig {
         .authorizeHttpRequests(
             authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
                 .requestMatchers(
-                    HttpMethod.HEAD,
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
                     "/swagger-ui.html"
