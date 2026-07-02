@@ -5,7 +5,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { environment } from '../../../environments/environment';
 import { StationsService } from './stations-service';
 
-fdescribe('StationsService', () => {
+describe('StationsService', () => {
   let service: StationsService;
   let httpMock: HttpTestingController;
 

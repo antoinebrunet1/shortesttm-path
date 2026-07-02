@@ -6,7 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment';
 
-fdescribe('ShortestPathService', () => {
+describe('ShortestPathService', () => {
   let service: ShortestPathService;
   let httpMock: HttpTestingController;
 

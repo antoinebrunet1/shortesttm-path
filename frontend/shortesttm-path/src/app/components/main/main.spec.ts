@@ -72,7 +72,7 @@ fdescribe('Main', () => {
     calculateButton.triggerEventHandler('click');
     fixture.detectChanges();
     const expectedPath =
-      ' Start at Acadie station.  Go to Snowdon station. You will switch lines at that station.  Go to Lionel-Groulx station. You will switch lines at that station.  Go to Angrignon station. ';
+      ' Start at Acadie and go in the Snowdon direction on the blue line.  At Snowdon, switch to the orange line and go in the Montmorency direction.  At Lionel-Groulx, switch to the green line and go in the Angrignon direction.  Stop at Angrignon. ';
     expect(fixture.debugElement.query(By.css('app-shortest-path')).nativeNode.textContent).toBe(
       expectedPath,
     );
