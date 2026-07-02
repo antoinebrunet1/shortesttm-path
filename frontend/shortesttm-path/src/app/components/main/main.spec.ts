@@ -18,12 +18,29 @@ fdescribe('Main', () => {
       return of(['Acadie', 'Angrignon']);
     });
     const shortestPathServiceSpy = jasmine.createSpyObj<ShortestPathService>(['getShortestPath']);
+    const startingStationReturned = {
+      name: 'Acadie',
+      line: 'blue',
+      direction: 'Snowdon',
+    };
+    const transfers = [
+      {
+        name: 'Snowdon',
+        line: 'orange',
+        direction: 'Montmorency',
+      },
+      {
+        name: 'Lionel-Groulx',
+        line: 'green',
+        direction: 'Angrignon',
+      },
+    ];
     shortestPathServiceSpy.getShortestPath.and.callFake(
       function (startingStation, destinationStation) {
         return of({
-          startingStation: 'Acadie',
+          startingStation: startingStationReturned,
           destinationStation: 'Angrignon',
-          stationsToSwitchLines: ['Snowdon', 'Lionel-Groulx'],
+          stationsToSwitchLines: transfers,
         });
       },
     );
