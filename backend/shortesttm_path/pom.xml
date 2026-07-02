@@ -149,6 +149,7 @@
                                         <exclude>*LinesController</exclude>
                                         <exclude>*StationsController</exclude>
                                         <exclude>*NonEndingStationInPathBean</exclude>
+                                        <exclude>*UptimeController</exclude>
 									</excludes>
 									<limits>
 										<limit>
