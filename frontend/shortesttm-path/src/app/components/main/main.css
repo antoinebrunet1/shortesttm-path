@@ -8,31 +8,24 @@ mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
 }
 
 mat-divider {
   width: 100%;
-  margin-top: 6px;
-  margin-bottom: 20px;
 }
 
 #stations-div {
   display: flex;
-  column-gap: 20px;
-  row-gap: -12px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 mat-error,
 app-shortest-path {
-  margin-top: 20px;
 }
 
 img {
   width: 40px;
-  margin-top: 20px;
 }
 
 p {

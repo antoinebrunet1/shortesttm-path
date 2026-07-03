@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-  margin: 20px;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+h1 {
+  margin: 0px -18.76px;
+}
+
+p {
+  margin: 0px -14px;
+}
+
+app-station {
+  margin-bottom: -20px;
 }
