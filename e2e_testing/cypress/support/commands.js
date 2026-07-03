@@ -28,10 +28,6 @@ Cypress.Commands.add("getElementByDataTestid", (dataTestid) => {
   cy.get(`[data-test-id="${dataTestid}"]`);
 });
 
-Cypress.Commands.add("clickMatSelect", (index) => {
-  cy.clickGottenElement(cy.get("mat-select").eq(index));
-});
-
 Cypress.Commands.add("clickElementThatContains", (text) => {
   cy.clickGottenElement(cy.contains(text));
 });
@@ -56,11 +52,17 @@ Cypress.Commands.add(
     cy.contains("Acadie").should("be.visible");
 
     if (startingStation.name !== "Acadie") {
-      cy.clickMatSelect(0);
+      const matSelectStartingStation = cy.getElementByDataTestid(
+        "mat-select-starting-station",
+      );
+      cy.clickGottenElement(matSelectStartingStation);
       cy.clickElementThatContains(startingStation.name);
     }
 
-    cy.clickMatSelect(1);
+    const matSelectStartingStation = cy.getElementByDataTestid(
+      "mat-select-destination-station",
+    );
+    cy.clickGottenElement(matSelectStartingStation);
     cy.clickElementThatContains(destinationStation);
     cy.clickFromHtmlTag("button");
     cy.nthPHasText(
