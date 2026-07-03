@@ -48,7 +48,11 @@ app-shortest-path {
   flex-direction: column;
   align-items: center;
   row-gap: 20px;
-  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #005cbb;
+  width: 100vw;
+  color: white;
 }
 
 img {
