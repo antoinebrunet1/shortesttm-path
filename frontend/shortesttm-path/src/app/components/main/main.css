@@ -7,6 +7,14 @@
   row-gap: 20px;
 }
 
+#header-div {
+  background-color: #005cbb;
+  color: white;
+  padding-bottom: 20px;
+  width: 100vw;
+  text-align: center;
+}
+
 mat-card {
   display: flex;
   flex-direction: column;
