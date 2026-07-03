@@ -78,6 +78,8 @@ The Spring Boot backend API is documented using Swagger. The documentation can b
 
 There is a folder called `e2e_testing` at the root of this project. For the local setup, I suggest having a look to this YouTube tutorial: https://youtu.be/u8vMu7viCm8?si=WsX5De56Bry3kdfh.
 
+I locate all elements using the `data-testid` attribute, which is a Cypress best practice.
+
 ##  💡 Backend algorithm overview 💡
 
 I get the shortest path as a list of stations using an algorithm for directed weighted graphs I found at https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466.
