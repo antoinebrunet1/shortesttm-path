@@ -29,7 +29,9 @@
       <strong><mat-error>Provided stations are on the same line</mat-error></strong>
     }
 
-    <app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
+    @if (pathReturned) {
+      <app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
+    }
   </mat-card>
 
   <a href="https://github.com/antoinebrunet1/shortesttm-path" target="_blank"

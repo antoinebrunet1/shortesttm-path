@@ -35,6 +35,7 @@ export class Main {
   destinationStation: string;
   shortestPath$: Observable<ShortestPathInterface> = EMPTY;
   gotOnSameLineError: boolean = false;
+  pathReturned: boolean = false;
 
   constructor(
     private stationsService: StationsService,
@@ -59,6 +60,8 @@ export class Main {
       .getShortestPath(this.startingStation, this.destinationStation)
       .pipe(
         catchError((err) => {
+          this.pathReturned = false;
+
           if (err.status === 400 && err.error === 'Provided stations are on the same line') {
             this.gotOnSameLineError = true;
           } else {
@@ -70,6 +73,7 @@ export class Main {
           return EMPTY;
         }),
         tap((data) => {
+          this.pathReturned = true;
           this.gotOnSameLineError = false;
 
           this.ref.detectChanges();
