@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatError } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { catchError, EMPTY, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ShortestPathService } from '../../services/shortest-path-service/shortest-path-service';
 import { StationsService } from '../../services/stations-service/stations-service';
 import { Instructions } from '../instructions/instructions';
@@ -33,7 +34,7 @@ export class Main {
   startingStation: string;
   destinationStation: string;
   shortestPath$: Observable<ShortestPathInterface> = EMPTY;
-  errorMessage: string | null = null;
+  gotOnSameLineError: boolean = false;
 
   constructor(
     private stationsService: StationsService,
@@ -58,18 +59,21 @@ export class Main {
       .getShortestPath(this.startingStation, this.destinationStation)
       .pipe(
         catchError((err) => {
-          this.errorMessage =
-            err.status === 400 && err.error === 'Provided stations are on the same line'
-              ? 'Provided stations are on the same line'
-              : null;
+          if (err.status === 400 && err.error === 'Provided stations are on the same line') {
+            this.gotOnSameLineError = true;
+          } else {
+            this.gotOnSameLineError = false;
+          }
 
           this.ref.detectChanges();
 
           return EMPTY;
         }),
-      );
+        tap((data) => {
+          this.gotOnSameLineError = false;
 
-    this.errorMessage = null;
-    this.ref.detectChanges();
+          this.ref.detectChanges();
+        }),
+      );
   }
 }
