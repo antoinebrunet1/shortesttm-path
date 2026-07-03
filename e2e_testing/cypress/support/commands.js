@@ -36,10 +36,6 @@ Cypress.Commands.add("elementHasTextByDataTestid", (dataTestid, text) => {
   cy.getByDataTestid(dataTestid).should("have.text", text);
 });
 
-Cypress.Commands.add("clickMatSelect", (index) => {
-  cy.clickGottenElement(cy.get("mat-select").eq(index));
-});
-
 Cypress.Commands.add("clickElementThatContains", (text) => {
   cy.clickGottenElement(cy.contains(text));
 });
@@ -48,14 +44,6 @@ Cypress.Commands.add("clickGottenElement", (gottenElement) => {
   gottenElement.then((element) => {
     cy.wrap(element).click();
   });
-});
-
-Cypress.Commands.add("clickFromHtmlTag", (htmlTag) => {
-  cy.clickGottenElement(cy.get(htmlTag));
-});
-
-Cypress.Commands.add("nthPHasText", (index, text) => {
-  cy.get("p").eq(index).should("have.text", text);
 });
 
 Cypress.Commands.add(
