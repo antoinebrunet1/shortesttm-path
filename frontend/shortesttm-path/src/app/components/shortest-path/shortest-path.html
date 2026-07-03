@@ -1,5 +1,5 @@
 @if (shortestPath) {
-  <p>
+  <p data-testid="starting-station-p">
     Start at <strong>{{ shortestPath.startingStation.name }}</strong> and go in the
     <strong>{{ shortestPath.startingStation.direction }} direction</strong> on the
     <strong>{{ shortestPath.startingStation.line | lowercase }} line</strong>
