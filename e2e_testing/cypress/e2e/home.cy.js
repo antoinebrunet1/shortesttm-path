@@ -4,8 +4,8 @@ describe("Home page tests", () => {
   });
 
   it("sameMetroLine", () => {
-    cy.clickFromHtmlTag("button");
-    cy.get("mat-error").should(
+    cy.clickFromDataTestid("find-button");
+    cy.getByDataTestid("mat-error").should(
       "have.text",
       "Provided stations are on the same line",
     );
