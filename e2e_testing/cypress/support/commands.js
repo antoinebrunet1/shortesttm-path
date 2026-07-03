@@ -69,7 +69,7 @@ Cypress.Commands.add(
     cy.clickFromHtmlTag("button");
     cy.nthPHasText(
       2,
-      ` Start at ${startingStation.name} and go in the ${startingStation.direction} direction on the ${startingStation.line} line. `,
+      ` Start at ${startingStation.name} and go in the ${startingStation.direction} direction on the ${startingStation.line} line `,
     );
 
     const indexOfPOfDestinationStation = transfers.length + 3;
@@ -77,13 +77,13 @@ Cypress.Commands.add(
     for (let index = 3; index < 3 + transfers.length; index++) {
       cy.nthPHasText(
         index,
-        ` At ${transfers[index - 3].name}, switch to the ${transfers[index - 3].line} line and go in the ${transfers[index - 3].direction} direction. `,
+        ` At ${transfers[index - 3].name}, switch to the ${transfers[index - 3].line} line and go in the ${transfers[index - 3].direction} direction `,
       );
     }
 
     cy.nthPHasText(
       indexOfPOfDestinationStation,
-      ` Stop at ${destinationStation}. `,
+      ` Stop at ${destinationStation} `,
     );
   },
 );
