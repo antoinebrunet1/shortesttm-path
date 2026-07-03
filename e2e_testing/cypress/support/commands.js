@@ -60,16 +60,16 @@ Cypress.Commands.add(
     cy.clickElementThatContains(destinationStation);
     cy.clickFromHtmlTag("button");
     cy.nthPHasText(
-      1,
+      2,
       ` Start at ${startingStation.name} and go in the ${startingStation.direction} direction on the ${startingStation.line} line. `,
     );
 
-    const indexOfPOfDestinationStation = 1 + transfers.length + 1;
+    const indexOfPOfDestinationStation = transfers.length + 3;
 
-    for (let index = 2; index < 2 + transfers.length; index++) {
+    for (let index = 3; index < 3 + transfers.length; index++) {
       cy.nthPHasText(
         index,
-        ` At ${transfers[index - 2].name}, switch to the ${transfers[index - 2].line} line and go in the ${transfers[index - 2].direction} direction. `,
+        ` At ${transfers[index - 3].name}, switch to the ${transfers[index - 3].line} line and go in the ${transfers[index - 3].direction} direction. `,
       );
     }
 
