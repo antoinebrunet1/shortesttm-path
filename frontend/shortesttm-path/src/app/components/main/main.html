@@ -28,7 +28,11 @@
     </button>
 
     @if (gotOnSameLineError) {
-      <strong><mat-error>The stations are on the same metro line</mat-error></strong>
+      <strong
+        ><mat-error data-testid="error-message"
+          >The stations are on the same metro line</mat-error
+        ></strong
+      >
     }
 
     <app-shortest-path
