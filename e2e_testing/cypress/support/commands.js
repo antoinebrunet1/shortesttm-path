@@ -32,6 +32,10 @@ Cypress.Commands.add("getByDataTestid", (dataTestid) => {
   cy.get([`data-testid="${dataTestid}"`]);
 });
 
+Cypress.Commands.add("elementHasTextByDataTestid", (dataTestid, text) => {
+  cy.getByDataTestid(dataTestid).should("have.text", text);
+});
+
 Cypress.Commands.add("clickMatSelect", (index) => {
   cy.clickGottenElement(cy.get("mat-select").eq(index));
 });
@@ -60,29 +64,27 @@ Cypress.Commands.add(
     cy.contains("Acadie").should("be.visible");
 
     if (startingStation.name !== "Acadie") {
-      cy.clickMatSelect(0);
+      cy.clickFromDataTestid("starting-station-mat-select");
       cy.clickElementThatContains(startingStation.name);
     }
 
-    cy.clickMatSelect(1);
+    cy.clickFromDataTestid("destination-station-mat-select");
     cy.clickElementThatContains(destinationStation);
-    cy.clickFromHtmlTag("button");
-    cy.nthPHasText(
-      2,
+    cy.clickFromDataTestid("find-button");
+    cy.elementHasTextByDataTestid(
+      "starting-station-p",
       ` Start at ${startingStation.name} and go in the ${startingStation.direction} direction on the ${startingStation.line} line `,
     );
 
-    const indexOfPOfDestinationStation = transfers.length + 3;
-
-    for (let index = 3; index < 3 + transfers.length; index++) {
-      cy.nthPHasText(
-        index,
+    for (let index = 0; index < transfers.length; index++) {
+      cy.elementHasTextByDataTestid(
+        `transfer-${index}`,
         ` At ${transfers[index - 3].name}, switch to the ${transfers[index - 3].line} line and go in the ${transfers[index - 3].direction} direction `,
       );
     }
 
-    cy.nthPHasText(
-      indexOfPOfDestinationStation,
+    cy.elementHasTextByDataTestid(
+      "destination-station-p",
       ` Stop at ${destinationStation} `,
     );
   },
