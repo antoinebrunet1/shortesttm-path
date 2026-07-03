@@ -29,7 +29,7 @@ Cypress.Commands.add("clickFromDataTestid", (dataTestid) => {
 });
 
 Cypress.Commands.add("getByDataTestid", (dataTestid) => {
-  cy.get([`data-testid="${dataTestid}"`]);
+  cy.get(`[data-testid="${dataTestid}"]`);
 });
 
 Cypress.Commands.add("elementHasTextByDataTestid", (dataTestid, text) => {
@@ -61,19 +61,19 @@ Cypress.Commands.add(
     cy.clickFromDataTestid("find-button");
     cy.elementHasTextByDataTestid(
       "starting-station-p",
-      ` Start at ${startingStation.name} and go in the ${startingStation.direction} direction on the ${startingStation.line} line `,
+      ` Start at ${startingStation.name} and go in the ${startingStation.direction} direction on the ${startingStation.line} line`,
     );
 
     for (let index = 0; index < transfers.length; index++) {
       cy.elementHasTextByDataTestid(
         `transfer-${index}`,
-        ` At ${transfers[index].name}, switch to the ${transfers[index].line} line and go in the ${transfers[index].direction} direction `,
+        ` At ${transfers[index].name}, switch to the ${transfers[index].line} line and go in the ${transfers[index].direction} direction`,
       );
     }
 
     cy.elementHasTextByDataTestid(
       "destination-station-p",
-      ` Stop at ${destinationStation} `,
+      ` Stop at ${destinationStation}`,
     );
   },
 );

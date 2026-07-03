@@ -7,7 +7,7 @@ describe("Home page tests", () => {
     cy.clickFromDataTestid("find-button");
     cy.elementHasTextByDataTestid(
       "error-message",
-      "Provided stations are on the same line",
+      "The stations are on the same metro line",
     );
   });
 
