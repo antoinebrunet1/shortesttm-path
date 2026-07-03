@@ -24,7 +24,7 @@
     </button>
 
     @if (errorMessage) {
-      <mat-error>Provided stations are on the same line</mat-error>
+      <strong><mat-error>Provided stations are on the same line</mat-error></strong>
     }
 
     <app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
