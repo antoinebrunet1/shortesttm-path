@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgStyle } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,6 +25,7 @@ import { Station } from '../station/station';
     MatIconModule,
     MatCardModule,
     MatDividerModule,
+    NgStyle,
   ],
   templateUrl: './main.html',
   styleUrl: './main.css',
@@ -62,7 +63,7 @@ export class Main {
         catchError((err) => {
           this.pathReturned = false;
 
-          if (err.status === 400 && err.error === 'Provided stations are on the same line') {
+          if (err.status === 400) {
             this.gotOnSameLineError = true;
           } else {
             this.gotOnSameLineError = false;

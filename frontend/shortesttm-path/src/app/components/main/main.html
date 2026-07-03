@@ -29,9 +29,12 @@
       <strong><mat-error>Provided stations are on the same line</mat-error></strong>
     }
 
-    @if (pathReturned) {
-      <app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
-    }
+    <app-shortest-path
+      [ngStyle]="{
+        'margin-top': pathReturned ? '20px' : '0px',
+      }"
+      [shortestPath]="shortestPath$ | async"
+    ></app-shortest-path>
   </mat-card>
 
   <a href="https://github.com/antoinebrunet1/shortesttm-path" target="_blank"
