@@ -4,8 +4,8 @@
     <strong>{{ shortestPath.startingStation.direction }} direction</strong> on the
     <strong>{{ shortestPath.startingStation.line | lowercase }} line</strong>
   </p>
-  @for (station of shortestPath.stationsToSwitchLines; track station) {
-    <p>
+  @for (station of shortestPath.stationsToSwitchLines; track station; let idx = $index) {
+    <p [attr.data-testid]="`transfer-${idx}`">
       At <strong>{{ station.name }}</strong
       >, switch to the <strong>{{ station.line | lowercase }} line</strong> and go in the
       <strong>{{ station.direction }} direction</strong>
