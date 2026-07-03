@@ -57,6 +57,7 @@ public class SecurityConfig {
    *
    * @return The UrlBasedCorsConfigurationSource.
    */
+  @Profile("prod")
   @Bean
   UrlBasedCorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration configuration = new CorsConfiguration();
