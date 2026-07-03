@@ -67,7 +67,7 @@ Cypress.Commands.add(
     for (let index = 0; index < transfers.length; index++) {
       cy.elementHasTextByDataTestid(
         `transfer-${index}`,
-        ` At ${transfers[index - 3].name}, switch to the ${transfers[index - 3].line} line and go in the ${transfers[index - 3].direction} direction `,
+        ` At ${transfers[index].name}, switch to the ${transfers[index].line} line and go in the ${transfers[index].direction} direction `,
       );
     }
 
