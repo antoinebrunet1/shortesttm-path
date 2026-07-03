@@ -24,6 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+Cypress.Commands.add("getElementByDataTestid", (dataTestid) => {
+  cy.get(`[data-test-id="${dataTestid}"]`);
+});
+
 Cypress.Commands.add("clickMatSelect", (index) => {
   cy.clickGottenElement(cy.get("mat-select").eq(index));
 });
