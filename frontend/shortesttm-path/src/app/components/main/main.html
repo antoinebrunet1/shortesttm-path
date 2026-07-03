@@ -1,7 +1,7 @@
 <div id="main-div">
   <h1>ShortestTM Path</h1>
 
-  <div id="center-div">
+  <mat-card appearance="outlined">
     <app-instructions></app-instructions>
 
     <div id="stations-div">
@@ -28,7 +28,7 @@
     }
 
     <app-shortest-path [shortestPath]="shortestPath$ | async"></app-shortest-path>
-  </div>
+  </mat-card>
 
   <a href="https://github.com/antoinebrunet1/shortesttm-path" target="_blank"
     ><img

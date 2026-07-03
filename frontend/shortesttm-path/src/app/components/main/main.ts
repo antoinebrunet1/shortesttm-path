@@ -1,6 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatError } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { catchError, EMPTY, Observable } from 'rxjs';
@@ -20,6 +21,7 @@ import { Station } from '../station/station';
     MatButtonModule,
     MatError,
     MatIconModule,
+    MatCardModule,
   ],
   templateUrl: './main.html',
   styleUrl: './main.css',

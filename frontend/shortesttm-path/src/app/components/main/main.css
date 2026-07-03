@@ -6,7 +6,7 @@
   min-height: 100vh;
 }
 
-#center-div {
+mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
