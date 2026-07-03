@@ -5,7 +5,11 @@ body {
 }
 
 h1 {
-  margin: 0px -18.76px;
+  margin: 0px;
+}
+
+p {
+  margin: 0px;
 }
 
 app-station {
