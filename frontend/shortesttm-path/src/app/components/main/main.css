@@ -57,3 +57,7 @@ img {
 p {
   text-align: center;
 }
+
+mat-error {
+  margin-top: 20px;
+}
