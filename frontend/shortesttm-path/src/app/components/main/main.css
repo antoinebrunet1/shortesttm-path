@@ -4,13 +4,11 @@
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;
-  row-gap: 20px;
 }
 
 #header-div {
   background-color: #005cbb;
   color: white;
-  padding-bottom: 20px;
   width: 100vw;
   text-align: center;
 }
@@ -19,10 +17,6 @@ mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 20px;
-  padding: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
 }
 
 mat-divider {
@@ -33,31 +27,17 @@ mat-divider {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-}
-
-button {
-  margin-bottom: -20px;
-}
-
-mat-error {
-  margin-top: 20px;
-  margin-bottom: -20px;
 }
 
 app-shortest-path {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
 }
 
 #footer-div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
   background-color: #005cbb;
   width: 100vw;
   color: white;
