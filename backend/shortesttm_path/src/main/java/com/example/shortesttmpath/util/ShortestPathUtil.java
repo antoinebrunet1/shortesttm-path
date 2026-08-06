@@ -3,6 +3,7 @@ package com.example.shortesttmpath.util;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
+import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -171,6 +172,9 @@ public class ShortestPathUtil {
    */
   public static ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
+    if (!areInputStationsValid(startingStation, destinationStation)) {
+      throw new StationsNotValidException();
+    }
     if (areStationsOnTheSameLine(startingStation, destinationStation)) {
       throw new StationsOnSameLineException();
     }
@@ -320,6 +324,11 @@ public class ShortestPathUtil {
   private static boolean areStationsOnTheSameLine(String startingStation,
                                                   String destinationStation) {
     return !Collections.disjoint(getLines(startingStation), getLines(destinationStation));
+  }
+
+  private static boolean areInputStationsValid(String startingStation, String destinationStation) {
+    return STATIONS_NAMES_TO_INTS.containsKey(startingStation)
+        && STATIONS_NAMES_TO_INTS.containsKey(destinationStation);
   }
 
   private static List<String> getStationsToExclude(List<String> stationsToSwitchLines,
