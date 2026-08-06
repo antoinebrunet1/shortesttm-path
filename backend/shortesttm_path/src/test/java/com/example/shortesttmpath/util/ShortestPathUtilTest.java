@@ -3,6 +3,7 @@ package com.example.shortesttmpath.util;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
+import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import org.junit.jupiter.api.Test;
 
@@ -38,4 +39,22 @@ public class ShortestPathUtilTest {
         assertThrows(StationsOnSameLineException.class, () ->
             ShortestPathUtil.getShortestPath("McGill", "Viau"));
     }
+
+  @Test
+  public void getShortestPathInvalidStartingStationShouldThrowStationsNotValidException() {
+    assertThrows(StationsNotValidException.class, () ->
+        ShortestPathUtil.getShortestPath("MMcGill", "Viau"));
+  }
+
+  @Test
+  public void getShortestPathInvalidDestinationStationShouldThrowStationsNotValidException() {
+    assertThrows(StationsNotValidException.class, () ->
+        ShortestPathUtil.getShortestPath("McGill", "VViau"));
+  }
+
+  @Test
+  public void getShortestPathInvalidStationsShouldThrowStationsNotValidException() {
+    assertThrows(StationsNotValidException.class, () ->
+        ShortestPathUtil.getShortestPath("MMcGill", "VViau"));
+  }
 }
