@@ -30,6 +30,7 @@ public class ShortestPathController {
    * Returns a 400 bad request with an error message if the StationsOnSameLineException or
    * StationsNotValidExceptionexception was thrown.
    *
+   * @param runTimeException The exception that was thrown.
    * @return A 400 bad request with an error message.
    */
   @ExceptionHandler({StationsOnSameLineException.class, StationsNotValidException.class})
