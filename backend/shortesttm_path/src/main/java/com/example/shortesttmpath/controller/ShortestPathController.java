@@ -1,6 +1,7 @@
 package com.example.shortesttmpath.controller;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.util.ShortestPathUtil;
 import org.springframework.http.HttpHeaders;
@@ -26,15 +27,15 @@ public class ShortestPathController {
   }
 
   /**
-   * Returns a 400 bad request with an error message if the StationsOnSameLineException exception
-   * was thrown meaning that the two provided stations were on the same line. This includes the same
-   * station given twice and neighbor stations.
+   * Returns a 400 bad request with an error message if the StationsOnSameLineException or
+   * StationsNotValidExceptionexception was thrown.
    *
+   * @param runTimeException The exception that was thrown.
    * @return A 400 bad request with an error message.
    */
-  @ExceptionHandler(StationsOnSameLineException.class)
-  public ResponseEntity<String> handle() {
-    return ResponseEntity.badRequest().body("Provided stations are on the same line");
+  @ExceptionHandler({StationsOnSameLineException.class, StationsNotValidException.class})
+  public ResponseEntity<String> handle(RuntimeException runTimeException) {
+    return ResponseEntity.badRequest().body(runTimeException.getMessage());
   }
 
   /**
