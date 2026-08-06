@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.shortesttmpath.exception.StationsNotValidException;
 
 /**
  * The controller related with providing the shortest metro path (the one with the least stations)
@@ -26,15 +27,14 @@ public class ShortestPathController {
   }
 
   /**
-   * Returns a 400 bad request with an error message if the StationsOnSameLineException exception
-   * was thrown meaning that the two provided stations were on the same line. This includes the same
-   * station given twice and neighbor stations.
+   * Returns a 400 bad request with an error message if the StationsOnSameLineException or
+   * StationsNotValidExceptionexception was thrown.
    *
    * @return A 400 bad request with an error message.
    */
-  @ExceptionHandler(StationsOnSameLineException.class)
-  public ResponseEntity<String> handle() {
-    return ResponseEntity.badRequest().body("Provided stations are on the same line");
+  @ExceptionHandler({StationsOnSameLineException.class, StationsNotValidException.class})
+  public ResponseEntity<String> handle(RuntimeException runTimeException) {
+    return ResponseEntity.badRequest().body(runTimeException.getMessage());
   }
 
   /**
