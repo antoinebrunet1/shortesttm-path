@@ -91,7 +91,7 @@ public class Tests {
     Assert.assertEquals(statusCode, 400);
 
     String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = "Provided stations are invalid";
+    String expectedBodyAsString = "Provided stations are not valid";
 
     Assert.assertEquals(bodyAsString, expectedBodyAsString);
   }
