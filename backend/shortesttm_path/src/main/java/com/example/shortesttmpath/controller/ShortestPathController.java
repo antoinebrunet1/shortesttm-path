@@ -1,6 +1,7 @@
 package com.example.shortesttmpath.controller;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.util.ShortestPathUtil;
 import org.springframework.http.HttpHeaders;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.shortesttmpath.exception.StationsNotValidException;
 
 /**
  * The controller related with providing the shortest metro path (the one with the least stations)
