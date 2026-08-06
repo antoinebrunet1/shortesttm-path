@@ -271,3 +271,7 @@ The `main` branch is protected by a ruleset called "No deletions and force push 
 ## 🌐 Hosting 🌐
 
 The frontend and the backend API are hosted using Render. UptimeRobot is used to keep the backend API alive.
+
+## 🤖 PR-Agent 🤖
+
+This repository uses PR-Agent which is an AI agent that automatically reviews pull requests. It uses the Gemini 3.6 Flash AI model. PR-Agent is configured in `.github/workflows/pr_agent.yml`.
