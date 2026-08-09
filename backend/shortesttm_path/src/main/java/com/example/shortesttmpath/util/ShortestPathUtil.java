@@ -173,9 +173,9 @@ public class ShortestPathUtil {
                                                  String destinationStation) {
     validateStations(startingStation, destinationStation);
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
-    int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
+    int target = STATIONS_NAMES_TO_INTS.get(destinationStation);
     List<String> allStations =
-        DijkstraUtil.dijkstra(GRAPH, start, destination)
+        DijkstraUtil.dijkstra(GRAPH, start, target)
             .stream()
             .map(INTS_TO_STATIONS_NAMES::get)
             .toList();
