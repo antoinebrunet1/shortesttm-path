@@ -8,34 +8,34 @@ public class DijkstraUtilTest {
   /*
   Graph:
 
-  1-1-2
+  0-1-1
   \   |
    4  2
     \ |
-      3
+      2
    */
   @Test
   public void dijkstraReturnsCorrectPathThreeNodes() {
     List<int[]> node1 = List.of(
-        new int[] {2, 1},
-        new int[] {3, 4}
+        new int[] {1, 1},
+        new int[] {2, 4}
     );
     List<int[]> node2 = List.of(
-        new int[] {1, 1},
-        new int[] {3, 2}
+        new int[] {0, 1},
+        new int[] {2, 2}
     );
     List<int[]> node3 = List.of(
-        new int[] {2, 2},
-        new int[] {1, 4}
+        new int[] {1, 2},
+        new int[] {0, 4}
     );
     List<List<int[]>> graph = List.of(
         node1,
         node2,
         node3
     );
-    int start = 1;
-    int target = 3;
-    List<Integer> expectedResult = List.of(1, 2, 3);
+    int start = 0;
+    int target = 2;
+    List<Integer> expectedResult = List.of(0, 1, 2);
     List<Integer> actualResult = DijkstraUtil.dijkstra(graph, start, target);
 
     Assertions.assertEquals(expectedResult, actualResult);
