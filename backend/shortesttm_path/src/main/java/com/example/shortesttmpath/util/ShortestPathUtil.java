@@ -174,11 +174,7 @@ public class ShortestPathUtil {
     validateStations(startingStation, destinationStation);
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
     int target = STATIONS_NAMES_TO_INTS.get(destinationStation);
-    List<String> allStations =
-        DijkstraUtil.dijkstra(GRAPH, start, target)
-            .stream()
-            .map(INTS_TO_STATIONS_NAMES::get)
-            .toList();
+    List<String> allStations = getPathStations(start, target);
     ShortestPathBean shortestPath = new ShortestPathBean();
     shortestPath.setStartingStation(getStationObject(startingStation, allStations));
     shortestPath.setDestinationStation(destinationStation);
@@ -199,6 +195,13 @@ public class ShortestPathUtil {
     if (areStationsOnTheSameLine(startingStation, destinationStation)) {
       throw new StationsOnSameLineException();
     }
+  }
+
+  private static List<String> getPathStations(int start, int target) {
+    return DijkstraUtil.dijkstra(GRAPH, start, target)
+        .stream()
+        .map(INTS_TO_STATIONS_NAMES::get)
+        .toList();
   }
 
   private static List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
