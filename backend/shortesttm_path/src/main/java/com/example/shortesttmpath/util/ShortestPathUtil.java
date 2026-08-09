@@ -35,20 +35,6 @@ public class ShortestPathUtil {
   private  final Map<String, Integer> STATIONS_NAMES_TO_INTS;
   private  final Map<Integer, Map<Integer, Integer>>
       MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M;
-
-   {
-    try {
-      STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-    try {
-      MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
-
   private  final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
   private  final List<String> ALL_STATIONS_TO_SWITCH_LINES = Arrays.asList(
       "Berri-UQAM",
@@ -75,6 +61,8 @@ public class ShortestPathUtil {
   public ShortestPathUtil() throws IOException {
     fillStations();
     GRAPH = getGraph();
+    STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
+    MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
   }
 
   private void fillStations() throws IOException {
