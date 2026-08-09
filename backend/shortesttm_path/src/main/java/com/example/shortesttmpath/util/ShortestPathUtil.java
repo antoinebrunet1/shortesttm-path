@@ -74,6 +74,12 @@ public class ShortestPathUtil {
       Line.ORANGE, List.of(ORANGE_LINE_STATIONS.getFirst(), ORANGE_LINE_STATIONS.getLast()),
       Line.YELLOW, List.of(YELLOW_LINE_STATIONS.getFirst(), YELLOW_LINE_STATIONS.getLast())
   );
+  Map<Line, List<String>> LINES_TO_STATIONS = Map.of(
+      Line.BLUE, BLUE_LINE_STATIONS,
+      Line.GREEN, GREEN_LINE_STATIONS,
+      Line.ORANGE, ORANGE_LINE_STATIONS,
+      Line.YELLOW, YELLOW_LINE_STATIONS
+  );
 
   /**
    * The default constructor.
@@ -116,12 +122,7 @@ public class ShortestPathUtil {
   }
 
   private static List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
-    return switch (Line.valueOf(lineOfDirection)) {
-      case Line.BLUE -> BLUE_LINE_STATIONS;
-      case Line.GREEN -> GREEN_LINE_STATIONS;
-      case Line.ORANGE -> ORANGE_LINE_STATIONS;
-      default -> YELLOW_LINE_STATIONS;
-    };
+    return LINES_TO_DIRECTIONS.get(Line.valueOf(lineOfDirection));
   }
 
   private static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
