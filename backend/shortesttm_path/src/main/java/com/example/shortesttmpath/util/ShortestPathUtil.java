@@ -27,11 +27,15 @@ import org.springframework.core.io.ClassPathResource;
  * Util class to calculate the shortest metro path between two STM metro stations.
  */
 public class ShortestPathUtil {
-  private static final List<String> LINES_FILES_NAMES = Arrays.asList(
-      "blue_line_stations.txt",
-      "green_line_stations.txt",
-      "orange_line_stations.txt",
-      "yellow_line_stations.txt"
+  private static final List<String> BLUE_LINE_STATIONS = new ArrayList<>();
+  private static final List<String> GREEN_LINE_STATIONS = new ArrayList<>();
+  private static final List<String> ORANGE_LINE_STATIONS = new ArrayList<>();
+  private static final List<String> YELLOW_LINE_STATIONS = new ArrayList<>();
+  private static final Map<String, List<String>> LINE_FILE_NAME_TO_STATIONS = Map.of(
+      "blue_line_stations.txt", BLUE_LINE_STATIONS,
+      "green_line_stations.txt", GREEN_LINE_STATIONS,
+      "orange_line_stations.txt", ORANGE_LINE_STATIONS,
+      "yellow_line_stations.txt", YELLOW_LINE_STATIONS
   );
   private static final int NUMBER_OF_VERTICES = 68;
   private static final List<List<int[]>> GRAPH;
@@ -64,10 +68,6 @@ public class ShortestPathUtil {
       "Snowdon",
       "Jean-Talon"
   );
-  private static List<String> BLUE_LINE_STATIONS;
-  private static List<String> GREEN_LINE_STATIONS;
-  private static List<String> ORANGE_LINE_STATIONS;
-  private static List<String> YELLOW_LINE_STATIONS;
   private static final Map<Line, List<String>> LINES_TO_DIRECTIONS = Map.of(
       Line.BLUE, List.of(BLUE_LINE_STATIONS.getFirst(), BLUE_LINE_STATIONS.getLast()),
       Line.GREEN, List.of(GREEN_LINE_STATIONS.getFirst(), GREEN_LINE_STATIONS.getLast()),
@@ -305,7 +305,7 @@ public class ShortestPathUtil {
 
   private static Set<String> getUniqueStationsNames() throws IOException {
     Set<String> uniqueStationsNames = new LinkedHashSet<>();
-    for (String lineFileName : LINES_FILES_NAMES) {
+    for (String lineFileName : LINE_FILE_NAME_TO_STATIONS.keySet()) {
       addLineToUniqueStationsNames(uniqueStationsNames, lineFileName);
     }
     return uniqueStationsNames;
@@ -316,19 +316,8 @@ public class ShortestPathUtil {
     ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
     List<String> stations =
         new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
-    switch (lineFileName) {
-      case "blue_line_stations.txt":
-        BLUE_LINE_STATIONS = new ArrayList<>(stations);
-        break;
-      case "green_line_stations.txt":
-        GREEN_LINE_STATIONS = new ArrayList<>(stations);
-        break;
-      case "orange_line_stations.txt":
-        ORANGE_LINE_STATIONS = new ArrayList<>(stations);
-        break;
-      default:
-        YELLOW_LINE_STATIONS = new ArrayList<>(stations);
-    }
+
+    LINE_FILE_NAME_TO_STATIONS.get(lineFileName).addAll(stations);
     uniqueStationsNames.addAll(stations);
   }
 
