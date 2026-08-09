@@ -35,12 +35,8 @@ public class ShortestPathUtil {
       Line.ORANGE, orangeLineStations,
       Line.YELLOW, yellowLineStations
   );
-  private  final List<String> allStationsToSwitchLines = Arrays.asList(
-      "Berri-UQAM",
-      "Lionel-Groulx",
-      "Snowdon",
-      "Jean-Talon"
-  );
+  private  final List<String> allStationsToSwitchLines =
+      FileUtil.getLines("all_stations_to_switch_lines.txt");
   private  final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
   private  final Map<Integer, Map<Integer, Integer>>
       mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
