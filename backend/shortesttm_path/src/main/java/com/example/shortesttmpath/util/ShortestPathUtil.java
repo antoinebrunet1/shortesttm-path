@@ -281,11 +281,9 @@ public class ShortestPathUtil {
 
   private static Map<String, Integer> getStationsNamesToInts() throws IOException {
     Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
-    Set<String> uniqueStationsNames = getUniqueStationsNames();
-    int i = 0;
-    for (String stationName : uniqueStationsNames) {
-      stationNamesToInts.put(stationName, i);
-      i++;
+    List<String> uniqueStationsNames = new ArrayList<>(getUniqueStationsNames());
+    for (int i = 0; i < uniqueStationsNames.size(); i++) {
+      stationNamesToInts.put(uniqueStationsNames.get(i), i);
     }
     return stationNamesToInts;
   }
