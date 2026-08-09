@@ -261,18 +261,13 @@ public class ShortestPathUtil {
 
   private static List<String> getLines(String station) {
     List<String> lines = new ArrayList<>();
-    if (BLUE_LINE_STATIONS.contains(station)) {
-      lines.add("BLUE");
+
+    for (Line line : LINES_TO_STATIONS.keySet()) {
+      if (LINES_TO_STATIONS.get(line).contains(station)) {
+        lines.add(line.name());
+      }
     }
-    if (GREEN_LINE_STATIONS.contains(station)) {
-      lines.add("GREEN");
-    }
-    if (ORANGE_LINE_STATIONS.contains(station)) {
-      lines.add("ORANGE");
-    }
-    if (YELLOW_LINE_STATIONS.contains(station)) {
-      lines.add("YELLOW");
-    }
+
     return lines;
   }
 
