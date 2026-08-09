@@ -133,9 +133,10 @@ public class ShortestPathUtil {
   }
 
   /**
-   * Returns the shortest metro path between two STM metro stations. A StationsOnSameLineException
-   * exception is thrown if the two stations are on the same line. This includes the same station
-   * given twice and neighbor stations.
+   * Returns the shortest metro path between two STM metro stations. A StationsNotValidException
+   * exception is thrown if the name of at least one of the two stations is not valid. A
+   * StationsOnSameLineException exception is thrown if the two stations are on the same line. This
+   * includes the same station given twice and neighbor stations.
    *
    * @param startingStation    The starting station.
    * @param destinationStation The destination station.
