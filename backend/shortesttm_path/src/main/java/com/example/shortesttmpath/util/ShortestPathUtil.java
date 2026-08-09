@@ -24,19 +24,19 @@ import java.util.stream.Collectors;
  */
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
-  private  final Map<Line, List<String>> linesToStations = Map.of(
+  private final Map<Line, List<String>> linesToStations = Map.of(
       Line.BLUE, FileUtil.getLines("blue_line_stations.txt"),
       Line.GREEN, FileUtil.getLines("green_line_stations.txt"),
       Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
       Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
   );
-  private  final List<String> allStationsToSwitchLines =
+  private final List<String> allStationsToSwitchLines =
       FileUtil.getLines("all_stations_to_switch_lines.txt");
-  private  final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
-  private  final Map<Integer, Map<Integer, Integer>>
+  private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
+  private final Map<Integer, Map<Integer, Integer>>
       mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
-  private  final List<List<int[]>> graph = getGraph();
-  private  final Map<Integer, String> intsToStationsNames = getIntsToStationsNames();
+  private final List<List<int[]>> graph = getGraph();
+  private final Map<Integer, String> intsToStationsNames = getIntsToStationsNames();
 
   private ShortestPathUtil() throws IOException {
   }
@@ -60,7 +60,7 @@ public class ShortestPathUtil {
    *
    * @return All the stations in alphabetical order.
    */
-  public  List<String> getAllStationsInAlphabeticalOrder() {
+  public List<String> getAllStationsInAlphabeticalOrder() {
     List<String> allStationsInAlphabeticalOrder =
         new ArrayList<>(stationsNamesToInts.keySet().stream().toList());
     Collator collator = Collator.getInstance(Locale.FRENCH);
@@ -69,7 +69,7 @@ public class ShortestPathUtil {
     return allStationsInAlphabeticalOrder;
   }
 
-  private  String getDirectionOfStation(String station1, String station2) {
+  private String getDirectionOfStation(String station1, String station2) {
     List<String> station1Lines = getLines(station1);
     List<String> station2Lines = getLines(station2);
     String lineOfDirection = getLineOfDirection(station1Lines, station2Lines);
@@ -84,18 +84,18 @@ public class ShortestPathUtil {
         directions.getFirst();
   }
 
-  private  String getLineOfDirection(List<String> station1Lines, List<String> station2Lines) {
+  private String getLineOfDirection(List<String> station1Lines, List<String> station2Lines) {
     return station1Lines.stream()
         .distinct()
         .filter(station2Lines::contains)
         .collect(Collectors.toSet()).iterator().next();
   }
 
-  private  List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
+  private List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
     return linesToStations.get(Line.valueOf(lineOfDirection));
   }
 
-  private  Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
+  private Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
       throws IOException {
     Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();
     List<String> distancesLines = FileUtil.getLines("distances.txt");
@@ -107,7 +107,7 @@ public class ShortestPathUtil {
     return distancesMap;
   }
 
-  private  void addDistance(String distanceLine,
+  private void addDistance(String distanceLine,
                                   Map<Integer, Map<Integer, Integer>> distancesMap) {
     int station1 = stationsNamesToInts.get(distanceLine.split(" to ")[0]);
     int station2 = stationsNamesToInts.get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
@@ -117,7 +117,7 @@ public class ShortestPathUtil {
     addDistance(station2, station1, distance, distancesMap);
   }
 
-  private  void addDistance(int station1, int station2, int distance,
+  private void addDistance(int station1, int station2, int distance,
                                   Map<Integer, Map<Integer, Integer>> distancesMap) {
     if (distancesMap.containsKey(station1)) {
       distancesMap.get(station1).put(station2, distance);
@@ -138,7 +138,7 @@ public class ShortestPathUtil {
    * @param destinationStation The destination station.
    * @return The shortest metro path between two STM metro stations.
    */
-  public  ShortestPathBean getShortestPath(String startingStation,
+  public ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
     validateStations(startingStation, destinationStation);
     int start = stationsNamesToInts.get(startingStation);
@@ -148,7 +148,7 @@ public class ShortestPathUtil {
     return getShortestPathBean(startingStation, destinationStation, allStations);
   }
 
-  private  void validateStations(String startingStation, String destinationStation) {
+  private void validateStations(String startingStation, String destinationStation) {
     if (!areInputStationsValid(startingStation, destinationStation)) {
       throw new StationsNotValidException();
     }
@@ -157,14 +157,14 @@ public class ShortestPathUtil {
     }
   }
 
-  private  List<String> getPathStations(int start, int target) {
+  private List<String> getPathStations(int start, int target) {
     return DijkstraUtil.dijkstra(graph, start, target)
         .stream()
         .map(intsToStationsNames::get)
         .toList();
   }
 
-  private  ShortestPathBean getShortestPathBean(String startingStation,
+  private ShortestPathBean getShortestPathBean(String startingStation,
                                                       String destinationStation,
                                                       List<String> allStations) {
     ShortestPathBean shortestPath = new ShortestPathBean();
@@ -181,7 +181,7 @@ public class ShortestPathUtil {
     return shortestPath;
   }
 
-  private  List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
+  private List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
       List<String> stationsToSwitchLines, List<String> allStations) {
     List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = new ArrayList<>();
 
@@ -194,7 +194,7 @@ public class ShortestPathUtil {
     return stationsToSwitchLinesObjects;
   }
 
-  private  NonEndingStationInPathBean getStationObject(String station,
+  private NonEndingStationInPathBean getStationObject(String station,
                                                              List<String> allStations) {
     String nextStation = allStations.get(allStations.indexOf(station) + 1);
     String direction = getDirectionOfStation(station, nextStation);
@@ -203,7 +203,7 @@ public class ShortestPathUtil {
     return new NonEndingStationInPathBean(station, line, direction);
   }
 
-  private  List<String> getStationsToSwitchLines(List<String> allStations,
+  private List<String> getStationsToSwitchLines(List<String> allStations,
                                                        String startingStation,
                                                        String destinationStation) {
     List<String> stationsToSwitchLines = new LinkedList<>();
@@ -218,17 +218,17 @@ public class ShortestPathUtil {
     return stationsToSwitchLines;
   }
 
-  private  boolean areStationsOnTheSameLine(String startingStation,
+  private boolean areStationsOnTheSameLine(String startingStation,
                                                   String destinationStation) {
     return !Collections.disjoint(getLines(startingStation), getLines(destinationStation));
   }
 
-  private  boolean areInputStationsValid(String startingStation, String destinationStation) {
+  private boolean areInputStationsValid(String startingStation, String destinationStation) {
     return stationsNamesToInts.containsKey(startingStation)
         && stationsNamesToInts.containsKey(destinationStation);
   }
 
-  private  List<String> getStationsToExclude(List<String> stationsToSwitchLines,
+  private List<String> getStationsToExclude(List<String> stationsToSwitchLines,
                                                    List<String> allStations) {
     List<String> stationsToExclude = new ArrayList<>();
     for (String station : stationsToSwitchLines) {
@@ -243,7 +243,7 @@ public class ShortestPathUtil {
     return stationsToExclude;
   }
 
-  private  List<String> getLines(String station) {
+  private List<String> getLines(String station) {
     List<String> lines = new ArrayList<>();
 
     for (Line line : linesToStations.keySet()) {
@@ -255,7 +255,7 @@ public class ShortestPathUtil {
     return lines;
   }
 
-  private  Map<Integer, String> getIntsToStationsNames() {
+  private Map<Integer, String> getIntsToStationsNames() {
     Map<Integer, String> intsToStationsNames = new LinkedHashMap<>();
     for (String station : stationsNamesToInts.keySet()) {
       intsToStationsNames.put(stationsNamesToInts.get(station), station);
@@ -263,7 +263,7 @@ public class ShortestPathUtil {
     return intsToStationsNames;
   }
 
-  private  Map<String, Integer> getStationsNamesToInts() {
+  private Map<String, Integer> getStationsNamesToInts() {
     Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
     List<String> uniqueStationsNames = new ArrayList<>(getUniqueStationsNames());
     for (int i = 0; i < uniqueStationsNames.size(); i++) {
@@ -272,7 +272,7 @@ public class ShortestPathUtil {
     return stationNamesToInts;
   }
 
-  private  Set<String> getUniqueStationsNames() {
+  private Set<String> getUniqueStationsNames() {
     Set<String> uniqueStationsNames = new LinkedHashSet<>();
 
     for (Line line : linesToStations.keySet()) {
@@ -282,7 +282,7 @@ public class ShortestPathUtil {
     return uniqueStationsNames;
   }
 
-  private  List<List<int[]>> getGraph() {
+  private List<List<int[]>> getGraph() {
     int numberOfVertices = 68;
     List<List<int[]>> graph = new ArrayList<>(numberOfVertices);
     Set<Integer> sortedStations1 =
