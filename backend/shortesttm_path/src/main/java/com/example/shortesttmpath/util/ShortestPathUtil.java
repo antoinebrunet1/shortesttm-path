@@ -31,7 +31,6 @@ public class ShortestPathUtil {
   private  List<String> greenLineStations;
   private  List<String> orangeLineStations;
   private  List<String> yellowLineStations;
-  private  final int NUMBER_OF_VERTICES = 68;
   private  final List<List<int[]>> GRAPH;
   private  final Map<String, Integer> STATIONS_NAMES_TO_INTS;
   private  final Map<Integer, Map<Integer, Integer>>
@@ -321,7 +320,8 @@ public class ShortestPathUtil {
   }
 
   private  List<List<int[]>> getGraph() throws IOException {
-    List<List<int[]>> graph = new ArrayList<>(NUMBER_OF_VERTICES);
+    int numberOfVertices = 68;
+    List<List<int[]>> graph = new ArrayList<>(numberOfVertices);
     Set<Integer> sortedStations1 =
         new HashSet<>(MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M.keySet());
 
