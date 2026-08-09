@@ -47,11 +47,6 @@ public class ShortestPathUtil {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    try {
-      GRAPH = getGraph();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
   }
 
   private  final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
@@ -79,6 +74,7 @@ public class ShortestPathUtil {
    */
   public ShortestPathUtil() throws IOException {
     fillStations();
+    GRAPH = getGraph();
   }
 
   private void fillStations() throws IOException {
