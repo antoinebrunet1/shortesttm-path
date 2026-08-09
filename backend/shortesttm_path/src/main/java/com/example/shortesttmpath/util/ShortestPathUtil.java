@@ -171,12 +171,7 @@ public class ShortestPathUtil {
    */
   public static ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
-    if (!areInputStationsValid(startingStation, destinationStation)) {
-      throw new StationsNotValidException();
-    }
-    if (areStationsOnTheSameLine(startingStation, destinationStation)) {
-      throw new StationsOnSameLineException();
-    }
+    validateStations(startingStation, destinationStation);
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
     int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
     List<String> allStations =
@@ -195,6 +190,15 @@ public class ShortestPathUtil {
         stationsToSwitchLines, allStations);
     shortestPath.setStationsToSwitchLines(stationsToSwitchLinesObjects);
     return shortestPath;
+  }
+
+  private static void validateStations(String startingStation, String destinationStation) {
+    if (!areInputStationsValid(startingStation, destinationStation)) {
+      throw new StationsNotValidException();
+    }
+    if (areStationsOnTheSameLine(startingStation, destinationStation)) {
+      throw new StationsOnSameLineException();
+    }
   }
 
   private static List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
