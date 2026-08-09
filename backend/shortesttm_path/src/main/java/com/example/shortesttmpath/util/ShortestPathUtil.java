@@ -59,6 +59,12 @@ public class ShortestPathUtil {
     );
   }
 
+  /**
+   * The Singleton constructor.
+   *
+   * @return The Singleton.
+   * @throws IOException IOException.
+   */
   public static synchronized ShortestPathUtil getInstance() throws IOException {
     if (single_instance == null)
       single_instance = new ShortestPathUtil();

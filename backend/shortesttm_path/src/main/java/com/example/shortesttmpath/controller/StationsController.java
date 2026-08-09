@@ -26,6 +26,7 @@ public class StationsController {
    * Returns all the stations in alphabetical order.
    *
    * @return All the stations in alphabetical order.
+   * @throws IOException IOException.
    */
   @GetMapping("alphabetical-order")
   public ResponseEntity<List<String>> getAllStationsInAlphabeticalOrder() throws IOException {

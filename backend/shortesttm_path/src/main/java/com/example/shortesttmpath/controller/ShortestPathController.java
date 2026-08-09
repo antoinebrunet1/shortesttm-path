@@ -47,6 +47,7 @@ public class ShortestPathController {
    * @param destinationStation The destination station.
    * @return The shortest metro path (the one with the least stations) between two STM metro
    *     stations.
+   * @throws IOException IOException.
    */
   @GetMapping()
   public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
