@@ -32,26 +32,26 @@ public class ShortestPathUtil {
   private  List<String> greenLineStations;
   private  List<String> orangeLineStations;
   private  List<String> yellowLineStations;
-  private  final List<List<int[]>> GRAPH;
-  private  final Map<String, Integer> STATIONS_NAMES_TO_INTS;
+  private  final List<List<int[]>> graph;
+  private  final Map<String, Integer> stationsNamesToInts;
   private  final Map<Integer, Map<Integer, Integer>>
-      MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M;
-  private  final Map<Integer, String> INTS_TO_STATIONS_NAMES;
-  private  final List<String> ALL_STATIONS_TO_SWITCH_LINES = Arrays.asList(
+      mapSrcToMapDestinationToDistanceInM;
+  private  final Map<Integer, String> intsToStationsNames;
+  private  final List<String> allStationsToSwitchLines = Arrays.asList(
       "Berri-UQAM",
       "Lionel-Groulx",
       "Snowdon",
       "Jean-Talon"
   );
-  private  final Map<Line, List<String>> LINES_TO_STATIONS;
+  private  final Map<Line, List<String>> linesToStations;
 
   private ShortestPathUtil() throws IOException {
     fillStations();
-    GRAPH = getGraph();
-    STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
-    MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
-    INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
-    LINES_TO_STATIONS = Map.of(
+    graph = getGraph();
+    stationsNamesToInts = getStationsNamesToInts();
+    mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
+    intsToStationsNames = getIntsToStationsNames();
+    linesToStations = Map.of(
         Line.BLUE, blueLineStations,
         Line.GREEN, greenLineStations,
         Line.ORANGE, orangeLineStations,
@@ -66,8 +66,9 @@ public class ShortestPathUtil {
    * @throws IOException IOException.
    */
   public static synchronized ShortestPathUtil getInstance() throws IOException {
-    if (single_instance == null)
+    if (single_instance == null) {
       single_instance = new ShortestPathUtil();
+    }
 
     return single_instance;
   }
@@ -91,7 +92,7 @@ public class ShortestPathUtil {
    */
   public  List<String> getAllStationsInAlphabeticalOrder() {
     List<String> allStationsInAlphabeticalOrder =
-        new ArrayList<>(STATIONS_NAMES_TO_INTS.keySet().stream().toList());
+        new ArrayList<>(stationsNamesToInts.keySet().stream().toList());
     Collator collator = Collator.getInstance(Locale.FRENCH);
     allStationsInAlphabeticalOrder.sort(collator);
 
@@ -105,7 +106,7 @@ public class ShortestPathUtil {
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
     int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
     int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
-    List<String> stationsOfLineOfDirection = LINES_TO_STATIONS.get(Line.valueOf(lineOfDirection));
+    List<String> stationsOfLineOfDirection = linesToStations.get(Line.valueOf(lineOfDirection));
     List<String> directions = List.of(stationsOfLineOfDirection.getFirst(),
         stationsOfLineOfDirection.getLast());
 
@@ -121,7 +122,7 @@ public class ShortestPathUtil {
   }
 
   private  List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
-    return LINES_TO_STATIONS.get(Line.valueOf(lineOfDirection));
+    return linesToStations.get(Line.valueOf(lineOfDirection));
   }
 
   private  Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
@@ -140,8 +141,8 @@ public class ShortestPathUtil {
 
   private  void addDistance(String distanceLine,
                                   Map<Integer, Map<Integer, Integer>> distancesMap) {
-    int station1 = STATIONS_NAMES_TO_INTS.get(distanceLine.split(" to ")[0]);
-    int station2 = STATIONS_NAMES_TO_INTS.get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
+    int station1 = stationsNamesToInts.get(distanceLine.split(" to ")[0]);
+    int station2 = stationsNamesToInts.get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
     int distance = Integer.parseInt(distanceLine.split(" to ")[1].split("\\s:\\s")[1]);
 
     addDistance(station1, station2, distance, distancesMap);
@@ -171,8 +172,8 @@ public class ShortestPathUtil {
   public  ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
     validateStations(startingStation, destinationStation);
-    int start = STATIONS_NAMES_TO_INTS.get(startingStation);
-    int target = STATIONS_NAMES_TO_INTS.get(destinationStation);
+    int start = stationsNamesToInts.get(startingStation);
+    int target = stationsNamesToInts.get(destinationStation);
     List<String> allStations = getPathStations(start, target);
 
     return getShortestPathBean(startingStation, destinationStation, allStations);
@@ -188,9 +189,9 @@ public class ShortestPathUtil {
   }
 
   private  List<String> getPathStations(int start, int target) {
-    return DijkstraUtil.dijkstra(GRAPH, start, target)
+    return DijkstraUtil.dijkstra(graph, start, target)
         .stream()
-        .map(INTS_TO_STATIONS_NAMES::get)
+        .map(intsToStationsNames::get)
         .toList();
   }
 
@@ -239,7 +240,7 @@ public class ShortestPathUtil {
     List<String> stationsToSwitchLines = new LinkedList<>();
 
     for (String station : allStations) {
-      if (ALL_STATIONS_TO_SWITCH_LINES.contains(station)
+      if (allStationsToSwitchLines.contains(station)
           && !station.equals(startingStation) && !station.equals(destinationStation)) {
         stationsToSwitchLines.add(station);
       }
@@ -254,8 +255,8 @@ public class ShortestPathUtil {
   }
 
   private  boolean areInputStationsValid(String startingStation, String destinationStation) {
-    return STATIONS_NAMES_TO_INTS.containsKey(startingStation)
-        && STATIONS_NAMES_TO_INTS.containsKey(destinationStation);
+    return stationsNamesToInts.containsKey(startingStation)
+        && stationsNamesToInts.containsKey(destinationStation);
   }
 
   private  List<String> getStationsToExclude(List<String> stationsToSwitchLines,
@@ -276,8 +277,8 @@ public class ShortestPathUtil {
   private  List<String> getLines(String station) {
     List<String> lines = new ArrayList<>();
 
-    for (Line line : LINES_TO_STATIONS.keySet()) {
-      if (LINES_TO_STATIONS.get(line).contains(station)) {
+    for (Line line : linesToStations.keySet()) {
+      if (linesToStations.get(line).contains(station)) {
         lines.add(line.name());
       }
     }
@@ -287,8 +288,8 @@ public class ShortestPathUtil {
 
   private  Map<Integer, String> getIntsToStationsNames() {
     Map<Integer, String> intsToStationsNames = new LinkedHashMap<>();
-    for (String station : STATIONS_NAMES_TO_INTS.keySet()) {
-      intsToStationsNames.put(STATIONS_NAMES_TO_INTS.get(station), station);
+    for (String station : stationsNamesToInts.keySet()) {
+      intsToStationsNames.put(stationsNamesToInts.get(station), station);
     }
     return intsToStationsNames;
   }
@@ -316,10 +317,10 @@ public class ShortestPathUtil {
     int numberOfVertices = 68;
     List<List<int[]>> graph = new ArrayList<>(numberOfVertices);
     Set<Integer> sortedStations1 =
-        new HashSet<>(MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M.keySet());
+        new HashSet<>(mapSrcToMapDestinationToDistanceInM.keySet());
 
     for (int station1 : sortedStations1) {
-      Map<Integer, Integer> station1Map = MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M.get(station1);
+      Map<Integer, Integer> station1Map = mapSrcToMapDestinationToDistanceInM.get(station1);
       List<int[]> stations2 = new ArrayList<>();
 
       for (int station2 : station1Map.keySet()) {
