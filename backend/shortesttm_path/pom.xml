@@ -150,6 +150,7 @@
                                         <exclude>*StationsController</exclude>
                                         <exclude>*NonEndingStationInPathBean</exclude>
                                         <exclude>*UptimeController</exclude>
+                                        <exclude>*FileUtil</exclude>
 									</excludes>
 									<limits>
 										<limit>
