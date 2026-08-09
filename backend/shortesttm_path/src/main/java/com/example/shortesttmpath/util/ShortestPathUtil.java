@@ -47,9 +47,9 @@ public class ShortestPathUtil {
 
   private ShortestPathUtil() throws IOException {
     fillStations();
-    graph = getGraph();
     stationsNamesToInts = getStationsNamesToInts();
     mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
+    graph = getGraph();
     intsToStationsNames = getIntsToStationsNames();
     linesToStations = Map.of(
         Line.BLUE, blueLineStations,
