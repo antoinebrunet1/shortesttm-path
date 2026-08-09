@@ -28,10 +28,10 @@ import org.springframework.core.io.ClassPathResource;
  */
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
-  private  List<String> blueLineStations;
-  private  List<String> greenLineStations;
-  private  List<String> orangeLineStations;
-  private  List<String> yellowLineStations;
+  private final List<String> blueLineStations = FileUtil.getLines("blue_line_stations.txt");
+  private final List<String> greenLineStations = FileUtil.getLines("green_line_stations.txt");
+  private final List<String> orangeLineStations = FileUtil.getLines("orange_line_stations.txt");
+  private final List<String> yellowLineStations = FileUtil.getLines("yellow_line_stations.txt");
   private  final List<List<int[]>> graph;
   private  final Map<String, Integer> stationsNamesToInts;
   private  final Map<Integer, Map<Integer, Integer>>
@@ -46,7 +46,6 @@ public class ShortestPathUtil {
   private  final Map<Line, List<String>> linesToStations;
 
   private ShortestPathUtil() throws IOException {
-    fillStations();
     stationsNamesToInts = getStationsNamesToInts();
     mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
     graph = getGraph();
@@ -71,18 +70,6 @@ public class ShortestPathUtil {
     }
 
     return single_instance;
-  }
-
-  private void fillStations() throws IOException {
-    blueLineStations = getStationsForLineFileName("blue_line_stations.txt");
-    greenLineStations = getStationsForLineFileName("green_line_stations.txt");
-    orangeLineStations = getStationsForLineFileName("orange_line_stations.txt");
-    yellowLineStations = getStationsForLineFileName("yellow_line_stations.txt");
-  }
-
-  private List<String> getStationsForLineFileName(String lineFileName) throws IOException {
-    ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
-    return new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
   }
 
   /**

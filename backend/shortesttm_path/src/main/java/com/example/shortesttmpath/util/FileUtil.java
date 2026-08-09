@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 
 public class FileUtil {
-  public static List<String> getLinesFromFileInStaticResources(String fileName) throws IOException {
+  public static List<String> getLines(String fileName) throws IOException {
     ClassPathResource resource = new ClassPathResource("static/" + fileName);
 
     return new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
