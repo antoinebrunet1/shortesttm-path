@@ -24,15 +24,11 @@ import java.util.stream.Collectors;
  */
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
-  private final List<String> blueLineStations = FileUtil.getLines("blue_line_stations.txt");
-  private final List<String> greenLineStations = FileUtil.getLines("green_line_stations.txt");
-  private final List<String> orangeLineStations = FileUtil.getLines("orange_line_stations.txt");
-  private final List<String> yellowLineStations = FileUtil.getLines("yellow_line_stations.txt");
   private  final Map<Line, List<String>> linesToStations = Map.of(
-      Line.BLUE, blueLineStations,
-      Line.GREEN, greenLineStations,
-      Line.ORANGE, orangeLineStations,
-      Line.YELLOW, yellowLineStations
+      Line.BLUE, FileUtil.getLines("blue_line_stations.txt"),
+      Line.GREEN, FileUtil.getLines("green_line_stations.txt"),
+      Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
+      Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
   );
   private  final List<String> allStationsToSwitchLines =
       FileUtil.getLines("all_stations_to_switch_lines.txt");
@@ -278,10 +274,10 @@ public class ShortestPathUtil {
 
   private  Set<String> getUniqueStationsNames() {
     Set<String> uniqueStationsNames = new LinkedHashSet<>();
-    uniqueStationsNames.addAll(blueLineStations);
-    uniqueStationsNames.addAll(greenLineStations);
-    uniqueStationsNames.addAll(orangeLineStations);
-    uniqueStationsNames.addAll(yellowLineStations);
+
+    for (Line line : linesToStations.keySet()) {
+      uniqueStationsNames.addAll(linesToStations.get(line));
+    }
 
     return uniqueStationsNames;
   }
