@@ -43,19 +43,18 @@ public class ShortestPathUtil {
       "Snowdon",
       "Jean-Talon"
   );
-  private  final Map<Line, List<String>> linesToStations;
+  private  final Map<Line, List<String>> linesToStations = Map.of(
+      Line.BLUE, blueLineStations,
+      Line.GREEN, greenLineStations,
+      Line.ORANGE, orangeLineStations,
+      Line.YELLOW, yellowLineStations
+  );
 
   private ShortestPathUtil() throws IOException {
     stationsNamesToInts = getStationsNamesToInts();
     mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
     graph = getGraph();
     intsToStationsNames = getIntsToStationsNames();
-    linesToStations = Map.of(
-        Line.BLUE, blueLineStations,
-        Line.GREEN, greenLineStations,
-        Line.ORANGE, orangeLineStations,
-        Line.YELLOW, yellowLineStations
-    );
   }
 
   /**
