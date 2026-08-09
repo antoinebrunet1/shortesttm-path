@@ -7,7 +7,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/**
+ * Contains Dijkstra's algorithm to find the shortest path.
+ * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>.
+ */
 public class DijkstraUtil {
+  /**
+   * The default constructor.
+   */
+  public DijkstraUtil() {
+  }
+
   /**
    * Dijkstra's algorithm to find the shortest path
    * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>.
