@@ -4,6 +4,7 @@ import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.util.ShortestPathUtil;
+import java.io.IOException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,8 @@ public class ShortestPathController {
    */
   @GetMapping()
   public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
-                                                          @RequestParam String destinationStation) {
+                                                          @RequestParam String destinationStation)
+      throws IOException {
     HttpHeaders headers = new HttpHeaders();
     ShortestPathBean path = new ShortestPathUtil().getShortestPath(startingStation, destinationStation);
 

@@ -84,7 +84,21 @@ public class ShortestPathUtil {
   /**
    * The default constructor.
    */
-  public ShortestPathUtil() {
+  public ShortestPathUtil() throws IOException {
+    fillStations();
+  }
+
+  private void fillStations() throws IOException {
+    for (String lineFileName : LINE_FILE_NAME_TO_STATIONS.keySet()) {
+      List<String> stations = getStationsForLineFileName(lineFileName);
+
+      LINE_FILE_NAME_TO_STATIONS.get(lineFileName).addAll(stations);
+    }
+  }
+
+  private List<String> getStationsForLineFileName(String lineFileName) throws IOException {
+    ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
+    return new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
   }
 
   /**

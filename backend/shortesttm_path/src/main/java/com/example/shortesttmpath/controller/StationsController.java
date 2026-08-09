@@ -1,6 +1,7 @@
 package com.example.shortesttmpath.controller;
 
 import com.example.shortesttmpath.util.ShortestPathUtil;
+import java.io.IOException;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class StationsController {
    * @return All the stations in alphabetical order.
    */
   @GetMapping("alphabetical-order")
-  public ResponseEntity<List<String>> getAllStationsInAlphabeticalOrder() {
+  public ResponseEntity<List<String>> getAllStationsInAlphabeticalOrder() throws IOException {
     HttpHeaders headers = new HttpHeaders();
     List<String> allStationsInAlphabeticalOrder =
         new ShortestPathUtil().getAllStationsInAlphabeticalOrder();
