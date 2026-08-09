@@ -27,7 +27,7 @@ public class DijkstraUtil {
    *              (to, weight) pairs.
    * @param start The value of the start node.
    * @param target The value of the target node.
-   * @return The stations of the path as ints.
+   * @return The nodes of the path as ints.
    */
   public static List<Integer> dijkstra(List<List<int[]>> graph, int start, int target) {
 
