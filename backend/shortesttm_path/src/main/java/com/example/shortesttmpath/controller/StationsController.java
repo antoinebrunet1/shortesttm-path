@@ -30,7 +30,7 @@ public class StationsController {
   public ResponseEntity<List<String>> getAllStationsInAlphabeticalOrder() {
     HttpHeaders headers = new HttpHeaders();
     List<String> allStationsInAlphabeticalOrder =
-        ShortestPathUtil.getAllStationsInAlphabeticalOrder();
+        new ShortestPathUtil().getAllStationsInAlphabeticalOrder();
 
     return new ResponseEntity<>(allStationsInAlphabeticalOrder, headers, HttpStatus.OK);
   }
