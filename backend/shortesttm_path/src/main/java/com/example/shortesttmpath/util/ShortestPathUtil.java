@@ -175,17 +175,8 @@ public class ShortestPathUtil {
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
     int target = STATIONS_NAMES_TO_INTS.get(destinationStation);
     List<String> allStations = getPathStations(start, target);
-    ShortestPathBean shortestPath = new ShortestPathBean();
-    shortestPath.setStartingStation(getStationObject(startingStation, allStations));
-    shortestPath.setDestinationStation(destinationStation);
-    List<String> stationsToSwitchLines =
-        getStationsToSwitchLines(allStations, startingStation, destinationStation);
-    List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
-    stationsToSwitchLines.removeAll(stationsToExclude);
-    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = getStationsToSwitchLinesObjects(
-        stationsToSwitchLines, allStations);
-    shortestPath.setStationsToSwitchLines(stationsToSwitchLinesObjects);
-    return shortestPath;
+
+    return getShortestPathBean(startingStation, destinationStation, allStations);
   }
 
   private static void validateStations(String startingStation, String destinationStation) {
@@ -202,6 +193,23 @@ public class ShortestPathUtil {
         .stream()
         .map(INTS_TO_STATIONS_NAMES::get)
         .toList();
+  }
+
+  private static ShortestPathBean getShortestPathBean(String startingStation,
+                                                      String destinationStation,
+                                                      List<String> allStations) {
+    ShortestPathBean shortestPath = new ShortestPathBean();
+    shortestPath.setStartingStation(getStationObject(startingStation, allStations));
+    shortestPath.setDestinationStation(destinationStation);
+    List<String> stationsToSwitchLines =
+        getStationsToSwitchLines(allStations, startingStation, destinationStation);
+    List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
+    stationsToSwitchLines.removeAll(stationsToExclude);
+    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = getStationsToSwitchLinesObjects(
+        stationsToSwitchLines, allStations);
+    shortestPath.setStationsToSwitchLines(stationsToSwitchLinesObjects);
+
+    return shortestPath;
   }
 
   private static List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
