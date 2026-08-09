@@ -11,6 +11,12 @@ import org.springframework.core.io.ClassPathResource;
  */
 public class FileUtil {
   /**
+   * The default constructor.
+   */
+  public FileUtil() {
+  }
+
+  /**
    * Returns a List containing the lines of a file in resources/static.
    *
    * @param fileName The name of the file in resources/static.
