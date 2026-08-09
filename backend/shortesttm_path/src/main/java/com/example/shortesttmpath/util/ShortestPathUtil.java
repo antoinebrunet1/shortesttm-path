@@ -179,7 +179,10 @@ public class ShortestPathUtil {
     int start = STATIONS_NAMES_TO_INTS.get(startingStation);
     int destination = STATIONS_NAMES_TO_INTS.get(destinationStation);
     List<String> allStations =
-        DijkstraUtil.dijkstra(GRAPH, start, destination).stream().map(INTS_TO_STATIONS_NAMES::get).toList();
+        DijkstraUtil.dijkstra(GRAPH, start, destination)
+            .stream()
+            .map(INTS_TO_STATIONS_NAMES::get)
+            .toList();
     ShortestPathBean shortestPath = new ShortestPathBean();
     shortestPath.setStartingStation(getStationObject(startingStation, allStations));
     shortestPath.setDestinationStation(destinationStation);
