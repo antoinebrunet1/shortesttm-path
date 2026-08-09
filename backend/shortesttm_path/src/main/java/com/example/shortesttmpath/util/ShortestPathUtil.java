@@ -29,29 +29,25 @@ public class ShortestPathUtil {
   private final List<String> greenLineStations = FileUtil.getLines("green_line_stations.txt");
   private final List<String> orangeLineStations = FileUtil.getLines("orange_line_stations.txt");
   private final List<String> yellowLineStations = FileUtil.getLines("yellow_line_stations.txt");
-  private  final List<List<int[]>> graph;
-  private  final Map<String, Integer> stationsNamesToInts;
-  private  final Map<Integer, Map<Integer, Integer>>
-      mapSrcToMapDestinationToDistanceInM;
-  private  final Map<Integer, String> intsToStationsNames;
-  private  final List<String> allStationsToSwitchLines = Arrays.asList(
-      "Berri-UQAM",
-      "Lionel-Groulx",
-      "Snowdon",
-      "Jean-Talon"
-  );
   private  final Map<Line, List<String>> linesToStations = Map.of(
       Line.BLUE, blueLineStations,
       Line.GREEN, greenLineStations,
       Line.ORANGE, orangeLineStations,
       Line.YELLOW, yellowLineStations
   );
+  private  final List<String> allStationsToSwitchLines = Arrays.asList(
+      "Berri-UQAM",
+      "Lionel-Groulx",
+      "Snowdon",
+      "Jean-Talon"
+  );
+  private  final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
+  private  final Map<Integer, Map<Integer, Integer>>
+      mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
+  private  final List<List<int[]>> graph = getGraph();
+  private  final Map<Integer, String> intsToStationsNames = getIntsToStationsNames();
 
   private ShortestPathUtil() throws IOException {
-    stationsNamesToInts = getStationsNamesToInts();
-    mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
-    graph = getGraph();
-    intsToStationsNames = getIntsToStationsNames();
   }
 
   /**
