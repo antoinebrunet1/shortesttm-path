@@ -36,7 +36,7 @@ public class ShortestPathUtil {
   private  final Map<String, Integer> STATIONS_NAMES_TO_INTS;
   private  final Map<Integer, Map<Integer, Integer>>
       MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M;
-  private  final Map<Integer, String> INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
+  private  final Map<Integer, String> INTS_TO_STATIONS_NAMES;
   private  final List<String> ALL_STATIONS_TO_SWITCH_LINES = Arrays.asList(
       "Berri-UQAM",
       "Lionel-Groulx",
@@ -55,6 +55,7 @@ public class ShortestPathUtil {
     GRAPH = getGraph();
     STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
     MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
+    INTS_TO_STATIONS_NAMES = getIntsToStationsNames();
   }
 
   public static synchronized ShortestPathUtil getInstance() throws IOException {
