@@ -317,22 +317,14 @@ public class ShortestPathUtil {
     return stationNamesToInts;
   }
 
-  private  Set<String> getUniqueStationsNames() throws IOException {
+  private  Set<String> getUniqueStationsNames() {
     Set<String> uniqueStationsNames = new LinkedHashSet<>();
-    for (String lineFileName : LINE_FILE_NAME_TO_STATIONS.keySet()) {
-      addLineToUniqueStationsNames(uniqueStationsNames, lineFileName);
-    }
+    uniqueStationsNames.addAll(BLUE_LINE_STATIONS);
+    uniqueStationsNames.addAll(GREEN_LINE_STATIONS);
+    uniqueStationsNames.addAll(ORANGE_LINE_STATIONS);
+    uniqueStationsNames.addAll(YELLOW_LINE_STATIONS);
+
     return uniqueStationsNames;
-  }
-
-  private  void addLineToUniqueStationsNames(Set<String> uniqueStationsNames,
-                                                   String lineFileName) throws IOException {
-    ClassPathResource resource = new ClassPathResource("static/" + lineFileName);
-    List<String> stations =
-        new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
-
-    LINE_FILE_NAME_TO_STATIONS.get(lineFileName).addAll(stations);
-    uniqueStationsNames.addAll(stations);
   }
 
   private  List<List<int[]>> getGraph() throws IOException {
