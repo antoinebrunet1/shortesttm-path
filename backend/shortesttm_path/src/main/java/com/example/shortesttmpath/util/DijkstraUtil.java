@@ -23,8 +23,8 @@ public class DijkstraUtil {
    * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>.
    *
    * @param graph The graph.
-   * @param start The starting station as an int.
-   * @param target The destination station as an int.
+   * @param start The value of the start node.
+   * @param target The value of the target node.
    * @return The stations of the path as ints.
    */
   public static List<Integer> dijkstra(List<List<int[]>> graph, int start, int target) {
