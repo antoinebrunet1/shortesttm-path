@@ -43,12 +43,6 @@ public class ShortestPathUtil {
       "Snowdon",
       "Jean-Talon"
   );
-  private  final Map<Line, List<String>> LINES_TO_DIRECTIONS = Map.of(
-      Line.BLUE, List.of(blueLineStations.getFirst(), blueLineStations.getLast()),
-      Line.GREEN, List.of(greenLineStations.getFirst(), greenLineStations.getLast()),
-      Line.ORANGE, List.of(orangeLineStations.getFirst(), orangeLineStations.getLast()),
-      Line.YELLOW, List.of(yellowLineStations.getFirst(), yellowLineStations.getLast())
-  );
   private  final Map<Line, List<String>> LINES_TO_STATIONS = Map.of(
       Line.BLUE, blueLineStations,
       Line.GREEN, greenLineStations,
@@ -103,7 +97,9 @@ public class ShortestPathUtil {
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
     int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
     int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
-    List<String> directions = LINES_TO_DIRECTIONS.get(Line.valueOf(lineOfDirection));
+    List<String> stationsOfLineOfDirection = LINES_TO_STATIONS.get(Line.valueOf(lineOfDirection));
+    List<String> directions = List.of(stationsOfLineOfDirection.getFirst(),
+        stationsOfLineOfDirection.getLast());
 
     return indexOfStation1OnLine < indexOfStation2OnLine ? directions.getLast() :
         directions.getFirst();
