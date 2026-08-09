@@ -27,6 +27,7 @@ import org.springframework.core.io.ClassPathResource;
  * Util class to calculate the shortest metro path between two STM metro stations.
  */
 public class ShortestPathUtil {
+  private static ShortestPathUtil single_instance = null;
   private  List<String> blueLineStations;
   private  List<String> greenLineStations;
   private  List<String> orangeLineStations;
@@ -55,14 +56,18 @@ public class ShortestPathUtil {
       Line.YELLOW, yellowLineStations
   );
 
-  /**
-   * The default constructor.
-   */
-  public ShortestPathUtil() throws IOException {
+  private ShortestPathUtil() throws IOException {
     fillStations();
     GRAPH = getGraph();
     STATIONS_NAMES_TO_INTS = getStationsNamesToInts();
     MAP_SRC_TO_MAP_DESTINATION_TO_DISTANCE_IN_M = getMapScrToMapDestinationToDistanceInM();
+  }
+
+  public static synchronized ShortestPathUtil getInstance() throws IOException {
+    if (single_instance == null)
+      single_instance = new ShortestPathUtil();
+
+    return single_instance;
   }
 
   private void fillStations() throws IOException {

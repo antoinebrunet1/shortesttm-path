@@ -30,8 +30,8 @@ public class StationsController {
   @GetMapping("alphabetical-order")
   public ResponseEntity<List<String>> getAllStationsInAlphabeticalOrder() throws IOException {
     HttpHeaders headers = new HttpHeaders();
-    List<String> allStationsInAlphabeticalOrder =
-        new ShortestPathUtil().getAllStationsInAlphabeticalOrder();
+    List<String> allStationsInAlphabeticalOrder = ShortestPathUtil.getInstance()
+        .getAllStationsInAlphabeticalOrder();
 
     return new ResponseEntity<>(allStationsInAlphabeticalOrder, headers, HttpStatus.OK);
   }
