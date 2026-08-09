@@ -21,8 +21,10 @@ public class DijkstraUtil {
   /**
    * Dijkstra's algorithm to find the shortest path
    * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>.
+   * The values of the nodes are 0, 1, 2...
    *
-   * @param graph The graph.
+   * @param graph The graph. The main List is for every node. For every node, there is a List of
+   *              (to, weight) pairs.
    * @param start The value of the start node.
    * @param target The value of the target node.
    * @return The stations of the path as ints.
