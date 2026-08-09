@@ -287,7 +287,7 @@ public class ShortestPathUtil {
     return intsToStationsNames;
   }
 
-  private  Map<String, Integer> getStationsNamesToInts() throws IOException {
+  private  Map<String, Integer> getStationsNamesToInts() {
     Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
     List<String> uniqueStationsNames = new ArrayList<>(getUniqueStationsNames());
     for (int i = 0; i < uniqueStationsNames.size(); i++) {
@@ -306,7 +306,7 @@ public class ShortestPathUtil {
     return uniqueStationsNames;
   }
 
-  private  List<List<int[]>> getGraph() throws IOException {
+  private  List<List<int[]>> getGraph() {
     int numberOfVertices = 68;
     List<List<int[]>> graph = new ArrayList<>(numberOfVertices);
     Set<Integer> sortedStations1 =
