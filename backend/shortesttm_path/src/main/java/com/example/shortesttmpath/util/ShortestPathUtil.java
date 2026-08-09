@@ -5,9 +5,7 @@ import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +19,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.springframework.core.io.ClassPathResource;
 
 /**
  * Util class to calculate the shortest metro path between two STM metro stations.
@@ -114,9 +111,7 @@ public class ShortestPathUtil {
   private  Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM()
       throws IOException {
     Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();
-    ClassPathResource resource = new ClassPathResource("static/distances.txt");
-    List<String> distancesLines =
-        new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();
+    List<String> distancesLines = FileUtil.getLines("distances.txt");
 
     for (String distanceLine : distancesLines) {
       addDistance(distanceLine, distancesMap);
