@@ -220,16 +220,8 @@ public class ShortestPathUtil {
   private List<String> getStationsToSwitchLines(List<String> allStations,
                                                        String startingStation,
                                                        String destinationStation) {
-    List<String> stationsToSwitchLines = new LinkedList<>();
-
-    for (String station : allStations) {
-      if (allStationsToSwitchLines.contains(station)
-          && !station.equals(startingStation) && !station.equals(destinationStation)) {
-        stationsToSwitchLines.add(station);
-      }
-    }
-
-    return stationsToSwitchLines;
+    return allStations.stream().filter(station -> allStationsToSwitchLines.contains(station)
+      && !List.of(startingStation, destinationStation).contains(station)).toList();
   }
 
   private boolean areStationsOnTheSameLine(String startingStation,
