@@ -1,11 +1,8 @@
 package com.example.shortesttmpath.util;
 
-import static com.example.shortesttmpath.enums.Station.*;
-
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
-import com.example.shortesttmpath.enums.Station;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.IOException;
@@ -23,165 +20,16 @@ import java.util.stream.Collectors;
  */
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
-  private final Map<Line, List<Station>> linesToStations = Map.of(
-      Line.BLUE, List.of(
-          ACADIE,
-          COTE_DES_NEIGES,
-          DE_CASTELNAU,
-          D_IBERVILLE,
-          EDOUARD_MONTPETIT,
-          FABRE,
-          JEAN_TALON,
-          OUTREMONT,
-          PARC,
-          SAINT_MICHEL,
-          SNOWDON,
-          UNIVERSITE_DE_MONTREAL
-      ),
-      Line.GREEN, List.of(
-          ANGRIGNON,
-          ASSOMPTION,
-          ATWATER,
-          BEAUDRY,
-          BERRI_UQAM,
-          CADILLAC,
-          CHARLEVOIX,
-          DE_L_EGLISE,
-          FRONTENAC,
-          GUY_CONCORDIA,
-          HONORE_BEAUGRAND,
-          JOLICOEUR,
-          JOLIETTE,
-          LANGELIER,
-          LASALLE,
-          LIONEL_GROULX,
-          MCGILL,
-          MONK,
-          PAPINEAU,
-          PEEL,
-          PIE_IX,
-          PLACE_DES_ARTS,
-          PREFONTAINE,
-          RADISSON,
-          SAINT_LAURENT,
-          VERDUN,
-          VIAU
-      ),
-      Line.ORANGE, List.of(
-          BEAUBIEN,
-          BERRI_UQAM,
-          BONAVENTURE,
-          CARTIER,
-          CHAMP_DE_MARS,
-          COTE_SAINTE_CATHERINE,
-          COTE_VERTU,
-          CREMAZIE,
-          DE_LA_CONCORDE,
-          DE_LA_SAVANE,
-          DU_COLLEGE,
-          GEORGES_VANIER,
-          HENRI_BOURASSA,
-          JARRY,
-          JEAN_TALON,
-          LAURIER,
-          LIONEL_GROULX,
-          LUCIEN_L_ALLIER,
-          MONTMORENCY,
-          MONT_ROYAL,
-          NAMUR,
-          PLACE_D_ARMES,
-          PLACE_SAINT_HENRI,
-          PLAMONDON,
-          ROSEMONT,
-          SAUVE,
-          SHERBROOKE,
-          SNOWDON,
-          SQUARE_VICTORIA_OACI,
-          VENDOME,
-          VILLA_MARIA
-      ),
-      Line.YELLOW, List.of(
-          BERRI_UQAM,
-          JEAN_DRAPEAU,
-          LONGUEUIL_UNIVERSITE_DE_SHERBROOKE
-      )
+  private final Map<Line, List<String>> linesToStations = Map.of(
+      Line.BLUE, FileUtil.getLines("blue_line_stations.txt"),
+      Line.GREEN, FileUtil.getLines("green_line_stations.txt"),
+      Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
+      Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
   );
-  private final List<Station> allStationsAlphabeticalOrder = List.of(
-      ACADIE,
-      ANGRIGNON,
-      ASSOMPTION,
-      ATWATER,
-      BEAUBIEN,
-      BEAUDRY,
-      BERRI_UQAM,
-      BONAVENTURE,
-      CADILLAC,
-      CARTIER,
-      CHAMP_DE_MARS,
-      CHARLEVOIX,
-      COTE_DES_NEIGES,
-      COTE_SAINTE_CATHERINE,
-      COTE_VERTU,
-      CREMAZIE,
-      DE_CASTELNAU,
-      DE_LA_CONCORDE,
-      DE_LA_SAVANE,
-      DE_L_EGLISE,
-      D_IBERVILLE,
-      DU_COLLEGE,
-      EDOUARD_MONTPETIT,
-      FABRE,
-      FRONTENAC,
-      GEORGES_VANIER,
-      GUY_CONCORDIA,
-      HENRI_BOURASSA,
-      HONORE_BEAUGRAND,
-      JARRY,
-      JEAN_DRAPEAU,
-      JEAN_TALON,
-      JOLICOEUR,
-      JOLIETTE,
-      LANGELIER,
-      LASALLE,
-      LAURIER,
-      LIONEL_GROULX,
-      LONGUEUIL_UNIVERSITE_DE_SHERBROOKE,
-      LUCIEN_L_ALLIER,
-      MCGILL,
-      MONK,
-      MONTMORENCY,
-      MONT_ROYAL,
-      NAMUR,
-      OUTREMONT,
-      PAPINEAU,
-      PARC,
-      PEEL,
-      PIE_IX,
-      PLACE_D_ARMES,
-      PLACE_DES_ARTS,
-      PLACE_SAINT_HENRI,
-      PLAMONDON,
-      PREFONTAINE,
-      RADISSON,
-      ROSEMONT,
-      SAINT_LAURENT,
-      SAINT_MICHEL,
-      SAUVE,
-      SHERBROOKE,
-      SNOWDON,
-      SQUARE_VICTORIA_OACI,
-      UNIVERSITE_DE_MONTREAL,
-      VENDOME,
-      VERDUN,
-      VIAU,
-      VILLA_MARIA
-  );
-  private final List<Station> allStationsToSwitchLines = List.of(
-      BERRI_UQAM,
-      JEAN_TALON,
-      LIONEL_GROULX,
-      SNOWDON
-  );
+  private final List<String> allStationsAlphabeticalOrder =
+      FileUtil.getLines("all_stations_alphabetical_order.txt");
+  private final List<String> allStationsToSwitchLines =
+      FileUtil.getLines("all_stations_to_switch_lines.txt");
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
   private final Map<Integer, Map<Integer, Integer>>
       mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
@@ -279,8 +127,8 @@ public class ShortestPathUtil {
    * StationsOnSameLineException exception is thrown if the two stations are on the same line. This
    * includes the same station given twice and neighbor stations.
    *
-   * @param startingStation    The starting 
-   * @param destinationStation The destination 
+   * @param startingStation    The starting station.
+   * @param destinationStation The destination station.
    * @return The shortest metro path between two STM metro stations.
    */
   public ShortestPathBean getShortestPath(String startingStation,
