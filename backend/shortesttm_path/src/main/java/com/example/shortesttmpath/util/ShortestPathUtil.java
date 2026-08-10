@@ -176,8 +176,12 @@ public class ShortestPathUtil {
       VIAU,
       VILLA_MARIA
   );
-  private final List<String> allStationsToSwitchLines =
-      FileUtil.getLines("all_stations_to_switch_lines.txt");
+  private final List<Station> allStationsToSwitchLines = List.of(
+      BERRI_UQAM,
+      JEAN_TALON,
+      LIONEL_GROULX,
+      SNOWDON
+  );
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
   private final Map<Integer, Map<Integer, Integer>>
       mapSrcToMapDestinationToDistanceInM = getMapScrToMapDestinationToDistanceInM();
