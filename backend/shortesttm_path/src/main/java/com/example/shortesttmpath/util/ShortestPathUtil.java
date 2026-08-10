@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +29,7 @@ public class ShortestPathUtil {
       Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
       Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
   );
+  private final List<String> allStations = FileUtil.getLines("all_stations.txt");
   private final List<String> allStationsToSwitchLines =
       FileUtil.getLines("all_stations_to_switch_lines.txt");
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
@@ -278,23 +278,13 @@ public class ShortestPathUtil {
     return intsToStationsNames;
   }
 
-  private Map<String, Integer> getStationsNamesToInts() {
+  private Map<String, Integer> getStationsNamesToInts() throws IOException {
     Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
-    List<String> uniqueStationsNames = new ArrayList<>(getUniqueStationsNames());
+    List<String> uniqueStationsNames = FileUtil.getLines("all_lines.txt");
     for (int i = 0; i < uniqueStationsNames.size(); i++) {
       stationNamesToInts.put(uniqueStationsNames.get(i), i);
     }
     return stationNamesToInts;
-  }
-
-  private Set<String> getUniqueStationsNames() {
-    Set<String> uniqueStationsNames = new LinkedHashSet<>();
-
-    for (Line line : linesToStations.keySet()) {
-      uniqueStationsNames.addAll(linesToStations.get(line));
-    }
-
-    return uniqueStationsNames;
   }
 
   private List<List<int[]>> getGraph() {
