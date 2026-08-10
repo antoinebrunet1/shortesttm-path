@@ -28,6 +28,8 @@ public class ShortestPathUtil {
       Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
       Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
   );
+  private final List<String> allStationsAlphabeticalOrder =
+      FileUtil.getLines("all_stations_alphabetical_order.txt");
   private final List<String> allStationsToSwitchLines =
       FileUtil.getLines("all_stations_to_switch_lines.txt");
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
@@ -270,9 +272,8 @@ public class ShortestPathUtil {
 
   private Map<String, Integer> getStationsNamesToInts() throws IOException {
     Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
-    List<String> uniqueStationsNames = FileUtil.getLines("all_stations_alphabetical_order.txt");
-    for (int i = 0; i < uniqueStationsNames.size(); i++) {
-      stationNamesToInts.put(uniqueStationsNames.get(i), i);
+    for (int i = 0; i < allStationsAlphabeticalOrder.size(); i++) {
+      stationNamesToInts.put(allStationsAlphabeticalOrder.get(i), i);
     }
     return stationNamesToInts;
   }
