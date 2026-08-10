@@ -3,6 +3,7 @@ package com.example.shortesttmpath.util;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
+import com.example.shortesttmpath.enums.Station;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.IOException;
@@ -20,11 +21,88 @@ import java.util.stream.Collectors;
  */
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
-  private final Map<Line, List<String>> linesToStations = Map.of(
-      Line.BLUE, FileUtil.getLines("blue_line_stations.txt"),
-      Line.GREEN, FileUtil.getLines("green_line_stations.txt"),
-      Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
-      Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
+  private final Map<Line, List<Station>> linesToStations = Map.of(
+      Line.BLUE, List.of(
+          Station.ACADIE,
+          Station.COTE_DES_NEIGES,
+          Station.DE_CASTELNAU,
+          Station.D_IBERVILLE,
+          Station.EDOUARD_MONTPETIT,
+          Station.FABRE,
+          Station.JEAN_TALON,
+          Station.OUTREMONT,
+          Station.PARC,
+          Station.SAINT_MICHEL,
+          Station.SNOWDON,
+          Station.UNIVERSITE_DE_MONTREAL
+      ),
+      Line.GREEN, List.of(
+          Station.ANGRIGNON,
+          Station.ASSOMPTION,
+          Station.ATWATER,
+          Station.BEAUDRY,
+          Station.BERRI_UQAM,
+          Station.CADILLAC,
+          Station.CHARLEVOIX,
+          Station.DE_L_EGLISE,
+          Station.FRONTENAC,
+          Station.GUY_CONCORDIA,
+          Station.HONORE_BEAUGRAND,
+          Station.JOLICOEUR,
+          Station.JOLIETTE,
+          Station.LANGELIER,
+          Station.LASALLE,
+          Station.LIONEL_GROULX,
+          Station.MCGILL,
+          Station.MONK,
+          Station.PAPINEAU,
+          Station.PEEL,
+          Station.PIE_IX,
+          Station.PLACE_DES_ARTS,
+          Station.PREFONTAINE,
+          Station.RADISSON,
+          Station.SAINT_LAURENT,
+          Station.VERDUN,
+          Station.VIAU
+      ),
+      Line.ORANGE, List.of(
+          Station.BEAUBIEN,
+          Station.BERRI_UQAM,
+          Station.BONAVENTURE,
+          Station.CARTIER,
+          Station.CHAMP_DE_MARS,
+          Station.COTE_SAINTE_CATHERINE,
+          Station.COTE_VERTU,
+          Station.CREMAZIE,
+          Station.DE_LA_CONCORDE,
+          Station.DE_LA_SAVANE,
+          Station.DU_COLLEGE,
+          Station.GEORGES_VANIER,
+          Station.HENRI_BOURASSA,
+          Station.JARRY,
+          Station.JEAN_TALON,
+          Station.LAURIER,
+          Station.LIONEL_GROULX,
+          Station.LUCIEN_L_ALLIER,
+          Station.MONTMORENCY,
+          Station.MONT_ROYAL,
+          Station.NAMUR,
+          Station.PLACE_D_ARMES,
+          Station.PLACE_SAINT_HENRI,
+          Station.PLAMONDON,
+          Station.ROSEMONT,
+          Station.SAUVE,
+          Station.SHERBROOKE,
+          Station.SNOWDON,
+          Station.SQUARE_VICTORIA_OACI,
+          Station.VENDOME,
+          Station.VILLA_MARIA
+      ),
+      Line.YELLOW, List.of(
+          Station.BERRI_UQAM,
+          Station.JEAN_DRAPEAU,
+          Station.LONGUEUIL_UNIVERSITE_DE_SHERBROOKE
+      )
   );
   private final List<String> allStationsAlphabeticalOrder =
       FileUtil.getLines("all_stations_alphabetical_order.txt");
