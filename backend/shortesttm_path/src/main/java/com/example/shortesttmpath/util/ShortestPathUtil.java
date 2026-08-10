@@ -270,7 +270,7 @@ public class ShortestPathUtil {
 
   private Map<String, Integer> getStationsNamesToInts() throws IOException {
     Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
-    List<String> uniqueStationsNames = FileUtil.getLines("all_lines.txt");
+    List<String> uniqueStationsNames = FileUtil.getLines("all_stations.txt");
     for (int i = 0; i < uniqueStationsNames.size(); i++) {
       stationNamesToInts.put(uniqueStationsNames.get(i), i);
     }
