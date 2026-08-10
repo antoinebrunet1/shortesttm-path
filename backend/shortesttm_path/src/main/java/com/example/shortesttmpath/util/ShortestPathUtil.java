@@ -6,13 +6,11 @@ import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.IOException;
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -61,12 +59,7 @@ public class ShortestPathUtil {
    * @return All the stations in alphabetical order.
    */
   public List<String> getAllStationsInAlphabeticalOrder() {
-    List<String> allStationsInAlphabeticalOrder =
-        new ArrayList<>(stationsNamesToInts.keySet().stream().toList());
-    Collator collator = Collator.getInstance(Locale.FRENCH);
-    allStationsInAlphabeticalOrder.sort(collator);
-
-    return allStationsInAlphabeticalOrder;
+    return allStationsAlphabeticalOrder;
   }
 
   private String getDirectionOfStation(String station1, String station2) {
