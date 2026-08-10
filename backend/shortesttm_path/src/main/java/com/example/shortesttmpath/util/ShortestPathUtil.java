@@ -1,5 +1,7 @@
 package com.example.shortesttmpath.util;
 
+import static com.example.shortesttmpath.enums.Station.*;
+
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
@@ -39,7 +41,7 @@ public class ShortestPathUtil {
       Line.GREEN, List.of(
           Station.ANGRIGNON,
           Station.ASSOMPTION,
-          Station.ATWATER,
+          ATWATER,
           Station.BEAUDRY,
           Station.BERRI_UQAM,
           Station.CADILLAC,
@@ -73,7 +75,7 @@ public class ShortestPathUtil {
           Station.CHAMP_DE_MARS,
           Station.COTE_SAINTE_CATHERINE,
           Station.COTE_VERTU,
-          Station.CREMAZIE,
+          CREMAZIE,
           Station.DE_LA_CONCORDE,
           Station.DE_LA_SAVANE,
           Station.DU_COLLEGE,
@@ -104,8 +106,76 @@ public class ShortestPathUtil {
           Station.LONGUEUIL_UNIVERSITE_DE_SHERBROOKE
       )
   );
-  private final List<String> allStationsAlphabeticalOrder =
-      FileUtil.getLines("all_stations_alphabetical_order.txt");
+  private final List<Station> allStationsAlphabeticalOrder = List.of(
+      ACADIE,
+      ANGRIGNON,
+      ASSOMPTION,
+      ATWATER,
+      BEAUBIEN,
+      BEAUDRY,
+      BERRI_UQAM,
+      BONAVENTURE,
+      CADILLAC,
+      CARTIER,
+      CHAMP_DE_MARS,
+      CHARLEVOIX,
+      COTE_DES_NEIGES,
+      COTE_SAINTE_CATHERINE,
+      COTE_VERTU,
+      CREMAZIE,
+      DE_CASTELNAU,
+      DE_LA_CONCORDE,
+      DE_LA_SAVANE,
+      DE_L_EGLISE,
+      D_IBERVILLE,
+      DU_COLLEGE,
+      EDOUARD_MONTPETIT,
+      FABRE,
+      FRONTENAC,
+      GEORGES_VANIER,
+      GUY_CONCORDIA,
+      HENRI_BOURASSA,
+      HONORE_BEAUGRAND,
+      JARRY,
+      JEAN_DRAPEAU,
+      JEAN_TALON,
+      JOLICOEUR,
+      JOLIETTE,
+      LANGELIER,
+      LASALLE,
+      LAURIER,
+      LIONEL_GROULX,
+      LONGUEUIL_UNIVERSITE_DE_SHERBROOKE,
+      LUCIEN_L_ALLIER,
+      MCGILL,
+      MONK,
+      MONTMORENCY,
+      MONT_ROYAL,
+      NAMUR,
+      OUTREMONT,
+      PAPINEAU,
+      PARC,
+      PEEL,
+      PIE_IX,
+      PLACE_D_ARMES,
+      PLACE_DES_ARTS,
+      PLACE_SAINT_HENRI,
+      PLAMONDON,
+      PREFONTAINE,
+      RADISSON,
+      ROSEMONT,
+      SAINT_LAURENT,
+      SAINT_MICHEL,
+      SAUVE,
+      SHERBROOKE,
+      SNOWDON,
+      SQUARE_VICTORIA_OACI,
+      UNIVERSITE_DE_MONTREAL,
+      VENDOME,
+      VERDUN,
+      VIAU,
+      VILLA_MARIA
+  );
   private final List<String> allStationsToSwitchLines =
       FileUtil.getLines("all_stations_to_switch_lines.txt");
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
