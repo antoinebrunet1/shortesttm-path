@@ -169,7 +169,7 @@ public class ShortestPathUtil {
     shortestPath.setStartingStation(getStationObject(startingStation, allStations));
     shortestPath.setDestinationStation(destinationStation);
     List<String> stationsToSwitchLines =
-        getStationsToSwitchLines(allStations, startingStation, destinationStation);
+        new ArrayList<>(getStationsToSwitchLines(allStations, startingStation, destinationStation));
     List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
     stationsToSwitchLines.removeAll(stationsToExclude);
     List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = getStationsToSwitchLinesObjects(
