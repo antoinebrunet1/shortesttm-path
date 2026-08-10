@@ -198,12 +198,12 @@ public class ShortestPathUtil {
                                                              List<String> allStations) {
     String nextStation = allStations.get(allStations.indexOf(station) + 1);
     String direction = getDirectionOfStation(station, nextStation);
-    String line = getLineOfDirection(station, direction);
+    String line = getLineOfStationObject(station, direction);
 
     return new NonEndingStationInPathBean(station, line, direction);
   }
 
-  private String getLineOfDirection(String station, String direction) {
+  private String getLineOfStationObject(String station, String direction) {
     List<String> lines = getLines(direction);
 
     if (lines.size() == 1) {
