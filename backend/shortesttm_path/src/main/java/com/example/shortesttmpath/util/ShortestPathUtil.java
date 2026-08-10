@@ -29,7 +29,6 @@ public class ShortestPathUtil {
       Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
       Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
   );
-  private final List<String> allStations = FileUtil.getLines("all_stations.txt");
   private final List<String> allStationsToSwitchLines =
       FileUtil.getLines("all_stations_to_switch_lines.txt");
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
