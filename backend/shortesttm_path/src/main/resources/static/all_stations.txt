@@ -10,16 +10,17 @@ Cadillac
 Cartier
 Champ-de-Mars
 Charlevoix
-Crémazie
+Côte-des-Neiges
 Côte-Sainte-Catherine
 Côte-Vertu
-Côte-des-Neiges
-D'Iberville
+Crémazie
 De Castelnau
-De L'Église
 De La Concorde
 De La Savane
+De L'Église
+D'Iberville
 Du Collège
+Édouard-Montpetit
 Fabre
 Frontenac
 Georges-Vanier
@@ -31,25 +32,25 @@ Jean-Drapeau
 Jean-Talon
 Jolicoeur
 Joliette
-LaSalle
 Langelier
+LaSalle
 Laurier
 Lionel-Groulx
 Longueuil–Université-de-Sherbrooke
 Lucien-L'Allier
 McGill
 Monk
-Mont-Royal
 Montmorency
+Mont-Royal
 Namur
 Outremont
 Papineau
 Parc
 Peel
 Pie-IX
-Place-Saint-Henri
 Place-d'Armes
 Place-des-Arts
+Place-Saint-Henri
 Plamondon
 Préfontaine
 Radisson
@@ -65,4 +66,3 @@ Vendôme
 Verdun
 Viau
 Villa-Maria
-Édouard-Montpetit
