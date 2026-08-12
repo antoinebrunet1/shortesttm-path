@@ -5,7 +5,20 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Util class to get a Map that maps every source node in the stations graph to a Map that maps each
+ * destination node to the distance from the source node in meters.
+ */
 public class DistancesUtil {
+  /**
+   * Returns a Map that maps every source node in the stations graph to a Map that maps each
+   * destination node to the distance from the source node in meters.
+   *
+   * @param stationsNamesToInts Maps stations names to ints.
+   * @return A Map that maps every source node in the stations graph to a Map that maps each
+   *        destination node to the distance from the source node in meters.
+   * @throws IOException IOException.
+   */
   public static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM(
       Map<String, Integer> stationsNamesToInts)
       throws IOException {
