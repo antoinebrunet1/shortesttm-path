@@ -2,7 +2,6 @@ package com.example.shortesttmpath.util;
 
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
-import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.hamcrest.MockitoHamcrest.argThat;
 
 public class ShortestPathUtilTest {
   /*
