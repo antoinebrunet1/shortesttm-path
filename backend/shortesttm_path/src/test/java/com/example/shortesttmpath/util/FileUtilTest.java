@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class FileUtilTest {
   @Test
   public void getLinesReturnsCorrectLinesThreeLines() throws IOException {
-    String fileName = "file_for_a_file_util_unit_test.txt";
+    String fileName = "test/getLinesReturnsCorrectLinesThreeLines.txt";
     List<String> expectedResult = List.of(
         "Testing",
         "FileUtil",
