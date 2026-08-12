@@ -55,6 +55,17 @@ public class ShortestPathUtil {
   }
 
   /**
+   * Returns a new instance of ShortestPathUtil. To preserve the isolation of the unit tests which
+   * the singleton design pattern breaks.
+   *
+   * @return A new instance of ShortestPathUtil.
+   * @throws IOException IOException.
+   */
+  public static ShortestPathUtil getNewInstanceForUnitTest() throws IOException {
+    return new ShortestPathUtil();
+  }
+
+  /**
    * Returns all the stations in alphabetical order.
    *
    * @return All the stations in alphabetical order.
