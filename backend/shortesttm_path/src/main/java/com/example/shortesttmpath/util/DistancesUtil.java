@@ -11,6 +11,12 @@ import java.util.Map;
  */
 public class DistancesUtil {
   /**
+   * The default constructor.
+   */
+  public DistancesUtil() {
+  }
+
+  /**
    * Returns a Map that maps every source node in the stations graph to a Map that maps each
    * destination node to the distance from the source node in meters.
    *
