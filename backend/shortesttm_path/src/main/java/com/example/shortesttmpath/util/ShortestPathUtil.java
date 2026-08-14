@@ -254,18 +254,22 @@ public class ShortestPathUtil {
     List<List<int[]>> graph = new ArrayList<>(numberOfVertices);
 
     for (int srcStation : stationsNamesToInts.values()) {
-      Map<Integer, Integer> mapDestinationToDistanceInM =
-          mapSrcToMapDestinationToDistanceInM.get(srcStation);
-      List<int[]> destinationAndDistanceInM = new ArrayList<>();
-
-      for (int destinationStation : mapDestinationToDistanceInM.keySet()) {
-        destinationAndDistanceInM.add(new int[] {destinationStation,
-            mapDestinationToDistanceInM.get(destinationStation)});
-      }
-
-      graph.add(destinationAndDistanceInM);
+      addSrcStationToGraph(graph, srcStation);
     }
 
     return graph;
+  }
+
+  private void addSrcStationToGraph(List<List<int[]>> graph, int srcStation) {
+    Map<Integer, Integer> mapDestinationToDistanceInM =
+        mapSrcToMapDestinationToDistanceInM.get(srcStation);
+    List<int[]> destinationAndDistanceInM = new ArrayList<>();
+
+    for (int destinationStation : mapDestinationToDistanceInM.keySet()) {
+      destinationAndDistanceInM.add(new int[] {destinationStation,
+          mapDestinationToDistanceInM.get(destinationStation)});
+    }
+
+    graph.add(destinationAndDistanceInM);
   }
 }
