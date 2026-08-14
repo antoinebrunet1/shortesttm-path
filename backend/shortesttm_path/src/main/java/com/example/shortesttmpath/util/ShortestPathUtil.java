@@ -8,11 +8,9 @@ import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -251,20 +249,21 @@ public class ShortestPathUtil {
   }
 
   private List<List<int[]>> getGraph() {
+    // 68 because there are 68 stations.
     int numberOfVertices = 68;
     List<List<int[]>> graph = new ArrayList<>(numberOfVertices);
-    Set<Integer> sortedStations1 =
-        new HashSet<>(mapSrcToMapDestinationToDistanceInM.keySet());
 
-    for (int station1 : sortedStations1) {
-      Map<Integer, Integer> station1Map = mapSrcToMapDestinationToDistanceInM.get(station1);
-      List<int[]> stations2 = new ArrayList<>();
+    for (int srcStation : stationsNamesToInts.values()) {
+      Map<Integer, Integer> mapDestinationToDistanceInM =
+          mapSrcToMapDestinationToDistanceInM.get(srcStation);
+      List<int[]> destinationAndDistanceInM = new ArrayList<>();
 
-      for (int station2 : station1Map.keySet()) {
-        stations2.add(new int[] {station2, station1Map.get(station2)});
+      for (int destinationStation : mapDestinationToDistanceInM.keySet()) {
+        destinationAndDistanceInM.add(new int[] {destinationStation,
+            mapDestinationToDistanceInM.get(destinationStation)});
       }
 
-      graph.add(stations2);
+      graph.add(destinationAndDistanceInM);
     }
 
     return graph;
