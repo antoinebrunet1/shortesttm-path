@@ -249,9 +249,7 @@ public class ShortestPathUtil {
   }
 
   private List<List<int[]>> getGraph() {
-    // 68 because there are 68 stations.
-    int numberOfVertices = 68;
-    List<List<int[]>> graph = new ArrayList<>(numberOfVertices);
+    List<List<int[]>> graph = new ArrayList<>(stationsNamesToInts.size());
 
     for (int srcStation : stationsNamesToInts.values()) {
       addSrcStationToGraph(graph, srcStation);
