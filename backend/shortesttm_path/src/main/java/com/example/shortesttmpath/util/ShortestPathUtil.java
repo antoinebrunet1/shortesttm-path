@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
   private final StationRepository stationRepository = new StationRepository();
-  private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
   private final Map<Integer, Map<Integer, Integer>>
       mapSrcToMapDestinationToDistanceInM =
-      DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts);
-  private final List<List<int[]>> graph = GraphUtil.getGraph(stationsNamesToInts,
-      mapSrcToMapDestinationToDistanceInM);
+      DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationRepository
+          .getStationsNamesToInts());
+  private final List<List<int[]>> graph = GraphUtil.getGraph(stationRepository
+          .getStationsNamesToInts(), mapSrcToMapDestinationToDistanceInM);
   private final Map<Integer, String> intsToStationsNames = getIntsToStationsNames();
 
   private ShortestPathUtil() throws IOException {
@@ -105,8 +105,8 @@ public class ShortestPathUtil {
   public ShortestPathBean getShortestPath(String startingStation,
                                                  String destinationStation) {
     validateStations(startingStation, destinationStation);
-    int start = stationsNamesToInts.get(startingStation);
-    int target = stationsNamesToInts.get(destinationStation);
+    int start = stationRepository.getStationsNamesToInts().get(startingStation);
+    int target = stationRepository.getStationsNamesToInts().get(destinationStation);
     List<String> allStations = getPathStations(start, target);
 
     return getShortestPathBean(startingStation, destinationStation, allStations);
@@ -196,8 +196,8 @@ public class ShortestPathUtil {
   }
 
   private boolean areInputStationsValid(String startingStation, String destinationStation) {
-    return stationsNamesToInts.containsKey(startingStation)
-        && stationsNamesToInts.containsKey(destinationStation);
+    return stationRepository.getStationsNamesToInts().containsKey(startingStation)
+        && stationRepository.getStationsNamesToInts().containsKey(destinationStation);
   }
 
   private List<String> getStationsToExclude(List<String> stationsToSwitchLines,
@@ -229,8 +229,8 @@ public class ShortestPathUtil {
 
   private Map<Integer, String> getIntsToStationsNames() {
     Map<Integer, String> intsToStationsNames = new LinkedHashMap<>();
-    for (String station : stationsNamesToInts.keySet()) {
-      intsToStationsNames.put(stationsNamesToInts.get(station), station);
+    for (String station : stationRepository.getStationsNamesToInts().keySet()) {
+      intsToStationsNames.put(stationRepository.getStationsNamesToInts().get(station), station);
     }
     return intsToStationsNames;
   }
