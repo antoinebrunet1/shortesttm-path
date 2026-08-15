@@ -5,6 +5,7 @@ import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
+import com.example.shortesttmpath.repository.StationRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,12 +19,7 @@ import java.util.stream.Collectors;
  */
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
-  private final Map<Line, List<String>> linesToStations = Map.of(
-      Line.BLUE, FileUtil.getLines("blue_line_stations.txt"),
-      Line.GREEN, FileUtil.getLines("green_line_stations.txt"),
-      Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
-      Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
-  );
+  private final StationRepository stationRepository = new StationRepository();
   private final List<String> allStationsAlphabeticalOrder =
       FileUtil.getLines("all_stations_alphabetical_order.txt");
   private final List<String> allStationsToSwitchLines =
@@ -80,7 +76,8 @@ public class ShortestPathUtil {
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
     int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
     int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
-    List<String> stationsOfLineOfDirection = linesToStations.get(Line.valueOf(lineOfDirection));
+    List<String> stationsOfLineOfDirection = stationRepository.getLinesToStations()
+        .get(Line.valueOf(lineOfDirection));
     List<String> directions = List.of(stationsOfLineOfDirection.getFirst(),
         stationsOfLineOfDirection.getLast());
 
@@ -96,7 +93,7 @@ public class ShortestPathUtil {
   }
 
   private List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
-    return linesToStations.get(Line.valueOf(lineOfDirection));
+    return stationRepository.getLinesToStations().get(Line.valueOf(lineOfDirection));
   }
 
   /**
@@ -224,8 +221,8 @@ public class ShortestPathUtil {
   private List<String> getLines(String station) {
     List<String> lines = new ArrayList<>();
 
-    for (Line line : linesToStations.keySet()) {
-      if (linesToStations.get(line).contains(station)) {
+    for (Line line : stationRepository.getLinesToStations().keySet()) {
+      if (stationRepository.getLinesToStations().get(line).contains(station)) {
         lines.add(line.name());
       }
     }
