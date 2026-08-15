@@ -85,7 +85,7 @@ public class ShortestPathUtilTest {
           fileUtilMocked.when(() -> FileUtil.getLines("all_stations_to_switch_lines.txt")).thenReturn(allStationsToSwitchLines);
           distancesUtilMocked.when(() -> DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts)).thenReturn(mapSrcToMapDestinationToDistanceInM);
           dijkstraUtilMocked.when(() -> DijkstraUtil.dijkstra(Mockito.any(), Mockito.eq(0), Mockito.eq(3))).thenReturn(path);
-          ShortestPathBean actualPath = new ShortestPathUtil().getShortestPath(
+          ShortestPathBean actualPath = new ShortestPathService().getShortestPath(
               startingStation, destinationStation);
           ShortestPathBean expectedPath = new ShortestPathBean(
               new NonEndingStationInPathBean(
@@ -107,24 +107,24 @@ public class ShortestPathUtilTest {
     @Test
     public void getShortestPathSameLineShouldThrowStationsOnSameLineException() {
         assertThrows(StationsOnSameLineException.class, () ->
-            new ShortestPathUtil().getShortestPath("McGill", "Viau"));
+            new ShortestPathService().getShortestPath("McGill", "Viau"));
     }
 
   @Test
   public void getShortestPathInvalidStartingStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathUtil().getShortestPath("MMcGill", "Viau"));
+        new ShortestPathService().getShortestPath("MMcGill", "Viau"));
   }
 
   @Test
   public void getShortestPathInvalidDestinationStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathUtil().getShortestPath("McGill", "VViau"));
+        new ShortestPathService().getShortestPath("McGill", "VViau"));
   }
 
   @Test
   public void getShortestPathInvalidStationsShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathUtil().getShortestPath("MMcGill", "VViau"));
+        new ShortestPathService().getShortestPath("MMcGill", "VViau"));
   }
 }

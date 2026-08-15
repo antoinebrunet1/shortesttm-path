@@ -11,16 +11,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 
 /**
- * Util class to calculate the shortest metro path between two STM metro stations.
+ * Service to calculate the shortest metro path between two STM metro stations.
  */
-public class ShortestPathUtil {
+@Service
+public class ShortestPathService {
   private final StationRepository stationRepository = new StationRepository();
   private final List<List<int[]>> graph = new GraphUtil(stationRepository)
       .getGraph(stationRepository.getStationsNamesToInts());
 
-  public ShortestPathUtil() throws IOException {
+  public ShortestPathService() throws IOException {
   }
 
   /**
