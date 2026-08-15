@@ -1,4 +1,4 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
@@ -6,6 +6,8 @@ import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.repository.StationRepository;
+import com.example.shortesttmpath.util.DijkstraUtil;
+import com.example.shortesttmpath.util.GraphUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;

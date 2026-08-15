@@ -1,6 +1,6 @@
 package com.example.shortesttmpath.controller;
 
-import com.example.shortesttmpath.util.ShortestPathService;
+import com.example.shortesttmpath.service.ShortestPathService;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.http.HttpHeaders;

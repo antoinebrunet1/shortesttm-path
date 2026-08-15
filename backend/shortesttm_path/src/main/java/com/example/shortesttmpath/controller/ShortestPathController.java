@@ -3,7 +3,7 @@ package com.example.shortesttmpath.controller;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
-import com.example.shortesttmpath.util.ShortestPathService;
+import com.example.shortesttmpath.service.ShortestPathService;
 import java.io.IOException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
