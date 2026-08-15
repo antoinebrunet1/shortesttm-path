@@ -4,7 +4,7 @@ import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.service.ShortestPathService;
-import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/shortest_path")
 public class ShortestPathController {
+  @Autowired
+  private ShortestPathService shortestPathService;
+
   /**
    * The default constructor.
    */
@@ -47,14 +50,12 @@ public class ShortestPathController {
    * @param destinationStation The destination station.
    * @return The shortest metro path (the one with the least stations) between two STM metro
    *     stations.
-   * @throws IOException IOException.
    */
   @GetMapping()
   public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam String startingStation,
-                                                          @RequestParam String destinationStation)
-      throws IOException {
+                                                          @RequestParam String destinationStation) {
     HttpHeaders headers = new HttpHeaders();
-    ShortestPathBean path = new ShortestPathService().getShortestPath(startingStation,
+    ShortestPathBean path = shortestPathService.getShortestPath(startingStation,
         destinationStation);
 
     return new ResponseEntity<>(path, headers, HttpStatus.OK);
