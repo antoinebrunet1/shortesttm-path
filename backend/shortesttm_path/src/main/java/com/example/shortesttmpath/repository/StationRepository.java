@@ -15,6 +15,8 @@ public class StationRepository {
       Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
       Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
   );
+  private final List<String> allStationsAlphabeticalOrder =
+      FileUtil.getLines("all_stations_alphabetical_order.txt");
 
   public StationRepository() throws IOException {
   }
