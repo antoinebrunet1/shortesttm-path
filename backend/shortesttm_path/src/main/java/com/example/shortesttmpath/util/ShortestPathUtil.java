@@ -32,7 +32,8 @@ public class ShortestPathUtil {
   private final Map<Integer, Map<Integer, Integer>>
       mapSrcToMapDestinationToDistanceInM =
       DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts);
-  private final List<List<int[]>> graph = getGraph();
+  private final List<List<int[]>> graph = GraphUtil.getGraph(stationsNamesToInts,
+      mapSrcToMapDestinationToDistanceInM);
   private final Map<Integer, String> intsToStationsNames = getIntsToStationsNames();
 
   private ShortestPathUtil() throws IOException {
@@ -246,28 +247,5 @@ public class ShortestPathUtil {
       stationNamesToInts.put(allStationsAlphabeticalOrder.get(i), i);
     }
     return stationNamesToInts;
-  }
-
-  private List<List<int[]>> getGraph() {
-    List<List<int[]>> graph = new ArrayList<>(stationsNamesToInts.size());
-
-    for (int srcStation : stationsNamesToInts.values()) {
-      addSrcStationToGraph(graph, srcStation);
-    }
-
-    return graph;
-  }
-
-  private void addSrcStationToGraph(List<List<int[]>> graph, int srcStation) {
-    Map<Integer, Integer> mapDestinationToDistanceInM =
-        mapSrcToMapDestinationToDistanceInM.get(srcStation);
-    List<int[]> destinationAndDistanceInM = new ArrayList<>();
-
-    for (int destinationStation : mapDestinationToDistanceInM.keySet()) {
-      destinationAndDistanceInM.add(new int[] {destinationStation,
-          mapDestinationToDistanceInM.get(destinationStation)});
-    }
-
-    graph.add(destinationAndDistanceInM);
   }
 }
