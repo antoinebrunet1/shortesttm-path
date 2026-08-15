@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
   private final StationRepository stationRepository = new StationRepository();
-  private final List<String> allStationsToSwitchLines =
-      FileUtil.getLines("all_stations_to_switch_lines.txt");
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
   private final Map<Integer, Map<Integer, Integer>>
       mapSrcToMapDestinationToDistanceInM =
@@ -187,8 +185,9 @@ public class ShortestPathUtil {
   private List<String> getStationsToSwitchLines(List<String> allStations,
                                                        String startingStation,
                                                        String destinationStation) {
-    return allStations.stream().filter(station -> allStationsToSwitchLines.contains(station)
-      && !List.of(startingStation, destinationStation).contains(station)).toList();
+    return allStations.stream().filter(station -> stationRepository.getAllStationsToSwitchLines()
+        .contains(station) && !List.of(startingStation, destinationStation).contains(station))
+        .toList();
   }
 
   private boolean areStationsOnTheSameLine(String startingStation,

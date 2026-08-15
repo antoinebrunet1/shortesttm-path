@@ -17,6 +17,8 @@ public class StationRepository {
   );
   private final List<String> allStationsAlphabeticalOrder =
       FileUtil.getLines("all_stations_alphabetical_order.txt");
+  private final List<String> allStationsToSwitchLines =
+      FileUtil.getLines("all_stations_to_switch_lines.txt");
 
   public StationRepository() throws IOException {
   }
