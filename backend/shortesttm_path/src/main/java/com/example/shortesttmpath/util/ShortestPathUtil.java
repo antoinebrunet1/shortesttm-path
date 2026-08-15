@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -19,12 +18,8 @@ import java.util.stream.Collectors;
 public class ShortestPathUtil {
   private static ShortestPathUtil single_instance = null;
   private final StationRepository stationRepository = new StationRepository();
-  private final Map<Integer, Map<Integer, Integer>>
-      mapSrcToMapDestinationToDistanceInM =
-      DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationRepository
-          .getStationsNamesToInts());
-  private final List<List<int[]>> graph = GraphUtil.getGraph(stationRepository
-          .getStationsNamesToInts(), mapSrcToMapDestinationToDistanceInM);
+  private final List<List<int[]>> graph = new GraphUtil(stationRepository)
+      .getGraph(stationRepository.getStationsNamesToInts());
 
   private ShortestPathUtil() throws IOException {
   }

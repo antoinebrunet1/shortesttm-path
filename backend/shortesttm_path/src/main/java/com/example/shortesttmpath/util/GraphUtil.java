@@ -1,24 +1,31 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.repository.StationRepository;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class GraphUtil {
-  public static List<List<int[]>> getGraph(Map<String, Integer> stationsNamesToInts,
-                                           Map<Integer, Map<Integer, Integer>>
-                                               mapSrcToMapDestinationToDistanceInM) {
+  private final Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM;
+
+  public GraphUtil(StationRepository stationRepository) throws IOException {
+    mapSrcToMapDestinationToDistanceInM =
+        DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationRepository
+            .getStationsNamesToInts());
+  }
+
+  public List<List<int[]>> getGraph(Map<String, Integer> stationsNamesToInts) {
     List<List<int[]>> graph = new ArrayList<>(stationsNamesToInts.size());
 
     for (int srcStation : stationsNamesToInts.values()) {
-      addSrcStationToGraph(graph, srcStation, mapSrcToMapDestinationToDistanceInM);
+      addSrcStationToGraph(graph, srcStation);
     }
 
     return graph;
   }
 
-  private static void addSrcStationToGraph(List<List<int[]>> graph, int srcStation, Map<Integer, Map<Integer, Integer>>
-      mapSrcToMapDestinationToDistanceInM) {
+  private void addSrcStationToGraph(List<List<int[]>> graph, int srcStation) {
     Map<Integer, Integer> mapDestinationToDistanceInM =
         mapSrcToMapDestinationToDistanceInM.get(srcStation);
     List<int[]> destinationAndDistanceInM = new ArrayList<>();
