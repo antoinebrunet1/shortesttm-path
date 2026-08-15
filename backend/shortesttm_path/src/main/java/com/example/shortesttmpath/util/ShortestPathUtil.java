@@ -225,20 +225,4 @@ public class ShortestPathUtil {
 
     return lines;
   }
-
-  private Map<Integer, String> getIntsToStationsNames() {
-    Map<Integer, String> intsToStationsNames = new LinkedHashMap<>();
-    for (String station : stationRepository.getStationsNamesToInts().keySet()) {
-      intsToStationsNames.put(stationRepository.getStationsNamesToInts().get(station), station);
-    }
-    return intsToStationsNames;
-  }
-
-  private Map<String, Integer> getStationsNamesToInts() {
-    Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
-    for (int i = 0; i < stationRepository.getAllStationsAlphabeticalOrder().size(); i++) {
-      stationNamesToInts.put(stationRepository.getAllStationsAlphabeticalOrder().get(i), i);
-    }
-    return stationNamesToInts;
-  }
 }
