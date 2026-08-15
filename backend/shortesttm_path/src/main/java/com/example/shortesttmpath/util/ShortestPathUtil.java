@@ -26,7 +26,6 @@ public class ShortestPathUtil {
           .getStationsNamesToInts());
   private final List<List<int[]>> graph = GraphUtil.getGraph(stationRepository
           .getStationsNamesToInts(), mapSrcToMapDestinationToDistanceInM);
-  private final Map<Integer, String> intsToStationsNames = getIntsToStationsNames();
 
   private ShortestPathUtil() throws IOException {
   }
@@ -124,7 +123,7 @@ public class ShortestPathUtil {
   private List<String> getPathStations(int start, int target) {
     return DijkstraUtil.dijkstra(graph, start, target)
         .stream()
-        .map(intsToStationsNames::get)
+        .map(stationRepository.getIntsToStationsNames()::get)
         .toList();
   }
 

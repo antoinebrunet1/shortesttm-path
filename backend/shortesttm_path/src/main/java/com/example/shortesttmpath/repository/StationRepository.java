@@ -20,6 +20,7 @@ public class StationRepository {
   private final List<String> allStationsToSwitchLines =
       FileUtil.getLines("all_stations_to_switch_lines.txt");
   private final Map<String, Integer> stationsNamesToInts = getStationsNamesToInts();
+  private final Map<Integer, String> intsToStationsNames = getIntsToStationsNames();
 
   public StationRepository() throws IOException {
   }
