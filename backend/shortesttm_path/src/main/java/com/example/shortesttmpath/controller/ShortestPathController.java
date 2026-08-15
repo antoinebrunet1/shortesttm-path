@@ -54,7 +54,7 @@ public class ShortestPathController {
                                                           @RequestParam String destinationStation)
       throws IOException {
     HttpHeaders headers = new HttpHeaders();
-    ShortestPathBean path = ShortestPathUtil.getInstance().getShortestPath(startingStation,
+    ShortestPathBean path = new ShortestPathUtil().getShortestPath(startingStation,
         destinationStation);
 
     return new ResponseEntity<>(path, headers, HttpStatus.OK);

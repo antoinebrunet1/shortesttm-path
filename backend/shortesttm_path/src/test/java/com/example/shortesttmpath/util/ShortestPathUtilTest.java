@@ -85,7 +85,7 @@ public class ShortestPathUtilTest {
           fileUtilMocked.when(() -> FileUtil.getLines("all_stations_to_switch_lines.txt")).thenReturn(allStationsToSwitchLines);
           distancesUtilMocked.when(() -> DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts)).thenReturn(mapSrcToMapDestinationToDistanceInM);
           dijkstraUtilMocked.when(() -> DijkstraUtil.dijkstra(Mockito.any(), Mockito.eq(0), Mockito.eq(3))).thenReturn(path);
-          ShortestPathBean actualPath = ShortestPathUtil.getNewInstanceForUnitTest().getShortestPath(
+          ShortestPathBean actualPath = new ShortestPathUtil().getShortestPath(
               startingStation, destinationStation);
           ShortestPathBean expectedPath = new ShortestPathBean(
               new NonEndingStationInPathBean(
@@ -107,24 +107,24 @@ public class ShortestPathUtilTest {
     @Test
     public void getShortestPathSameLineShouldThrowStationsOnSameLineException() {
         assertThrows(StationsOnSameLineException.class, () ->
-            ShortestPathUtil.getNewInstanceForUnitTest().getShortestPath("McGill", "Viau"));
+            new ShortestPathUtil().getShortestPath("McGill", "Viau"));
     }
 
   @Test
   public void getShortestPathInvalidStartingStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        ShortestPathUtil.getNewInstanceForUnitTest().getShortestPath("MMcGill", "Viau"));
+        new ShortestPathUtil().getShortestPath("MMcGill", "Viau"));
   }
 
   @Test
   public void getShortestPathInvalidDestinationStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        ShortestPathUtil.getNewInstanceForUnitTest().getShortestPath("McGill", "VViau"));
+        new ShortestPathUtil().getShortestPath("McGill", "VViau"));
   }
 
   @Test
   public void getShortestPathInvalidStationsShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        ShortestPathUtil.getNewInstanceForUnitTest().getShortestPath("MMcGill", "VViau"));
+        new ShortestPathUtil().getShortestPath("MMcGill", "VViau"));
   }
 }

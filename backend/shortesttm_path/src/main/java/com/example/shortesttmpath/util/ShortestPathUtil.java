@@ -16,37 +16,11 @@ import java.util.stream.Collectors;
  * Util class to calculate the shortest metro path between two STM metro stations.
  */
 public class ShortestPathUtil {
-  private static ShortestPathUtil single_instance = null;
   private final StationRepository stationRepository = new StationRepository();
   private final List<List<int[]>> graph = new GraphUtil(stationRepository)
       .getGraph(stationRepository.getStationsNamesToInts());
 
-  private ShortestPathUtil() throws IOException {
-  }
-
-  /**
-   * The Singleton constructor.
-   *
-   * @return The Singleton.
-   * @throws IOException IOException.
-   */
-  public static synchronized ShortestPathUtil getInstance() throws IOException {
-    if (single_instance == null) {
-      single_instance = new ShortestPathUtil();
-    }
-
-    return single_instance;
-  }
-
-  /**
-   * Returns a new instance of ShortestPathUtil. To preserve the isolation of the unit tests which
-   * the singleton design pattern breaks.
-   *
-   * @return A new instance of ShortestPathUtil.
-   * @throws IOException IOException.
-   */
-  public static ShortestPathUtil getNewInstanceForUnitTest() throws IOException {
-    return new ShortestPathUtil();
+  public ShortestPathUtil() throws IOException {
   }
 
   /**
