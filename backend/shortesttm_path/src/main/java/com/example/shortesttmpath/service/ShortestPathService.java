@@ -43,10 +43,10 @@ public class ShortestPathService {
         directions.getFirst();
   }
 
-  private Line getLineOfDirection(List<Line> station1Lines, List<Line> station2Lines) {
-    return station1Lines.stream()
+  private Line getLineOfDirection(List<Line> stationLines, List<Line> nextStationLines) {
+    return stationLines.stream()
         .distinct()
-        .filter(station2Lines::contains)
+        .filter(nextStationLines::contains)
         .collect(Collectors.toSet()).iterator().next();
   }
 
