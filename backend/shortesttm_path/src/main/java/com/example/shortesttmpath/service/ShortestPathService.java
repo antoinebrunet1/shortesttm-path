@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.service;
 
+import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShortestPathService {
   private final StationRepository stationRepository = new StationRepository();
-  private final List<List<int[]>> graph = new GraphUtil(stationRepository).getGraph();
+  private final List<List<Edge>> graph = new GraphUtil(stationRepository).getGraph();
 
   public ShortestPathService() throws IOException {
   }

@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.data.Edge;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,19 +17,19 @@ public class DijkstraUtilTest {
    */
   @Test
   public void dijkstraReturnsCorrectPathThreeNodes() {
-    List<int[]> node1 = List.of(
-        new int[] {1, 1},
-        new int[] {2, 4}
+    List<Edge> node1 = List.of(
+        new Edge(1, 1),
+        new Edge(2, 4)
     );
-    List<int[]> node2 = List.of(
-        new int[] {0, 1},
-        new int[] {2, 2}
+    List<Edge> node2 = List.of(
+        new Edge(0, 1),
+        new Edge(2, 2)
     );
-    List<int[]> node3 = List.of(
-        new int[] {1, 2},
-        new int[] {0, 4}
+    List<Edge> node3 = List.of(
+        new Edge(1, 2),
+        new Edge(0, 4)
     );
-    List<List<int[]>> graph = List.of(
+    List<List<Edge>> graph = List.of(
         node1,
         node2,
         node3

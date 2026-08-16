@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class GraphUtil {
     numberOfStations = stationRepository.getStationsNamesToInts().size();
   }
 
-  public List<List<int[]>> getGraph() {
-    List<List<int[]>> graph = new ArrayList<>(numberOfStations);
+  public List<List<Edge>> getGraph() {
+    List<List<Edge>> graph = new ArrayList<>(numberOfStations);
 
     for (int i = 0; i < numberOfStations; i++) {
       addSrcStationToGraph(graph, i);
@@ -27,14 +28,14 @@ public class GraphUtil {
     return graph;
   }
 
-  private void addSrcStationToGraph(List<List<int[]>> graph, int srcStation) {
+  private void addSrcStationToGraph(List<List<Edge>> graph, int srcStation) {
     Map<Integer, Integer> mapDestinationToDistanceInM =
         mapSrcToMapDestinationToDistanceInM.get(srcStation);
-    List<int[]> destinationAndDistanceInM = new ArrayList<>();
+    List<Edge> destinationAndDistanceInM = new ArrayList<>();
 
     for (int destinationStation : mapDestinationToDistanceInM.keySet()) {
-      destinationAndDistanceInM.add(new int[] {destinationStation,
-          mapDestinationToDistanceInM.get(destinationStation)});
+      destinationAndDistanceInM.add(new Edge(destinationStation,
+          mapDestinationToDistanceInM.get(destinationStation)));
     }
 
     graph.add(destinationAndDistanceInM);

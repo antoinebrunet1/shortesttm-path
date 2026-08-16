@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.data.Edge;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,7 +30,7 @@ public class DijkstraUtil {
    * @param target The value of the target node.
    * @return The nodes of the path as ints.
    */
-  public static List<Integer> dijkstra(List<List<int[]>> graph, int start, int target) {
+  public static List<Integer> dijkstra(List<List<Edge>> graph, int start, int target) {
 
     // Number of nodes in the graph
     int n = graph.size();
@@ -72,12 +73,12 @@ public class DijkstraUtil {
       }
 
       // Explore all neighbors of current node
-      for (int[] edge : graph.get(node)) {
+      for (Edge edge : graph.get(node)) {
 
-        int neighbor = edge[0];
+        int neighbor = edge.destination();
 
         // Calculate new possible distance
-        int newDist = dist[node] + edge[1];
+        int newDist = dist[node] + edge.distance();
 
         // If a shorter path is found
         if (newDist < dist[neighbor]) {
