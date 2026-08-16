@@ -27,15 +27,6 @@ public class ShortestPathService {
   public ShortestPathService() throws IOException {
   }
 
-  /**
-   * Returns all the stations in alphabetical order.
-   *
-   * @return All the stations in alphabetical order.
-   */
-  public List<String> getAllStationsInAlphabeticalOrder() {
-    return stationRepository.getAllStationsAlphabeticalOrder();
-  }
-
   private String getDirectionOfStation(String station1, String station2) {
     List<Line> station1Lines = getLines(station1);
     List<Line> station2Lines = getLines(station2);

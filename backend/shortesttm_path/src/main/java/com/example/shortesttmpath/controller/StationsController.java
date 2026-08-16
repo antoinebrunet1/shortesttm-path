@@ -1,6 +1,6 @@
 package com.example.shortesttmpath.controller;
 
-import com.example.shortesttmpath.service.ShortestPathService;
+import com.example.shortesttmpath.service.StationService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/stations")
 public class StationsController {
   @Autowired
-  private ShortestPathService shortestPathService;
+  private StationService stationService;
 
   /**
    * The default constructor.
@@ -33,7 +33,7 @@ public class StationsController {
   @GetMapping("alphabetical-order")
   public ResponseEntity<List<String>> getAllStationsInAlphabeticalOrder() {
     HttpHeaders headers = new HttpHeaders();
-    List<String> allStationsInAlphabeticalOrder = shortestPathService
+    List<String> allStationsInAlphabeticalOrder = stationService
         .getAllStationsInAlphabeticalOrder();
 
     return new ResponseEntity<>(allStationsInAlphabeticalOrder, headers, HttpStatus.OK);
