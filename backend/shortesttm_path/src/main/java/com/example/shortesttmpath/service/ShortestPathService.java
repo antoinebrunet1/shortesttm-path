@@ -29,6 +29,26 @@ public class ShortestPathService {
   public ShortestPathService() throws IOException {
   }
 
+  /**
+   * Returns the shortest metro path between two STM metro stations. A StationsNotValidException
+   * exception is thrown if the name of at least one of the two stations is not valid. A
+   * StationsOnSameLineException exception is thrown if the two stations are on the same line. This
+   * includes the same station given twice and neighbor stations.
+   *
+   * @param startingStation    The starting station.
+   * @param destinationStation The destination station.
+   * @return The shortest metro path between two STM metro stations.
+   */
+  public ShortestPathBean getShortestPath(String startingStation,
+                                          String destinationStation) {
+    validateStations(startingStation, destinationStation);
+    int start = stationRepository.getStationsNamesToInts().get(startingStation);
+    int target = stationRepository.getStationsNamesToInts().get(destinationStation);
+    List<String> allStations = getPathStations(start, target);
+
+    return getShortestPathBean(startingStation, destinationStation, allStations);
+  }
+
   private String getDirectionOfStation(String station, String nextStation) {
     Line lineOfDirection = getLineOfDirection(getLines(station), getLines(nextStation));
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
@@ -52,26 +72,6 @@ public class ShortestPathService {
 
   private List<String> getAllStationsOfLineOfDirection(Line lineOfDirection) {
     return stationRepository.getLinesToStations().get(lineOfDirection);
-  }
-
-  /**
-   * Returns the shortest metro path between two STM metro stations. A StationsNotValidException
-   * exception is thrown if the name of at least one of the two stations is not valid. A
-   * StationsOnSameLineException exception is thrown if the two stations are on the same line. This
-   * includes the same station given twice and neighbor stations.
-   *
-   * @param startingStation    The starting station.
-   * @param destinationStation The destination station.
-   * @return The shortest metro path between two STM metro stations.
-   */
-  public ShortestPathBean getShortestPath(String startingStation,
-                                                 String destinationStation) {
-    validateStations(startingStation, destinationStation);
-    int start = stationRepository.getStationsNamesToInts().get(startingStation);
-    int target = stationRepository.getStationsNamesToInts().get(destinationStation);
-    List<String> allStations = getPathStations(start, target);
-
-    return getShortestPathBean(startingStation, destinationStation, allStations);
   }
 
   private void validateStations(String startingStation, String destinationStation) {
