@@ -3,6 +3,7 @@ package com.example.shortesttmpath.repository;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.util.FileUtil;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,5 +52,17 @@ public class StationRepository {
     }
 
     this.intsToStationsNames = intsToStationsNames;
+  }
+
+  public List<Line> getLines(String station) {
+    List<Line> lines = new ArrayList<>();
+
+    for (Line line : linesToStations.keySet()) {
+      if (linesToStations.get(line).contains(station)) {
+        lines.add(line);
+      }
+    }
+
+    return lines;
   }
 }
