@@ -32,10 +32,7 @@ public class StationsController {
    */
   @GetMapping("alphabetical-order")
   public ResponseEntity<List<String>> getAllStationsInAlphabeticalOrder() {
-    HttpHeaders headers = new HttpHeaders();
-    List<String> allStationsInAlphabeticalOrder = stationService
-        .getAllStationsInAlphabeticalOrder();
-
-    return new ResponseEntity<>(allStationsInAlphabeticalOrder, headers, HttpStatus.OK);
+    return new ResponseEntity<>(stationService.getAllStationsInAlphabeticalOrder(),
+        new HttpHeaders(), HttpStatus.OK);
   }
 }
