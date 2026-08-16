@@ -1,10 +1,12 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
-import com.example.shortesttmpath.service.ShortestPathService;
+import com.example.shortesttmpath.util.DijkstraUtil;
+import com.example.shortesttmpath.util.DistancesUtil;
+import com.example.shortesttmpath.util.FileUtil;
 import java.io.IOException;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,7 @@ import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ShortestPathUtilTest {
+public class ShortestPathServiceTest {
   /*
   Graph (Each vertex is bidirectional.):
 
