@@ -100,7 +100,7 @@ public class ShortestPathService {
     shortestPath.setDestinationStation(destinationStation);
     List<String> stationsToSwitchLines =
         new ArrayList<>(getStationsToSwitchLines(allStations, startingStation, destinationStation));
-    List<String> stationsToExclude = getStationsToExclude(stationsToSwitchLines, allStations);
+    List<String> stationsToExclude = filterOutFalseTransfers(stationsToSwitchLines, allStations);
     stationsToSwitchLines.removeAll(stationsToExclude);
     List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = getStationsToSwitchLinesObjects(
         stationsToSwitchLines, allStations);
@@ -164,8 +164,8 @@ public class ShortestPathService {
         && stationRepository.getStationsNamesToInts().containsKey(destinationStation);
   }
 
-  private List<String> getStationsToExclude(List<String> stationsToSwitchLines,
-                                                   List<String> allStations) {
+  private List<String> filterOutFalseTransfers(List<String> stationsToSwitchLines,
+                                               List<String> allStations) {
     List<String> stationsToExclude = new ArrayList<>();
     for (String station : stationsToSwitchLines) {
       int indexOfStationInAllStations = allStations.indexOf(station);
