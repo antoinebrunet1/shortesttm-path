@@ -126,12 +126,12 @@ public class ShortestPathService {
                                                              List<String> allStations) {
     String nextStation = allStations.get(allStations.indexOf(station) + 1);
     String direction = getDirectionOfStation(station, nextStation);
-    Line line = getLineOfStationObject(station, direction);
+    Line line = getLineOfStationInGivenDirection(station, direction);
 
     return new NonEndingStationInPathBean(station, line, direction);
   }
 
-  private Line getLineOfStationObject(String station, String direction) {
+  private Line getLineOfStationInGivenDirection(String station, String direction) {
     List<Line> lines = getLines(direction);
 
     if (lines.size() == 1) {
