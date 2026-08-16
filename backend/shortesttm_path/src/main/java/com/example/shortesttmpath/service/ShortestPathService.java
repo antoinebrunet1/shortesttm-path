@@ -21,8 +21,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShortestPathService {
   private final StationRepository stationRepository = new StationRepository();
-  private final List<List<int[]>> graph = new GraphUtil(stationRepository)
-      .getGraph(stationRepository.getStationsNamesToInts());
+  private final List<List<int[]>> graph = new GraphUtil(stationRepository).getGraph();
 
   public ShortestPathService() throws IOException {
   }

@@ -8,18 +8,20 @@ import java.util.Map;
 
 public class GraphUtil {
   private final Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM;
+  private final int numberOfStations;
 
   public GraphUtil(StationRepository stationRepository) throws IOException {
     mapSrcToMapDestinationToDistanceInM =
         DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationRepository
             .getStationsNamesToInts());
+    numberOfStations = stationRepository.getStationsNamesToInts().size();
   }
 
-  public List<List<int[]>> getGraph(Map<String, Integer> stationsNamesToInts) {
-    List<List<int[]>> graph = new ArrayList<>(stationsNamesToInts.size());
+  public List<List<int[]>> getGraph() {
+    List<List<int[]>> graph = new ArrayList<>(numberOfStations);
 
-    for (int srcStation : stationsNamesToInts.values()) {
-      addSrcStationToGraph(graph, srcStation);
+    for (int i = 0; i < numberOfStations; i++) {
+      addSrcStationToGraph(graph, i);
     }
 
     return graph;
