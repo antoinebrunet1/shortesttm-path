@@ -36,14 +36,14 @@ public class ShortestPathService {
   }
 
   private String getDirectionOfStation(String station1, String station2) {
-    List<String> station1Lines = getLines(station1);
-    List<String> station2Lines = getLines(station2);
-    String lineOfDirection = getLineOfDirection(station1Lines, station2Lines);
+    List<Line> station1Lines = getLines(station1);
+    List<Line> station2Lines = getLines(station2);
+    Line lineOfDirection = getLineOfDirection(station1Lines, station2Lines);
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
     int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
     int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
     List<String> stationsOfLineOfDirection = stationRepository.getLinesToStations()
-        .get(Line.valueOf(lineOfDirection));
+        .get(lineOfDirection);
     List<String> directions = List.of(stationsOfLineOfDirection.getFirst(),
         stationsOfLineOfDirection.getLast());
 
@@ -51,15 +51,15 @@ public class ShortestPathService {
         directions.getFirst();
   }
 
-  private String getLineOfDirection(List<String> station1Lines, List<String> station2Lines) {
+  private Line getLineOfDirection(List<Line> station1Lines, List<Line> station2Lines) {
     return station1Lines.stream()
         .distinct()
         .filter(station2Lines::contains)
         .collect(Collectors.toSet()).iterator().next();
   }
 
-  private List<String> getAllStationsOfLineOfDirection(String lineOfDirection) {
-    return stationRepository.getLinesToStations().get(Line.valueOf(lineOfDirection));
+  private List<String> getAllStationsOfLineOfDirection(Line lineOfDirection) {
+    return stationRepository.getLinesToStations().get(lineOfDirection);
   }
 
   /**
@@ -132,13 +132,13 @@ public class ShortestPathService {
                                                              List<String> allStations) {
     String nextStation = allStations.get(allStations.indexOf(station) + 1);
     String direction = getDirectionOfStation(station, nextStation);
-    String line = getLineOfStationObject(station, direction);
+    Line line = getLineOfStationObject(station, direction);
 
     return new NonEndingStationInPathBean(station, line, direction);
   }
 
-  private String getLineOfStationObject(String station, String direction) {
-    List<String> lines = getLines(direction);
+  private Line getLineOfStationObject(String station, String direction) {
+    List<Line> lines = getLines(direction);
 
     if (lines.size() == 1) {
       return lines.getFirst();
@@ -189,12 +189,12 @@ public class ShortestPathService {
         && getLines(station).contains(getLines(stationBefore).getFirst());
   }
 
-  private List<String> getLines(String station) {
-    List<String> lines = new ArrayList<>();
+  private List<Line> getLines(String station) {
+    List<Line> lines = new ArrayList<>();
 
     for (Line line : stationRepository.getLinesToStations().keySet()) {
       if (stationRepository.getLinesToStations().get(line).contains(station)) {
-        lines.add(line.name());
+        lines.add(line);
       }
     }
 

@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.data;
 
+import com.example.shortesttmpath.enums.Line;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class NonEndingStationInPathBean {
   String name;
-  String line;
+  Line line;
   String direction;
 
   /**
