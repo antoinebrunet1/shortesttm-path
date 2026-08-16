@@ -2,6 +2,7 @@ package com.example.shortesttmpath.service;
 
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
+import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.util.DijkstraUtil;
@@ -93,13 +94,13 @@ public class ShortestPathServiceTest {
           ShortestPathBean expectedPath = new ShortestPathBean(
               new NonEndingStationInPathBean(
                   startingStation,
-                  "BLUE",
+                  Line.BLUE,
                   "C"
               ),
               destinationStation,
               List.of(new NonEndingStationInPathBean(
                   "B",
-                  "GREEN",
+                  Line.GREEN,
                   "D"
               )));
 
