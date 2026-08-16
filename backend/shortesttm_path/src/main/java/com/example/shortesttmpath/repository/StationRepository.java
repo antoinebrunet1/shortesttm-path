@@ -23,6 +23,11 @@ public class StationRepository {
   private Map<String, Integer> stationsNamesToInts;
   private Map<Integer, String> intsToStationsNames;
 
+  /**
+   * "set" methods used instead of "get" methods to differentiate from the Lombok getters.
+   *
+   * @throws IOException IOException.
+   */
   public StationRepository() throws IOException {
     setStationsNamesToInts();
     setIntsToStationsNames();
