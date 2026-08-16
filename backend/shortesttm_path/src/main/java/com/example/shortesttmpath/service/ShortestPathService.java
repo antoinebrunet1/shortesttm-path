@@ -171,14 +171,14 @@ public class ShortestPathService {
       int indexOfStationInAllStations = allStations.indexOf(station);
       String stationBefore = allStations.get(indexOfStationInAllStations - 1);
       String stationAfter = allStations.get(indexOfStationInAllStations + 1);
-      if (stationToSwitchLinesIsNotUsedToSwitchLines(station, stationBefore, stationAfter)) {
+      if (isStationFalseTransfer(station, stationBefore, stationAfter)) {
         stationsToExclude.add(station);
       }
     }
     return stationsToExclude;
   }
 
-  private boolean stationToSwitchLinesIsNotUsedToSwitchLines(String station, String stationBefore, String stationAfter) {
+  private boolean isStationFalseTransfer(String station, String stationBefore, String stationAfter) {
     return getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst())
         && getLines(station).contains(getLines(stationBefore).getFirst());
   }
