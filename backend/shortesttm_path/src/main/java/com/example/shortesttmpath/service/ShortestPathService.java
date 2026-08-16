@@ -30,9 +30,7 @@ public class ShortestPathService {
   }
 
   private String getDirectionOfStation(String station1, String station2) {
-    List<Line> station1Lines = getLines(station1);
-    List<Line> station2Lines = getLines(station2);
-    Line lineOfDirection = getLineOfDirection(station1Lines, station2Lines);
+    Line lineOfDirection = getLineOfDirection(getLines(station1), getLines(station2));
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
     int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
     int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
