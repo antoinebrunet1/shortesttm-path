@@ -29,11 +29,11 @@ public class ShortestPathService {
   public ShortestPathService() throws IOException {
   }
 
-  private String getDirectionOfStation(String station1, String station2) {
-    Line lineOfDirection = getLineOfDirection(getLines(station1), getLines(station2));
+  private String getDirectionOfStation(String station, String nextStation) {
+    Line lineOfDirection = getLineOfDirection(getLines(station), getLines(nextStation));
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
-    int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station1);
-    int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(station2);
+    int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station);
+    int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(nextStation);
     List<String> stationsOfLineOfDirection = stationRepository.getLinesToStations()
         .get(lineOfDirection);
     List<String> directions = List.of(stationsOfLineOfDirection.getFirst(),
