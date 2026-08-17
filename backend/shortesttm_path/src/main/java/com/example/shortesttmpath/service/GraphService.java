@@ -58,7 +58,8 @@ public class GraphService {
 
   private void addDistanceLine(Map<Integer, List<Edge>> edges, String distanceLine) {
     int src = stationRepository.getStationsNamesToInts().get(distanceLine.split(" to ")[0]);
-    int destination = stationRepository.getStationsNamesToInts().get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
+    int destination = stationRepository.getStationsNamesToInts()
+        .get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
     int distance = Integer.parseInt(distanceLine.split(" to ")[1].split("\\s:\\s")[1]);
 
     addEdge(edges, src, destination, distance);
