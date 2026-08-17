@@ -2,13 +2,15 @@ package com.example.shortesttmpath.service;
 
 import com.example.shortesttmpath.repository.StationRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StationService {
-  @Autowired
-  private StationRepository stationRepository;
+  private final StationRepository stationRepository;
+
+  public StationService(StationRepository stationRepository) {
+    this.stationRepository = stationRepository;
+  }
 
   /**
    * Returns all the stations in alphabetical order.
