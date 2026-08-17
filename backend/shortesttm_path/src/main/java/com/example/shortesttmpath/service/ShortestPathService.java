@@ -24,6 +24,13 @@ public class ShortestPathService {
   private final DijkstraService dijkstraService;
   private final List<List<Edge>> graph;
 
+  /**
+   * The constructor.
+   *
+   * @param stationRepository The StationRepository.
+   * @param dijkstraService The DijkstraService.
+   * @param graphService The GraphService.
+   */
   public ShortestPathService(StationRepository stationRepository, DijkstraService dijkstraService,
                              GraphService graphService) {
     this.stationRepository = stationRepository;
@@ -178,7 +185,8 @@ public class ShortestPathService {
     return stationsToExclude;
   }
 
-  private boolean isStationFalseTransfer(String station, String stationBefore, String stationAfter) {
+  private boolean isStationFalseTransfer(String station, String stationBefore,
+                                         String stationAfter) {
     return getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst())
         && getLines(station).contains(getLines(stationBefore).getFirst());
   }

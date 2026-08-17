@@ -4,10 +4,18 @@ import com.example.shortesttmpath.repository.StationRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+/**
+ * For StationController.
+ */
 @Service
 public class StationService {
   private final StationRepository stationRepository;
 
+  /**
+   * The constructor.
+   *
+   * @param stationRepository The StationRepository.
+   */
   public StationService(StationRepository stationRepository) {
     this.stationRepository = stationRepository;
   }

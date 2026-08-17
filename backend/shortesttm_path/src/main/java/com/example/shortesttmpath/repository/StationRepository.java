@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import lombok.Getter;
 
+/**
+ * Station related repository.
+ */
 @Getter
 public class StationRepository {
   private final FileService fileService;
