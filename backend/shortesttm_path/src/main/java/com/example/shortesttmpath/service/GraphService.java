@@ -13,9 +13,10 @@ public class GraphService {
   private final Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM;
   private final int numberOfStations;
 
-  public GraphService(StationRepository stationRepository) throws IOException {
+  public GraphService(StationRepository stationRepository, DistancesService distancesService)
+      throws IOException {
     mapSrcToMapDestinationToDistanceInM =
-        DistancesService.getMapScrToMapDestinationToDistanceInM(stationRepository
+        distancesService.getMapScrToMapDestinationToDistanceInM(stationRepository
             .getStationsNamesToInts());
     numberOfStations = stationRepository.getStationsNamesToInts().size();
   }

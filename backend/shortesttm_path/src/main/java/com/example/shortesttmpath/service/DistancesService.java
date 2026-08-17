@@ -29,7 +29,7 @@ public class DistancesService {
    *        destination node to the distance from the source node in meters.
    * @throws IOException IOException.
    */
-  public static Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM(
+  public Map<Integer, Map<Integer, Integer>> getMapScrToMapDestinationToDistanceInM(
       Map<String, Integer> stationsNamesToInts)
       throws IOException {
     Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();
@@ -42,7 +42,7 @@ public class DistancesService {
     return distancesMap;
   }
 
-  private static void addDistance(String distanceLine,
+  private void addDistance(String distanceLine,
                            Map<Integer, Map<Integer, Integer>> distancesMap,
                                   Map<String, Integer> stationsNamesToInts) {
     int station1 = stationsNamesToInts.get(distanceLine.split(" to ")[0]);
@@ -53,7 +53,7 @@ public class DistancesService {
     addDistance(station2, station1, distance, distancesMap);
   }
 
-  private static void addDistance(int station1, int station2, int distance,
+  private void addDistance(int station1, int station2, int distance,
                            Map<Integer, Map<Integer, Integer>> distancesMap) {
     if (distancesMap.containsKey(station1)) {
       distancesMap.get(station1).put(station2, distance);
