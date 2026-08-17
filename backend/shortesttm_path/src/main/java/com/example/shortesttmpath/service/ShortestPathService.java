@@ -7,6 +7,7 @@ import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.repository.StationRepository;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +31,7 @@ public class ShortestPathService {
    * @param graphService The GraphService.
    */
   public ShortestPathService(StationRepository stationRepository, DijkstraService dijkstraService,
-                             GraphService graphService) {
+                             GraphService graphService) throws IOException {
     this.stationRepository = stationRepository;
     this.dijkstraService = dijkstraService;
     graph = graphService.getGraph();
