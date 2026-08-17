@@ -8,10 +8,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.Getter;
+import org.springframework.stereotype.Repository;
 
 /**
  * Station related repository.
  */
+@Repository
 @Getter
 public class StationRepository {
   private final FileService fileService;
