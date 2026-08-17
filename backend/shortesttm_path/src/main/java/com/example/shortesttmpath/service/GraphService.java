@@ -61,6 +61,18 @@ public class GraphService {
     int destination = stationRepository.getStationsNamesToInts().get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
     int distance = Integer.parseInt(distanceLine.split(" to ")[1].split("\\s:\\s")[1]);
 
-    edges.getOrDefault(src, new ArrayList<>()).add(new Edge(destination, distance));
+    addEdge(edges, src, destination, distance);
+    addEdge(edges, destination, src, distance);
+  }
+
+  private void addEdge(Map<Integer, List<Edge>> edges, int src, int destination, int distance) {
+    if (edges.containsKey(src)) {
+      edges.get(src).add(new Edge(destination, distance));
+    } else {
+      List<Edge> list = new ArrayList<>();
+
+      list.add(new Edge(destination, distance));
+      edges.put(src, list);
+    }
   }
 }
