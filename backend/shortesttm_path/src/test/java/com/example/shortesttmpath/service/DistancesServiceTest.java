@@ -1,7 +1,5 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
-import com.example.shortesttmpath.service.DistancesService;
-import com.example.shortesttmpath.service.FileService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
-public class DistancesUtilTest {
+public class DistancesServiceTest {
 
   @Test
   public void getMapScrToMapDestinationToDistanceInMHappyPath() throws IOException {
