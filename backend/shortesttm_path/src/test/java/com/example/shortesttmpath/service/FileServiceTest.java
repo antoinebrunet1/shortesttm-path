@@ -14,7 +14,7 @@ public class FileServiceTest {
         "FileUtil",
         "class"
     );
-    List<String> actualResult = FileService.getLines(fileName);
+    List<String> actualResult = new FileService().getLines(fileName);
 
     Assertions.assertEquals(expectedResult, actualResult);
   }
