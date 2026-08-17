@@ -10,16 +10,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class GraphServiceTest {
   @Mock
   StationRepository stationRepository;
   @Mock
   DistancesService distancesService;
-  @InjectMocks
-  GraphService graphService;
 
   private void mockInjections() throws IOException {
     mockStationRepository();
@@ -66,7 +66,7 @@ public class GraphServiceTest {
             new Edge(1, 1063)
         )
     );
-    List<List<Edge>> actualResult = graphService.getGraph();
+    List<List<Edge>> actualResult = new GraphService(stationRepository, distancesService).getGraph();
 
     assertEquals(expectedResult, actualResult);
   }
