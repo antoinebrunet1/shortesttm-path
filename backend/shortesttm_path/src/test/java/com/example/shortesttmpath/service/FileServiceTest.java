@@ -1,12 +1,11 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
-import com.example.shortesttmpath.service.FileService;
 import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FileUtilTest {
+public class FileServiceTest {
   @Test
   public void getLinesReturnsCorrectLinesThreeLines() throws IOException {
     String fileName = "test/getLinesReturnsCorrectLinesThreeLines.txt";
