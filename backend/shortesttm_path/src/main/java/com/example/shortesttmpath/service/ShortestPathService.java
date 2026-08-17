@@ -52,7 +52,7 @@ public class ShortestPathService {
   }
 
   private String getDirectionOfStation(String station, String nextStation) {
-    Line lineOfDirection = getLineOfDirection(stationRepository.getLines(station), stationRepository.getLines(nextStation));
+    Line lineOfDirection = getLineOfDirection(getLines(station), getLines(nextStation));
     List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
     int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station);
     int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(nextStation);
@@ -132,7 +132,7 @@ public class ShortestPathService {
   }
 
   private Line getLineOfStationInGivenDirection(String station, String direction) {
-    List<Line> lines = stationRepository.getLines(direction);
+    List<Line> lines = getLines(direction);
 
     if (lines.size() == 1) {
       return lines.getFirst();
@@ -140,8 +140,8 @@ public class ShortestPathService {
 
     return lines
         .stream()
-        .filter(line -> stationRepository.getLines(station).contains(line)
-            && stationRepository.getLines(direction).contains(line))
+        .filter(line -> getLines(station).contains(line)
+            && getLines(direction).contains(line))
         .toList()
         .getFirst();
   }
@@ -156,7 +156,7 @@ public class ShortestPathService {
 
   private boolean areStationsOnTheSameLine(String startingStation,
                                                   String destinationStation) {
-    return !Collections.disjoint(stationRepository.getLines(startingStation), stationRepository.getLines(destinationStation));
+    return !Collections.disjoint(getLines(startingStation), getLines(destinationStation));
   }
 
   private boolean areInputStationsValid(String startingStation, String destinationStation) {
@@ -179,7 +179,19 @@ public class ShortestPathService {
   }
 
   private boolean isStationFalseTransfer(String station, String stationBefore, String stationAfter) {
-    return stationRepository.getLines(stationBefore).getFirst().equals(stationRepository.getLines(stationAfter).getFirst())
-        && stationRepository.getLines(station).contains(stationRepository.getLines(stationBefore).getFirst());
+    return getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst())
+        && getLines(station).contains(getLines(stationBefore).getFirst());
+  }
+
+  private List<Line> getLines(String station) {
+    List<Line> lines = new ArrayList<>();
+
+    for (Line line : stationRepository.getLinesToStations().keySet()) {
+      if (stationRepository.getLinesToStations().get(line).contains(station)) {
+        lines.add(line);
+      }
+    }
+
+    return lines;
   }
 }

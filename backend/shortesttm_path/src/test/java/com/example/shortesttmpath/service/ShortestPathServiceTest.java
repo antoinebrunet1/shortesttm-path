@@ -1,22 +1,101 @@
 package com.example.shortesttmpath.service;
 
+import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
+import com.example.shortesttmpath.repository.StationRepository;
 import java.io.IOException;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ShortestPathServiceTest {
+  @Mock
+  StationRepository stationRepository = mock(StationRepository.class);
+  @Mock
+  DijkstraService dijkstraService = mock(DijkstraService.class);
+  @Mock
+  GraphService graphService = mock(GraphService.class);
+
+  private void mockInjections() {
+    mockStationRepository();
+    mockDijkstraService();
+    mockGraphService();
+  }
+
+  private void mockStationRepository() {
+    Map<Line, List<String>> linesToStations = Map.of(
+        Line.BLUE, List.of("A", "B", "C"),
+        Line.GREEN, List.of("B", "D"),
+        Line.ORANGE, List.of("C", "D"),
+        Line.YELLOW, List.of("C", "E")
+    );
+    List<String> allStationsAlphabeticalOrder = List.of("A", "B", "C", "D", "E");
+    List<String> allStationsToSwitchLines = List.of("B", "C");
+    Map<String, Integer> stationsNamesToInts = Map.of(
+        "A", 0,
+        "B", 1,
+        "C", 2,
+        "D", 3,
+        "E", 4
+    );
+    Map<Integer, String> intsToStationsNames = Map.of(
+        0, "A",
+        1, "B",
+        2, "C",
+        3, "D",
+        4, "E"
+    );
+    when(stationRepository.getLinesToStations()).thenReturn(linesToStations);
+    when(stationRepository.getAllStationsAlphabeticalOrder()).thenReturn(allStationsAlphabeticalOrder);
+    when(stationRepository.getAllStationsToSwitchLines()).thenReturn(allStationsToSwitchLines);
+    when(stationRepository.getStationsNamesToInts()).thenReturn(stationsNamesToInts);
+    when(stationRepository.getIntsToStationsNames()).thenReturn(intsToStationsNames);
+  }
+
+  private void mockDijkstraService() {
+    List<Integer> path = List.of(0, 1, 3);
+    when(dijkstraService.dijkstra(any(), any(), any())).thenReturn(path);
+  }
+
+  private void mockGraphService() {
+    List<List<Edge>> graph = List.of(
+        List.of(
+            new Edge(1, 100)
+        ),
+        List.of(
+            new Edge(0, 100),
+            new Edge(2, 300),
+            new Edge(3, 200)
+        ),
+        List.of(
+            new Edge(1, 300),
+            new Edge(3, 400),
+            new Edge(4, 500)
+        ),
+        List.of(
+            new Edge(1, 200),
+            new Edge(2, 400)
+        ),
+        List.of(
+            new Edge(2, 500)
+        )
+    );
+    when(graphService.getGraph()).thenReturn(graph);
+  }
+
   /*
   Graph (Each vertex is bidirectional.):
 
@@ -36,97 +115,50 @@ public class ShortestPathServiceTest {
    */
     @Test
     public void getShortestPathHappyPath() throws IOException {
+      mockInjections();
+
       String startingStation = "A";
       String destinationStation = "D";
-      List<String> blueLineStations = List.of("A", "B", "C");
-      List<String> greenLineStations = List.of("B", "D");
-      List<String> orangeLineStations = List.of("C", "D");
-      List<String> yellowLineStations = List.of("C", "E");
-      List<String> allStationsAlphabeticalOrder = List.of("A", "B", "C", "D", "E");
-      List<String> allStationsToSwitchLines = List.of("B", "C");
-      Map<String, Integer> stationsNamesToInts = Map.of(
-          "A", 0,
-          "B", 1,
-          "C", 2,
-          "D", 3,
-          "E", 4
-      );
-      Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM = Map.of(
-          0, Map.of(
-              1, 100
+      ShortestPathService shortestPathService =
+          new ShortestPathService(stationRepository, dijkstraService, graphService);
+      ShortestPathBean actualResult = shortestPathService.getShortestPath(startingStation, destinationStation);
+      ShortestPathBean expectedResult = new ShortestPathBean(
+          new NonEndingStationInPathBean(
+              startingStation,
+              Line.BLUE,
+              "C"
           ),
-          1, Map.of(
-              0, 100,
-              3, 200,
-              2, 300
-          ),
-          2, Map.of(
-              1, 300,
-              3, 400,
-              4, 500
-          ),
-          3, Map.of(
-              1, 200,
-              2, 400
-          ),
-          4, Map.of(
-              2, 500
-          )
-      );
-      List<Integer> path = List.of(0, 1, 3);
+          destinationStation,
+          List.of(new NonEndingStationInPathBean(
+              "B",
+              Line.GREEN,
+              "D"
+          )));
 
-        try (MockedStatic<FileService> fileUtilMocked = Mockito.mockStatic(FileService.class);
-             MockedStatic<DistancesService> distancesUtilMocked = Mockito.mockStatic(
-                 DistancesService.class);
-             MockedStatic<DijkstraService> dijkstraUtilMocked = Mockito.mockStatic(DijkstraService.class)) {
-          fileUtilMocked.when(() -> FileService.getLines("blue_line_stations.txt")).thenReturn(blueLineStations);
-          fileUtilMocked.when(() -> FileService.getLines("green_line_stations.txt")).thenReturn(greenLineStations);
-          fileUtilMocked.when(() -> FileService.getLines("orange_line_stations.txt")).thenReturn(orangeLineStations);
-          fileUtilMocked.when(() -> FileService.getLines("yellow_line_stations.txt")).thenReturn(yellowLineStations);
-          fileUtilMocked.when(() -> FileService.getLines("all_stations_alphabetical_order.txt")).thenReturn(allStationsAlphabeticalOrder);
-          fileUtilMocked.when(() -> FileService.getLines("all_stations_to_switch_lines.txt")).thenReturn(allStationsToSwitchLines);
-          distancesUtilMocked.when(() -> DistancesService.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts)).thenReturn(mapSrcToMapDestinationToDistanceInM);
-          dijkstraUtilMocked.when(() -> DijkstraService.dijkstra(Mockito.any(), Mockito.eq(0), Mockito.eq(3))).thenReturn(path);
-          ShortestPathBean actualPath = new ShortestPathService().getShortestPath(
-              startingStation, destinationStation);
-          ShortestPathBean expectedPath = new ShortestPathBean(
-              new NonEndingStationInPathBean(
-                  startingStation,
-                  Line.BLUE,
-                  "C"
-              ),
-              destinationStation,
-              List.of(new NonEndingStationInPathBean(
-                  "B",
-                  Line.GREEN,
-                  "D"
-              )));
-
-          assertEquals(expectedPath, actualPath);
-        }
+      assertEquals(expectedResult, actualResult);
     }
 
     @Test
     public void getShortestPathSameLineShouldThrowStationsOnSameLineException() {
         assertThrows(StationsOnSameLineException.class, () ->
-            new ShortestPathService().getShortestPath("McGill", "Viau"));
+            new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("McGill", "Viau"));
     }
 
   @Test
   public void getShortestPathInvalidStartingStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathService().getShortestPath("MMcGill", "Viau"));
+        new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("MMcGill", "Viau"));
   }
 
   @Test
   public void getShortestPathInvalidDestinationStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathService().getShortestPath("McGill", "VViau"));
+        new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("McGill", "VViau"));
   }
 
   @Test
   public void getShortestPathInvalidStationsShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathService().getShortestPath("MMcGill", "VViau"));
+        new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("MMcGill", "VViau"));
   }
 }

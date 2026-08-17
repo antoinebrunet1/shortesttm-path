@@ -58,16 +58,4 @@ public class StationRepository {
 
     this.intsToStationsNames = intsToStationsNames;
   }
-
-  public List<Line> getLines(String station) {
-    List<Line> lines = new ArrayList<>();
-
-    for (Line line : linesToStations.keySet()) {
-      if (linesToStations.get(line).contains(station)) {
-        lines.add(line);
-      }
-    }
-
-    return lines;
-  }
 }
