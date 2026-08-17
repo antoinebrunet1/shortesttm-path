@@ -21,10 +21,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShortestPathService {
   private final StationRepository stationRepository;
+  private final DijkstraService dijkstraService;
   private final List<List<Edge>> graph;
 
-  public ShortestPathService(StationRepository stationRepository, GraphService graphService) {
+  public ShortestPathService(StationRepository stationRepository, DijkstraService dijkstraService,
+                             GraphService graphService) {
     this.stationRepository = stationRepository;
+    this.dijkstraService = dijkstraService;
     graph = graphService.getGraph();
   }
 
@@ -83,7 +86,7 @@ public class ShortestPathService {
   }
 
   private List<String> getPathStations(int start, int target) {
-    return DijkstraService.dijkstra(graph, start, target)
+    return dijkstraService.dijkstra(graph, start, target)
         .stream()
         .map(stationRepository.getIntsToStationsNames()::get)
         .toList();

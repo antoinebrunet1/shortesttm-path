@@ -32,7 +32,7 @@ public class DijkstraService {
    * @param target The value of the target node.
    * @return The nodes of the path as ints.
    */
-  public static List<Integer> dijkstra(List<List<Edge>> graph, int start, int target) {
+  public List<Integer> dijkstra(List<List<Edge>> graph, int start, int target) {
 
     // Number of nodes in the graph
     int n = graph.size();
