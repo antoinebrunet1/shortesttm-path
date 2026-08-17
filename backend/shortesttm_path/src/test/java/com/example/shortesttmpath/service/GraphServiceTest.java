@@ -62,8 +62,8 @@ public class GraphServiceTest {
             new Edge(2, 1063)
         ),
         List.of(
-            new Edge(0, 844),
-            new Edge(1, 1063)
+            new Edge(1, 1063),
+            new Edge(0, 844)
         )
     );
     List<List<Edge>> actualResult = new GraphService(stationRepository, distancesService).getGraph();
