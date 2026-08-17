@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,6 +29,8 @@ public class ShortestPathServiceTest {
   DijkstraService dijkstraService = mock(DijkstraService.class);
   @Mock
   GraphService graphService = mock(GraphService.class);
+  @InjectMocks
+  ShortestPathService shortestPathService;
 
   private void mockInjections() {
     mockStationRepository();
@@ -119,8 +122,6 @@ public class ShortestPathServiceTest {
 
       String startingStation = "A";
       String destinationStation = "D";
-      ShortestPathService shortestPathService =
-          new ShortestPathService(stationRepository, dijkstraService, graphService);
       ShortestPathBean actualResult = shortestPathService.getShortestPath(startingStation, destinationStation);
       ShortestPathBean expectedResult = new ShortestPathBean(
           new NonEndingStationInPathBean(
@@ -141,24 +142,24 @@ public class ShortestPathServiceTest {
     @Test
     public void getShortestPathSameLineShouldThrowStationsOnSameLineException() {
         assertThrows(StationsOnSameLineException.class, () ->
-            new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("McGill", "Viau"));
+            shortestPathService.getShortestPath("McGill", "Viau"));
     }
 
   @Test
   public void getShortestPathInvalidStartingStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("MMcGill", "Viau"));
+        shortestPathService.getShortestPath("MMcGill", "Viau"));
   }
 
   @Test
   public void getShortestPathInvalidDestinationStationShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("McGill", "VViau"));
+        shortestPathService.getShortestPath("McGill", "VViau"));
   }
 
   @Test
   public void getShortestPathInvalidStationsShouldThrowStationsNotValidException() {
     assertThrows(StationsNotValidException.class, () ->
-        new ShortestPathService(stationRepository, dijkstraService, graphService).getShortestPath("MMcGill", "VViau"));
+        shortestPathService.getShortestPath("MMcGill", "VViau"));
   }
 }
