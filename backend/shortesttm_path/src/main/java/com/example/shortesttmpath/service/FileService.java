@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 
 /**
- * Util class to handle static resources.
+ * Service to handle static resources.
  */
 public class FileService {
   /**

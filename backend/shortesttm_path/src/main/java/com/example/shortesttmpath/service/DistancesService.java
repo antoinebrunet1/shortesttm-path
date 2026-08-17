@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Util class to get a Map that maps every source node in the stations graph to a Map that maps each
+ * Service to get a Map that maps every source node in the stations graph to a Map that maps each
  * destination node to the distance from the source node in meters.
  */
 public class DistancesService {
