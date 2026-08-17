@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DistancesService {
+  private final FileService fileService;
   /**
    * The default constructor.
    */
-  public DistancesService() {
+  public DistancesService(FileService fileService) {
+    this.fileService = fileService;
   }
 
   /**
@@ -31,7 +33,7 @@ public class DistancesService {
       Map<String, Integer> stationsNamesToInts)
       throws IOException {
     Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();
-    List<String> distancesLines = FileService.getLines("distances.txt");
+    List<String> distancesLines = fileService.getLines("distances.txt");
 
     for (String distanceLine : distancesLines) {
       addDistance(distanceLine, distancesMap, stationsNamesToInts);

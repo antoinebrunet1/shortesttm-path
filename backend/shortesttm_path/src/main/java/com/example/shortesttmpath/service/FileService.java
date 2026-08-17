@@ -25,7 +25,7 @@ public class FileService {
    * @return A List containing the lines of the file.
    * @throws IOException IOException.
    */
-  public static List<String> getLines(String fileName) throws IOException {
+  public List<String> getLines(String fileName) throws IOException {
     ClassPathResource resource = new ClassPathResource("static/" + fileName);
 
     return new BufferedReader(new InputStreamReader(resource.getInputStream())).lines().toList();

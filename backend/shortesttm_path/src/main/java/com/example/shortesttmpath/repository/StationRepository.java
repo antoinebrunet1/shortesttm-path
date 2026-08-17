@@ -11,16 +11,10 @@ import lombok.Getter;
 
 @Getter
 public class StationRepository {
-  private final Map<Line, List<String>> linesToStations = Map.of(
-      Line.BLUE, FileService.getLines("blue_line_stations.txt"),
-      Line.GREEN, FileService.getLines("green_line_stations.txt"),
-      Line.ORANGE, FileService.getLines("orange_line_stations.txt"),
-      Line.YELLOW, FileService.getLines("yellow_line_stations.txt")
-  );
-  private final List<String> allStationsAlphabeticalOrder =
-      FileService.getLines("all_stations_alphabetical_order.txt");
-  private final List<String> allStationsToSwitchLines =
-      FileService.getLines("all_stations_to_switch_lines.txt");
+  private final FileService fileService;
+  private final Map<Line, List<String>> linesToStations;
+  private final List<String> allStationsAlphabeticalOrder;
+  private final List<String> allStationsToSwitchLines;
   private Map<String, Integer> stationsNamesToInts;
   private Map<Integer, String> intsToStationsNames;
 
@@ -29,7 +23,18 @@ public class StationRepository {
    *
    * @throws IOException IOException.
    */
-  public StationRepository() throws IOException {
+  public StationRepository(FileService fileService) throws IOException {
+    this.fileService = fileService;
+    linesToStations = Map.of(
+        Line.BLUE, fileService.getLines("blue_line_stations.txt"),
+        Line.GREEN, fileService.getLines("green_line_stations.txt"),
+        Line.ORANGE, fileService.getLines("orange_line_stations.txt"),
+        Line.YELLOW, fileService.getLines("yellow_line_stations.txt")
+    );
+    allStationsAlphabeticalOrder =
+        fileService.getLines("all_stations_alphabetical_order.txt");
+    allStationsToSwitchLines =
+        fileService.getLines("all_stations_to_switch_lines.txt");
     setStationsNamesToInts();
     setIntsToStationsNames();
   }
