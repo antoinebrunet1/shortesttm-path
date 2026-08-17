@@ -7,9 +7,7 @@ import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.repository.StationRepository;
-import java.io.IOException;
 import java.util.Map;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -117,7 +115,7 @@ public class ShortestPathServiceTest {
   0--100--1--300--2
    */
     @Test
-    public void getShortestPathHappyPath() throws IOException {
+    public void getShortestPathHappyPath() {
       mockInjections();
 
       String startingStation = "A";
