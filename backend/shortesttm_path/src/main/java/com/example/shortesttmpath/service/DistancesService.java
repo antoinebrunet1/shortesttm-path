@@ -15,7 +15,9 @@ public class DistancesService {
   private final FileService fileService;
 
   /**
-   * The default constructor.
+   * The constructor.
+   *
+   * @param fileService The FileService.
    */
   public DistancesService(FileService fileService) {
     this.fileService = fileService;

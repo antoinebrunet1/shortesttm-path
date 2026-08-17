@@ -26,6 +26,7 @@ public class StationRepository {
   /**
    * "set" methods used instead of "get" methods to differentiate from the Lombok getters.
    *
+   * @param fileService The FileService.
    * @throws IOException IOException.
    */
   public StationRepository(FileService fileService) throws IOException {
