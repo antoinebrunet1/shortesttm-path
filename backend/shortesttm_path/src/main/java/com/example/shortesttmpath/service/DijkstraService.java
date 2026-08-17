@@ -7,11 +7,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
+import org.springframework.stereotype.Service;
 
 /**
  * Contains Dijkstra's algorithm to find the shortest path.
  * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>.
  */
+@Service
 public class DijkstraService {
   /**
    * The default constructor.

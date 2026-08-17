@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GraphService {
   private final Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM;
   private final int numberOfStations;

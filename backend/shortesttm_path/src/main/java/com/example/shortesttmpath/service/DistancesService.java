@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Service;
 
 /**
  * Service to get a Map that maps every source node in the stations graph to a Map that maps each
  * destination node to the distance from the source node in meters.
  */
+@Service
 public class DistancesService {
   /**
    * The default constructor.
