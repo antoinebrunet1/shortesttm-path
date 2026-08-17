@@ -1,4 +1,4 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,11 +9,11 @@ import org.springframework.core.io.ClassPathResource;
 /**
  * Util class to handle static resources.
  */
-public class FileUtil {
+public class FileService {
   /**
    * The default constructor.
    */
-  public FileUtil() {
+  public FileService() {
   }
 
   /**

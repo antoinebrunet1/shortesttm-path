@@ -1,6 +1,7 @@
 package com.example.shortesttmpath.util;
 
 import com.example.shortesttmpath.data.Edge;
+import com.example.shortesttmpath.service.DijkstraService;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,7 @@ public class DijkstraUtilTest {
     int start = 0;
     int target = 2;
     List<Integer> expectedResult = List.of(0, 1, 2);
-    List<Integer> actualResult = DijkstraUtil.dijkstra(graph, start, target);
+    List<Integer> actualResult = DijkstraService.dijkstra(graph, start, target);
 
     Assertions.assertEquals(expectedResult, actualResult);
   }

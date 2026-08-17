@@ -1,4 +1,4 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
 import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.repository.StationRepository;
@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GraphUtil {
+public class GraphService {
   private final Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM;
   private final int numberOfStations;
 
-  public GraphUtil(StationRepository stationRepository) throws IOException {
+  public GraphService(StationRepository stationRepository) throws IOException {
     mapSrcToMapDestinationToDistanceInM =
-        DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationRepository
+        DistancesService.getMapScrToMapDestinationToDistanceInM(stationRepository
             .getStationsNamesToInts());
     numberOfStations = stationRepository.getStationsNamesToInts().size();
   }

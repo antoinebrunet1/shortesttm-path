@@ -5,9 +5,6 @@ import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
-import com.example.shortesttmpath.util.DijkstraUtil;
-import com.example.shortesttmpath.util.DistancesUtil;
-import com.example.shortesttmpath.util.FileUtil;
 import java.io.IOException;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -78,17 +75,18 @@ public class ShortestPathServiceTest {
       );
       List<Integer> path = List.of(0, 1, 3);
 
-        try (MockedStatic<FileUtil> fileUtilMocked = Mockito.mockStatic(FileUtil.class);
-             MockedStatic<DistancesUtil> distancesUtilMocked = Mockito.mockStatic(DistancesUtil.class);
-             MockedStatic<DijkstraUtil> dijkstraUtilMocked = Mockito.mockStatic(DijkstraUtil.class)) {
-          fileUtilMocked.when(() -> FileUtil.getLines("blue_line_stations.txt")).thenReturn(blueLineStations);
-          fileUtilMocked.when(() -> FileUtil.getLines("green_line_stations.txt")).thenReturn(greenLineStations);
-          fileUtilMocked.when(() -> FileUtil.getLines("orange_line_stations.txt")).thenReturn(orangeLineStations);
-          fileUtilMocked.when(() -> FileUtil.getLines("yellow_line_stations.txt")).thenReturn(yellowLineStations);
-          fileUtilMocked.when(() -> FileUtil.getLines("all_stations_alphabetical_order.txt")).thenReturn(allStationsAlphabeticalOrder);
-          fileUtilMocked.when(() -> FileUtil.getLines("all_stations_to_switch_lines.txt")).thenReturn(allStationsToSwitchLines);
-          distancesUtilMocked.when(() -> DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts)).thenReturn(mapSrcToMapDestinationToDistanceInM);
-          dijkstraUtilMocked.when(() -> DijkstraUtil.dijkstra(Mockito.any(), Mockito.eq(0), Mockito.eq(3))).thenReturn(path);
+        try (MockedStatic<FileService> fileUtilMocked = Mockito.mockStatic(FileService.class);
+             MockedStatic<DistancesService> distancesUtilMocked = Mockito.mockStatic(
+                 DistancesService.class);
+             MockedStatic<DijkstraService> dijkstraUtilMocked = Mockito.mockStatic(DijkstraService.class)) {
+          fileUtilMocked.when(() -> FileService.getLines("blue_line_stations.txt")).thenReturn(blueLineStations);
+          fileUtilMocked.when(() -> FileService.getLines("green_line_stations.txt")).thenReturn(greenLineStations);
+          fileUtilMocked.when(() -> FileService.getLines("orange_line_stations.txt")).thenReturn(orangeLineStations);
+          fileUtilMocked.when(() -> FileService.getLines("yellow_line_stations.txt")).thenReturn(yellowLineStations);
+          fileUtilMocked.when(() -> FileService.getLines("all_stations_alphabetical_order.txt")).thenReturn(allStationsAlphabeticalOrder);
+          fileUtilMocked.when(() -> FileService.getLines("all_stations_to_switch_lines.txt")).thenReturn(allStationsToSwitchLines);
+          distancesUtilMocked.when(() -> DistancesService.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts)).thenReturn(mapSrcToMapDestinationToDistanceInM);
+          dijkstraUtilMocked.when(() -> DijkstraService.dijkstra(Mockito.any(), Mockito.eq(0), Mockito.eq(3))).thenReturn(path);
           ShortestPathBean actualPath = new ShortestPathService().getShortestPath(
               startingStation, destinationStation);
           ShortestPathBean expectedPath = new ShortestPathBean(

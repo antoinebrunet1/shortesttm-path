@@ -7,8 +7,6 @@ import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.repository.StationRepository;
-import com.example.shortesttmpath.util.DijkstraUtil;
-import com.example.shortesttmpath.util.GraphUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +22,7 @@ import org.springframework.stereotype.Service;
 public class ShortestPathService {
   @Autowired
   private StationRepository stationRepository;
-  private final List<List<Edge>> graph = new GraphUtil(stationRepository).getGraph();
+  private final List<List<Edge>> graph = new GraphService(stationRepository).getGraph();
 
   public ShortestPathService() throws IOException {
   }
@@ -84,7 +82,7 @@ public class ShortestPathService {
   }
 
   private List<String> getPathStations(int start, int target) {
-    return DijkstraUtil.dijkstra(graph, start, target)
+    return DijkstraService.dijkstra(graph, start, target)
         .stream()
         .map(stationRepository.getIntsToStationsNames()::get)
         .toList();

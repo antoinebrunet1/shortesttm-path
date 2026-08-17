@@ -1,7 +1,7 @@
 package com.example.shortesttmpath.repository;
 
 import com.example.shortesttmpath.enums.Line;
-import com.example.shortesttmpath.util.FileUtil;
+import com.example.shortesttmpath.service.FileService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -12,15 +12,15 @@ import lombok.Getter;
 @Getter
 public class StationRepository {
   private final Map<Line, List<String>> linesToStations = Map.of(
-      Line.BLUE, FileUtil.getLines("blue_line_stations.txt"),
-      Line.GREEN, FileUtil.getLines("green_line_stations.txt"),
-      Line.ORANGE, FileUtil.getLines("orange_line_stations.txt"),
-      Line.YELLOW, FileUtil.getLines("yellow_line_stations.txt")
+      Line.BLUE, FileService.getLines("blue_line_stations.txt"),
+      Line.GREEN, FileService.getLines("green_line_stations.txt"),
+      Line.ORANGE, FileService.getLines("orange_line_stations.txt"),
+      Line.YELLOW, FileService.getLines("yellow_line_stations.txt")
   );
   private final List<String> allStationsAlphabeticalOrder =
-      FileUtil.getLines("all_stations_alphabetical_order.txt");
+      FileService.getLines("all_stations_alphabetical_order.txt");
   private final List<String> allStationsToSwitchLines =
-      FileUtil.getLines("all_stations_to_switch_lines.txt");
+      FileService.getLines("all_stations_to_switch_lines.txt");
   private Map<String, Integer> stationsNamesToInts;
   private Map<Integer, String> intsToStationsNames;
 

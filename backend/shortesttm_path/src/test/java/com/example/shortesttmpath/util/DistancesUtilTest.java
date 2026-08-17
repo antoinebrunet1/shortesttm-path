@@ -1,5 +1,7 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.service.DistancesService;
+import com.example.shortesttmpath.service.FileService;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -22,8 +24,8 @@ public class DistancesUtilTest {
         "Monk to Jolicoeur\t:\t1063"
     );
 
-    try (MockedStatic<FileUtil> utilities = Mockito.mockStatic(FileUtil.class)) {
-      utilities.when(() -> FileUtil.getLines("distances.txt")).thenReturn(distances);
+    try (MockedStatic<FileService> utilities = Mockito.mockStatic(FileService.class)) {
+      utilities.when(() -> FileService.getLines("distances.txt")).thenReturn(distances);
 
       Map<Integer, Map<Integer, Integer>> expectedResult = Map.of(
           0, Map.of(
@@ -36,7 +38,7 @@ public class DistancesUtilTest {
           1, Map.of(
               2, 1063)
       );
-      Map<Integer, Map<Integer, Integer>> actualResult = DistancesUtil.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts);
+      Map<Integer, Map<Integer, Integer>> actualResult = DistancesService.getMapScrToMapDestinationToDistanceInM(stationsNamesToInts);
       Assertions.assertEquals(expectedResult, actualResult);
     }
   }

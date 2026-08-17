@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.util;
 
+import com.example.shortesttmpath.service.FileService;
 import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +15,7 @@ public class FileUtilTest {
         "FileUtil",
         "class"
     );
-    List<String> actualResult = FileUtil.getLines(fileName);
+    List<String> actualResult = FileService.getLines(fileName);
 
     Assertions.assertEquals(expectedResult, actualResult);
   }

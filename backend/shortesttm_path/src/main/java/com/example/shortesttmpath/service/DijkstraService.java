@@ -1,4 +1,4 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
 import com.example.shortesttmpath.data.Edge;
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import java.util.PriorityQueue;
  * Contains Dijkstra's algorithm to find the shortest path.
  * Source: <a href="https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466">...</a>.
  */
-public class DijkstraUtil {
+public class DijkstraService {
   /**
    * The default constructor.
    */
-  public DijkstraUtil() {
+  public DijkstraService() {
   }
 
   /**

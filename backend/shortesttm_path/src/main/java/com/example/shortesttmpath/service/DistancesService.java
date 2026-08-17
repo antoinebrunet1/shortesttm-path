@@ -1,4 +1,4 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -9,11 +9,11 @@ import java.util.Map;
  * Util class to get a Map that maps every source node in the stations graph to a Map that maps each
  * destination node to the distance from the source node in meters.
  */
-public class DistancesUtil {
+public class DistancesService {
   /**
    * The default constructor.
    */
-  public DistancesUtil() {
+  public DistancesService() {
   }
 
   /**
@@ -29,7 +29,7 @@ public class DistancesUtil {
       Map<String, Integer> stationsNamesToInts)
       throws IOException {
     Map<Integer, Map<Integer, Integer>> distancesMap = new LinkedHashMap<>();
-    List<String> distancesLines = FileUtil.getLines("distances.txt");
+    List<String> distancesLines = FileService.getLines("distances.txt");
 
     for (String distanceLine : distancesLines) {
       addDistance(distanceLine, distancesMap, stationsNamesToInts);
