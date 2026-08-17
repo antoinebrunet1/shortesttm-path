@@ -37,17 +37,18 @@ public class GraphServiceTest {
   }
 
   private void mockDistancesService() throws IOException {
-    Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM = new LinkedHashMap<>(Map.of(
-        0, new LinkedHashMap<>(Map.of(
-            2, 844
-        )),
-        2, new LinkedHashMap<>(Map.of(
-            0, 844,
-            1, 1063
-        )),
-        1, new LinkedHashMap<>(Map.of(
-            2, 1063))
-    ));
+    Map<Integer, Integer> mapDestinationToDistanceInMForSource0 = new LinkedHashMap<>();
+    mapDestinationToDistanceInMForSource0.put(2, 844);
+    Map<Integer, Integer> mapDestinationToDistanceInMForSource1 = new LinkedHashMap<>();
+    mapDestinationToDistanceInMForSource1.put(2, 1063);
+    Map<Integer, Integer> mapDestinationToDistanceInMForSource2 = new LinkedHashMap<>();
+    mapDestinationToDistanceInMForSource2.put(0, 844);
+    mapDestinationToDistanceInMForSource2.put(1, 1063);
+    Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM = new LinkedHashMap<>();
+    mapSrcToMapDestinationToDistanceInM.put(0, mapDestinationToDistanceInMForSource0);
+    mapSrcToMapDestinationToDistanceInM.put(1, mapDestinationToDistanceInMForSource1);
+    mapSrcToMapDestinationToDistanceInM.put(2, mapDestinationToDistanceInMForSource2);
+
     when(distancesService.getMapScrToMapDestinationToDistanceInM(any())).thenReturn(mapSrcToMapDestinationToDistanceInM);
   }
 
@@ -63,8 +64,8 @@ public class GraphServiceTest {
             new Edge(2, 1063)
         ),
         List.of(
-            new Edge(1, 1063),
-            new Edge(0, 844)
+            new Edge(0, 844),
+            new Edge(1, 1063)
         )
     );
     List<List<Edge>> actualResult = new GraphService(stationRepository, distancesService).getGraph();
