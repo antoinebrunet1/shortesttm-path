@@ -1,12 +1,11 @@
-package com.example.shortesttmpath.util;
+package com.example.shortesttmpath.service;
 
 import com.example.shortesttmpath.data.Edge;
-import com.example.shortesttmpath.service.DijkstraService;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class DijkstraUtilTest {
+public class DijkstraServiceTest {
   /*
   Graph:
 
