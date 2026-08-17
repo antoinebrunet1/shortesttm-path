@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -36,17 +37,17 @@ public class GraphServiceTest {
   }
 
   private void mockDistancesService() throws IOException {
-    Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM = Map.of(
-        0, Map.of(
+    Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM = new LinkedHashMap<>(Map.of(
+        0, new LinkedHashMap<>(Map.of(
             2, 844
-        ),
-        2, Map.of(
+        )),
+        2, new LinkedHashMap<>(Map.of(
             0, 844,
             1, 1063
-        ),
-        1, Map.of(
-            2, 1063)
-    );
+        )),
+        1, new LinkedHashMap<>(Map.of(
+            2, 1063))
+    ));
     when(distancesService.getMapScrToMapDestinationToDistanceInM(any())).thenReturn(mapSrcToMapDestinationToDistanceInM);
   }
 
