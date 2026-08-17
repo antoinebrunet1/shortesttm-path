@@ -4,8 +4,11 @@ import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,22 +16,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GraphService {
-  private final Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM;
-  private final int numberOfStations;
+  private final StationRepository stationRepository;
+  private final FileService fileService;
 
   /**
    * The constructor.
    *
    * @param stationRepository The StationRepository.
-   * @param distancesService The DistancesService.
-   * @throws IOException IOException.
+   * @param fileService The FileService.
    */
-  public GraphService(StationRepository stationRepository, DistancesService distancesService)
-      throws IOException {
-    mapSrcToMapDestinationToDistanceInM =
-        distancesService.getMapScrToMapDestinationToDistanceInM(stationRepository
-            .getStationsNamesToInts());
-    numberOfStations = stationRepository.getStationsNamesToInts().size();
+  public GraphService(StationRepository stationRepository, FileService fileService) {
+    this.stationRepository = stationRepository;
+    this.fileService = fileService;
   }
 
   /**
@@ -36,26 +35,32 @@ public class GraphService {
    *
    * @return The graph used for the Dijkstra algorithm.
    */
-  public List<List<Edge>> getGraph() {
-    List<List<Edge>> graph = new ArrayList<>(numberOfStations);
-
-    for (int i = 0; i < numberOfStations; i++) {
-      addSrcStationToGraph(graph, i);
-    }
-
-    return graph;
+  public List<List<Edge>> getGraph() throws IOException {
+    return new ArrayList<>(getEdges().values());
   }
 
-  private void addSrcStationToGraph(List<List<Edge>> graph, int srcStation) {
-    Map<Integer, Integer> mapDestinationToDistanceInM =
-        mapSrcToMapDestinationToDistanceInM.get(srcStation);
-    List<Edge> destinationAndDistanceInM = new ArrayList<>();
+  private Map<Integer, List<Edge>> getEdges() throws IOException {
+    Map<Integer, List<Edge>> edges = new LinkedHashMap<>();
+    List<String> distancesLines = fileService.getLines("distances.txt");
 
-    for (int destinationStation : mapDestinationToDistanceInM.keySet()) {
-      destinationAndDistanceInM.add(new Edge(destinationStation,
-          mapDestinationToDistanceInM.get(destinationStation)));
+    for (String distanceLine : distancesLines) {
+      addDistanceLine(edges, distanceLine);
     }
 
-    graph.add(destinationAndDistanceInM);
+    // Sorts the keys of edges.
+    edges = new TreeMap<>(edges);
+
+    // Sorts the lists of edges.
+    edges.values().forEach(list -> list.sort(Comparator.comparing(Edge::destination)));
+
+    return edges;
+  }
+
+  private void addDistanceLine(Map<Integer, List<Edge>> edges, String distanceLine) {
+    int src = stationRepository.getStationsNamesToInts().get(distanceLine.split(" to ")[0]);
+    int destination = stationRepository.getStationsNamesToInts().get(distanceLine.split(" to ")[1].split("\\s:\\s")[0]);
+    int distance = Integer.parseInt(distanceLine.split(" to ")[1].split("\\s:\\s")[1]);
+
+    edges.getOrDefault(src, new ArrayList<>()).add(new Edge(destination, distance));
   }
 }

@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -20,11 +19,11 @@ public class GraphServiceTest {
   @Mock
   StationRepository stationRepository;
   @Mock
-  DistancesService distancesService;
+  FileService fileService;
 
   private void mockInjections() throws IOException {
     mockStationRepository();
-    mockDistancesService();
+    mockFileService();
   }
 
   private void mockStationRepository() {
@@ -36,20 +35,13 @@ public class GraphServiceTest {
     when(stationRepository.getStationsNamesToInts()).thenReturn(stationsNamesToInts);
   }
 
-  private void mockDistancesService() throws IOException {
-    Map<Integer, Integer> mapDestinationToDistanceInMForSource0 = new LinkedHashMap<>();
-    mapDestinationToDistanceInMForSource0.put(2, 844);
-    Map<Integer, Integer> mapDestinationToDistanceInMForSource1 = new LinkedHashMap<>();
-    mapDestinationToDistanceInMForSource1.put(2, 1063);
-    Map<Integer, Integer> mapDestinationToDistanceInMForSource2 = new LinkedHashMap<>();
-    mapDestinationToDistanceInMForSource2.put(0, 844);
-    mapDestinationToDistanceInMForSource2.put(1, 1063);
-    Map<Integer, Map<Integer, Integer>> mapSrcToMapDestinationToDistanceInM = new LinkedHashMap<>();
-    mapSrcToMapDestinationToDistanceInM.put(0, mapDestinationToDistanceInMForSource0);
-    mapSrcToMapDestinationToDistanceInM.put(1, mapDestinationToDistanceInMForSource1);
-    mapSrcToMapDestinationToDistanceInM.put(2, mapDestinationToDistanceInMForSource2);
+  private void mockFileService() throws IOException {
+    List<String> lines = List.of(
+        "Angrignon to Monk\t:\t844",
+        "Monk to Jolicoeur\t:\t1063"
+    );
 
-    when(distancesService.getMapScrToMapDestinationToDistanceInM(any())).thenReturn(mapSrcToMapDestinationToDistanceInM);
+    when(fileService.getLines(any())).thenReturn(lines);
   }
 
   @Test
@@ -68,7 +60,7 @@ public class GraphServiceTest {
             new Edge(1, 1063)
         )
     );
-    List<List<Edge>> actualResult = new GraphService(stationRepository, distancesService).getGraph();
+    List<List<Edge>> actualResult = new GraphService(stationRepository, fileService).getGraph();
 
     assertEquals(expectedResult, actualResult);
   }
