@@ -37,7 +37,7 @@ public class DijkstraServiceTest {
     int start = 0;
     int target = 2;
     List<Integer> expectedResult = List.of(0, 1, 2);
-    List<Integer> actualResult = DijkstraService.dijkstra(graph, start, target);
+    List<Integer> actualResult = new DijkstraService().dijkstra(graph, start, target);
 
     Assertions.assertEquals(expectedResult, actualResult);
   }
