@@ -20,11 +20,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ShortestPathService {
-  @Autowired
-  private StationRepository stationRepository;
-  private final List<List<Edge>> graph = new GraphService(stationRepository).getGraph();
+  private final StationRepository stationRepository;
+  private final List<List<Edge>> graph;
 
-  public ShortestPathService() throws IOException {
+  public ShortestPathService(StationRepository stationRepository, GraphService graphService) {
+    this.stationRepository = stationRepository;
+    graph = graphService.getGraph();
   }
 
   /**
