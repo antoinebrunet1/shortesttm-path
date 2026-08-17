@@ -34,6 +34,7 @@ public class GraphService {
    * Returns the graph used for the Dijkstra algorithm.
    *
    * @return The graph used for the Dijkstra algorithm.
+   * @throws IOException IOException.
    */
   public List<List<Edge>> getGraph() throws IOException {
     return new ArrayList<>(getEdges().values());

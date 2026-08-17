@@ -29,6 +29,7 @@ public class ShortestPathService {
    * @param stationRepository The StationRepository.
    * @param dijkstraService The DijkstraService.
    * @param graphService The GraphService.
+   * @throws IOException IOException.
    */
   public ShortestPathService(StationRepository stationRepository, DijkstraService dijkstraService,
                              GraphService graphService) throws IOException {
