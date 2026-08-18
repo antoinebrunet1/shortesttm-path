@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 /**
@@ -67,10 +66,7 @@ public class ShortestPathService {
   }
 
   private Line getLineOfDirection(List<Line> stationLines, List<Line> nextStationLines) {
-    return stationLines.stream()
-        .distinct()
-        .filter(nextStationLines::contains)
-        .collect(Collectors.toSet()).iterator().next();
+    return stationLines.stream().filter(nextStationLines::contains).findFirst().orElseThrow();
   }
 
   private void validateStations(String startingStation, String destinationStation) {
