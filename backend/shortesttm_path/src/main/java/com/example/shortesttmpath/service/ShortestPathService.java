@@ -60,11 +60,10 @@ public class ShortestPathService {
 
   private String getDirectionOfStation(String station, String nextStation) {
     Line lineOfDirection = getLineOfDirection(getLines(station), getLines(nextStation));
-    List<String> allStationsOfLineOfDirection = getAllStationsOfLineOfDirection(lineOfDirection);
-    int indexOfStation1OnLine = allStationsOfLineOfDirection.indexOf(station);
-    int indexOfStation2OnLine = allStationsOfLineOfDirection.indexOf(nextStation);
-    List<String> stationsOfLineOfDirection = stationRepository.getLinesToStations()
-        .get(lineOfDirection);
+    List<String> stationsOfLineOfDirection =
+        stationRepository.getLinesToStations().get(lineOfDirection);
+    int indexOfStation1OnLine = stationsOfLineOfDirection.indexOf(station);
+    int indexOfStation2OnLine = stationsOfLineOfDirection.indexOf(nextStation);
     List<String> directions = List.of(stationsOfLineOfDirection.getFirst(),
         stationsOfLineOfDirection.getLast());
 
@@ -77,10 +76,6 @@ public class ShortestPathService {
         .distinct()
         .filter(nextStationLines::contains)
         .collect(Collectors.toSet()).iterator().next();
-  }
-
-  private List<String> getAllStationsOfLineOfDirection(Line lineOfDirection) {
-    return stationRepository.getLinesToStations().get(lineOfDirection);
   }
 
   private void validateStations(String startingStation, String destinationStation) {
