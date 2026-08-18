@@ -87,15 +87,15 @@ public class ShortestPathService {
 
   private ShortestPathBean getShortestPathBean(String startingStation,
                                                       String destinationStation,
-                                                      List<String> allStations) {
+                                                      List<String> pathStations) {
     ShortestPathBean shortestPath = new ShortestPathBean();
-    shortestPath.setStartingStation(getStationObject(startingStation, allStations));
+    shortestPath.setStartingStation(getStationObject(startingStation, pathStations));
     shortestPath.setDestinationStation(destinationStation);
-    List<String> stationsToSwitchLines =
-        new ArrayList<>(getStationsToSwitchLines(allStations, startingStation, destinationStation));
-    stationsToSwitchLines.removeAll(filterOutFalseTransfers(stationsToSwitchLines, allStations));
+    List<String> stationsToSwitchLines = new ArrayList<>(getStationsToSwitchLines(pathStations,
+        startingStation, destinationStation));
+    stationsToSwitchLines.removeAll(filterOutFalseTransfers(stationsToSwitchLines, pathStations));
     shortestPath.setStationsToSwitchLines(getStationsToSwitchLinesObjects(
-        stationsToSwitchLines, allStations));
+        stationsToSwitchLines, pathStations));
 
     return shortestPath;
   }
