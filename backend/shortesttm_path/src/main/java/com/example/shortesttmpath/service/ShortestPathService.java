@@ -101,11 +101,11 @@ public class ShortestPathService {
   }
 
   private List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
-      List<String> stationsToSwitchLines, List<String> allStations) {
+      List<String> stationsToSwitchLines, List<String> pathStations) {
     List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = new ArrayList<>();
 
     for (String station : stationsToSwitchLines) {
-      NonEndingStationInPathBean stationObject = getStationObject(station, allStations);
+      NonEndingStationInPathBean stationObject = getStationObject(station, pathStations);
 
       stationsToSwitchLinesObjects.add(stationObject);
     }
