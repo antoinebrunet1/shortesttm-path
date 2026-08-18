@@ -156,12 +156,12 @@ public class ShortestPathService {
   }
 
   private List<String> filterOutFalseTransfers(List<String> stationsToSwitchLines,
-                                               List<String> allStations) {
+                                               List<String> pathStations) {
     List<String> stationsToExclude = new ArrayList<>();
     for (String station : stationsToSwitchLines) {
-      int indexOfStationInAllStations = allStations.indexOf(station);
-      String stationBefore = allStations.get(indexOfStationInAllStations - 1);
-      String stationAfter = allStations.get(indexOfStationInAllStations + 1);
+      int indexOfStationInAllStations = pathStations.indexOf(station);
+      String stationBefore = pathStations.get(indexOfStationInAllStations - 1);
+      String stationAfter = pathStations.get(indexOfStationInAllStations + 1);
       if (isStationFalseTransfer(station, stationBefore, stationAfter)) {
         stationsToExclude.add(station);
       }
