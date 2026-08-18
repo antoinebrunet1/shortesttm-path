@@ -93,11 +93,9 @@ public class ShortestPathService {
     shortestPath.setDestinationStation(destinationStation);
     List<String> stationsToSwitchLines =
         new ArrayList<>(getStationsToSwitchLines(allStations, startingStation, destinationStation));
-    List<String> stationsToExclude = filterOutFalseTransfers(stationsToSwitchLines, allStations);
-    stationsToSwitchLines.removeAll(stationsToExclude);
-    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = getStationsToSwitchLinesObjects(
-        stationsToSwitchLines, allStations);
-    shortestPath.setStationsToSwitchLines(stationsToSwitchLinesObjects);
+    stationsToSwitchLines.removeAll(filterOutFalseTransfers(stationsToSwitchLines, allStations));
+    shortestPath.setStationsToSwitchLines(getStationsToSwitchLinesObjects(
+        stationsToSwitchLines, allStations));
 
     return shortestPath;
   }
