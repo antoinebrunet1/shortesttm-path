@@ -59,13 +59,11 @@ public class ShortestPathService {
   }
 
   private String getDirectionOfStation(String station, String nextStation) {
-    Line lineOfDirection = getLineOfDirection(getLines(station), getLines(nextStation));
-    List<String> stationsOfLineOfDirection =
-        stationRepository.getLinesToStations().get(lineOfDirection);
-    int indexOfStationOnLineOfDirection = stationsOfLineOfDirection.indexOf(station);
+    Line line = getLineOfDirection(getLines(station), getLines(nextStation));
+    List<String> stations = stationRepository.getLinesToStations().get(line);
+    boolean nextStationIsAfter = stations.get(stations.indexOf(station) + 1).equals(nextStation);
 
-    return stationsOfLineOfDirection.get(indexOfStationOnLineOfDirection + 1).equals(nextStation)
-        ? stationsOfLineOfDirection.getLast() : stationsOfLineOfDirection.getFirst();
+    return nextStationIsAfter ? stations.getLast() : stations.getFirst();
   }
 
   private Line getLineOfDirection(List<Line> stationLines, List<Line> nextStationLines) {
