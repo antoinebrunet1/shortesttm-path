@@ -52,9 +52,9 @@ public class ShortestPathService {
     validateStations(startingStation, destinationStation);
     int start = stationRepository.getStationsNamesToInts().get(startingStation);
     int target = stationRepository.getStationsNamesToInts().get(destinationStation);
-    List<String> allStations = getPathStations(start, target);
+    List<String> pathStations = getPathStations(start, target);
 
-    return getShortestPathBean(startingStation, destinationStation, allStations);
+    return getShortestPathBean(startingStation, destinationStation, pathStations);
   }
 
   private String getDirectionOfStation(String station, String nextStation) {
