@@ -137,10 +137,10 @@ public class ShortestPathService {
         .getFirst();
   }
 
-  private List<String> getStationsToSwitchLines(List<String> allStations,
+  private List<String> getStationsToSwitchLines(List<String> pathStations,
                                                        String startingStation,
                                                        String destinationStation) {
-    return allStations.stream().filter(station -> stationRepository.getAllStationsToSwitchLines()
+    return pathStations.stream().filter(station -> stationRepository.getAllStationsToSwitchLines()
         .contains(station) && !List.of(startingStation, destinationStation).contains(station))
         .toList();
   }
