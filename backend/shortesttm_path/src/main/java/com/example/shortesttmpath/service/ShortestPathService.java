@@ -62,13 +62,10 @@ public class ShortestPathService {
     Line lineOfDirection = getLineOfDirection(getLines(station), getLines(nextStation));
     List<String> stationsOfLineOfDirection =
         stationRepository.getLinesToStations().get(lineOfDirection);
-    int indexOfStation1OnLine = stationsOfLineOfDirection.indexOf(station);
-    int indexOfStation2OnLine = stationsOfLineOfDirection.indexOf(nextStation);
-    List<String> directions = List.of(stationsOfLineOfDirection.getFirst(),
-        stationsOfLineOfDirection.getLast());
+    int indexOfStationOnLineOfDirection = stationsOfLineOfDirection.indexOf(station);
 
-    return indexOfStation1OnLine < indexOfStation2OnLine ? directions.getLast() :
-        directions.getFirst();
+    return stationsOfLineOfDirection.get(indexOfStationOnLineOfDirection + 1).equals(nextStation)
+        ? stationsOfLineOfDirection.getLast() : stationsOfLineOfDirection.getFirst();
   }
 
   private Line getLineOfDirection(List<Line> stationLines, List<Line> nextStationLines) {
