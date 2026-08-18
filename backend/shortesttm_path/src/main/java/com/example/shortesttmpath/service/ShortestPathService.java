@@ -114,8 +114,8 @@ public class ShortestPathService {
   }
 
   private NonEndingStationInPathBean getStationObject(String station,
-                                                             List<String> allStations) {
-    String nextStation = allStations.get(allStations.indexOf(station) + 1);
+                                                             List<String> pathStations) {
+    String nextStation = pathStations.get(pathStations.indexOf(station) + 1);
     String direction = getDirectionOfStation(station, nextStation);
     Line line = getLineOfStationInGivenDirection(station, direction);
 
