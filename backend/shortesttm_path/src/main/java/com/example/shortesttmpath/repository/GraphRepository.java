@@ -2,7 +2,9 @@ package com.example.shortesttmpath.repository;
 
 import com.example.shortesttmpath.data.Edge;
 import java.util.List;
+import lombok.Getter;
 
+@Getter
 public class GraphRepository {
   private final List<List<Edge>> edges = List.<List<Edge>>of(
       List.of(new Edge(45, 729), new Edge(47, 728)), List.of(new Edge(41, 844)),

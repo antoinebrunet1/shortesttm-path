@@ -6,6 +6,7 @@ import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.enums.Station;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
+import com.example.shortesttmpath.repository.GraphRepository;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,14 +28,14 @@ public class ShortestPathService {
    *
    * @param stationRepository The StationRepository.
    * @param dijkstraService The DijkstraService.
-   * @param graphService The GraphService.
+   * @param graphRepository The GraphRepository.
    * @throws IOException IOException.
    */
   public ShortestPathService(StationRepository stationRepository, DijkstraService dijkstraService,
-                             GraphService graphService) throws IOException {
+                             GraphRepository graphRepository) throws IOException {
     this.stationRepository = stationRepository;
     this.dijkstraService = dijkstraService;
-    graph = graphService.getGraph();
+    graph = graphRepository.getEdges();
   }
 
   /**
