@@ -52,4 +52,11 @@ public class GraphRepository {
       List.of(new Edge(19, 564), new Edge(32, 761)), List.of(new Edge(2, 896), new Edge(49, 622)),
       List.of(new Edge(61, 884), new Edge(64, 1407))
   );
+
+  /**
+   * The default constructor.
+   */
+  public GraphRepository() {
+
+  }
 }

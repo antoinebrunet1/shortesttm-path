@@ -106,4 +106,11 @@ public class StationRepository {
       Station.SNOWDON,
       Station.JEAN_TALON
   );
+
+  /**
+   * The default constructor.
+   */
+  public StationRepository() {
+
+  }
 }
