@@ -94,23 +94,18 @@ public class ShortestPathService {
     List<String> stationsToSwitchLines = new ArrayList<>(getStationsToSwitchLines(pathStations,
         startingStation, destinationStation));
     stationsToSwitchLines.removeAll(getFalseTransfers(stationsToSwitchLines, pathStations));
-    shortestPath.setStationsToSwitchLines(getStationsToSwitchLinesObjects(
-        stationsToSwitchLines, pathStations));
+    shortestPath.setStationsToSwitchLines(new ArrayList<>(getStationsToSwitchLinesObjects(
+        stationsToSwitchLines, pathStations)));
 
     return shortestPath;
   }
 
   private List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
       List<String> stationsToSwitchLines, List<String> pathStations) {
-    List<NonEndingStationInPathBean> stationsToSwitchLinesObjects = new ArrayList<>();
-
-    for (String station : stationsToSwitchLines) {
-      NonEndingStationInPathBean stationObject = getStationObject(station, pathStations);
-
-      stationsToSwitchLinesObjects.add(stationObject);
-    }
-
-    return stationsToSwitchLinesObjects;
+    return stationsToSwitchLines
+        .stream()
+        .map(station -> getStationObject(station, pathStations))
+        .toList();
   }
 
   private NonEndingStationInPathBean getStationObject(String station,
