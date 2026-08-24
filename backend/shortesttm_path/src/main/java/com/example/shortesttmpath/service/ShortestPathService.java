@@ -118,13 +118,7 @@ public class ShortestPathService {
   }
 
   private Line getLineOfStationInGivenDirection(String station, String direction) {
-    List<Line> lines = getLines(direction);
-
-    if (lines.size() == 1) {
-      return lines.getFirst();
-    }
-
-    return lines
+    return getLines(direction)
         .stream()
         .filter(line -> getLines(station).contains(line)
             && getLines(direction).contains(line))
