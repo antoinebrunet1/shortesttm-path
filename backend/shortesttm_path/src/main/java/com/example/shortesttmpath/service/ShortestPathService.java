@@ -159,9 +159,9 @@ public class ShortestPathService {
                                                List<String> pathStations) {
     List<String> stationsToExclude = new ArrayList<>();
     for (String station : stationsToSwitchLines) {
-      int indexOfStationInAllStations = pathStations.indexOf(station);
-      String stationBefore = pathStations.get(indexOfStationInAllStations - 1);
-      String stationAfter = pathStations.get(indexOfStationInAllStations + 1);
+      int indexOfStationInPathStations = pathStations.indexOf(station);
+      String stationBefore = pathStations.get(indexOfStationInPathStations - 1);
+      String stationAfter = pathStations.get(indexOfStationInPathStations + 1);
       if (isStationFalseTransfer(station, stationBefore, stationAfter)) {
         stationsToExclude.add(station);
       }
