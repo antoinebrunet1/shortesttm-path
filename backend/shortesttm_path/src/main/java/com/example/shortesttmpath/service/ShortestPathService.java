@@ -172,14 +172,9 @@ public class ShortestPathService {
   }
 
   private List<Line> getLines(String station) {
-    List<Line> lines = new ArrayList<>();
-
-    for (Line line : stationRepository.getLinesToStations().keySet()) {
-      if (stationRepository.getLinesToStations().get(line).contains(station)) {
-        lines.add(line);
-      }
-    }
-
-    return lines;
+    return stationRepository.getLinesToStations().keySet()
+        .stream()
+        .filter(line -> stationRepository.getLinesToStations().get(line).contains(station))
+        .toList();
   }
 }
