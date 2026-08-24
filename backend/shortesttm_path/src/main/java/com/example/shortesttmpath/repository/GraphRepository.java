@@ -3,10 +3,12 @@ package com.example.shortesttmpath.repository;
 import com.example.shortesttmpath.data.Edge;
 import java.util.List;
 import lombok.Getter;
+import org.springframework.stereotype.Repository;
 
 /**
  * Graph related repository.
  */
+@Repository
 @Getter
 public class GraphRepository {
   private final List<List<Edge>> edges = List.<List<Edge>>of(
