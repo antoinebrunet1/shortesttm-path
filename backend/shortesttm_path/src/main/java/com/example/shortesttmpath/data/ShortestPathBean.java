@@ -1,5 +1,6 @@
 package com.example.shortesttmpath.data;
 
+import com.example.shortesttmpath.enums.Station;
 import java.util.List;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ public class ShortestPathBean {
   }
 
   NonEndingStationInPathBean startingStation;
-  String destinationStation;
+  Station destinationStation;
   List<NonEndingStationInPathBean> stationsToSwitchLines;
 
   @Override
