@@ -5,6 +5,7 @@ import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.enums.Station;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
+import com.example.shortesttmpath.repository.GraphRepository;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,8 @@ public class ShortestPathServiceTest {
   StationRepository stationRepository;
   @Mock
   DijkstraService dijkstraService;
+  @Mock
+  GraphRepository graphRepository;
   @InjectMocks
   ShortestPathService shortestPathService;
   private final Map<Line, List<Station>> linesToStations = Map.of(
@@ -65,7 +68,7 @@ public class ShortestPathServiceTest {
   }
 
   private void mockDijkstraService() {
-    List<Integer> path = List.of(0, 1, 3);
+    List<Integer> path = List.of(Station.ACADIE.ordinal(), Station.BEAUBIEN.ordinal(), Station.DE_CASTELNAU.ordinal());
     when(dijkstraService.dijkstra(any(), anyInt(), anyInt())).thenReturn(path);
   }
 
