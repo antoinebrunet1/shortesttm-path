@@ -2,9 +2,6 @@ package com.example.shortesttmpath.repository;
 
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.enums.Station;
-import com.example.shortesttmpath.service.FileService;
-import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.Getter;
@@ -16,7 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Getter
 public class StationRepository {
-  private final FileService fileService;
   private final List<Station> blueLine = List.of(
       Station.SNOWDON,
       Station.COTE_DES_NEIGES,
@@ -104,47 +100,10 @@ public class StationRepository {
       Line.ORANGE, orangeLine,
       Line.YELLOW, yellowLine
   );
-  private final List<String> allStationsAlphabeticalOrder;
   private final List<Station> allStationsToSwitchLines = List.of(
       Station.BERRI_UQAM,
       Station.LIONEL_GROULX,
       Station.SNOWDON,
       Station.JEAN_TALON
   );
-  private Map<String, Integer> stationsNamesToInts;
-  private Map<Integer, String> intsToStationsNames;
-
-  /**
-   * "set" methods used instead of "get" methods to differentiate from the Lombok getters.
-   *
-   * @param fileService The FileService.
-   * @throws IOException IOException.
-   */
-  public StationRepository(FileService fileService) throws IOException {
-    this.fileService = fileService;
-    allStationsAlphabeticalOrder =
-        fileService.getLines("all_stations_alphabetical_order.txt");
-    setStationsNamesToInts();
-    setIntsToStationsNames();
-  }
-
-  private void setStationsNamesToInts() {
-    Map<String, Integer> stationNamesToInts = new LinkedHashMap<>();
-
-    for (int i = 0; i < allStationsAlphabeticalOrder.size(); i++) {
-      stationNamesToInts.put(allStationsAlphabeticalOrder.get(i), i);
-    }
-
-    this.stationsNamesToInts = stationNamesToInts;
-  }
-
-  private void setIntsToStationsNames() {
-    Map<Integer, String> intsToStationsNames = new LinkedHashMap<>();
-
-    for (String station : stationsNamesToInts.keySet()) {
-      intsToStationsNames.put(stationsNamesToInts.get(station), station);
-    }
-
-    this.intsToStationsNames = intsToStationsNames;
-  }
 }
