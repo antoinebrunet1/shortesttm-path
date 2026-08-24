@@ -3,7 +3,7 @@ package com.example.shortesttmpath.service;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
-import com.example.shortesttmpath.exception.StationsNotValidException;
+import com.example.shortesttmpath.enums.Station;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.util.Map;
@@ -44,22 +44,13 @@ public class ShortestPathServiceTest {
   StationRepository stationRepository;
   @Mock
   DijkstraService dijkstraService;
-  @Mock
-  GraphService graphService;
   @InjectMocks
   ShortestPathService shortestPathService;
-  private final Map<Line, List<String>> linesToStations = Map.of(
-      Line.BLUE, List.of("A", "B", "C"),
-      Line.GREEN, List.of("B", "D"),
-      Line.ORANGE, List.of("C", "D"),
-      Line.YELLOW, List.of("C", "E")
-  );
-  private final Map<String, Integer> stationsNamesToInts = Map.of(
-      "A", 0,
-      "B", 1,
-      "C", 2,
-      "D", 3,
-      "E", 4
+  private final Map<Line, List<Station>> linesToStations = Map.of(
+      Line.BLUE, List.of(Station.ACADIE, Station.BEAUBIEN, Station.CADILLAC),
+      Line.GREEN, List.of(Station.BEAUBIEN, Station.DE_CASTELNAU),
+      Line.ORANGE, List.of(Station.CADILLAC, Station.DE_CASTELNAU),
+      Line.YELLOW, List.of(Station.CADILLAC, Station.EDOUARD_MONTPETIT)
   );
 
   private void mockInjectionsHappyPath() {
@@ -68,18 +59,9 @@ public class ShortestPathServiceTest {
   }
 
   private void mockStationRepository() {
-    List<String> allStationsToSwitchLines = List.of("B", "C");
-    Map<Integer, String> intsToStationsNames = Map.of(
-        0, "A",
-        1, "B",
-        2, "C",
-        3, "D",
-        4, "E"
-    );
+    List<Station> allStationsToSwitchLines = List.of(Station.BEAUBIEN, Station.CADILLAC);
     when(stationRepository.getLinesToStations()).thenReturn(linesToStations);
     when(stationRepository.getAllStationsToSwitchLines()).thenReturn(allStationsToSwitchLines);
-    when(stationRepository.getStationsNamesToInts()).thenReturn(stationsNamesToInts);
-    when(stationRepository.getIntsToStationsNames()).thenReturn(intsToStationsNames);
   }
 
   private void mockDijkstraService() {
@@ -91,20 +73,20 @@ public class ShortestPathServiceTest {
     public void getShortestPathHappyPath() {
       mockInjectionsHappyPath();
 
-      String startingStation = "A";
-      String destinationStation = "D";
+      Station startingStation = Station.ACADIE;
+      Station destinationStation = Station.DE_CASTELNAU;
       ShortestPathBean actualResult = shortestPathService.getShortestPath(startingStation, destinationStation);
       ShortestPathBean expectedResult = new ShortestPathBean(
           new NonEndingStationInPathBean(
               startingStation,
               Line.BLUE,
-              "C"
+              Station.CADILLAC
           ),
           destinationStation,
           List.of(new NonEndingStationInPathBean(
-              "B",
+              Station.BEAUBIEN,
               Line.GREEN,
-              "D"
+              Station.DE_CASTELNAU
           )));
 
       assertEquals(expectedResult, actualResult);
@@ -113,33 +95,8 @@ public class ShortestPathServiceTest {
     @Test
     public void getShortestPathSameLineShouldThrowStationsOnSameLineException() {
       when(stationRepository.getLinesToStations()).thenReturn(linesToStations);
-      when(stationRepository.getStationsNamesToInts()).thenReturn(stationsNamesToInts);
 
       assertThrows(StationsOnSameLineException.class, () ->
-            shortestPathService.getShortestPath("A", "B"));
+            shortestPathService.getShortestPath(Station.ACADIE, Station.BEAUBIEN));
     }
-
-  @Test
-  public void getShortestPathInvalidStartingStationShouldThrowStationsNotValidException() {
-    when(stationRepository.getStationsNamesToInts()).thenReturn(stationsNamesToInts);
-
-    assertThrows(StationsNotValidException.class, () ->
-        shortestPathService.getShortestPath("AA", "D"));
-  }
-
-  @Test
-  public void getShortestPathInvalidDestinationStationShouldThrowStationsNotValidException() {
-    when(stationRepository.getStationsNamesToInts()).thenReturn(stationsNamesToInts);
-
-    assertThrows(StationsNotValidException.class, () ->
-        shortestPathService.getShortestPath("A", "DD"));
-  }
-
-  @Test
-  public void getShortestPathInvalidStationsShouldThrowStationsNotValidException() {
-    when(stationRepository.getStationsNamesToInts()).thenReturn(stationsNamesToInts);
-
-    assertThrows(StationsNotValidException.class, () ->
-        shortestPathService.getShortestPath("AA", "DD"));
-  }
 }
