@@ -2,7 +2,6 @@ package com.example.shortesttmpath.controller;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Station;
-import com.example.shortesttmpath.exception.StationsNotValidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.service.ShortestPathService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +31,13 @@ public class ShortestPathController {
   }
 
   /**
-   * Returns a 400 bad request with an error message if the StationsOnSameLineException or
-   * StationsNotValidException exception was thrown.
+   * Returns a 400 bad request with an error message if the StationsOnSameLineException exception
+   * was thrown.
    *
    * @param runTimeException The exception that was thrown.
    * @return A 400 bad request with an error message.
    */
-  @ExceptionHandler({StationsOnSameLineException.class, StationsNotValidException.class})
+  @ExceptionHandler({StationsOnSameLineException.class})
   public ResponseEntity<String> handle(RuntimeException runTimeException) {
     return ResponseEntity.badRequest().body(runTimeException.getMessage());
   }
@@ -53,8 +52,8 @@ public class ShortestPathController {
    *     stations.
    */
   @GetMapping()
-  public ResponseEntity<ShortestPathBean> getShortestPath(@RequestParam Station startingStation,
-                                                          @RequestParam Station destinationStation) {
+  public ResponseEntity<ShortestPathBean> getShortestPath(
+      @RequestParam Station startingStation, @RequestParam Station destinationStation) {
     HttpHeaders headers = new HttpHeaders();
     ShortestPathBean path = shortestPathService.getShortestPath(startingStation,
         destinationStation);

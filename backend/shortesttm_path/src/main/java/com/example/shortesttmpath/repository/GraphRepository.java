@@ -4,6 +4,9 @@ import com.example.shortesttmpath.data.Edge;
 import java.util.List;
 import lombok.Getter;
 
+/**
+ * Graph related repository.
+ */
 @Getter
 public class GraphRepository {
   private final List<List<Edge>> edges = List.<List<Edge>>of(
@@ -47,8 +50,4 @@ public class GraphRepository {
       List.of(new Edge(19, 564), new Edge(32, 761)), List.of(new Edge(2, 896), new Edge(49, 622)),
       List.of(new Edge(61, 884), new Edge(64, 1407))
   );
-
-  public List<List<Edge>> getEdges() {
-    return edges;
-  }
 }
