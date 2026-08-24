@@ -93,7 +93,7 @@ public class ShortestPathService {
     shortestPath.setDestinationStation(destinationStation);
     List<String> stationsToSwitchLines = new ArrayList<>(getStationsToSwitchLines(pathStations,
         startingStation, destinationStation));
-    stationsToSwitchLines.removeAll(filterOutFalseTransfers(stationsToSwitchLines, pathStations));
+    stationsToSwitchLines.removeAll(getFalseTransfers(stationsToSwitchLines, pathStations));
     shortestPath.setStationsToSwitchLines(getStationsToSwitchLinesObjects(
         stationsToSwitchLines, pathStations));
 
@@ -155,8 +155,8 @@ public class ShortestPathService {
         && stationRepository.getStationsNamesToInts().containsKey(destinationStation);
   }
 
-  private List<String> filterOutFalseTransfers(List<String> stationsToSwitchLines,
-                                               List<String> pathStations) {
+  private List<String> getFalseTransfers(List<String> stationsToSwitchLines,
+                                         List<String> pathStations) {
     return stationsToSwitchLines
         .stream()
         .filter(station -> isStationFalseTransfer(station,
