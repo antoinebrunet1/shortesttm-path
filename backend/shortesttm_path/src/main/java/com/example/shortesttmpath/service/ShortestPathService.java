@@ -80,16 +80,15 @@ public class ShortestPathService {
   private ShortestPathBean getShortestPathBean(Station startingStation,
                                                       Station destinationStation,
                                                       List<Station> pathStations) {
-    ShortestPathBean shortestPath = new ShortestPathBean();
-    shortestPath.setStartingStation(getStationObject(startingStation, pathStations));
-    shortestPath.setDestinationStation(destinationStation);
     List<Station> stationsToSwitchLines = new ArrayList<>(getStationsToSwitchLines(pathStations,
         startingStation, destinationStation));
     stationsToSwitchLines.removeAll(getFalseTransfers(stationsToSwitchLines, pathStations));
-    shortestPath.setStationsToSwitchLines(new ArrayList<>(getStationsToSwitchLinesObjects(
-        stationsToSwitchLines, pathStations)));
 
-    return shortestPath;
+    return new ShortestPathBean(
+        getStationObject(startingStation, pathStations),
+        destinationStation,
+        new ArrayList<>(getStationsToSwitchLinesObjects(stationsToSwitchLines, pathStations))
+    );
   }
 
   private List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
