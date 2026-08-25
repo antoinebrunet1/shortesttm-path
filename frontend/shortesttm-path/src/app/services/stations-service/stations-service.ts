@@ -1,17 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { Injectable } from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {StationEnum} from '../../enums/StationEnum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StationsService {
-  private http = inject(HttpClient);
-
   getAllStationsInAlphabeticalOrder(): Observable<string[]> {
-    const path = `${environment.baseUrl}/stations/alphabetical-order`;
-
-    return this.http.get<string[]>(path);
+    return of(Object.values(StationEnum));
   }
 }

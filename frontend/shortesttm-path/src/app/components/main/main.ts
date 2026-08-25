@@ -12,6 +12,7 @@ import { StationsService } from '../../services/stations-service/stations-servic
 import { Instructions } from '../instructions/instructions';
 import { ShortestPath } from '../shortest-path/shortest-path';
 import { Station } from '../station/station';
+import {StationEnum} from '../../enums/StationEnum';
 
 @Component({
   selector: 'app-main',
@@ -32,7 +33,7 @@ import { Station } from '../station/station';
 })
 export class Main {
   allLines$: Observable<string[]>;
-  startingStation: string;
+  startingStation: string
   destinationStation: string;
   shortestPath$: Observable<ShortestPathInterface> = EMPTY;
   gotOnSameLineError: boolean = false;
@@ -43,8 +44,8 @@ export class Main {
     private shortestPathService: ShortestPathService,
     private ref: ChangeDetectorRef,
   ) {
-    this.startingStation = 'Acadie';
-    this.destinationStation = 'Acadie';
+    this.startingStation = StationEnum.ACADIE;
+    this.destinationStation = StationEnum.ACADIE;
     this.allLines$ = this.stationsService.getAllStationsInAlphabeticalOrder();
   }
 

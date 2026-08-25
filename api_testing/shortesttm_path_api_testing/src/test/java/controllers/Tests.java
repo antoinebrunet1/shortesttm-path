@@ -48,31 +48,21 @@ public class Tests {
   }
 
   @Test
-  public void getAllStationsAlphaOrderHappyPath() throws IOException {
-    String STATIONS_CONTROLLER_PATH = "/stations";
-    Response response = RestAssured.get(STATIONS_CONTROLLER_PATH + "/alphabetical-order");
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 200);
-    validateBody(response, "getAllStationsAlphaOrderHappyPath");
-  }
-
-  @Test
   public void getShortestPathOneTransferHappyPath() throws IOException {
-    getShortestPathHappyPath("Laurier", "Charlevoix",
+    getShortestPathHappyPath("LAURIER", "CHARLEVOIX",
         "getShortestPathOneTransferHappyPath");
   }
 
   @Test
   public void getShortestPathTwoTransfersHappyPath() throws IOException {
-    getShortestPathHappyPath("Acadie", "Angrignon",
+    getShortestPathHappyPath("ACADIE", "ANGRIGNON",
         "getShortestPathTwoTransfersHappyPath");
   }
 
   @Test
   public void getShortestPathSameLine() {
-    Response response = getResponseForShortestPath("Radisson",
-        "Atwater");
+    Response response = getResponseForShortestPath("RADISSON",
+        "ATWATER");
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 400);
@@ -81,33 +71,5 @@ public class Tests {
     String expectedBodyAsString = "Provided stations are on the same line";
 
     Assert.assertEquals(bodyAsString, expectedBodyAsString);
-  }
-
-  private void getShortestPathAtLeastOneInvalidStation(String startingStation,
-                                                       String destinationStation) {
-    Response response = getResponseForShortestPath(startingStation, destinationStation);
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 400);
-
-    String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = "Provided stations are not valid";
-
-    Assert.assertEquals(bodyAsString, expectedBodyAsString);
-  }
-
-  @Test
-  public void getShortestPathInvalidStartingStation() {
-    getShortestPathAtLeastOneInvalidStation("MMcGill", "Viau");
-  }
-
-  @Test
-  public void getShortestPathInvalidDestinationStation() {
-    getShortestPathAtLeastOneInvalidStation("McGill", "VViau");
-  }
-
-  @Test
-  public void getShortestPathInvalidStations() {
-    getShortestPathAtLeastOneInvalidStation("MMcGill", "VViau");
   }
 }

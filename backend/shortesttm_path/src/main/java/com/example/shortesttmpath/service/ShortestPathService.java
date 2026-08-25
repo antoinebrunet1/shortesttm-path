@@ -4,10 +4,10 @@ import com.example.shortesttmpath.data.Edge;
 import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
-import com.example.shortesttmpath.exception.StationsNotValidException;
+import com.example.shortesttmpath.enums.Station;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
+import com.example.shortesttmpath.repository.GraphRepository;
 import com.example.shortesttmpath.repository.StationRepository;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,14 +27,13 @@ public class ShortestPathService {
    *
    * @param stationRepository The StationRepository.
    * @param dijkstraService The DijkstraService.
-   * @param graphService The GraphService.
-   * @throws IOException IOException.
+   * @param graphRepository The GraphRepository.
    */
   public ShortestPathService(StationRepository stationRepository, DijkstraService dijkstraService,
-                             GraphService graphService) throws IOException {
+                             GraphRepository graphRepository) {
     this.stationRepository = stationRepository;
     this.dijkstraService = dijkstraService;
-    graph = graphService.getGraph();
+    graph = graphRepository.getEdges();
   }
 
   /**
@@ -47,19 +46,18 @@ public class ShortestPathService {
    * @param destinationStation The destination station.
    * @return The shortest metro path between two STM metro stations.
    */
-  public ShortestPathBean getShortestPath(String startingStation,
-                                          String destinationStation) {
+  public ShortestPathBean getShortestPath(Station startingStation,
+                                          Station destinationStation) {
     validateStations(startingStation, destinationStation);
-    int start = stationRepository.getStationsNamesToInts().get(startingStation);
-    int target = stationRepository.getStationsNamesToInts().get(destinationStation);
-    List<String> pathStations = getPathStations(start, target);
+    List<Station> pathStations = getPathStations(startingStation.ordinal(),
+        destinationStation.ordinal());
 
     return getShortestPathBean(startingStation, destinationStation, pathStations);
   }
 
-  private String getDirectionOfStation(String station, String nextStation) {
+  private Station getDirectionOfStation(Station station, Station nextStation) {
     Line line = getLineOfDirection(getLines(station), getLines(nextStation));
-    List<String> stations = stationRepository.getLinesToStations().get(line);
+    List<Station> stations = stationRepository.getLinesToStations().get(line);
     boolean nextStationIsAfter = stations.get(stations.indexOf(station) + 1).equals(nextStation);
 
     return nextStationIsAfter ? stations.getLast() : stations.getFirst();
@@ -69,29 +67,26 @@ public class ShortestPathService {
     return stationLines.stream().filter(nextStationLines::contains).findFirst().orElseThrow();
   }
 
-  private void validateStations(String startingStation, String destinationStation) {
-    if (!areInputStationsValid(startingStation, destinationStation)) {
-      throw new StationsNotValidException();
-    }
+  private void validateStations(Station startingStation, Station destinationStation) {
     if (areStationsOnTheSameLine(startingStation, destinationStation)) {
       throw new StationsOnSameLineException();
     }
   }
 
-  private List<String> getPathStations(int start, int target) {
+  private List<Station> getPathStations(int start, int target) {
     return dijkstraService.dijkstra(graph, start, target)
         .stream()
-        .map(stationRepository.getIntsToStationsNames()::get)
+        .map(index -> Station.values()[index])
         .toList();
   }
 
-  private ShortestPathBean getShortestPathBean(String startingStation,
-                                                      String destinationStation,
-                                                      List<String> pathStations) {
+  private ShortestPathBean getShortestPathBean(Station startingStation,
+                                                      Station destinationStation,
+                                                      List<Station> pathStations) {
     ShortestPathBean shortestPath = new ShortestPathBean();
     shortestPath.setStartingStation(getStationObject(startingStation, pathStations));
     shortestPath.setDestinationStation(destinationStation);
-    List<String> stationsToSwitchLines = new ArrayList<>(getStationsToSwitchLines(pathStations,
+    List<Station> stationsToSwitchLines = new ArrayList<>(getStationsToSwitchLines(pathStations,
         startingStation, destinationStation));
     stationsToSwitchLines.removeAll(getFalseTransfers(stationsToSwitchLines, pathStations));
     shortestPath.setStationsToSwitchLines(new ArrayList<>(getStationsToSwitchLinesObjects(
@@ -101,23 +96,23 @@ public class ShortestPathService {
   }
 
   private List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
-      List<String> stationsToSwitchLines, List<String> pathStations) {
+      List<Station> stationsToSwitchLines, List<Station> pathStations) {
     return stationsToSwitchLines
         .stream()
         .map(station -> getStationObject(station, pathStations))
         .toList();
   }
 
-  private NonEndingStationInPathBean getStationObject(String station,
-                                                             List<String> pathStations) {
-    String nextStation = pathStations.get(pathStations.indexOf(station) + 1);
-    String direction = getDirectionOfStation(station, nextStation);
+  private NonEndingStationInPathBean getStationObject(Station station,
+                                                             List<Station> pathStations) {
+    Station nextStation = pathStations.get(pathStations.indexOf(station) + 1);
+    Station direction = getDirectionOfStation(station, nextStation);
     Line line = getLineOfStationInGivenDirection(station, direction);
 
     return new NonEndingStationInPathBean(station, line, direction);
   }
 
-  private Line getLineOfStationInGivenDirection(String station, String direction) {
+  private Line getLineOfStationInGivenDirection(Station station, Station direction) {
     return getLines(direction)
         .stream()
         .filter(line -> getLines(station).contains(line)
@@ -126,26 +121,21 @@ public class ShortestPathService {
         .getFirst();
   }
 
-  private List<String> getStationsToSwitchLines(List<String> pathStations,
-                                                       String startingStation,
-                                                       String destinationStation) {
+  private List<Station> getStationsToSwitchLines(List<Station> pathStations,
+                                                       Station startingStation,
+                                                       Station destinationStation) {
     return pathStations.stream().filter(station -> stationRepository.getAllStationsToSwitchLines()
         .contains(station) && !List.of(startingStation, destinationStation).contains(station))
         .toList();
   }
 
-  private boolean areStationsOnTheSameLine(String startingStation,
-                                                  String destinationStation) {
+  private boolean areStationsOnTheSameLine(Station startingStation,
+                                                  Station destinationStation) {
     return !Collections.disjoint(getLines(startingStation), getLines(destinationStation));
   }
 
-  private boolean areInputStationsValid(String startingStation, String destinationStation) {
-    return stationRepository.getStationsNamesToInts().containsKey(startingStation)
-        && stationRepository.getStationsNamesToInts().containsKey(destinationStation);
-  }
-
-  private List<String> getFalseTransfers(List<String> stationsToSwitchLines,
-                                         List<String> pathStations) {
+  private List<Station> getFalseTransfers(List<Station> stationsToSwitchLines,
+                                         List<Station> pathStations) {
     return stationsToSwitchLines
         .stream()
         .filter(station -> isStationFalseTransfer(station,
@@ -154,13 +144,13 @@ public class ShortestPathService {
         .toList();
   }
 
-  private boolean isStationFalseTransfer(String station, String stationBefore,
-                                         String stationAfter) {
+  private boolean isStationFalseTransfer(Station station, Station stationBefore,
+                                         Station stationAfter) {
     return getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst())
         && getLines(station).contains(getLines(stationBefore).getFirst());
   }
 
-  private List<Line> getLines(String station) {
+  private List<Line> getLines(Station station) {
     return stationRepository.getLinesToStations().keySet()
         .stream()
         .filter(line -> stationRepository.getLinesToStations().get(line).contains(station))

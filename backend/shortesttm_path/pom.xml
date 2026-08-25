@@ -123,6 +123,7 @@
 						<include>**/${className}.java</include>
 					</sourceFileIncludes>
 					<failOnWarnings>true</failOnWarnings>
+                    <excludePackageNames>com.example.shortesttmpath.enums</excludePackageNames>
 				</configuration>
 			</plugin>
 			<plugin>
