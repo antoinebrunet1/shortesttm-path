@@ -11,15 +11,15 @@ export class ShortestPathService {
   private http = inject(HttpClient);
 
   getShortestPath(
-    startingStation: keyof typeof StationEnum,
-    destinationStation: keyof typeof StationEnum,
+    startingStation: string,
+    destinationStation: string,
   ): Observable<ShortestPathInterface> {
     const path = `${environment.baseUrl}/shortest_path`;
 
     return this.http.get<ShortestPathInterface>(path, {
       params: {
-        startingStation: StationEnum[startingStation],
-        destinationStation: StationEnum[destinationStation],
+        startingStation: Object.keys(StationEnum)[Object.values(StationEnum).indexOf(startingStation as StationEnum)],
+        destinationStation: Object.keys(StationEnum)[Object.values(StationEnum).indexOf(destinationStation as StationEnum)],
       },
     });
   }

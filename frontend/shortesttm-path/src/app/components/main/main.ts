@@ -44,8 +44,8 @@ export class Main {
     private shortestPathService: ShortestPathService,
     private ref: ChangeDetectorRef,
   ) {
-    this.startingStation = "Acadie";
-    this.destinationStation = 'Acadie';
+    this.startingStation = StationEnum.ACADIE;
+    this.destinationStation = StationEnum.ACADIE;
     this.allLines$ = this.stationsService.getAllStationsInAlphabeticalOrder();
   }
 
@@ -59,7 +59,7 @@ export class Main {
 
   updateShortestPath() {
     this.shortestPath$ = this.shortestPathService
-      .getShortestPath(this.startingStation as keyof typeof StationEnum, this.destinationStation as keyof typeof StationEnum)
+      .getShortestPath(this.startingStation, this.destinationStation)
       .pipe(
         catchError((err) => {
           this.pathReturned = false;
