@@ -48,7 +48,7 @@ public class ShortestPathService {
    */
   public ShortestPathBean getShortestPath(Station startingStation,
                                           Station destinationStation) {
-    if (areStationsOnTheSameLine(startingStation, destinationStation)) {
+    if (!Collections.disjoint(getLines(startingStation), getLines(destinationStation))) {
       throw new StationsOnSameLineException();
     }
 
@@ -120,11 +120,6 @@ public class ShortestPathService {
     return pathStations.stream().filter(station -> stationRepository.getAllStationsToSwitchLines()
         .contains(station) && !List.of(startingStation, destinationStation).contains(station))
         .toList();
-  }
-
-  private boolean areStationsOnTheSameLine(Station startingStation,
-                                                  Station destinationStation) {
-    return !Collections.disjoint(getLines(startingStation), getLines(destinationStation));
   }
 
   private List<Station> getFalseTransfers(List<Station> stationsToSwitchLines,
