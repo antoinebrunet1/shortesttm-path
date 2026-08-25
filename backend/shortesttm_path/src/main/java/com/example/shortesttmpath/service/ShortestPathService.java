@@ -52,8 +52,11 @@ public class ShortestPathService {
       throw new StationsOnSameLineException();
     }
 
-    List<Station> pathStations = getPathStations(startingStation.ordinal(),
-        destinationStation.ordinal());
+    List<Station> pathStations =
+        dijkstraService.dijkstra(graph, startingStation.ordinal(), destinationStation.ordinal())
+        .stream()
+        .map(index -> Station.values()[index])
+        .toList();
 
     return getShortestPathBean(startingStation, destinationStation, pathStations);
   }
@@ -65,13 +68,6 @@ public class ShortestPathService {
     boolean nextStationIsAfter = stations.get(stations.indexOf(station) + 1).equals(nextStation);
 
     return nextStationIsAfter ? stations.getLast() : stations.getFirst();
-  }
-
-  private List<Station> getPathStations(int start, int target) {
-    return dijkstraService.dijkstra(graph, start, target)
-        .stream()
-        .map(index -> Station.values()[index])
-        .toList();
   }
 
   private ShortestPathBean getShortestPathBean(Station startingStation,
