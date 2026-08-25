@@ -56,8 +56,14 @@ public class ShortestPathService {
         .stream()
         .map(index -> Station.values()[index])
         .toList();
+    List<Station> stationsToSwitchLines = getStationsToSwitchLines(pathStations, startingStation,
+        destinationStation);
 
-    return getShortestPathBean(startingStation, destinationStation, pathStations);
+    return new ShortestPathBean(
+        getStationObject(startingStation, pathStations),
+        destinationStation,
+        new ArrayList<>(getStationsToSwitchLinesObjects(stationsToSwitchLines, pathStations))
+    );
   }
 
   private Station getDirectionOfStation(Station station, Station nextStation) {
@@ -67,20 +73,6 @@ public class ShortestPathService {
     boolean nextStationIsAfter = stations.get(stations.indexOf(station) + 1).equals(nextStation);
 
     return nextStationIsAfter ? stations.getLast() : stations.getFirst();
-  }
-
-  private ShortestPathBean getShortestPathBean(Station startingStation,
-                                                      Station destinationStation,
-                                                      List<Station> pathStations) {
-    List<Station> stationsToSwitchLines = new ArrayList<>(getStationsToSwitchLines(pathStations,
-        startingStation, destinationStation));
-    stationsToSwitchLines.removeAll(getFalseTransfers(stationsToSwitchLines, pathStations));
-
-    return new ShortestPathBean(
-        getStationObject(startingStation, pathStations),
-        destinationStation,
-        new ArrayList<>(getStationsToSwitchLinesObjects(stationsToSwitchLines, pathStations))
-    );
   }
 
   private List<NonEndingStationInPathBean> getStationsToSwitchLinesObjects(
@@ -112,9 +104,15 @@ public class ShortestPathService {
   private List<Station> getStationsToSwitchLines(List<Station> pathStations,
                                                        Station startingStation,
                                                        Station destinationStation) {
-    return pathStations.stream().filter(station -> stationRepository.getAllStationsToSwitchLines()
-        .contains(station) && !List.of(startingStation, destinationStation).contains(station))
-        .toList();
+    List<Station> stationsToSwitchLines = new ArrayList<>(
+        pathStations.stream().filter(station -> stationRepository.getAllStationsToSwitchLines()
+                .contains(station) && !List.of(startingStation, destinationStation)
+                .contains(station)).toList()
+    );
+
+    stationsToSwitchLines.removeAll(getFalseTransfers(stationsToSwitchLines, pathStations));
+
+    return stationsToSwitchLines;
   }
 
   private List<Station> getFalseTransfers(List<Station> stationsToSwitchLines,
