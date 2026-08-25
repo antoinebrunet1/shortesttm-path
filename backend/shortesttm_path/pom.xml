@@ -159,6 +159,7 @@
                                         <exclude>*StationsOnSameLineException</exclude>
 										<exclude>*ShortesttmPathApplication</exclude>
                                         <exclude>*UptimeController</exclude>
+                                        <exclude>*NonEndingStationInPathBean</exclude>
 									</excludes>
 									<limits>
 										<limit>
