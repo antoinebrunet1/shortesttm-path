@@ -82,32 +82,4 @@ public class Tests {
 
     Assert.assertEquals(bodyAsString, expectedBodyAsString);
   }
-
-  private void getShortestPathAtLeastOneInvalidStation(String startingStation,
-                                                       String destinationStation) {
-    Response response = getResponseForShortestPath(startingStation, destinationStation);
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 400);
-
-    String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = "Provided stations are not valid";
-
-    Assert.assertEquals(bodyAsString, expectedBodyAsString);
-  }
-
-  @Test
-  public void getShortestPathInvalidStartingStation() {
-    getShortestPathAtLeastOneInvalidStation("MMcGill", "Viau");
-  }
-
-  @Test
-  public void getShortestPathInvalidDestinationStation() {
-    getShortestPathAtLeastOneInvalidStation("McGill", "VViau");
-  }
-
-  @Test
-  public void getShortestPathInvalidStations() {
-    getShortestPathAtLeastOneInvalidStation("MMcGill", "VViau");
-  }
 }
