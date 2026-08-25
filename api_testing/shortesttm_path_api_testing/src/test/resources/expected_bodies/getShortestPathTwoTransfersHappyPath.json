@@ -1,20 +1,20 @@
 {
   "startingStation": {
-    "name": "Acadie",
+    "name": "ACADIE",
     "line": "BLUE",
-    "direction": "Snowdon"
+    "direction": "SNOWDON"
   },
-  "destinationStation": "Angrignon",
+  "destinationStation": "ANGRIGNON",
   "stationsToSwitchLines": [
     {
-      "name": "Snowdon",
+      "name": "SNOWDON",
       "line": "ORANGE",
-      "direction": "Montmorency"
+      "direction": "MONTMORENCY"
     },
     {
-      "name": "Lionel-Groulx",
+      "name": "LIONEL_GROULX",
       "line": "GREEN",
-      "direction": "Angrignon"
+      "direction": "ANGRIGNON"
     }
   ]
 }

@@ -49,20 +49,20 @@ public class Tests {
 
   @Test
   public void getShortestPathOneTransferHappyPath() throws IOException {
-    getShortestPathHappyPath("Laurier", "Charlevoix",
+    getShortestPathHappyPath("LAURIER", "CHARLEVOIX",
         "getShortestPathOneTransferHappyPath");
   }
 
   @Test
   public void getShortestPathTwoTransfersHappyPath() throws IOException {
-    getShortestPathHappyPath("Acadie", "Angrignon",
+    getShortestPathHappyPath("ACADIE", "ANGRIGNON",
         "getShortestPathTwoTransfersHappyPath");
   }
 
   @Test
   public void getShortestPathSameLine() {
-    Response response = getResponseForShortestPath("Radisson",
-        "Atwater");
+    Response response = getResponseForShortestPath("RADISSON",
+        "ATWATER");
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 400);
