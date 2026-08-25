@@ -153,19 +153,12 @@
 								<rule>
 									<element>CLASS</element>
 									<excludes>
-                                        <exclude>*ApiKeyAuthentication</exclude>
                                         <exclude>*SecurityConfig</exclude>
 										<exclude>*ShortestPathController</exclude>
 										<exclude>*ShortestPathBean</exclude>
                                         <exclude>*StationsOnSameLineException</exclude>
-                                        <exclude>*AuthenticationFilter</exclude>
-                                        <exclude>*AuthenticationService</exclude>
 										<exclude>*ShortesttmPathApplication</exclude>
-                                        <exclude>*LinesController</exclude>
-                                        <exclude>*StationsController</exclude>
-                                        <exclude>*NonEndingStationInPathBean</exclude>
                                         <exclude>*UptimeController</exclude>
-                                        <exclude>*FileUtil</exclude>
 									</excludes>
 									<limits>
 										<limit>
