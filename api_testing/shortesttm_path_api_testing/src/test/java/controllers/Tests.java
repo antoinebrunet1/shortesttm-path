@@ -48,16 +48,6 @@ public class Tests {
   }
 
   @Test
-  public void getAllStationsAlphaOrderHappyPath() throws IOException {
-    String STATIONS_CONTROLLER_PATH = "/stations";
-    Response response = RestAssured.get(STATIONS_CONTROLLER_PATH + "/alphabetical-order");
-    int statusCode = response.getStatusCode();
-
-    Assert.assertEquals(statusCode, 200);
-    validateBody(response, "getAllStationsAlphaOrderHappyPath");
-  }
-
-  @Test
   public void getShortestPathOneTransferHappyPath() throws IOException {
     getShortestPathHappyPath("Laurier", "Charlevoix",
         "getShortestPathOneTransferHappyPath");

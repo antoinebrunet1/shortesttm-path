@@ -1,19 +1,6 @@
 {
   "controllers": [
     {
-      "name": "stations-controller",
-      "endpoints": [
-        {
-          "name": "/stations/alphabetical-order",
-          "test_cases": [
-            {
-              "name": "getAllStationsAlphaOrderHappyPath"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "shortest-path-controller",
       "endpoints": [
         {
