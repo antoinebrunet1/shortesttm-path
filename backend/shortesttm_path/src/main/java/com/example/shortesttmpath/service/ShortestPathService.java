@@ -131,9 +131,12 @@ public class ShortestPathService {
                                          List<Station> pathStations) {
     return stationsToSwitchLines
         .stream()
-        .filter(station -> isStationFalseTransfer(station,
-            pathStations.get(pathStations.indexOf(station) - 1),
-            pathStations.get(pathStations.indexOf(station) + 1)))
+        .filter(station -> {
+          int stationIndex = pathStations.indexOf(station);
+
+          return isStationFalseTransfer(station, pathStations.get(stationIndex - 1),
+              pathStations.get(stationIndex + 1));
+        })
         .toList();
   }
 
