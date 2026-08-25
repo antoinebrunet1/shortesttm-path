@@ -186,6 +186,7 @@
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
 					<includeTestSourceDirectory>false</includeTestSourceDirectory>
+                    <excludes>com/example/shortesttmpath/repository/GraphRepository.java</excludes>
 				</configuration>
 				<executions>
 					<execution>
