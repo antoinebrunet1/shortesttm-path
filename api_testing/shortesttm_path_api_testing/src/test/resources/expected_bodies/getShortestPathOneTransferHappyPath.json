@@ -2,7 +2,7 @@
   "startingStation": {
     "name": "LAURIER",
     "line": "ORANGE",
-    "direction": "COTE-VERTU"
+    "direction": "COTE_VERTU"
   },
   "destinationStation": "CHARLEVOIX",
   "stationsToSwitchLines": [
