@@ -133,17 +133,13 @@ public class ShortestPathService {
         .stream()
         .filter(station -> {
           int stationIndex = pathStations.indexOf(station);
+          Station stationBefore = pathStations.get(stationIndex - 1);
+          Station stationAfter = pathStations.get(stationIndex + 1);
 
-          return isStationFalseTransfer(station, pathStations.get(stationIndex - 1),
-              pathStations.get(stationIndex + 1));
+          return getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst())
+              && getLines(station).contains(getLines(stationBefore).getFirst());
         })
         .toList();
-  }
-
-  private boolean isStationFalseTransfer(Station station, Station stationBefore,
-                                         Station stationAfter) {
-    return getLines(stationBefore).getFirst().equals(getLines(stationAfter).getFirst())
-        && getLines(station).contains(getLines(stationBefore).getFirst());
   }
 
   private List<Line> getLines(Station station) {
