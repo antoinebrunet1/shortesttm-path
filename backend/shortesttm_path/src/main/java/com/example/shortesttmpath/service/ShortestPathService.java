@@ -56,15 +56,12 @@ public class ShortestPathService {
   }
 
   private Station getDirectionOfStation(Station station, Station nextStation) {
-    Line line = getLineOfDirection(getLines(station), getLines(nextStation));
+    Line line = getLines(station).stream().filter(getLines(nextStation)::contains).findFirst()
+        .orElseThrow();
     List<Station> stations = stationRepository.getLinesToStations().get(line);
     boolean nextStationIsAfter = stations.get(stations.indexOf(station) + 1).equals(nextStation);
 
     return nextStationIsAfter ? stations.getLast() : stations.getFirst();
-  }
-
-  private Line getLineOfDirection(List<Line> stationLines, List<Line> nextStationLines) {
-    return stationLines.stream().filter(nextStationLines::contains).findFirst().orElseThrow();
   }
 
   private void validateStations(Station startingStation, Station destinationStation) {
