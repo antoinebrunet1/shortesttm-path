@@ -1,4 +1,4 @@
-export enum Station {
+export enum StationEnum {
   ACADIE = "Acadie",
   ANGRIGNON = "Angrignon",
   ASSOMPTION = "Assomption",
