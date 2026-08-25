@@ -48,7 +48,10 @@ public class ShortestPathService {
    */
   public ShortestPathBean getShortestPath(Station startingStation,
                                           Station destinationStation) {
-    validateStations(startingStation, destinationStation);
+    if (areStationsOnTheSameLine(startingStation, destinationStation)) {
+      throw new StationsOnSameLineException();
+    }
+
     List<Station> pathStations = getPathStations(startingStation.ordinal(),
         destinationStation.ordinal());
 
@@ -62,12 +65,6 @@ public class ShortestPathService {
     boolean nextStationIsAfter = stations.get(stations.indexOf(station) + 1).equals(nextStation);
 
     return nextStationIsAfter ? stations.getLast() : stations.getFirst();
-  }
-
-  private void validateStations(Station startingStation, Station destinationStation) {
-    if (areStationsOnTheSameLine(startingStation, destinationStation)) {
-      throw new StationsOnSameLineException();
-    }
   }
 
   private List<Station> getPathStations(int start, int target) {
