@@ -7,7 +7,7 @@
   "destinationStation": "CHARLEVOIX",
   "stationsToSwitchLines": [
     {
-      "name": "LIONEL-GROULX",
+      "name": "LIONEL_GROULX",
       "line": "GREEN",
       "direction": "ANGRIGNON"
     }
