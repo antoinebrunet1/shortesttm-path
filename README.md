@@ -80,16 +80,6 @@ There is a folder called `e2e_testing` at the root of this project. For the loca
 
 I locate all elements using the `data-testid` attribute, which is a Cypress best practice.
 
-##  💡 Backend algorithm overview 💡
-
-I get the shortest path as a list of stations using an algorithm for directed weighted graphs I found at https://medium.com/@robinviktorsson/dijkstras-algorithm-in-java-learn-with-practical-examples-9e7af310e466.
-
-This algorithm is using integers. I just map the stations names to integers to find the path and after that I map the integers back to stations names.
-
-For the HTTP response, I only want to send, for the path, the starting station, the destination station and stations used to switch lines between the first and last stations.
-
-To get the stations used to switch lines between the first and last stations, I take the stations that have at least two lines and that are used to actually switches lines. That can be detected by making sure that the previous and next stations are not on the same line.
-
 ## 🔄 The Maven plugins through the Maven lifecycle 🔄
 
 <div align="center">
