@@ -254,6 +254,22 @@ or
 make run-e2e-tests
 ```
 
+### 🚀 Performance testing 🚀
+
+You can run the performance test unsing this command from the `performance_testing/load_testing/api` folder :
+
+```
+jmeter -n -t test_plan.jmx -l results.jtl -e -o report
+```
+
+or
+
+```
+make api-load-testing-html-report
+```
+
+The HTML report indicating if the test passed will be found in `performance_testing/load_testing/api/report/index.html`.
+
 ## 🛡️ Security 🛡️
 
 ### Safety guarantied for all the dependencies
