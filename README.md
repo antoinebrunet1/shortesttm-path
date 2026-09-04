@@ -24,6 +24,7 @@
 - **Backend:** Spring Boot in Java
 - **API testing:** REST Assured
 - **End-to-end testing:** Cypress
+- **Performance testing:** JMeter
 
 ## 📚 Documentation 📚
 
