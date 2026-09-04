@@ -31,3 +31,6 @@ wait-for-frontend:
 
 run-e2e-tests:
 	cd e2e_testing && npx cypress run --browser chrome
+
+api-load-testing-html-report:
+	cd performance_testing/load_testing/api && jmeter -n -t test_plan.jmx -l results.jtl -e -o report
