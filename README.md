@@ -127,6 +127,7 @@ The main branch of this repository contains a GitHub Actions CI/CD pipeline to i
 5. The unit tests coverage is at least 80% for the frontend. It is by line.
 6. The API tests pass.
 7. The end-to-end tests pass.
+8. The performance tests pass.
 
 ## ✅ Check code quality locally ✅
 
