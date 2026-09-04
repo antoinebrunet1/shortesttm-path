@@ -81,6 +81,10 @@ There is a folder called `e2e_testing` at the root of this project. For the loca
 
 I locate all elements using the `data-testid` attribute, which is a Cypress best practice.
 
+### Performance testing
+
+There is a JMeter API load test which is `performance_testing/load_testing/api/test_plan.jmx`. A load test is a type of performance test. For the local setup, you will need JMeter and Java installed.
+
 ## 🔄 The Maven plugins through the Maven lifecycle 🔄
 
 <div align="center">
