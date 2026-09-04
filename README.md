@@ -118,7 +118,7 @@ For each test case, the name remains exactly the same in:
 
 ## 🚀 Performance testing 🚀
 
-There is one performance test. It is an API load test. It tests the `/shortest_path` path with the GET method. It makes the same happy path request 100 times within 5 seconds.
+There is one performance test. It is an API load test. It tests the `/shortest_path` path with the GET method. It makes the same happy path request 100 times within 5 seconds. It asserts each request is successful (200 status code) and took at most 3 seconds.
 
 ## ✨ Code quality guarantied ✨
 
