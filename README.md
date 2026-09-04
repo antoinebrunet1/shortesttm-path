@@ -116,6 +116,10 @@ For each test case, the name remains exactly the same in:
    api_testing/shortesttm_path_api_testing/src/test/java/controllers/Tests.java
     ```
 
+## 🚀 Performance testing 🚀
+
+There is one performance test. It is an API load test. It tests the `/shortest_path` path with the GET method. It makes the same happy path request 100 times within 5 seconds.
+
 ## ✨ Code quality guarantied ✨
 
 The main branch of this repository contains a GitHub Actions CI/CD pipeline to indicate if the code meets the below quality checks or not.
