@@ -24,8 +24,6 @@ public class UptimeController {
    */
   @GetMapping()
   public ResponseEntity<String> uptime() {
-    HttpHeaders headers = new HttpHeaders();
-
-    return new ResponseEntity<>("Ok", headers, HttpStatus.OK);
+    return new ResponseEntity<>("Ok", new HttpHeaders(), HttpStatus.OK);
   }
 }
