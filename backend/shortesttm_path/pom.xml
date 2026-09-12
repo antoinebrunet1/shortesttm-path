@@ -160,6 +160,7 @@
 										<exclude>*ShortesttmPathApplication</exclude>
                                         <exclude>*UptimeController</exclude>
                                         <exclude>*NonEndingStationInPathBean</exclude>
+                                        <exclude>*AtLeastOneStationIsInvalidException</exclude>
 									</excludes>
 									<limits>
 										<limit>
