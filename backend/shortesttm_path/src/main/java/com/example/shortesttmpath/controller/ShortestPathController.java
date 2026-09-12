@@ -1,7 +1,7 @@
 package com.example.shortesttmpath.controller;
 
 import com.example.shortesttmpath.data.ShortestPathBean;
-import com.example.shortesttmpath.enums.Station;
+import com.example.shortesttmpath.exception.AtLeastOneStationIsInvalidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.service.ShortestPathService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,13 @@ public class ShortestPathController {
   }
 
   /**
-   * Returns a 400 bad request with an error message if the StationsOnSameLineException exception
-   * was thrown.
+   * Returns a 400 bad request with an error message if the StationsOnSameLineException or
+   * AtLeastOneStationIsInvalidException exception was thrown.
    *
    * @param runTimeException The exception that was thrown.
    * @return A 400 bad request with an error message.
    */
-  @ExceptionHandler({StationsOnSameLineException.class})
+  @ExceptionHandler({StationsOnSameLineException.class, AtLeastOneStationIsInvalidException.class})
   public ResponseEntity<String> handle(RuntimeException runTimeException) {
     return ResponseEntity.badRequest().body(runTimeException.getMessage());
   }
@@ -53,7 +53,7 @@ public class ShortestPathController {
    */
   @GetMapping()
   public ResponseEntity<ShortestPathBean> getShortestPath(
-      @RequestParam Station startingStation, @RequestParam Station destinationStation) {
+      @RequestParam String startingStation, @RequestParam String destinationStation) {
     ShortestPathBean path = shortestPathService.getShortestPath(startingStation,
         destinationStation);
 

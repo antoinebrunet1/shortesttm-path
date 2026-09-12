@@ -78,7 +78,7 @@ public class ShortestPathServiceTest {
 
       Station startingStation = Station.ACADIE;
       Station destinationStation = Station.DE_CASTELNAU;
-      ShortestPathBean actualResult = shortestPathService.getShortestPath(startingStation, destinationStation);
+      ShortestPathBean actualResult = shortestPathService.getShortestPath(startingStation.name(), destinationStation.name());
       ShortestPathBean expectedResult = new ShortestPathBean(
           new NonEndingStationInPathBean(
               startingStation,
@@ -100,6 +100,6 @@ public class ShortestPathServiceTest {
       when(stationRepository.getLinesToStations()).thenReturn(linesToStations);
 
       assertThrows(StationsOnSameLineException.class, () ->
-            shortestPathService.getShortestPath(Station.ACADIE, Station.BEAUBIEN));
+            shortestPathService.getShortestPath(Station.ACADIE.name(), Station.BEAUBIEN.name()));
     }
 }

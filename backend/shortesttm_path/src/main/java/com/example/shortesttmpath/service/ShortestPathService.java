@@ -5,10 +5,12 @@ import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.enums.Station;
+import com.example.shortesttmpath.exception.AtLeastOneStationIsInvalidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.repository.GraphRepository;
 import com.example.shortesttmpath.repository.StationRepository;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -41,12 +43,20 @@ public class ShortestPathService {
    * exception is thrown if the two stations are on the same line. This includes the same station
    * given twice and neighbor stations.
    *
-   * @param startingStation    The starting station.
-   * @param destinationStation The destination station.
+   * @param startingStationString    The starting station.
+   * @param destinationStationString The destination station.
    * @return The shortest metro path between two STM metro stations.
    */
-  public ShortestPathBean getShortestPath(Station startingStation,
-                                          Station destinationStation) {
+  public ShortestPathBean getShortestPath(String startingStationString,
+                                          String destinationStationString) {
+    if (stationStringIsInvalid(startingStationString)
+        || stationStringIsInvalid(destinationStationString)) {
+      throw new AtLeastOneStationIsInvalidException();
+    }
+
+    Station startingStation = Station.valueOf(startingStationString);
+    Station destinationStation = Station.valueOf(destinationStationString);
+
     if (!Collections.disjoint(getLines(startingStation), getLines(destinationStation))) {
       throw new StationsOnSameLineException();
     }
@@ -64,6 +74,11 @@ public class ShortestPathService {
         destinationStation,
         new ArrayList<>(getStationsToSwitchLinesObjects(stationsToSwitchLines, pathStations))
     );
+  }
+
+  private boolean stationStringIsInvalid(String stationString) {
+    return Arrays.stream(Station.values())
+        .noneMatch(value -> value.name().equals(stationString));
   }
 
   private Station getDirectionOfStation(Station station, Station nextStation) {
