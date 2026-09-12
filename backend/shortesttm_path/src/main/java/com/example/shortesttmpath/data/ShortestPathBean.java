@@ -7,8 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * Represents the shortest metro path (the one with the least stations) between two STM metro
- * stations.
+ * Represents the shortest metro path between two STM metro stations.
  */
 @Data
 @AllArgsConstructor
