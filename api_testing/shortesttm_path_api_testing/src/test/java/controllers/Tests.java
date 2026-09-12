@@ -59,17 +59,27 @@ public class Tests {
         "getShortestPathTwoTransfersHappyPath");
   }
 
-  @Test
-  public void getShortestPathSameLine() {
-    Response response = getResponseForShortestPath("RADISSON",
-        "ATWATER");
+  private void getShortestPathExceptionThrown(String startingStation, String destinationStation,
+                                              String expectedErrorMessage) {
+    Response response = getResponseForShortestPath(startingStation, destinationStation);
     int statusCode = response.getStatusCode();
 
     Assert.assertEquals(statusCode, 400);
 
     String bodyAsString = response.getBody().asString();
-    String expectedBodyAsString = "Provided stations are on the same line";
 
-    Assert.assertEquals(bodyAsString, expectedBodyAsString);
+    Assert.assertEquals(bodyAsString, expectedErrorMessage);
+  }
+
+  @Test
+  public void getShortestPathSameLine() {
+    getShortestPathExceptionThrown("RADISSON", "ATWATER",
+        "Provided stations are on the same line");
+  }
+
+  @Test
+  public void getShortestPathInvalidStation() {
+    getShortestPathExceptionThrown("RADISSONN", "ATWATER",
+        "At least one of the provided stations is invalid");
   }
 }
