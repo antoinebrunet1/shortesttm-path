@@ -2,15 +2,16 @@ package com.example.shortesttmpath.data;
 
 import com.example.shortesttmpath.enums.Station;
 import java.util.List;
-import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * Represents the shortest metro path between two STM metro stations.
  */
 @Data
 @AllArgsConstructor
+@EqualsAndHashCode
 public class ShortestPathBean {
   /**
    * The default constructor.
@@ -21,14 +22,4 @@ public class ShortestPathBean {
   NonEndingStationInPathBean startingStation;
   Station destinationStation;
   List<NonEndingStationInPathBean> stationsToSwitchLines;
-
-  @Override
-  public boolean equals(Object o) {
-    if (!(o instanceof ShortestPathBean that)) {
-      return false;
-    }
-    return Objects.equals(startingStation, that.startingStation)
-        && Objects.equals(destinationStation, that.destinationStation)
-        && Objects.equals(stationsToSwitchLines, that.stationsToSwitchLines);
-  }
 }
