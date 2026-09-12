@@ -4,6 +4,7 @@ import com.example.shortesttmpath.data.NonEndingStationInPathBean;
 import com.example.shortesttmpath.data.ShortestPathBean;
 import com.example.shortesttmpath.enums.Line;
 import com.example.shortesttmpath.enums.Station;
+import com.example.shortesttmpath.exception.AtLeastOneStationIsInvalidException;
 import com.example.shortesttmpath.exception.StationsOnSameLineException;
 import com.example.shortesttmpath.repository.GraphRepository;
 import com.example.shortesttmpath.repository.StationRepository;
@@ -102,4 +103,10 @@ public class ShortestPathServiceTest {
       assertThrows(StationsOnSameLineException.class, () ->
             shortestPathService.getShortestPath(Station.ACADIE.name(), Station.BEAUBIEN.name()));
     }
+
+  @Test
+  public void getShortestPathInvalidStationShouldThrowAtLeastOneStationIsInvalidException() {
+    assertThrows(AtLeastOneStationIsInvalidException.class, () ->
+        shortestPathService.getShortestPath("ACADIEE", Station.BEAUBIEN.name()));
+  }
 }
